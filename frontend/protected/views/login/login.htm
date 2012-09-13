@@ -1,0 +1,57 @@
+<?php 
+$name  = isset($__p__['login_user_name']) ? $__p__['login_user_name'] : '';
+if(!empty($__p__['name'])) {
+    $name = $__p__['name'];
+}
+
+$error = FALSE;
+if(!empty($__p__['error_pass_msg']) || !empty($__p__['error_msg'])) {
+    $error = TRUE;
+}
+?>
+<div class="home_login">
+    <h1>101兄弟会员登录</h1>
+    <div class="div_login">
+    <form name="form" id="form1" action="?<?php 
+    if(!empty($_GET['action'])){ 
+        echo 'action='.$_GET['action']; 
+    }
+    if(!empty($_GET['id'])){ 
+        echo '&id='.$_GET['id']; 
+    }
+    if(!empty($_GET['url'])){ 
+        echo '&url='.$_GET['url']; 
+    }?>" method="post" onsubmit="javascrpit:void(0)">
+    <ul>
+        <li class='username'>
+        <div style="clear:both;width:230px;height:20px;"><span>用户名：</span><input type="text" name="name" <?php if(!empty($name)){ echo "value='{$name}' style='color:#000;'"; } else { echo "value='请输入用户登陆名'"; }?> <?php if(!empty($__p__['error_name_msg'])){?>class="red"<?php }?>/></div>
+        <div id="img_name_w"  <?php if(!empty($__p__['error_name_msg'])) {?>style="display:block;"<?php }else {?>style="display:none;"<?php }?> class="wrong"><?php if(!empty($__p__['error_name_msg'])) {echo $__p__['error_name_msg'];}?></div>
+        </li>
+        <li class='userpass'>
+      <div style="clear:both;width:230px;height:20px;"><span>密 码：</span><input type="password" name="pass" value="" <?php if(!empty($__p__['error_pass_msg'])){?>class="red"<?php }?>></div>
+        <div id="img_pass_w"  <?php if(!empty($__p__['error_pass_msg'])) {?>style="display:block;"<?php }else {?>style="display:none;"<?php }?> class="wrong"><?php if(!empty($__p__['error_pass_msg'])) {echo $__p__['error_pass_msg'];}?></div>
+        </li>
+    </ul>
+    <p><input name="remember" type="checkbox" value="1" style="width:14px;height:14px;margin-right:2px;">请记住我的用户名<br>[如果是共享电脑，建议不要选中此框。]</p>
+    <div class="login_submit"><input class="signinbutton" type="submit" name="submit_" value="登 录"></div>
+    </form>
+    <div class="login_ne">您若还不是会员，请立即<a href="register">免费注册</a></div>
+    </div>
+  </div>
+<div class="saas">
+    <h1>101兄弟，渠道商供货平台，为会员提供如下服务：</h1>
+    <ul>
+      <li>您是供应商</li>
+      <li class="green">您是渠道商</li>
+    </ul>
+    <ol class="supplier">
+      <li>免费发布商品信息，即时商业互动；</li>
+      <li>提升商品品牌知名度</li>
+      <li>提升企业知名度</li>
+      <li>庞大的渠道商群体</li>
+    </ol>
+    <ol>
+      <li>查看供货商的联系方式</li>
+      <li>足不出户，数款商品任您选择</li>
+    </ol>
+  </div>

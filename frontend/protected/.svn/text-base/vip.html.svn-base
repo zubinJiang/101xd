@@ -1,0 +1,21 @@
+<?php include('beforebody.htm'); ?>
+<div id="doc3" class="yui-t7">
+    <div id="hd" role="banner">
+      <? CHtml::insert('index_top.htm'); ?>
+    </div>
+    <div id="bd" role="main">
+        <div class="yui-g">
+         <div id="box">
+            <? CHtml::insert('index_daohang2.htm'); ?>
+         </div>
+          <div id="main" style="position:relative;overflow:hidden;">
+             <? CHtml::insert('liaison.htm'); ?>
+             <? CHtml::insert('variiables.htm'); ?>
+          </div>
+        </div>
+	</div>
+    <div id="ft" role="contentinfo">
+          <? CHtml::insert('home_foot.htm'); ?>
+    </div>
+</div>
+<?php include('afterbody.htm'); ?>

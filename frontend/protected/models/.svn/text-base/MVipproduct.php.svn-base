@@ -1,0 +1,149 @@
+<?php
+
+class MVipproduct extends CModel {  
+    
+    //vip添加商品
+    function addVipproduct($product){
+        $data = $this->db->table('`vipproduct`')
+            ->insert($product);
+        $lid = $this->db->last_insert_id();
+        //插入关联信息
+        $relate = array();
+        $relate['user_id'] = $product['company_id'];
+        $relate['pusher_id'] = $product['user_id'];
+        $relate['vipproduct_id'] = $lid;
+        $this->db->table('`vipproduct_pusher`')
+            ->insert($relate);
+        return $lid;
+    }
+
+    //添加vip用户的资质
+    function vipAddQualification($data){
+        $data = $this->db->table('`qualification`')
+            ->insert($data);
+        return $this->db->last_insert_id();
+    }
+
+    //更新vip商品数据
+    function updateVipproduct($vipproduct){
+
+        $data = $this->db->exec("update `vipproduct` set title='{$vipproduct['title']}', max_buy='{$vipproduct['max_buy']}', max_pre='{$vipproduct['max_pre']}', market_price='{$vipproduct['market_price']}', supply_price='{$vipproduct['supply_price']}', `desc`='{$vipproduct['desc']}', `explain`='{$vipproduct['explain']}', images='{$vipproduct['images']}', qualification_id='{$vipproduct['qualification_id']}' where id='{$vipproduct['id']}'");
+    
+        return $data;
+    }
+
+    //计算该用户发布商品的次数
+    function userVipproductCount($user_id){
+
+        $data = $this->db->table('`vipproduct`')
+            ->select('qualification_id')
+            ->where("user_id='{$user_id}'")
+            ->getFirst();
+        return $data['qualification_id'];
+    }
+
+    //获取团购网站id
+    function getCpmpanyId($id){
+
+        $data = $this->db->table('`vipproduct`')
+            ->select('company_id')
+            ->where("id='{$id}'")
+            ->getFirst();
+
+        return $data;
+    }
+
+    /**
+     * 获取vip用户的资质
+     */
+    function userVipproductZizhi($user_id){
+        
+        $data = $this->db->table('`vipproduct` p, `qualification` q')
+            ->select('p.qualification_id, q.*')
+            ->where("p.qualification_id=q.id")
+            ->where("p.user_id='{$user_id}'")
+            ->order("p.id",'asc')
+            ->getFirst();
+        return $data;
+    }
+
+    /**
+     * update 资质
+     */
+    function vipUpdateQualification($data, $id){
+
+        if(!empty($data)){
+
+            foreach($data as $k=>$v){
+                    
+                if(!empty($v)){
+
+                    $this->db->exec("update `qualification` set $k='{$v}' where id='{$id}' ");
+                }
+
+            }
+        }
+
+        return $rzt;
+    
+    }
+    /*
+     *建立某提交商品与选择的渠道商之间的关联;
+     */
+    function addQudao($pid,$qids,$uid){
+        foreach($qids as $q){
+            /*此处检测为防止非法攻击
+             * 匿名用户和登录用户需要验证
+             */
+            if($uid){
+                //如果是登录 状态，检查该用户是否有向改渠道商推送过
+                $ck =$this->db->exec("SELECT id FROM `vipproduct_pusher` WHERE vipproduct_id='{$pid}' AND user_id='{$q}' AND pusher_id='{$uid}'");
+            }
+            else{
+                //未登录用户的检查是否属于重复操作,pid会递增，两个参数可以确定唯一
+                $ck =$this->db->exec("SELECT id FROM `vipproduct_pusher` WHERE vipproduct_id='{$pid}' AND user_id='{$q}'");
+            };
+            $ckf =$this->db->exec("SELECT id FROM `vipproduct` WHERE id='{$pid}'");
+            if(!$ck && $ckf){
+                //防止重复插入
+                $this->db->exec("INSERT IGNORE `vipproduct_pusher` (vipproduct_id,user_id,pusher_id) VALUES ({$pid},{$q},{$uid})");
+            }
+        }
+        return true;
+    
+    }
+    /**
+     * pusher
+     */
+    function getPusherId($user_id,$id){
+
+        $data = $this->db->table('`vipproduct_pusher` pu , company c')
+            ->select('pu.id, pu.pusher_id, c.site_name, c.user_id')
+            ->where("pu.user_id=c.user_id")
+            //->where("pu.user_id='{$user_id}'")
+            ->where("pu.vipproduct_id='{$id}'")
+            ->getList();
+
+        return $data;
+    
+    }
+
+    /**
+     * delete
+     */
+    function deleteVipproductPusher($id){
+
+
+        $rzt = $this->db->exec("delete from  `vipproduct_pusher` where id='{$id}'");
+
+        return $rzt;
+    
+    }
+    /*
+     *
+     */
+    function checkUP($uid,$pid){
+        $res = $this->db->exec("SELECT id FROM `vipproduct` WHERE user_id='{$uid}' AND id='{$pid}'");
+        return $res;
+        }
+}

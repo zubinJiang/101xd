@@ -1,0 +1,187 @@
+<?php
+class VipindexPresenter extends InitPresenter
+{
+    public function __init__() {
+        parent::__init__();
+    }
+
+    private function getUserData($user_id) {
+        $this->__p__['user_data'] = $this->user->getUserData($user_id);
+        $this->__p__['message_count'] = $this->message->getNewsMessageCount($user_id);
+
+        //101推送数量
+        $this->__p__['push_num'] = $this->vipproduct->getPushCount($user_id,'0');
+
+        //user推送数量
+        $this->__p__['user_push_num'] = $this->vipproduct->getPushCount($user_id);
+
+        //收藏数量
+        $this->__p__['collect_num'] = $this->vipproduct->getVipproductCollectNum($user_id);
+
+        //忽略数量
+        $this->__p__['ignore_num'] = $this->vipproduct->getVipproductCollectNum($user_id, '2');
+
+        //track 跟踪记录
+        $this->__p__['track_num'] = $this->vipproduct->getVipproductTrack($user_id);
+
+
+    }
+    
+    public function FetchSuggestProduct($cursor,$type,$user_id){
+        
+    //根据游标获取应该加载的id
+    //cursor为当前的游标，type传入1为next -1 为prev,返回vipproduct的关联数据,puller为渠道商id
+    $id_ = $this->vipproduct->getIDByCursor($cursor,$type,$user_id);
+    //echo $id_;
+    if (!empty($id_)){
+        //echo $id_; 
+        $product = $this->vipproduct->getRelateVipproductData($id_);
+        $product['cursor']=intval($cursor)+intval($type);
+        $product['cuid']=$user_id;
+        $images = explode("|", $product['images']);
+        if(!empty($images)){
+            foreach($images as $k=>$v){
+                
+                //$images["{$k}"] =  str_replace("http://image2.101xd.com/", "http://image.101xd.com/", $v);
+            }
+        }
+        if (strlen($product['title'])>35){
+            $product['title'] = mb_substr($product['title'],0,34,'utf-8').'...';
+        }
+        $product['image']=$images[0];
+        $product['insertdate']=date('Y-m-d',$product['insertdate']);
+        $quals = array();
+        if ($product['qualification']['image_certificate']){
+         array_push($quals,array('name'=>'身份证','src'=>$product['qualification']['image_certificate']));
+        }
+        if ($product['qualification']['image_license']){
+         array_push($quals,array('name'=>'营业执照','src'=>$product['qualification']['image_license']));
+        }
+        if ($product['qualification']['image_tax']){
+         array_push($quals,array('name'=>'税务登记证','src'=>$product['qualification']['image_tax']));
+        }
+        if ($product['qualification']['ipmage_account']){
+         array_push($quals,array('name'=>'开户许可证','src'=>$product['qualification']['image_account']));
+        }
+        if ($product['qualification']['image_org']){
+         array_push($quals,array('name'=>'组织机构代码证','src'=>$product['qualification']['image_org']));
+        }
+        if ($product['qualification']['image_bui']){
+         array_push($quals,array('name'=>'商家授权书','src'=>$product['qualification']['image_bui']));
+        }
+        if ($product['qualification']['image_qc']){
+         array_push($quals,array('name'=>'商家质检书','src'=>$product['qualification']['image_qc']));
+        }
+        if ($product['qualification']['image_logo']){
+         array_push($quals,array('name'=>'商标','src'=>$product['qualification']['image_logo']));
+        };
+        $product['qualification']=$quals;
+        $product['ad_position_old']=$product['ad_position'];
+        //将ad的存储数据转为输出文字
+        if ($product['ad']=='1'){
+            $product['ad']='是';
+            $ad_position = explode('|',$product['ad_position']);
+            $ad_position_ = '';
+            foreach($ad_position as $ad_p){
+                //echo $ad_p;
+                if ($ad_p == '0'){
+                    $ad_position_="{$ad_position_}网站首页链接广告; ";
+                    }
+                if ($ad_p == '1'){
+                    $ad_position_="{$ad_position_}网站首页商品推荐; ";
+                    }
+                if ($ad_p == '2'){
+                    $ad_position_="{$ad_position_}右侧推荐位专题推广; ";
+                    }
+                if ($ad_p == '3'){
+                    $ad_position_="{$ad_position_}其他; ";
+                    }
+                };
+             $ad_period = "{$product['ad_period']}天";
+             $product['ad_period'] = $ad_period;
+             $product['ad_position'] = $ad_position_;
+                };
+        if ($product['ad']=='0'){
+            $product['ad']='否';
+            $product['ad_period'] = '';
+            $product['ad_position'] = '';
+            }
+
+        echo json_encode($product);
+        exit;
+        }
+    else{
+        $res=array();
+        $res['msg']='error';
+        echo json_encode($res);
+        exit;
+        } 
+    }
+    /*收藏或者忽略供货商推荐到我（渠道商）的商品
+     * pid product id uid user id type 为方式1：收藏 2:已忽略;3：推送区;
+     * 角色有三个渠道商[推送到的] 推送人 操作者[后两个可能是一个人]
+    */
+    public function Collect($pid,$uid,$type,$ignore_msg,$pub_id){
+       
+        $res=$this->vipproduct->handCollect($pid,$uid,$type,$ignore_msg);
+        //发送message到相应的用户说明参见http://goo.gl/DNeGM [gdoc 需要翻墙!]
+        //$pub_id 对应user_id 为1的时候vipproduct_pusher 表中的pusher_id 为0,此处不查vipproduct_pusher表
+
+
+        $qudaoshang = $this->user->getUserData($pub_id);
+        $gonghuoshang = $this->user->getUserData($uid);
+        $product = $this->vipproduct->getRelateVipproductData($pid);
+        if ($type<3){
+            if ($pub_id == 1){
+                switch($tpye){
+                    case 1:$msg =  "商品推送服务：101兄弟为您推送符合您要求的商品：商品标题：{$product['title']}；商品类型：{$product['category']['name']}，";break;
+                    case 2:$msg =  "亲爱的 {$gonghuoshang['Name']}您推送至{$qudaoshang['Name']}的商品：商品标题：{$product['title']}，被新浪团加入收藏夹；";break;
+                    case 3:$msg =  "商品推送服务：101兄弟为您推送符合您要求的商品：商品标题：{$product['title']}；商品类型：{$product['category']['name']}，";break;
+                    }
+                }
+            else{
+                switch($tpye){
+                    case 1:$msg =  "商品推送服务：{$user['Name']}为您推送符合您要求的商品：商品标题：{$product['title']}；商品类型：{$product['category']['name']}";break;
+                    case 2:$msg =  "亲爱的 {$gonghuoshang['Name']}您推送至{$qudaoshang['Name']}的商品：商品标题：{$product['title']}，被新浪团加入收藏夹；";break;
+                    case 3:$msg =  "商品推送服务：101兄弟为您推送符合您要求的商品：商品标题：{$product['title']}；商品类型：{$product['category']['name']}，";break;
+                    }
+
+            }
+            $this->message->sendMessage($pub_id,$uid,$msg); 
+        }
+
+        echo json_encode($res);
+        exit;
+        }
+    public function totalCollect($uid){
+        $res['msg'] = $this->vipproduct->totalCollect($uid);
+        echo json_encode($res);
+        exit;
+        }
+
+    public function __main__() {
+
+        $user_id = $this->checkLoginStatus();
+
+        $this->getUserData($user_id);
+        //获取推荐商品相关数据
+        if ($_GET['action']=='fetchsuggestproduct' && isset($_GET['cursor']) && isset($_GET['type'])){
+            $this->FetchSuggestProduct($_GET['cursor'],$_GET['type'],$user_id);
+            exit;
+        }
+        //收藏或者忽略供货商推荐到我（渠道商）的商品
+        if ($_GET['action']=='collect' && isset($_GET['pid']) && isset($_GET['uid'])){
+            $this->Collect($_GET['pid'],$_GET['uid'],$_GET['type'],$_GET['ignore_msg'],$user_id);
+            exit;
+        }
+        if ($_GET['action']=='totalcollect' && isset($_GET['uid'])){
+            $this->totalCollect($_GET['uid']);
+            exit;
+        }
+
+    }
+
+}
+
+?>
+

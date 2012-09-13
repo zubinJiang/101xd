@@ -1,0 +1,37 @@
+/*免费注册*/
+#content{width:935px;border:1px solid #d3d2d2;padding-left:33px;clear:both}
+.start{width:900px;height:44px;line-height:44px;font-size:16px;color:#000;border-bottom:1px dashed #c3c3c3;font-weight:bold;text-align:center}
+.type{width:900px;height:37px;line-height:29px;font-size:14px;padding-top:15px}
+.type span{width:169px;float:left;height:29px;}
+.type span.sj{width:230px;height:25px;}
+.register{width:900px;height:358px;}
+.qd{width:578px;height:356px;float:left;margin-right:10px;border:1px solid #3e9f2b;}
+.qd .hd{width:578px;height:63px;background:url(../../../images/rsbg_4.gif) repeat-x;position:relative;margin-bottom:10px}
+.qd .hd .wt{width:470px;height:63px;float:left;padding-left:20px}
+.qd .hd .wt span{width:470px;height:20px;float:left;color:#7a7a7a}
+.qd .hd .wt span.member1{width:470px;height:35px;line-height:35px;font-size:20px;color:#3e9f2b;font-weight:bold}
+.qd .hd .et{width:65px;height:72px;position:absolute;left:490px;top:0}
+.qd .bd{width:558px;height:236px;padding-left:20px}
+.qd .bd p{width:558px;height:132px;line-height:30px;float:left;font-size:13px;color:#3a3a3a}
+.qd .bd p span{font-size:14px;font-weight:bold;}
+.qd .bd p.gw{width:176px;height:97px;text-align:center;line-height:20px;}
+.qd .fd{width:374px;height:46px;padding-left:204px}
+.qd .fd input{width:163px;height:37px;background:url(../../../images/rsbg_5.gif) no-repeat top;font-size:16px;font-weight:bold;color:#fff;border:none;cursor:pointer}
+.gh{width:303px;height:356px;float:right;border:1px solid #3e9f2b;}
+.gh .hd{width:303px;height:63px;background:url(../../../images/rsbg_4.gif) repeat-x;position:relative;margin-bottom:10px}
+.gh .hd .wt{width:200px;height:63px;float:left;padding-left:20px}
+.gh .hd .wt span{width:200px;height:20px;float:left;color:#7a7a7a}
+.gh .hd .wt span.member1{width:200px;height:35px;line-height:35px;font-size:20px;color:#3e9f2b;font-weight:bold}
+.gh .hd .et{width:65px;height:72px;position:absolute;left:223px;top:0}
+.gh .bd{width:283px;height:236px;padding-left:20px}
+.gh .bd p{width:283px;line-height:30px;}
+.gh .bd p span{font-size:14px;font-weight:bold}
+.gh .bd p span.yi{float:left;width:275px;margin-bottom:10px;font-size:12px;font-weight:normal}
+.gh .bd p span.er{float:left;width:275px;font-size:12px;font-weight:normal}
+.gh .fd{width:233px;height:46px;padding-left:70px}
+.gh .fd input{width:173px;height:37px;font-size:16px;color:#fff;font-weight:bold;background:url(../../../images/rsbg_5.gif) no-repeat bottom;border:none;cursor:pointer}
+.ruzhu{width:900px;height:110px;margin:10px 0}
+.ruzhu .hd{width:900px;height:35px;line-height:35px;color:#666}
+.ruzhu .hd span{width:155px;line-height:35px;float:left;font-size:14px;font-weight:bold}
+.ruzhu .hd span.dianji{float:right;font-size:13px;font-weight:normal;text-align:right}
+.ruzhu .fd p{width:127px;height:62px;float:left;margin:5px 23px 5px 0}

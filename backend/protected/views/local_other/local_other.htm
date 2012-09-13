@@ -1,0 +1,41 @@
+<?php
+$province = isset($__p__['province']) ? $__p__['province'] : "";
+$payment = isset($__p__['payment']) ? $__p__['payment'] : "";
+$product = isset($__p__['product']) ? $__p__['product'] : '';
+$chain_store   = isset($__p__['chain_store']) ? $__p__['chain_store'] : '';
+$chain_address = isset($__p__['chain_address']) ? $__p__['chain_address'] : '';
+?>
+<div id="local_other" style="margin-left:8px;">
+<h2>其他信息：<span>建议从以下方面描述您的供应产品要求</span></h2>
+      <div class="sort">
+        <div class="sort_left">期望合作网站数量：</div>
+        <div class="sort_right"><input type="radio" name="site_number" value="2" <?php if($product['site_number']==2 || empty($product['site_number'])){echo 'checked';} ?> class="radio"/><span>多个</span><input name="site_number" type="radio" value="1" class="radio" <?php if($product['site_number']==1){echo 'checked';} ?>/><span>一个</span> <span style="color:#999999;">(团购周期内)</span></div>
+      </div>
+      <div class="sort">
+        <div class="sort_left">连锁店铺：</div>
+        <div class="sort_right"><input name="chain_store" type="radio" value="0" <?php if(empty($product['chain_desc'])){echo 'checked';} ?> class="radio" /><span>否</span><input name="chain_store" type="radio" value="1" class="radio" <?php if(!empty($product['chain_desc'])){echo 'checked';} ?> /><span>是&nbsp;</span></div>
+      </div>
+      <div class="chain" style="display:none;">
+      <div  class="chain" <?php if($product['chain_store']==1){?> style="display:none;" <?php } ?>>
+ <div class="sort">
+        <div class="sort_left">连锁店信息：</div>
+        <div class="sort_right"><textarea name="chain_desc"  style="height:100px;width:300px"><?php echo $product['chain_desc']; ?></textarea>
+        <p>可以填写多家连锁店名称和地址</p></div>
+ </div>
+</div>
+      <div class="sort">
+        <div class="sort_left">结算方式：</div>
+            <div class="sort_right"><span name="way"><?php
+if(!empty($payment)){
+    foreach($payment as $k=>$v){
+        if($k==0){
+            echo "<input type='radio' checked name='way' value='{$v['id']}'><span>".$v['name']."</span>";
+        } else {
+            echo "<input type='radio' name='way' value='{$v['id']}'><span>".$v['name']."</span>";
+        }
+    }
+}
+?>
+</span></div>
+      </div>
+</div>

@@ -1,0 +1,106 @@
+<?php
+
+class MUser extends CModel
+{  
+
+    // 根据id 和用户名验证 用户
+    public function checkUserByIdAndName($id, $name) {
+
+        $tmp = $this->db->table('`user`')
+            ->where("UserID='{$id}'")
+            ->where("Name = '{$name}'")
+            ->getFirst();
+
+        if(empty($tmp)) { return false; }
+
+        return $tmp['UserID'];
+    }
+
+    // 根据id 获取用户资料
+    public function getUserData($user_id) {
+        $data = $this->db->table('`user`')
+            ->select('UserID, UserType, CountMessages, CountProducts, UserTel, Name, Photo, DateLastActive')
+            ->where("UserID={$user_id}")
+            ->getFirst();
+    
+        return $data;
+    }
+
+    public function getUserDataList($page=1,$num=10, $user_type=null) {
+
+        $type_cond = FALSE;
+        if(!is_null($user_type)) {
+            $type_cond = "gu.UserType={$user_type}";
+        }
+
+        $data = $this->db->table('`user` gu')
+            ->select('*')
+            ->where("Deleted!=1")
+            ->where($type_cond)
+            ->order('UserID','desc')
+            ->getNum($num, ($page-1)*$num);
+
+        $count = $this->getUserCount($user_type);
+        return array('list'=>$data, 'count'=>$count);
+    }
+
+    public function getUserCount($user_type=null) {
+    
+        $type_cond = FALSE;
+        if(!is_null($user_type)) {
+            $type_cond = "UserType={$user_type}";
+        }
+        
+        return $this->db->table('`user`')
+                    ->where("Deleted!=1")
+                    ->where($type_cond)
+                    ->getCount();
+    }
+
+    public function getGroupByUserId($user_id) {
+        $data = $this->db->table('`company` c,`user` u')
+                    ->select('c.id,c.name,c.url')
+                    ->where('c.id=u.CompanyID')
+                    ->where("u.UserID={$user_id}")
+                    ->getFirst();
+
+        return $data;
+    }
+
+    public function delUser($user_id) {
+        $result = $this->db->exec("update `user` set Deleted=1 where UserID in ({$user_id})");
+    
+        return $result;
+    }
+
+    /**
+     * 更新个人信息
+     */
+    public function updateUserInfo($user, $id) {
+        $result = $this->db->exec("update `user` set ContactName='{$user['ContactName']}', UserTel='{$user['UserTel']}', QQ='{$user['QQ']}', Email='{$user['Email']}', CompanyID='{$user['CompanyID']}' where UserID='{$id}'");
+
+        return $result;
+    }
+
+    /**
+     * 修改个人头像
+     */
+    public function updatePhoto($image, $user_id) {
+        $data = $this->db->exec("update user set Photo='{$image}' where UserID='{$user_id}'");
+        return $data;
+    }
+
+    public function getUserPassById($id){
+
+        $tmp_user = $this->db->table('`user`')->select('Password')->where("UserID = '{$id}'")->getFirst(); 
+
+        return $tmp_user;
+    }
+
+    public function updateUserPass($pass, $id){
+        $data = $this->db->exec("update user set Password='{$pass}' where UserID='{$id}'");
+        return $data;
+    }
+
+}
+?>

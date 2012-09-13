@@ -1,0 +1,67 @@
+<?php
+$pic_url = $__p__['pic_url'];
+$list    = $__p__['list_data'];
+$count   = $__p__['count_data'];
+if(empty($count)) { $count = 0; }
+$page    = $__p__['page'];
+$type    = isset($_GET['type']) ? intval($_GET['type']) : 0;
+?>
+<div class="govern" id="member">
+    <div class="issue"><div id="current_location">会员管理</font></div></div>
+    <div class="material"><p>一共有<font color=red><?php echo $count;?></font>个会员</p></div>
+    <div class="option">
+        <div class="global" style="width:740px">
+            <span class="wid40">选项</span>
+            <span class="wid90">会员名</span>
+            <span class="wid90" ><select onchange="location.href=this.options[this.selectedIndex].value;"><option value="?type=0" <?php if($type==0){echo 'selected';}?>>所有会员</option><option value="?type=1" <?php if($type==1){echo 'selected';}?>>供货商</option><option value="?type=2" <?php if($type==2){echo 'selected';}?>>渠道商</option></select></span>
+            <span class="wid90">注册时间</span>
+            <span class="wid90">合作状态</span>
+            <span class="wid90">IP流量</span>
+            <span class="wid90">修改人</span>
+            <span class="wid90">改动日期</span>
+            <span class="wid90">详细备注</span>
+            <span class="wid90">url</span>
+            <span class="wid90">操作</span>
+        
+        </div>
+          <div class="choice">
+    <?php
+    if(!empty($list)) {
+        foreach($list as $v) {
+
+        $time = strtotime($v['DateInserted']);
+        $time = date('Y-m-d',$time);
+
+        $type = '供货商';
+        if($v['UserType']==1) {
+            $type = '渠道商';
+        } 
+echo <<<EOF
+        <ul id="{$v['UserID']}" style="width:740px">
+            <li class="checkbox"><input type="checkbox" class="checkbox"  value="{$v['UserID']}" name="id" /></li>
+            <li class="above"><a rel="{$v['UserID']}" href="javascript:void(0);" class="detail_id">{$v['Name']}</a></li>
+            <li class="wid90">{$type}</li>
+            <li class="wid90">{$time}</li>          
+            <li class="wid90"> {$v['Cooperation']} </li>
+            <li class="wid90"> {$v['IP']} </li>
+            <li class="wid90"> {$v['UserIDLastUpdate']} </li>  
+            <li class="wid90"> {$v['DateLastUpdate']} </li>
+            <li class="wid90" style="height:20px;overflow: hidden;"> {$v['Note']} </li>
+            <li class="wid90"> {$v['url']} </li>
+            <li class="wid90">
+                <a rel="{$v['UserID']}" href="/user/editmember?user={$v['UserID']}" title="修改会员信息" class="detail_id">修改</a>|
+                <a rel="{$v['UserID']}" href="javascript:void(0);" title="删除此会员" class="delete_id">删除</a>
+            </li>
+
+    </ul>
+EOF;
+}}
+?>
+        </div>
+<div class="global"><input id="all_select" type="checkbox" value="1" /><span class="all">全选</span><span class="batch_manage">
+    <a href="#" id="delete" class="send">删除</a>
+<?php   echo $page->show(4);    ?> 
+    </span>
+  </div>
+  <div style="clear:both;width:100%;height:20px;"></div>
+</div>

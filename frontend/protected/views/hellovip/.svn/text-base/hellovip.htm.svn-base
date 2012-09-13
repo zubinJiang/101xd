@@ -1,0 +1,121 @@
+<?php
+$count = $__p__['count'];
+$news_user = $__p__['news_user'];
+$vip_data = $__p__['vip_data'];
+$user_data = $__p__['user_data'];
+$data = $__p__['data'];
+$search = $__p__['search'];
+?>
+<div id="location">位置：<a href="/">首页</a> >><a href="#">渠道商会员</a></div>
+
+    <div id="qd">
+        <div class="qd1">
+            <div class="search">
+              <form method="post" action="?action=search" name="form">
+                <label>渠道商搜索：</label>
+                <input type="text" name="key" value="" style="width:197px;height:17px"/>
+                <input type="submit" name="input" value="搜 索" class="an"/>
+              </form>
+            </div>
+            <div class="new">
+            <span>最新入住渠道商：</span>
+<?php if(!empty($news_user)){
+
+                foreach($news_user as $v){
+
+                    echo $v['Name']."&nbsp;&nbsp;";
+                }
+            
+}?>
+</div>
+
+        </div>
+<?php if($search=='search'){
+
+    echo "<div class='search2'><ul>";
+    foreach($data as $v){
+
+        echo "<li><a href='#'>{$v['Name']}</a></li>";
+    }
+    echo "</ul></div>";
+} else {?>
+        <div class="qd2">
+        共<span>【<?php  echo $count; ?>】</span>家开通了专页，体验了快速供货服务，<b style="font-size:13px">立即开通专页</b>，请联系客服：
+        <b>QQ：</b>2547875407  &nbsp;&nbsp;<b>电话：</b>13521936489
+        </div>
+<?php } ?>
+
+    </div>
+    <!--推送商品小贴士-->
+    <div id="tips">
+        <div class="subtips"><span class="bt">推送商品小贴士：</span><span>您可以在以下渠道商列表中，点击进入渠道商专页,进行商品推送，信息提交！</span></div>
+        <div class="clear"></div>
+    </div>
+    <!--金牌会员推送-->
+    <div id="gold">
+        <div class="hd">
+            <div class="hd_l">金牌渠道商会员</div>
+            <div class="hd_r"></div>
+        </div>
+        <div class="fd">
+            <div class="lg">
+            <a href="vipsection?id=426"><img src="../../../images/vip/xtpic.gif" width="127" height="62" /></a>
+            <a href="vipsection?id=423"><img src="../../../images/vip/twpic.gif" width="127" height="62" /></a>
+            <a href="vipsection?id=421"><img src="../../../images/vip/tbpic.gif" width="127" height="62" /></a>
+            <a href="vipsection?id=424"><img src="../../../images/vip/depic.gif" width="127" height="62" /></a>
+            <a href="vipsection?id=425"><img src="../../../images/vip/800pic.gif" width="127" height="62" /></a>
+            <a href="vipsection?id=429"><img src="../../../images/vip/360pic.gif" width="127" height="62" /></a>
+            <a href="vipsection?id=428"><img src="../../../images/vip/qqpic.gif" width="127" height="62" /></a>
+            
+            </div>
+            <div class="lg">
+            
+            <a href="vipsection?id=427"><img src="../../../images/vip/blpic.gif" width="127" height="62" /></a>
+            <a href="vipsection?id=422"><img src="../../../images/vip/hthpic.gif" width="127" height="62" /></a>
+            <a href="vipsection?id=430"><img src="../../../images/vip/mdpic.gif" width="127" height="62" /></a>
+            <a href="vipsection?id=431"><img src="images/wanke.jpg" width="127" height="62" /></a>
+            <a href="vipsection?id=432"><img src="images/17tuanmai.png" width="127" height="62" /></a>
+            </div>
+        </div>
+
+    </div>
+    <div class="clear"></div>
+    <!--开通服务的会员-->
+    <div id="memberlist" style="<?php if($search=='search'){ echo 'display:none'; } ?>">
+        <div class="hd">开通推送服务的渠道商会员</div>
+        <div class="fd">
+        <div class="list">
+            <ul>
+        <?php if(!empty($vip_data)){
+
+            foreach($vip_data as $v){
+
+                echo "<li><a href='vipsection?id={$v['UserID']}'>{$v['Name']}</a></li>";
+            
+            }
+        }?>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="memberlist" style="margin-top:5px;<?php if($search=='search'){ echo 'display:none'; } ?>">
+        <div class="hd">其它会员渠道商列表：<span>未开通商品推送功能（即开通专页）！</span></div>
+        <div class="fd">
+            <div class="list" >
+              <ul>
+<?php if(!empty($user_data)){
+
+            foreach($user_data as $v){
+
+                echo "<li>{$v['Name']}</li>";
+            
+            }
+        }?>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="advert" style="padding-top:20px;"><a href="#"><img src="../../../images/tsmgpic_1.gif" width="970" height="80" /></a></div>
+

@@ -1,0 +1,38 @@
+<?php
+$data = isset($__p__['user_list']) ? $__p__['user_list'] : '';
+$count = isset($__p__['user_count']) ? $__p__['user_count'] : '';
+$page = isset($__p__['page']) ? $__p__['page'] : '';
+?>
+<div class="govern" id="member">
+    <div class="issue"><div id="current_location">角色分配管理</font></div></div>
+    <div class="material"><p>一共有<font color=red><?php echo $count;?></font>个会员</p></div>
+    <div class="option">
+        <div class="global">
+            	<span class="wid120">用户ID</span>
+	            <span class="wid120">用户名</span>
+	            <span class="wid160">管理</span>
+        </div>
+          <div class="choice">
+<?php
+if(!empty($data)) {
+    foreach($data as $v) {
+?>
+        <ul id="{$v['UserID']}">
+        <li class="wid120"><input type="checkbox" value="<?php $v['UserID'];?>"></li>
+        <li class="wid160"><?php echo $v['Name'];?></li>
+        <li class="wid160"><a href="assignRoles?id=<?php echo $v['UserID'];?>">分配角色</a></li>
+        </ul>
+<?php
+    }
+} ?>           
+
+    </ul>
+
+        </div>
+<div class="global"><input id="all_select" type="checkbox" value="1" /><span class="all">全选</span><span class="batch_manage">
+<?php   echo $page->show(4);    ?> 
+    </span>
+  </div>
+  <div style="clear:both;width:100%;height:20px;"></div>
+</div>
+

@@ -1,0 +1,10 @@
+#delivery{width:960px;overflow:hidden;border:1px solid #cdcec9;padding:10px 0 10px 8px;position:relative;}
+.delivery_img{float:left;width:233px;padding-top:35px;}
+.wordage{float:left;width:715px;}
+.letter{float:left;width:555px;padding-left:160px;line-height:27px;color:#050505;}
+.letter span{float:left;font-size:25px;font-weight:bold;}
+.letter a{float:right;color:#0000bf;}
+.letter a.awesome{float:left;color:#050505;font-size:14px;padding-left:5px;}
+.wordage p{float:left;width:715px;line-height:22px;color:#050505;}
+.p_red{color:#fa002d;}
+

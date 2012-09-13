@@ -1,0 +1,323 @@
+<?php
+
+class MUser extends CModel
+{  
+    /*
+    public function checkUserByIdAndSinaId($id, $sina_id) {
+
+        $tmp = $this->db->table('`user`')
+            ->where("UserID='{$id}'")
+            ->where("sinaAccount = '{$sina_id}'")
+            ->getFirst();
+
+        if(empty($tmp)) { return false; }
+
+        return $tmp['UserID'];
+    }
+     */
+
+    public function checkUserByIdAndName($id, $name) {
+
+        $tmp = $this->db->table('`user`')
+            ->where("UserID='{$id}'")
+            ->where("Name = '{$name}'")
+            ->getFirst();
+
+        if(empty($tmp)) { return false; }
+
+        return $tmp['UserID'];
+    }
+
+    public function loginByName($name){
+
+        $user = $this->db->table('`user`')
+            ->select('UserID,Password,UserType,Photo')
+            ->where("Name = '{$name}'")
+            ->getFirst();
+
+        return $user;
+    }
+
+    public function findUserByName($name) {
+        $user = $this->db->table('`user`')
+            ->select('Name')
+            ->where("Name = '{$name}'")
+            ->getFirst();
+
+        return $user;
+    }
+
+    public function regisNewUser($email, $pass, $name, $sina_account=null){
+
+        $Permissions = <<<EOF
+a:9:{i:0;s:19:"Garden.SignIn.Allow";i:1;s:20:"Garden.Activity.View";i:2;s:20:"Garden.Profiles.View";i:3;s:24:"Vanilla.Discussions.View";i:4;s:23:"Vanilla.Discussions.Add";i:5;s:20:"Vanilla.Comments.Add";s:24:"Vanilla.Discussions.View";a:6:{i:0;s:2:"-1";i:1;s:1:"1";i:2;s:1:"2";i:3;s:1:"3";i:4;s:1:"4";i:5;s:1:"5";}s:23:"Vanilla.Discussions.Add";a:6:{i:0;s:2:"-1";i:1;s:1:"1";i:2;s:1:"2";i:3;s:1:"3";i:4;s:1:"4";i:5;s:1:"5";}s:20:"Vanilla.Comments.Add";a:6:{i:0;s:2:"-1";i:1;s:1:"1";i:2;s:1:"2";i:3;s:1:"3";i:4;s:1:"4";i:5;s:1:"5";}}
+EOF;
+        $Preferences = 'a:1:{s:13:"Authenticator";s:8:"password";}';
+        $datetime    = date('Y-m-d H:i:s',time());
+        $data        = array(
+            'Name'=>$name, 
+            'Password'=>$pass, 
+            'HashMethod'=>'Vanilla', 
+            'sinaAccount' => null,
+            'Email'=>$email, 
+            'Gender'=>'m', 
+            'DateFirstVisit'=>$datetime, 
+            'DateLastActive'=>$datetime, 
+            'DateInserted'=>$datetime, 
+            'CountVisits'=>1, 
+            'HourOffset'=>12, 
+            'Preferences'=>$Preferences,
+            'Permissions'=>$Permissions
+        );
+
+        $user    = $this->db->table('`user`')->insert($data);
+        $user_id = $this->db->last_insert_id();
+
+        $this->addUserRole($user_id);
+        $this->addActivity($user_id);
+
+        return $user_id;
+    }
+
+    public function registerSinaUser($sina_id, $name='', $pass='') {
+
+        $tmp_user = $this->db->table('`user`')
+            ->where("sinaAccount = '{$sina_id}'")
+            ->getFirst();
+
+        if(!empty($tmp_user)) {
+            $this->db->exec("update `user` set name='{$name}' where UserID='{$tmp_user['UserID']}'");
+            return $tmp_user['UserID'];
+        } else {
+
+            $email   = '';
+            $user_id = $this->regisNewUser($email, $pass, $name, $sina_id);
+
+            return $user_id;
+        }
+    }
+
+    public function addActivity($user_id) {
+
+        $datetime = date('Y-m-d H:i:s',time());
+        $data = array(
+            'ActivityTypeID' => '2', 
+            'ActivityUserID' => $user_id, 
+            'Story' => '欢迎加入', 
+            'DateInserted' => $datetime
+        );
+
+        $this->db->table('`GDN_Activity`')->insert($data);
+    }
+    
+    /* 
+    //此部分已经未用，删除前保留状态
+    public function addUserRole($user_id, $role_id='8'){
+        $data = array(
+            'UserID' => $user_id, 
+            'RoleID'=>'8'
+        );
+
+        $this->db->table('`userRole`')->insert($data);
+    }
+    */
+    public function addUserData($data,$table){
+
+        $query = $this->db->table("`$table`")
+            ->insert($data, true);
+        $rzt = $this->db->last_insert_id();
+        return $rzt;
+    }
+
+    public function getIdPassword($id){
+
+        $tmp_user = $this->db->table('`user`')
+            ->select('Password')
+            ->where("UserID = '{$id}'")
+            ->getFirst();
+
+    }
+
+    public function updatePasswordData($pass, $id){
+        $data = $this->db->exec("update user set Password='{$pass}' where UserID='{$id}'");
+        return $data;
+    }
+
+    public function getUserInfoById($user_id) {
+        $data = $this->db->table('`user`')
+            ->select('Name,Photo,Email')
+            ->where("UserID={$user_id}")
+            ->getFirst();
+
+        return $data;
+    }
+
+    public function getUserList() {
+    
+        $data = $this->db->table('`user`')
+            ->select('UserID,Name')
+            ->where('Deleted!=1')
+            ->where('Admin!=1')
+            ->getList();
+
+        return $data;
+    }
+
+    public function getUserName($arr) {
+        $data = $this->db->table('`user`')
+            ->select('Name')
+            ->where("UserID in ({$arr})")
+            ->getList();
+
+        return $data;
+    }
+
+    public function getUserData($user_id) {
+        $data = $this->db->table('`user` gu')
+            ->select('gu.UserID, gu.UserType, gu.CountMessages, gu.CountProducts, gu.UserTel, gu.Name, gu.Photo, gu.DateLastActive')
+            ->where("gu.UserID={$user_id}")
+            ->getFirst();
+    
+        return $data;
+    }
+
+    public function updateVerificationCode($user_id, $code) {
+        $time = time();
+        $result = $this->db->exec("update `user` set RegistrationCode='{$code}', RegistrationTime={$time} where UserID = {$user_id}");
+    
+        return $result;
+    }
+
+    public function userVerification($user_id, $code) {
+    
+        $tmp_user = $this->db->table('`user`')
+            ->select('UserID, RegistrationCode, RegistrationTime, RegistrationFlag')
+            ->where("UserID={$user_id}")
+            ->getFirst();
+
+        if(empty($tmp_user) || empty($tmp_user['RegistrationTime'])) {
+            return false;
+        }
+
+        $now_time = time();
+        $exp_time = $tmp_user['RegistrationTime'] + 1800;
+        if(($now_time-$exp_time)>0) {
+            return false;
+        }
+        
+        if($code!=$tmp_user['RegistrationCode']) {
+            return false;
+        }
+
+        $this->db->exec("update `user` set RegistrationFlag=1, VerificationTime={$now_time} where UserID={$user_id}");
+
+        return true;
+    }
+
+    public function updatePersonInfo($tel, $phone, $user_id) {
+
+        $result = $this->db->exec("update `person` set mobile='{$tel}', phone='{$phone}' where user_id={$user_id}");
+
+        return $result;
+    }
+
+    /*
+    public function updateUserTel($tel, $user_id) { 
+        $result = $this->db->exec("update `user` set UserTel='{$tel}' where UserID={$user_id}");
+        return $result;
+    }
+    */
+
+    public function getUserTelById($user_id) {
+         $tmp_user = $this->db->table('`user`')
+            ->select('UserID, UserTel')
+            ->where("UserID={$user_id}")
+            ->getFirst();
+
+         return $tmp_user;
+    }
+
+    public function getSuppliersUser($user_id){
+    
+        $data = $this->db->table('`user`')
+            ->select('UserID, Name')
+            ->where("UserID={$user_id}")
+            ->getFirst();
+        return $data;
+    }
+
+    public function getUserDataList($page=1,$num=10, $user_type=null) {
+
+        $type_cond = FALSE;
+        if(!is_null($user_type)) {
+            $type_cond = "gu.UserType={$user_type}";
+        }
+
+        $data = $this->db->table('`user` gu')
+            ->select('UserID, UserType, Name, Photo, DateLastActive,DateInserted')
+            ->where("Deleted!=1")
+            ->where($type_cond)
+            ->order('UserID','desc')
+            ->getNum($num, ($page-1)*$num);
+
+        $count = $this->getUserCount($user_type);
+        return array('list'=>$data, 'count'=>$count);
+    }
+
+    public function getUserCount($user_type=null) {
+    
+        $type_cond = FALSE;
+        if(!is_null($user_type)) {
+            $type_cond = "UserType={$user_type}";
+        }
+        
+        return $this->db->table('`user`')
+                    ->where("Deleted!=1")
+                    ->where($type_cond)
+                    ->getCount();
+    }
+
+    public function getGroupByUserId($user_id) {
+        $data = $this->db->table('`group` g,`group_user` gu')
+                    ->select('g.id,g.name,g.url')
+                    ->where('g.id=gu.group_id')
+                    ->where("gu.user_id={$user_id}")
+                    ->getFirst();
+
+        return $data;
+    }
+
+    public function delMemberUser($user_id) {
+        $result = $this->db->exec("update `user` set Name='[Deleted User]',Photo='',Preferences='',Permissions='',HourOffset=0,Deleted=1 where UserID in ({$user_id})");
+    
+        return $result;
+    }
+
+    /**
+     * 更新个人信息
+     */
+    public function updateUserInfo($user, $id) {
+        $result = $this->db->exec("update `user` set ContactName='{$user['ContactName']}', UserTel='{$user['UserTel']}', QQ='{$user['QQ']}', Email='{$user['Email']}', CompanyID='{$user['CompanyID']}' where UserID='{$id}'");
+
+        return $result;
+    }
+    /*
+    public function updatePhoto($image, $user_id) {
+        $data = $this->db->exec("update user set Photo='{$image}' where UserID='{$user_id}'");
+        return $data;
+    }
+    */
+    public function getUserPassById($id){
+
+        $tmp_user = $this->db->table('`user`')->select('Password')->where("UserID = '{$id}'")->getFirst(); 
+
+        return $tmp_user;
+    }
+
+    public function updateUserPass($pass, $id){
+        $data = $this->db->exec("update user set Password='{$pass}' where UserID='{$id}'");
+        return $data;
+    }
+
+}
+?>

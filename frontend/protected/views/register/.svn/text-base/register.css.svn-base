@@ -1,0 +1,2 @@
+input.error {border:1px solid #ED8F8F; background:#FFF2F2;height:20px;margin-bottom:0px;}
+div.error170 {width:170px;height:20px;clear:both;border-bottom:1px solid #ED8F8F;border-right:1px solid #ED8F8F;border-left:1px solid #ED8F8F;margin-bottom:10px;}

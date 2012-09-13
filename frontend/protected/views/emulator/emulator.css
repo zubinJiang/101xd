@@ -1,0 +1,13 @@
+#emulator{float:right;width:209px;background:url(../../../images/extensive.gif) no-repeat;}
+.ecriture h2{float:left;width:208px;line-height:29px;text-align:center;margin:1px 0 0 1px;font-size:14px;color:#fff;background:url(../../../images/extensive_h.gif) no-repeat;}
+.ecriture{float:left;width:208px;padding-bottom:20px;background:url(../../../images/netizens.gif) no-repeat bottom;line-height:24px;}
+.ecriture ul{float:left;width:208px;line-height:24px;background:url(../../../images/netizens_l.gif) repeat-y;padding:5px 0 5px 0;}
+.ecriture ul li{float:left;width:180px;padding-left:20px;line-height:26px;}
+.ecriture ul li a{color:#7a7878;}
+.ecriture_h2{float:left;width:208px;line-height:24px;background:url(../../../images/netizens_l.gif) repeat-y;}
+.ecriture dl{float:left;width:208px;line-height:24px;background:url(../../../images/netizens_l.gif) repeat-y;padding-top:8px;}
+.ecriture dl dt{float:left;width:208px;text-align:center;}
+.ecriture dl dd{float:left;width:186px;padding-left:12px;}
+.ecriture p{float:left;width:200px;padding-right:8px;text-align:right;line-height:24px;background:url(../../../images/netizens_l.gif) repeat-y;}
+.ecriture p a{color:#181985;}
+

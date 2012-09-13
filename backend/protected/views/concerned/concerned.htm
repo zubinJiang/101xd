@@ -1,0 +1,83 @@
+<?php
+$count = isset($__p__['count']) ? $__p__['count'] : 0;
+$list  = isset($__p__['list'])  ? $__p__['list']  : 0;
+$page  = isset($__p__['page'])  ? $__p__['page']  : 0;
+$data  = isset($__p__['data'])  ? $__p__['data']  : 0;
+$sum  = isset($__p__['sum'])  ? $__p__['sum']  : 0;
+$pic_path = $__p__['pic_path'];
+?>
+<div class="concerned">
+<div id="release">
+    <div class="issue"><div id="current_location">谁关注了我</font></div></div>
+    <div class="material"><p>有<font color=red><?php if(!empty($count)){ echo $count;}else{echo $sum;}?></font>渠道商关注了您</p>
+    <span style="float:right;padding-right:5px;"><a href="?action=quan" id="quan">查看全部关注</a></span></div>
+    <div class="option">
+      <div class="global"><span class="wid40">选项</span><span class="wid540">渠道商</span><span class="wid120">操作</span></div>
+      <div class="choice" rel="<?php echo $_GET['action'];?>">
+  <?php
+if(!empty($list)) {
+    foreach($list as $v) {
+        $photo = 'images/tg.gif';
+        if(!empty($v['Photo'])) {
+            $tmp_name  = str_replace('http://image.101xd.com/', $pic_path, $v['Photo']);
+            if(file_exists($tmp_name)) {
+                $photo = $v['Photo'];
+            }
+
+            $photo = str_replace('http://image.101xd.com/', 'http://fast.101xd.com/', $photo);
+        }
+?>
+        <ul id="<?php echo $v['id'];?>">
+          <li class="checkbox"><input name="id[]"  type="checkbox" value="<?php echo $v['id'];?>" class="id"/></li>
+          <li class="dealers"><img src='<?php echo $photo;?>' width="50" height="50" />
+          <span class="blove"><?php echo $v['Name'];?></span>
+          <span><a href="#"><font color=red><?php echo $v['cname'];?></font></a></span></li>
+          <li><a rel="<?php echo $v['id'];?>" href="javascript:void(0)" class="cancel_id">忽略</a></li>
+        </ul>
+  <?php
+    }
+} elseif(!empty($data)) {
+    foreach($data as $v) {
+        if($v['ignore'] == 0){
+            $status = "忽略";
+        }  else {
+            $status = "取消忽略";
+        }
+
+        $photo = 'images/tg.gif';
+        if(!empty($v['Photo'])) {
+            $tmp_name  = str_replace('http://image.101xd.com/', $pic_path, $v['Photo']);
+            if(file_exists($tmp_name)) {
+                $photo = $v['Photo'];
+            }
+            $photo = str_replace('http://image.101xd.com/', 'http://fast.101xd.com/', $photo);
+        }
+?>
+        <ul id="<?php echo $v['id'];?>">
+          <li class="checkbox"><input name="id[]"  type="checkbox" value="<?php echo $v['id'];?>" class="id"/></li>
+          <li class="dealers"><img src='<?php echo $photo;?>' width="50" height="50" />
+          <span class="blove"><?php echo $v['Name'];?></span>
+          <span><a href="#"><font color=red><?php echo $v['cname'];?></font></a></span></li>
+          <li>
+           <?php
+
+                if($v['ignore'] == 0){
+                   echo "<a href='javascript:void(0)' rel='{$v['id']}' class='cancel_id' >{$status}</a>"; 
+                } else {
+                   echo "<a href='javascript:void(0)' rel='{$v['id']}' class='ignore_id' >{$status}</a>"; 
+                }
+            ?>
+          </li>
+        </ul>
+  <?php
+    }
+} else {
+echo "<div style='color:red;line-height:150%;margin:10px 0;'>对不起,您现在还没有被渠道商关注。</div>";
+}
+?>
+<div class="global"><input type="checkbox" value="全选" id="all_select" /><span class="all">全选</span><a href="#" id="all_cancel">忽略</a>
+<?php echo $page->show(4);?>
+ </div>
+    </div>
+  </div>
+

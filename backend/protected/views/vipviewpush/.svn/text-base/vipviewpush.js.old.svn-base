@@ -1,0 +1,85 @@
+$(document).ready(
+        function(){
+        FetchProduct(0,1);
+        }
+        )
+
+function Active(){
+        //激活左侧点击上一个商品
+        $('#prev_product').click(
+                function () {
+                    FetchProduct($(this).attr('cursor'),-1) 
+                    return false;
+                }
+                );
+        $('#next_product').click(
+                function () {
+                    FetchProduct($(this).attr('cursor'),1) 
+                    return false;
+                    }
+                );
+        $('input[name=collect_1]').click(function(){
+            $.ajax({    url:'/user/vipindex',
+                        data:{'action':'collect','pid':$(this).attr('pid'),'uid':$(this).attr('uid'),'type':'1'},
+                        type:'GET',
+                        dataType:'json',
+                        success:function(data){
+                                alert('收藏成功！！！');
+                                }
+            });
+        })
+        $('input[name=collect_2]').click(function(){
+            $.ajax({    url:'/user/vipindex',
+                        data:{'action':'collect','pid':$(this).attr('pid'),'uid':$(this).attr('uid'),'type':'2'},
+                        type:'GET',
+                        dataType:'json',
+                        success:function(data){
+                                alert('已经忽略！！！');
+                                }
+            });
+        });
+        $('input[name=viewdetail]').click(function(){
+            location.href=$(this).attr('rtf');
+            return false;
+            })
+    }
+//渲染数据到dom，显示动画效果
+function RenderDataToDom(data){
+    //$("#company").empty();
+    var me = $('#companyinfo');
+    var me_top = me.offset().top;
+    var me_left = me.offset().left;
+    //me.css('position','absolute').css('top',me_top).css('left',me_left);
+    me.html($("#company").tmpl(data));
+    //me.hide()
+    me.animate({
+        "marginLeft":'-100px'
+    },100,function(){me.hide()});
+    me.animate({
+        "marginLeft":'+400px'
+    },100,function(){me.show()});
+    me.animate({
+        "marginLeft":'0px'
+    },800);
+
+    //me.animate({width: 'toggle'});
+    Active();
+    }
+
+//cursor为当前的游标，type传入1为next -1 为prev,返回vipproduct的关联数据
+function FetchProduct(cursor,type){
+        var res = ''
+        var cursor = 0;
+        var type = 1;
+        $.ajax({
+            url:'/user/vipindex',
+            type:'GET',
+            dataType:'json',
+            data:{'action':'fetchsuggestproduct','cursor':cursor,'type':type},
+            success:function(data){
+                RenderDataToDom(data);
+                //res = data;
+                }
+            })
+        return false;
+        }

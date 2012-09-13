@@ -1,0 +1,99 @@
+body,div,p,span,label,ul,ol,li,dl,dd,dt,input,h1,h2,h3,h4,h5,h6{margin:0;padding:0}
+
+body{font-size:12px;font-family:Arial,"宋体";text-align:left;background:url(../../../images/qdsbg_4.gif) repeat-x;}
+
+img{border:none}a{text-decoration:none;color:#000}
+
+ul,ol,li{list-style:none}
+
+.clear{clear:both}
+
+
+
+#main{width:970px;margin:0 auto}
+
+#top{width:970px;height:35px;padding-top:5px;}
+
+#top input{width:159px;height:30px;background:url(../../../images/vip/qdsbg_3.gif) no-repeat;line-height:30px;float:right;color:#fff;font-weight:bold;border:none}
+
+#banner{width:964px;height:294px;padding:4px 0 0 4px;font-family:"黑体";border:1px solid #cfcfcf;background:#fff;}
+
+#introduce{width:968px;height:248px;margin:5px 0;border:1px solid #cfcfcf;}
+
+#introduce .hd{width:948px;height:33px;background:url(../../../images/tsmgbg_1.gif) repeat-x;padding-left:20px;line-height:33px;font-size:14px;font-weight:bold;float:left}
+
+#introduce .fd{width:968px;height:215px;float:left}
+
+#introduce .fd .text{width:968px;line-height:22px;float:left}
+
+#introduce .fd .text p{width:938px;text-indent:24px;padding:8px 10px 5px 20px;text-indent:24px;float:left}
+
+#introduce .fd .link{width:928px;line-height:22px;padding-left:40px;float:left;padding-top:8px}
+
+#introduce .fd .link .link1{float:left;width:424px;height:98px;margin-right:20px;background:url(../../../images/tsmgbg_2.gif) no-repeat top;}
+
+#introduce .fd .link .link1 .bg{width:109px;height:98px;float:left;background:url(../../../images/tsmgbg_2.gif) no-repeat -170px -300px}
+
+#introduce .fd .link .link1 .bg2{width:109px;height:98px;float:left;background:url(../../../images/tsmgbg_2.gif) no-repeat -320px -300px}
+
+#introduce .fd .link .link1 .btn{width:315px;height:98px;float:left}
+
+#introduce .fd .link .link1 .btn p.ts{width:315px;float:left;line-height:22px;font-size:12px;font-weight:normal;text-align:left}
+
+#introduce .fd .link .link1 .btn p{width:260px;text-align:center;font-size:14px;font-weight:bold;float:left;line-height:28px;}
+
+#introduce .fd .link .link1 .btn p a{float:left;width:260px;height:44px;background:url(../../../images/tsmgbg_2.gif) no-repeat left -98px;text-decoration:none}
+
+#introduce .fd .link .link1 .btn p a.dj{float:left;width:260px;height:44px;background:url(../../../images/tsmgbg_2.gif) no-repeat left -142px;text-decoration:none}
+
+#tips{width:962px;height:26px;background:#efefef;padding:4px 4px;line-height:24px;font-size:14px;font-weight:bold;clear:both}
+
+#tips .subtips{width:960px;height:24px;background:#fff;border:1px solid #dfdfdf;}
+
+#tips .subtips span{padding:0 5px;height:24px;float:left}
+
+#tips .subtips span.bt{padding:0 5px;background:#ffe5e5;text-align:center}
+
+#gold{width:968px;border:1px solid #cfcfcf;margin:5px 0}
+
+#gold .hd{width:968px;height:33px;background:url(../../../images/vip/tsmgbg_2.gif) repeat-x left bottom;font-size:14px;font-weight:bold;color:#fff}
+
+#gold .hd .hd_l{width:142px;height:33px;line-height:33px;background:url(../../../images/tsmgbg_2.gif) no-repeat left -228px;padding-left:20px;float:left}
+
+#gold .hd .hd_r{width:700px;height:33px;line-height:33px;color:#e13c00;float:left}
+
+#gold .fd{width:968px;padding-top:12px}
+
+#gold .fd .lg{width:953px;height:62px;padding:0 0 10px 15px;}
+
+#gold .fd .lg img{float:left;margin-right:8px}
+
+#memberlist{width:968px;border:1px solid #cfcfcf;border-top:none; margin-bottom:5px;float:left}
+
+#memberlist .hd{width:948px;height:32px;border-bottom:#cfcfcf solid 1px;background:url(../../../images/tsmgbg_2.gif) repeat-x left -190px;line-height:33px;padding-left:20px;font-size:14px;font-weight:bold;}
+
+#memberlist .fd{width:948px;padding:18px 0 0 20px;}
+
+#memberlist .fd .list{width:948px;float:left}
+
+#memberlist .fd .list ul{width:948px;float:left}
+
+#memberlist .fd .list ul li{width:86px;height:30px;float:left}
+
+#advert{width:970px;height:80px;margin:0 0 5px;clear:both}
+
+#case{width:968px;border:1px solid #cfcfcf;border-top:none;height:124px;margin-bottom:5px}
+
+#case .hd{width:948px;height:32px;border-bottom:#cfcfcf solid 1px;background:url(../../../images/vip/tsmgbg_2.gif) repeat-x left -190px;line-height:33px;padding-left:20px;font-size:14px;font-weight:bold}
+
+#case .fd{width:968px;line-height:20px}
+
+#case .fd .example{width:434px;height:80px;padding:5px 25px 5px 20px;border-right:1px #cfcfcf solid;float:left}
+
+#case .fd .none{border:none}
+
+#bottom{width:780px;padding-left:190px;background:#e5e5e5;border-top:1px solid #ccc;overflow:hidden;clear:both;}
+
+#bottom p{clear:both;width:590px;background:#f1f1f1;line-height:150%;text-align:center;color:#b7b7b7;padding:10px 0 10px 0;}
+
+#bottom p a{color:#b7b7b7;}

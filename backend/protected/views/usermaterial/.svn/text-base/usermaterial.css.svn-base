@@ -1,0 +1,23 @@
+#content .et{width:740px;float:right;border:1px solid #d4d4d4;}
+
+
+#content .et{width:740px;float:right;border:1px solid #d4d4d4;}
+#content .et .tsfw .hd{width:728px;height:30px;line-height:30px;padding-left:12px;background:url(../../../images/bsbg_4.gif) repeat-x;color:#338ccc;font-size:14px;font-weight:bold;margin-bottom:10px}
+#content .et .tsfw .fd{width:740px;}
+#content .et .tsfw .fd form{width:862px;float:left}
+#content .et .tsfw .fd form .bd{width:740px;height:40px;}
+#content .et .tsfw .fd form .ja{width:740px;height:110px;}
+#content .et .tsfw .fd form label{width:115px;float:left;height:40px;line-height:30px;text-align:right;color:#000;font-size:13px}
+#content .et .tsfw .fd form label.ll{width:260px;float:left;height:40px;line-height:30px;text-align:left;color:#888;font-size:12px}
+#content .et .tsfw .fd form label.lx{width:260px;float:left;height:50px;line-height:20px;text-align:left;color:#888;font-size:12px}
+#content .et .tsfw .fd form input{width:240px;float:left;height:17px;line-height:17px;margin:3px 5px 10px 0}
+#content .et .tsfw .fd form select{width:120px;float:left;margin:5px 5px 0 0;}
+#content .et .tsfw .fd form textarea{width:450px;float:left;margin-right:5px;height:95px}
+#content .et .tsfw .fd .an{width:608px;height:40px;float:left;padding-left:254px}
+#content .et .tsfw .fd .an input{width:97px;height:33px;float:left;background:url(../../../images/bsbg_5.gif) no-repeat top;color:#fff;font-weight:bold;font-size:16px;margin-right:50px;border:none;cursor:pointer}
+#content .et .tsfw .fd .an input.cz{width:97px;height:33px;float:left;background:url(../../../images/bsbg_5.gif) no-repeat bottom;color:#fff;font-weight:bold;font-size:16px;margin-right:none}
+#bottom{width:814px;padding-left:210px;background:#e5e5e5;border-top:1px solid #ccc;overflow:hidden;clear:both;margin-top:10px}
+#bottom p{clear:both;width:590px;background:#f1f1f1;line-height:150%;text-align:center;color:#b7b7b7;padding:10px 0 10px 0;}
+#bottom p a{color:#b7b7b7;
+}
+

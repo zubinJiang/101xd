@@ -1,0 +1,20 @@
+#message{float:right;width:755px;overflow:hidden;}
+#message p{float:left;width:755px;line-height:26px;color:#333;background:url(../../../images/account.gif) no-repeat;text-indent:27px;}
+#message p strong{color:#ff0000;}
+.learned{float:left;width:753px;border:1px solid #ccc;}
+.ahead{float:left;width:723px;line-height:30px;background:url(../../../images/atic.gif) no-repeat;padding-left:30px;color:#ff4e00;}
+.ahead_55{float:left;width:55px;}
+.ahead_536{float:left;width:536px;}
+.ahead a{color:#ff4e00;}
+.ahead input{float:left;margin:8px 15px 0 0;-margin-top:4px;*margin-top:4px;}
+.atic{float:left;width:753px;padding-top:5px;height:365px;}
+.atic_all{float:left;width:723px;padding:15px 0 10px 30px;border-bottom:1px dashed #ccc;}
+.atic_all a{float:left;padding-right:5px;color:#ac9999;}
+.atic_all a.level{color:#0c50f3;}
+.atic_all span{float:left;padding-left:10px;color:#ac9999;}
+.atic_all span.trou{float:left;padding:0 5px 0 0;color:#200000;}
+.atic_l{float:left;width:55px;}
+.atic_c{float:left;width:536px;padding-right:4px;}
+.atic_r{float:left;width:55px;}
+.inhaltslos{float:left;width:753px;padding-top:60px;height:308px;text-align:center;}
+

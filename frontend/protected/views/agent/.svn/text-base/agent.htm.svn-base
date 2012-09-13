@@ -1,0 +1,58 @@
+<div id="agentbox">
+  <div id="agenttop"><a href="/" target='_blank'>进入101兄弟首页>></a></div>
+    <div id="header">
+      <img src="images/agent_bg_2.gif" width="971" height="430" />
+      <div class="step1">
+        <span class="s"><span><i>1、</i>什么是</span>团购网站快速供货服务</span><br />
+        <span class="line"> <span style="color:#C33;font-size:12px">>></span>为团购网站提供优质品牌的本地商家 
+        <span style="color:#C33;font-size:12px">>></span>协助寻找认证合格的商品 
+        <span style="color:#C33;font-size:12px">>></span>提供最热销的商品套餐</span><br />
+　　　　　　　<span class="xiao">为您寻找最优质的品牌商家，帮您牵手最诚信的合作伙伴，选择最热最潮的商品套餐！</span><br /> 
+      </div>
+        <div class="add">
+            <div class="step2">
+                <div class="step3"><img src="images/agent_icon_1.gif" width="230" height="56" /></div>
+            </div>
+            <div class="bd">
+                <div class="wt"><img src="images/default_1.gif" width="700" height="158" /></div>
+                <div class="et">
+                    <ul>
+                      <li class="lv">你也想加入吗？</li>
+                      <li class="lv">团购网站合作<span style="color:#F90"> 瞧这里！</span></li>
+                        <li>合作QQ：2547875407</li>
+                        <li>合作电话：13521936489
+</li>
+                    </ul>
+                </div>
+           </div>
+        </div>
+    </div>
+  <div class="step4">
+    <div class="hd"><img src="images/agent_bg_4.gif" width="408" height="40" /></div>
+    <div class="bd">
+    <p><a href='vipsection?id=426'><img src="images/pic_3.gif" /></a></p>
+    <p><a href='vipsection?id=421'><img src="images/pic_10.gif" /></a></p>
+    <p><a href='vipsection?id=424'><img src="images/pic_11.gif" /></a></p>
+    <p><a href='vipsection?id=423'><img src="images/pic_12.gif" /></a></p>
+    <p><a href='vipsection?id=425'><img src="images/pic_16.gif" /></a></p>
+    <p><a href="vipsection?id=429"><img src="images/360pic.gif" /></a></p>
+    <p><a href="vipsection?id=428"><img src="images/qqpic.gif" /></a></p>
+    <p><a href="vipsection?id=427"><img src="images/blpic.gif" /></a></p>
+    <p><a href="vipsection?id=422"><img src="images/hthpic.gif" /></a></p>
+    <p><a href="vipsection?id=430"><img src="images/mdpic.gif" /></a></p>
+    
+    </div>
+    <div class="fd">
+        <input type="submit" name="" value="现在就加入" onclick='location.href="register?load=news";';/>
+    </div>
+  </div>
+  <div id="bottom">
+<p style="padding-bottom:0;">
+          <a target="_self" href="contact">联系我们</a>
+          <span>&nbsp;|&nbsp;</span>
+          <a target="_self" href="profile">公司简介</a>
+          <span>&nbsp;|&nbsp;</span>
+          <a title="" target="_blank" href="/">团购供货找101兄弟</a></p>
+      <p>ICP备案：鄂ICP备10207590号</p>
+</div>
+</div>

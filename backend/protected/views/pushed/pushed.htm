@@ -1,0 +1,128 @@
+<?php 
+$data = isset($__p__['data']) ? $__p__['data'] : "";
+$page = isset($__p__['page']) ? $__p__['page'] : "";
+$category = isset($__p__['category']) ? $__p__['category'] : "";
+$vip_user = isset($__p__['vip_user']) ? $__p__['vip_user'] : "";
+$provinces = isset($__p__['province']) ? $__p__['province'] : "";
+?>
+<div id="content">
+<div class="et">
+            <div class="main">
+            <div class="hd">
+            <a href="/user/pushed?id=<?php echo $_GET['id']; ?>">推送过商品</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="/user/usermaterial?id=<?php echo $_GET['id']; ?>">账户信息</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="??id=<?php echo $_GET['id']; ?>">专业资料</a></div>
+                <div class="xianshi">
+                    <ul>
+                        <li style="width:140px;text-align:center">商品名称</li>
+                        <li>
+                            <select name="user_name" class="user_name"><option value="">选择推送方</option>
+                            <option value="1">供应商</option>
+                            <option value="0">101兄弟</option></select>
+                        </li>
+                        <li style="width:80px;text-align:center">推送至</li>
+                        <li>
+                            <select  class="category"><option value="">选择类型</option>
+                            <option value="1">本地商品</option>
+                            <option value="2">精品网货</option></select>
+                        </li>
+                        <li>
+                            <select name="category_id" class="category"><option>选择类别</option>
+<?php if(!empty($category)){
+
+    foreach($category as $v){
+?>
+    <option value="<?php echo $v['id']; ?>"><?php echo $v['name']; ?></option>
+<?php   
+    }
+
+}?></select>
+                        </li>
+                        <li style="width:70px;text-align:center">推送时间</li>
+                        <li style="width:50px;text-align:center">代发货</li>
+                        <li style="width:70px;text-align:center">广告需求</li>
+                        
+                        <li style="width:70px;text-align:center">商品状态</li> 
+                
+                    </ul>
+                </div>
+                <div class="center">
+<?php if(!empty($data)){
+
+    foreach($data as $v){ 
+        if($v['category']=='1'){
+            $category_type = "本地商品";
+        } else if($v['category']=='2'){
+            $category_type = "精品网货";
+        } else {
+            $category_type = "其它";
+        }
+
+        if($v['state']=='0'){
+            $state_comd = "未处理";
+        } else if($v['state']=='1'){
+            $state_comd = "审核通过";
+        } else {
+            $state_comd = "拒绝";
+        }
+
+        if($v['ad']=='0'){
+
+            $ad_comd = "否";
+        } else {
+
+            $ad_comd = "是";
+        }
+
+        if($v['delivery']=='0'){
+            $delivery_comd = "否";
+        } else if($v['delivery']=='1') {
+            $delivery_comd = "是";
+        } else {
+            $delivery_comd = "皆可";
+        }
+
+        if(!empty($v['insertdate'])){
+        
+            $date = date("Y-m-d", $v['insertdate']);
+        }
+
+        $str_title = $v['title'];
+        if(strlen($v['title'])>20){
+
+            $str_title = mb_substr($v['title'],0,20,"utf-8").'...';
+        }
+?>
+
+        <div class="neirong">
+        <ul>
+        <li class="mc">
+        <a href="vipdetail?id=<?php echo $v['id']; ?>"><?php echo $str_title; ?></a></li>
+        <li style="width:84px;text-align:center"><?php echo $v['uname']; ?></li>
+        <li style="width:84px;text-align:center"><?php echo $v['sitename']; ?></li>
+        <li style="width:84px;text-align:center"><?php echo $category_type; ?></li>
+        <li style="width:84px;text-align:center"><?php echo $v['cname']; ?></li>
+        <li style="width:70px;text-align:center"><?php echo $date; ?></li>
+        <li style="width:50px;text-align:center"><?php echo $delivery_comd; ?></li>
+        <li style="width:70px;text-align:center"><?php echo $ad_comd; ?></li>
+        <li style="width:70px;text-align:center" id="auth_<?php echo $v['id']; ?>"><?php echo $state_comd; ?></li>
+        <ul>
+        </div>
+<?php
+    }
+
+}?>
+</div>
+                <div class="page">
+<?php
+        if(!empty($page)) {
+            echo $page->show(4);
+        }
+?>
+                </div>
+          </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>

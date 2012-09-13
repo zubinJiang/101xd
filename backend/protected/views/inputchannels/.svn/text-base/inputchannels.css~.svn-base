@@ -1,0 +1,42 @@
+.plain_right{ width:720px;height:100%;margin:0px;margin-left:10px;font-size:15px;position: relative;float:left;border:1px solid #C9181E;}
+.plain_right_title{ width:735px;height:28px;margin-left:12px;font-size:15px;margin-left:12px;margin-top:10px;}
+.plain_right_form{ width:735px;height:320px;margin-left:12px;font-size:15px;}
+.plain_right_form form{ width:100%;height:320px;margin-left:12px;font-size:15px;}
+.plain_right_form form p{ width:100%;height:32px;font-size:15px;margin-top:6px;}
+.plain_right_form form p input{ border-width:1px;border-color:#999;width:383px;height:27px;font-size:15px;}
+.plain_right_form form p input[type=submit]{ margin-left: 18px;width:100px;height:25px;font-size:15px;}
+p#bottom{margin-left: 180px;}
+
+
+.jqac-menu{
+  font-size: 14px;
+  color: black;
+  background-color: white;
+  border: 1px solid #aaa;
+}
+.jqac-menu ul{
+  list-style: none;
+  margin: 1px;
+  padding: 1px;
+  overflow: hidden;
+}
+.jqac-menu .jqac-link {
+  cursor: hand;
+  cursor: pointer;
+  display: block;
+}
+.jqac-menu .jqac-highlight {
+  background-color: #ddf;
+}
+.jqac-menu .jqac-warning {
+  font-style: italic;
+}
+.jqac-menu em {
+    text-decoration: underline;
+}
+.jqac-menu .jqs-info {
+    text-align: right;
+    font-style: italic;
+    font-size: .75em;
+    color: #666;
+}

@@ -1,0 +1,37 @@
+/*账户信息*/
+#account{float:right;width:755px;overflow:hidden;}
+#account h1{float:left;width:755px;line-height:26px;font-size:14px;color:#ff4e00;font-family:"黑体";background:url(../../../images/account.gif) no-repeat;text-indent:27px;}
+.data{float:left;width:733px;border:1px solid #ccc;padding:10px 0 10px 20px;height:442px;}
+.datum{float:left;width:733px;height:35px;background:url(../../../images/datum.gif) no-repeat left bottom;}
+.datum a{float:left;width:93px;line-height:32px;text-align:center;color:#333;border:none;display:block;outline:none;}
+.datum a:hover {color:#ff4e00;background:#fceae1;border:none;}
+.datum .current {color:#ff4e00;background:#fceae1;}
+/*账户资料*/
+.metadata{float:left;width:733px;padding-top:15px;}
+.metadata textarea{float:left;width:418px;height:80px;margin:2px 0 5px 0;color:#666;}
+.metadata select{float:left;width:100px;height:22px;line-height:22px;color:#333;margin:2px 5px 0 0;}
+.metadata button{float:left;width:87px;height:29px;margin:15px 0 0 157px;background:url(../../../images/preserve.gif) no-repeat;border:none;}
+/*当前头像*/
+.portrait{float:left;width:733px;padding-top:15px;}
+.portrait .img_now{float:left;width:160px;padding:0 0 30px 57px;_padding:0 0 30px 10px;}
+.portrait .img_text{float:left;width:160px;line-height:26px;font-weight:bold;color:#999;}
+.portrait #photo_show{float:left;width:130px;height:130px;}
+.portrait #photo_show #photo_show_priview{width:130px;height:130px;overflow:hidden;}
+.portrait #photo_show #photo_show_priview input{height:1px;}
+.portrait p{float:left;width:733px;text-indent:57px;line-height:24px;color:#666;}
+.conserve{float:left;width:87px;height:29px;margin:20px 0 0 257px;background:url(../../../images/preserve.gif) no-repeat;border:none;cursor:pointer;}
+/*修改密码*/
+.revamp{float:left;width:733px;padding-top:20px;}
+.revamp p{float:left;width:733px;text-indent:35px;line-height:30px;color:#333;}
+.revamp_all{float:left;width:733px;line-height:30px;}
+.revamp_all button{float:left;width:66px;height:26px;line-height:26px;background:url(../../../images/scan.gif) no-repeat;margin-left:5px;text-align:center;font-size:14px;color:#fff;text-align:center;font-family:"黑体";border:none;padding:0;}
+.revamp_l{float:left;width:110px;color:#333;text-align:right;}
+.revamp_r{float:left;width:500px;}
+.revamp_r input{float:left;width:172px;line-height:18px;margin-top:2px;height:18px;}
+.revamp_r span{float:left;padding-left:6px;color:#cacece;}
+
+.portrait #photo_jcop {width:300px;height:250px;border:1px solid #ccc;float:left;background:#f2f2f2;overflow:hidden;}
+.portrait #photo_jcop .photo_text{width:100%;margin:100px 0 0 0;color:#444;text-align:center;}
+.portrait #photo_jcop .loading{width:100%;margin:100px 0 0 0;color:#444;text-align:center;}
+
+.error {padding-left:20px;font-size:16px;font-weight:bolder;text-align:center;}

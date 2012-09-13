@@ -1,0 +1,6 @@
+#profile{float:right;width:757px;line-height:26px;background:url(../../../images/attach.gif) no-repeat top;}
+.various{width:757px;line-height:26px;background:url(../../../images/various.gif) no-repeat bottom;padding-bottom:15px;overflow:hidden;}
+.various h1{float:left;width:687px;height:56px;line-height:29px;padding-left:70px;font-size:14px;color:#ff6600;}
+.economy{float:left;width:725px;border-right:10px solid #ededed;border-left:10px solid #ededed;padding-left:12px;}
+.economy p{float:left;width:712px;text-indent:24px;line-height:26px;color:#666;}
+.economy a{float:left;width:713px;text-align:center;padding:5px 0 5px 0;}

@@ -1,0 +1,32 @@
+<?php
+$payment = isset($__p__['payment']) ? $__p__['payment'] : '';
+$product = isset($__p__['product']) ? $__p__['product'] : '';
+?>
+<hr>
+<div id="goldrollother">
+ <h2>其他信息：<span>建议从以下方面描述您的供应产品要求</span></h2>
+<div class="sort">
+        <div class="sort_left">限制条件：</div>
+        <div class="sort_right"><span>数量上限</span>
+        <input name="onlineper" type="text" value="<?php echo $product['tollcap'];?>" class="text4"><span class="infinite">0表示无上限</span>
+        <p style="clear:both;padding-top:10px;"><span style="color:#000;">截止日期</span>
+        <input name="term" type="text" value="<?php if(!empty($product['deadline'])) { echo date("Y-m-d",$product['deadline']);} else { echo date('Y-m-d', time()); } ?>" class="dead_line" ></p></div>
+</div>
+
+<div class="sort">
+        <div class="sort_left">结算方式：</div>
+        <div class="sort_right"><span name="way">
+<?php
+$payment_id = intval($product['payment_id']);
+
+if(!empty($payment)){
+    foreach($payment as $v){
+?>
+    <input type='radio' <?php if($v['id']==$payment_id) { echo 'checked="checked"'; }?> name='way' value='<?php echo $v['id']; ?>' /><span><?php echo $v['name']; ?></span>&nbsp;&nbsp;
+<?php
+    }
+}
+?>
+</span></div>
+</div>
+</div>

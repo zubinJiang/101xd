@@ -1,0 +1,13 @@
+body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,form,fieldset,blockquote{margin:0;padding:0}body{font-size:12px;font-family:\5B8B\4F53,Arial;line-height:1.5}ul,ol{list-style:none}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:bold}input,textarea,select{font-size:12px;vertical-align:middle}img{border:none}a{text-decoration:none}a:hover {text-decoration:underline}.fl{float:left}.fr{float:right}.tl{text-align:left}.tr{text-align:right}.tc{text-align:center}.fb{font-weight:bold}.dis{display:block}.undis,.logo h1{display:none}.disline{display:inline}.clear{clear:both;height:0;overflow:hidden;display:block}.clear10{clear:both;height:10px;overflow:hidden;display:block}.cl{clear:left}.cr{clear:right}.cb{clear:both}.crumbs,.crumbs a,.red{color:#ee2e1f;}
+
+#top_home{width:970px;margin:0 auto;overflow:hidden;padding-top:10px;}
+.logo{float:left;}
+#top_home dl{float:right;width:700px;}
+#top_home dl dd{float:left;width:700px;line-height:26px;}
+#top_home dl dd a{float:right;font-size:13px;color:#333;padding-right:15px;}
+#top_home dl dt{float:left;width:700px;}
+#top_home form{float:right;width:970px;padding-top:10px;height:43px;}
+#top_home form input{float:right;width:308px;height:33px;line-height:33px;border:none;background:url(../../../images/hunt_input.gif) no-repeat;text-indent:30px;color:#afafaf;padding:0;}
+#top_home form button{float:right;width:70px;height:33px;background:url(../../../images/hunt.gif) no-repeat;border:none;}
+#top_home form a{float:right;padding-left:10px;line-height:33px;font-size:14px;color:#505050;}
+#top_home form a.accounts{background:url(../../../images/triangle.gif) no-repeat right top;padding-right:14px;}

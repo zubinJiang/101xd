@@ -1,0 +1,100 @@
+body,div,h1,h2,h3,h4,h5,h6,ul,ol,li,label,dd,dt,dl,p,span{margin:0;padding:0}
+body{font-size:12px;font-family:Arial, Helvetica, sans-serif;text-align:left}
+ul,li,ol{list-style:none}h2{font-size:14px}
+div{margin:0;padding:0;}
+img{border:none}a{text-decoration:none}
+
+#top{width:100%;height:30px;line-height:30px;background:url(../../../images/bg_1.gif) repeat-x left;color:#666;margin-bottom:10px}
+#top .topc{margin:0 auto;width:1024px;height:30px}
+#top span.welcome{width:400px;float:left;}
+#top span.right{float:right;padding-top:5px;height:25px;line-height:25px}
+#top span.right a{color:#666;}
+
+#box{width:1024px;margin:0 auto}
+#header{width:1024px;height:85px;margin-bottom:20px;position:relative}
+#header .logo{float:left;height:85px;width:200px;}
+#header .lt{
+	color:#000;
+	height:20px;
+	text-align:left;
+	width:110px;
+	font-family:"黑体";
+	font-size:18px;
+	position:absolute;
+	left:177px;
+	top:49px
+}
+#header .rt{width:684px;height:85px;float:right;}
+
+#content{width:1024px;height:895px;}
+#content .wt{width:150px;float:left;margin-right:10px}
+#content .wt .account{width:150px;height:92px;margin-bottom:10px}
+#content .wt .commodity{width:150px;height:122px;margin-bottom:10px}
+#content .wt .sms{width:150px;height:72px;}
+#content .wt .account .hd,#content .wt .commodity .hd,#content .wt .sms .hd{width:150px;height:30px;margin-bottom:5px;background:url(../../../images/bsbg_1.gif) no-repeat center top;font-size:14px;font-weight:bold;color:#fff;line-height:30px;text-align:center}
+#content .wt .account .fd{width:146px;height:54px;border:1px solid #d1e6f1;}
+#content .wt .commodity .fd{width:146px;height:83px;border:1px solid #d1e6f1;}
+#content .wt .sms .fd{width:146px;height:33px;border:1px solid #d1e6f1;}
+#content .wt .account .fd ul,#content .wt .commodity .fd ul,#content .wt .sms .fd ul{float:left;width:138px;padding-left:8px}
+#content .wt .account .fd ul li,#content .wt .commodity .fd ul li,#content .wt .sms .fd ul li{float:left;width:123px;height:25px;line-height:25px;background:url(../../../images/bsbg_2.gif) no-repeat left center;padding-left:15px}
+#content .wt .account .fd ul li a,#content .wt .commodity .fd ul li a,#content .wt .sms .fd ul li a{font-size:14px;color:#000;}
+#content .wt .account .fd ul li a:hover,#content .wt .commodity .fd ul li a:hover,#content .wt .sms .fd ul li a:hover{color:#03F}
+#content .et{width:864px;float:right;}
+.hy{width:860px;height:68px;margin-bottom:10px;border:1px solid #d4d4d4}
+.hy .hd{width:850px;height:33px;line-height:33px;padding-left:10px;border-bottom:1px dashed #d4d4d4}
+.hy .hd p{float:left;height:33px;line-height:33px;font-size:14px;font-weight:bold;padding-right:20px}
+.hy .hd p.xiaoxi{width:200px;height:33px;line-height:33px;}
+.hy .hd p.xiaoxi img{margin-top:8px}
+.hy .fd{width:850px;height:34px;line-height:34px;padding-left:10px}
+.hy .fd p{float:left;width:235px;height:34px;line-height:34px;}
+.hy .fd p.yi{float:left;width:100px;height:34px;line-height:34px;background:url(../../../images/bsbg_9.gif) no-repeat left center;color:#fff;font-weight:bold;font-size:14px;padding-left:5px}
+.hy .fd p.er{float:left;width:135px;height:34px;line-height:34px;}
+
+.tsfw{width:862px;height:326px;border:1px solid #d4d4d4;margin-bottom:8px}
+.tsfw .hd{width:850px;height:30px;line-height:30px;padding-left:12px;background:url(../../../images/bsbg_4.gif) repeat-x;color:#338ccc;font-size:14px;font-weight:bold;margin-bottom:10px}
+.tsfw .fd{width:862px;height:278px}
+.tsfw .fd .zs{width:127px;height:192px;float:left;padding:10px 0 0 20px}
+.tsfw .fd .zs .zs1{width:97px;height:20px;text-align:center;line-height:20px;font-weight:bold;font-size:14px;color:#5ea1c6;border:1px solid #aad2e7;margin-bottom:10px}
+.tsfw .fd .lb{width:700px;height:278px;float:left}
+.tsfw .fd .lb .sp{width:700px;height:132px;margin-bottom:10px}
+.tsfw .fd .lb .sp ul,.tsfw .fd .lb .xx ul{width:700px;}
+.tsfw .fd .lb .sp ul li,.tsfw .fd .lb .xx ul li{width:698px;height:32px;line-height:32px;float:left;border:1px solid #aad2e7;border-top:none}
+.tsfw .fd .lb .sp ul li.bt,.tsfw .fd .lb .xx ul li.bt{width:660px;height:32px;line-height:32px;float:left;background:url(../../../images/bsbg_1.gif) no-repeat left -30px;font-size:14px;font-weight:bold;color:#fff;padding-left:40px;border:none}
+.tsfw .fd .lb .sp ul li .duan,.tsfw .fd .lb .xx ul li .duan{width:101px;height:32px;float:left;border-right:1px solid #aad2e7;text-align:center}
+.tsfw .fd .lb .sp ul li .chang,.tsfw .fd .lb .xx ul li .chang{width:590px;height:32px;float:left;padding-left:6px;}
+.tsq{width:862px;height:468px;border:1px solid #d4d4d4}
+.tsq .hd{width:850px;height:30px;line-height:30px;padding-left:12px;background:url(../images/bsbg_4.gif) repeat-x;color:#338ccc;font-size:14px;font-weight:bold;margin-bottom:10px}
+.tsq .fd{width:853px;height:428px;padding:0 0 0 9px;position:relative}
+.tsq .fd .ts{width:150px;height:35px;line-height:35px;font-size:16px;font-weight:bold;color:#fff;background:url(../../../images/bsbg_1.gif) no-repeat bottom;position:absolute;left:20px;top:-5px;text-align:center}
+.tsq .fd .ts1{width:340px;height:30px;line-height:30px;position:absolute;left:500px;top:0px;text-align:center}
+.tsq .fd .ts1 a{padding:0 10px 0 10px;text-decoration:underline;color:#00F}
+.tsq .fd .ts1 a:hover{text-decoration:none}
+.tsq .fd .tuis{width:842px;height:380px;border:1px solid #ffd18e;padding-top:40px;}
+.tsq .fd .tuis .left{width:23px;height:290px;float:left;margin-right:15px;padding-top:90px;text-align:center}
+.tsq .fd .tuis .left a{line-height:110px;height:110px;width:22px;float:left;display:block;background:url(../../../images/bsbg_6.gif) no-repeat center;border:1px solid #ffd18e;border-left:none;}
+.tsq .fd .tuis .center{width:765px;height:380px;float:left;margin-right:15px;}
+.tsq .fd .tuis .center .cr1{width:282px;height:362px;float:left;margin-right:13px}
+.tsq .fd .tuis .center .cr1 .cr1_h{width:282px;height:165px;text-align:center;}
+.tsq .fd .tuis .center .cr1 .cr1_b{width:282px;height:80px;line-height:24px;font-size:14px;font-weight:bold;border-bottom:1px dashed #999}
+.tsq .fd .tuis .center .cr1 .cr1_b a{color:#000}
+.tsq .fd .tuis .center .cr1 .cr1_f{width:282px;height:110px;line-height:22px;padding-top:5px}
+.tsq .fd .tuis .right{width:23px;height:290px;float:left;padding-top:90px;text-align:center}
+.tsq .fd .tuis .right a{line-height:110px;height:110px;width:22px;float:right;display:block;background:url(../../../images/bsbg_7.gif) no-repeat center;border:1px solid #ffd18e;border-right:none;}
+.tsq .fd .tuis .center .cr{width:466px;height:362px;float:left}
+.tsq .fd .tuis .center .cr2{width:464px;height:315px;float:left;border:1px solid #d4d4d4;margin-bottom:10px}
+.tsq .fd .tuis .center .cr2 .cr2_h{width:454px;height:30px;padding-left:10px;line-height:30px;background:url(../../../images/bsbg_8.gif) repeat-x}
+.tsq .fd .tuis .center .cr2 .cr2_h span{width:140px;height:30px;background:url(../images/bsbg_3.gif) no-repeat left center;float:left;padding-left:20px;font-size:14px;margin-right:30px}
+.tsq .fd .tuis .center .cr2 .cr2_f{width:454px;height:30px;padding-left:10px;line-height:30px;font-size:14px}
+.tsq .fd .tuis .center .cr2 .cr2_f1{width:447px;height:49px;margin:0 0 6px 5px;background:#f0efef;border:1px solid #d4d4d4;line-height:24px;padding-left:5px}
+.tsq .fd .tuis .center .cr2 .cr2_f2{width:447px;height:72px;margin:0 0 6px 5px;background:#f0efef;border:1px solid #d4d4d4;line-height:24px;padding-left:5px}
+.tsq .fd .tuis .center .cr2 .cr2_f2 span{width:80px;height:22px;float:left;line-height:22px}
+.tsq .fd .tuis .center .cr2 .cr2_f3{width:447px;height:92px;margin:0 0 0 5px;background:#f0efef;border:1px solid #d4d4d4;line-height:24px;padding-left:5px}
+.tsq .fd .tuis .center .cr2 .cr2_f4{width:447px;height:24px;margin:0 0 0 5px;line-height:24px;padding-left:5px;text-align:right}
+.tsq .fd .tuis .center .cr .btn{width:466px;height:33px;clear:both;}
+.tsq .fd .tuis .center .cr .btn input{width:140px;height:33px;float:left;background:url(../../../images/bsbg_1.gif) no-repeat center -62px;font-size:16px;font-weight:bold;color:#fff;margin-right:30px;border:none;cursor:pointer}
+.tsq .fd .tuis .center .cr .btn input.sc{width:157px;height:33px;float:left;background:url(../../../images/bsbg_1.gif) no-repeat center -95px;}
+.tsq .fd .tuis .center .cr .btn input.hl{width:75px;height:33px;float:left;background:url(../../../images/bsbg_1.gif) no-repeat center -128px;margin:0}
+#bottom{width:814px;padding-left:210px;background:#e5e5e5;border-top:1px solid #ccc;overflow:hidden;clear:both;margin-top:10px;clear:both}
+#bottom p{clear:both;width:590px;background:#f1f1f1;line-height:150%;text-align:center;color:#b7b7b7;padding:10px 0 10px 0;}
+#bottom p a{color:#b7b7b7;}
+

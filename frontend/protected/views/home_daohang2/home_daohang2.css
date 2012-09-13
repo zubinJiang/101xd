@@ -1,0 +1,29 @@
+body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,form,fieldset,blockquote{margin:0;padding:0}body{font-size:12px;font-family:\5B8B\4F53,Arial;line-height:1.5}ul,ol{list-style:none}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:bold}input,textarea,select{font-size:12px;vertical-align:middle}img{border:none}a{text-decoration:none}a:hover {text-decoration:underline}.fl{float:left}.fr{float:right}.tl{text-align:left}.tr{text-align:right}.tc{text-align:center}.fb{font-weight:bold}.dis{display:block}.undis,.logo h1{display:none}.disline{display:inline}.clear{clear:both;height:0;overflow:hidden;display:block}.clear10{clear:both;height:10px;overflow:hidden;display:block}.cl{clear:left}.cr{clear:right}.cb{clear:both}.crumbs,.crumbs a,.red{color:#ee2e1f;}
+#home_daohang{width:100%;background:url(../../../images/shipments.gif) repeat-x;overflow:hidden;}
+.shipments{width:970px;margin:0 auto;color:#222d65;height:42px;line-height:30px;}
+.shipments span{float:left;padding-left:5px;}
+.shipments_a{float:right;width:340px;}
+.shipments_a a{float:left;padding-left:5px;color:#222d65;}
+.shipments_a a.settings{float:left;background:url(../../../images/homepage.gif) no-repeat;padding-left:18px;margin-left:10px;}
+.shipments_a a.enshrine{float:left;background:url(../../../images/tiny.gif) no-repeat;padding-left:18px;margin-left:10px;}
+.top_c{width:970px;margin:0 auto;height:110px;}
+.logo{float:left;}
+.banner{ float:right; width:740px; margin:0px auto; height:100px; overflow:hidden; z-index:1; }
+
+#move{float:left;width:70px;height:130px;position:absolute;left:0;top:152px}
+#daohang{width:970px;margin:0 auto;line-height:30px;background:url(../../../images/nav_bg.gif) no-repeat;padding-bottom:10px;}
+#home_daohang .daohang_bup{width:970px;height:33px;padding-top:6px;position:relative;}
+#home_daohang .hot{width:22px;height:16px;position:absolute;left:498px;top:-5px}
+#home_daohang .daohang_bup a{float:left;line-height:26px;height:26px;padding:0 20px 0 20px;text-align:center;color:#fff;font-family:"黑体";margin-left:10px;background:url(../../../images/nav_v.gif) no-repeat top right;}
+#home_daohang .daohang_bup a.local{background:none;padding-right:0;}
+#home_daohang .daohang_bup a:hover {/*background:none;padding-right:0;*/}
+.daohang_type{width:950px;line-height:31px;height:31px;padding-left:20px;}
+.daohang_type a{float:left;color:#474747;padding:0 15px 0 15px;}
+.daohang_type a.soil{color:#b60022;}
+.daohang_type a:hover {color:#b60022;}
+.daohang_type span{float:left;color:#474747;padding-left:10px;}
+#concern{width:928px;padding-left:42px;line-height:32px;border-bottom:2px solid #dadada;background:url(../img/concern.gif) no-repeat top left;margin:0 auto;font-size:14px;font-family:"黑体";color:#505050;margin-bottom:10px;}
+.daohang_type a.font_size{font-size:13px;font-weight:bold;color:#b60022;}
+#concern a{color:#9e0011;}
+.concern{width:920px;padding-left:42px;line-height:30px;background:url(../../../images/concern.gif) no-repeat top left;font-size:14px;font-family:Arial, Helvetica, sans-serif;color:#505050;overflow:hidden;margin-left:8px;}
+.concern a{color:#9e0011;float:none;}

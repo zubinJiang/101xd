@@ -1,0 +1,127 @@
+<?php
+$area_data = isset($__p__['area_data']) ? $__p__['area_data'] : '';
+$comment   = isset($__p__['net_comment']) ? $__p__['net_comment'] : '';
+$comment_page = isset($__p__['comment_page']) ? $__p__['comment_page'] : '';
+$site_data = isset($__p__['site_data']) ? $__p__['site_data'] : '';
+$id        = $site_data['id'];
+$net_count = isset($__p__['net_count']) ? $__p__['net_count'] : 0;
+
+function stars($value) {
+    if($value<=1) {
+        return '很差';
+    }elseif(1<$value && $value<3) {
+        return '还行';
+    }elseif(3==$value) {
+        return '一般';
+    }elseif(3<$value && $value<5) {
+        return '好';
+    }elseif(5==$value) {
+        return '非常好';
+    }
+}
+?>
+<div id="verbal">
+<input type="hidden" id="website_id" name='website_id' value="<?php echo $site_data['id']?>" />
+     <!-- <div class="firing">开通城市</div>
+      <ul>
+      <?php
+if(!empty($area_data)) {
+    foreach($area_data as $v) {
+?>
+    <li><?php echo $v['area'];?></li>
+      <?php
+    }
+}
+?>      
+      </ul> -->
+      <div class="pals">网友点评<strong>（已有<?php echo $net_count;?>人评论）</strong></div>
+      <div class="comment">
+<?php
+if(!empty($comment)) {
+    $i = 0;
+    $count = count($comment);
+    foreach($comment as $v) {
+        $key_one = stars($v['product_quality']);
+        $key_two = stars($v['after_service']);
+        $key_thr = stars($v['product_price']);
+?>
+      <ol>
+      <li>用户名：
+<?php 
+        if($v['anonymity']==1){
+            echo '匿名显示';
+        } else {
+            echo $v['user_name'];
+        }
+        ?></li>
+        <li>购买商品名称：<?php echo $v['product_name'];?></li>
+        <li>商品质量：<?php echo $key_one;?>(<?php echo $v['product_quality'];?>分)</li>
+        <li>售后服务：<?php echo $key_two;?>(<?php echo $v['after_service'];?>分)</li>
+        <li>商品价格：<?php echo $key_thr;?>(<?php echo $v['product_price'];?>分)   补充理由：<?php echo $v['reason'];?></li>
+      </ol>
+      <?php
+if($i!=4) {
+?>
+      <ol><li class="blankline">&nbsp;</li></ol>
+<?php
+}
+        $i++;
+    }
+}
+
+if(!empty($comment) && !empty($comment_page)) {
+?>
+    <p><?php echo $comment_page->show(4);?></p>
+<?php
+} else {
+    echo '<p>&nbsp;</p>';
+}
+?>
+      </div>
+      <div class="brvbar"><span>发表点评</span><a href="register" target="_blank">注册</a><a href="login" target="_blank">登录</a></div>
+      <div id="comment_form">
+        <div class="item">购买商品名称：<input type="text" name="product_name" value="" /><font class="red"></font></div>
+        <div class="item">
+            <span>商品质量：&nbsp;</span>
+            <span>
+<ul id="unit_quality" class="unit-rating" style="width:85px;margin:5px 0 0 0;_margin:0;height:17px;line-height:17px;">
+<li class="current-rating" style="width:34px;left:0px;height:17px;">Currently.0.00/5</li>
+<li><a href="javascript:void(0);" title="很拆 1分" class="r-5-unit rater">1</a></li>
+<li><a href="javascript:void(0);" title="还行 2分" class="r-4-unit rater">2</a></li>
+<li><a href="javascript:void(0);" title="一般 3分" class="r-3-unit rater">3</a></li>
+<li><a href="javascript:void(0);" title="好 4分" class="r-2-unit rater">4</a></li>
+<li><a href="javascript:void(0);" title="非常好 5分" class="r-1-unit rater">5</a></li>
+            </ul>
+            <input type="hidden" name="product_quality" class="product_quality" value="2" /></span><strong class='show_quality'>&nbsp;2分&nbsp;</strong>
+            <span>售后服务：&nbsp;</span>
+            <span>
+<ul id="unit_services" class="unit-rating" style="width:85px;margin:5px 0 0 0;_margin:0;height:17px;">
+<li class="current-rating" style="width:34px;left:0px;height:17px;">Currently.0.00/5</li>
+<li><a href="javascript:void(0);" title="很拆 1分" class="r-5-unit rater">1</a></li>
+<li><a href="javascript:void(0);" title="还行 2分" class="r-4-unit rater">2</a></li>
+<li><a href="javascript:void(0);" title="一般 3分" class="r-3-unit rater">3</a></li>
+<li><a href="javascript:void(0);" title="好 4分" class="r-2-unit rater">4</a></li>
+<li><a href="javascript:void(0);" title="非常好 5分" class="r-1-unit rater">5</a></li>
+            </ul><input type="hidden" name="after_services" class="after_services" value='2'/>
+            </span><strong class="show_services">&nbsp;2分&nbsp;</strong>
+            <span>商品价格：&nbsp;</span>
+            <span>
+<ul id="unit_price" class="unit-rating" style="width:85px;margin:5px 0 0 0;_margin:0;height:17px;">
+<li class="current-rating" style="width:34px;left:0px;height:17px;">Currently.0.00/5</li>
+<li><a href="javascript:void(0);" title="很拆 1分" class="r-5-unit rater">1</a></li>
+<li><a href="javascript:void(0);" title="还行 2分" class="r-4-unit rater">2</a></li>
+<li><a href="javascript:void(0);" title="一般 3分" class="r-3-unit rater">3</a></li>
+<li><a href="javascript:void(0);" title="好 4分" class="r-2-unit rater">4</a></li>
+<li><a href="javascript:void(0);" title="非常好 5分" class="r-1-unit rater">5</a></li>
+            </ul><input type="hidden" name="product_price" class="product_price" value="2" />
+            </span>
+            <strong class="show_price">&nbsp;2分</strong>
+        </div>
+        <div class="item">评论内容：</div>
+        <div class="item"><textarea name="text_show" cols="80" rows="8" readonly="readonly"></textarea></div>
+        <div class="item reason" style="display:none;">请补充理由：<input id="reason" type="text" name="reason" value="" /></div>
+        <div class="item"><span><input name="niming" class="niming" type="checkbox" value="1" style="margin:7px 8px 0 5px;_margin-top:3px;*margin-top:3px;" /></span><span style="padding-bottom:2px;">匿名发布</span></div>
+      </div>
+      <div class="present"><input type="submit" name="" value="提交点评" id="comment_submit" class="<?php echo $_GET['id'];?>"/></div>
+    </div>
+

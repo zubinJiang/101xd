@@ -1,0 +1,9 @@
+.shipments{width:970px;margin:0 auto;color:#222d65;height:42px;line-height:30px;}
+.shipments span{float:left;padding-left:5px;}
+.shipments_a{float:right;width:340px;}
+.shipments_a a{float:left;padding-left:5px;color:#222d65;}
+.shipments_a a.settings{float:left;background:url(../../../images/homepage.gif) no-repeat;padding-left:18px;margin-left:10px;}
+.shipments_a a.enshrine{float:left;background:url(../../../images/tiny.gif) no-repeat;padding-left:18px;margin-left:10px;}
+.top_c{width:970px;margin:0 auto;height:110px;}
+.logo{float:left;}
+.banner{float:right;}

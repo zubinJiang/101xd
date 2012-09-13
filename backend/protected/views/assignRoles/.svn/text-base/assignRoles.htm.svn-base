@@ -1,0 +1,26 @@
+<?php
+$role_list = isset($__p__['role_list']) ? $__p__['role_list'] : '';
+$user = isset($__p__['user']) ? $__p__['user'] : '';
+$user_name = '';
+if(!empty($user) && is_array($user)) {
+    $user_name = $user[0]['Name'];
+}
+?>
+<div id="assignRoles" class="govern">
+<?php
+    echo $user_name;
+?>
+    <form action="?action=update&id=<?php echo $_GET['id'];?>" method="post" style="padding:30px;">
+
+<?php
+if(!empty($role_list)) {
+    foreach($role_list as $v) {
+?>
+    <input type="checkbox" name="role[]" value="<?php echo $v['id']?>" <?php if($v['check']) { echo 'checked'; }?> /> <?php echo $v['role_name'];?>&nbsp;
+    <?php
+    }
+}
+?>
+    <input type="submit" value="提交" />
+    </form>
+</div>

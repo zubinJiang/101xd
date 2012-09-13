@@ -1,0 +1,83 @@
+<?php
+$Products = isset($__p__['ProductList']) ? $__p__['ProductList'] : array();
+$Page = isset($__p__['page']) ? $__p__['page'] : '';
+$key  = isset($_POST['key']) ? $_POST['key'] : '';
+$count= $__p__['ProductCount'];
+?>
+<div id="reviewe">
+    <div class="issue" style="padding:0;">
+        <div id="current_location">审核产品</font></div>
+        <div style="float:right;" class="paging">      
+            <form name="searchForm" action="?action=search" method="post">
+            <select name="type" style="float:left;margin:0 10px 0 0;"><option value='1'>标题</option><option value='2'>发布人</option></select>
+            <input type="text" name="key" value="<?php echo $key;?>" />
+            <input type="submit" name="" value="查询" class="refer" />
+        </div> 
+    </div>
+    <div style="clear:both;height:20px;width:100%;"><font style="float:right;"><a href="reviewe?recommend=1" target="_self">已推荐</a>&nbsp;<a href="reviewe" target="_self">未通过商品</a>&nbsp;<a href="?auth=1" target="_self">已通过商品</a></font></div>
+    <p><span class="audit90">产品ID</span><span class="audit235">产品名</span><span class="audit90">发布日期</span><span class="audit90" style="width:120px;">发布人</span><span class="audit90">状态</span><span class="audit90" style="width:160px;">操作</span></p>
+    <ul>
+    <?php
+if(!empty($Products)) {
+        foreach ($Products as $product)
+        {
+            if ($product['auth']==1) {
+                $product['reviewestatus']='已通过';
+
+            } elseif ($product['auth']==0) {
+                $product['reviewestatus']='审核中';
+            
+            } elseif ($product['auth']=='2') {
+                $product['reviewestatus']='未通过';
+            }
+            
+            if($product['vip']=='1') {
+                $product['reviewestatus'] = 'vip供货';
+            }
+
+            $rec = '取消推荐';
+            $rec_cod = '此操作将取消推荐';
+            if($product['recommend']==0) {
+                $rec = '推荐';
+                $rec_cod = '此操作将推荐此产品';
+            }
+
+
+            $rid = 0;
+            if($product['recommend']) {
+                $rid = 1;
+            }
+?>
+<li id="<?php echo $product['id'];?>">
+<span class="audit90"><?php echo $product['id'];?></span>
+<span class="audit235"><a href="/<?php if($product['vip']==1){ echo 'vip?id='.$product['id']; } else { echo 'product_'.$product['id']. '.html';}?>" target="_blank"><?php echo $product['title'];?></a></span>
+<span class="audit90"><?php $insert_time = strtotime($product['insertdate']);echo date('Y-m-d', $insert_time);?></span>
+<span class="audit90"><?php echo $product['Name'];?></span>
+<span class="audit90 <?php echo $product['id'];?>_reviewestatus"><?php echo $product['reviewestatus']; ?></span>
+<?php
+echo "<a href='javascript:void(0);' rel='reviewe?action=recommend&recommend={$rid}&id={$product['id']}' class='recommend' title='{$rec_cod}'>{$rec}</a>";
+echo '|';
+echo "<a href='javascript:void(0);' rel='reviewe?action=reviewe&code=1&id={$product['id']}' class='active'  title='此操作将通过审核' >通过</a>";
+echo '|';
+
+echo "<a href='javascript:void(0);' rel='reviewe?action=reviewe&code=2&id={$product['id']}' class='active'  title='此操作将使产品状态变为不通过'>不通过</a>";
+echo '|';
+echo "<a href='javascript:void(0);' rel='services/manage_product.php?action=delete&id={$product['id']}' class='active' title='此操作将永久删除此信息' >删除</a>";
+echo '|';
+echo "<a href='javascript:void(0);' rel='reviewe?action=reviewe&code=0&id={$product['id']}' class='active'  title='vip供货'>vip供货</a>";
+?>
+    </li>
+<?php
+        }
+}
+?>
+    </ul>
+    <div class="page">
+    <?php
+    echo $Page->show();
+
+    echo "&nbsp;&nbsp;&nbsp;共有<font color=red>{$count}</font>条数据";
+    ?>
+
+  </div>
+</div>

@@ -1,0 +1,48 @@
+#groups{float:right;width:264px;}
+.gain{width:264px;padding-bottom:10px;background:url(../../../images/obtain.gif) no-repeat bottom;overflow:hidden;}
+.gain .fabu{float:left;width:264px;line-height:32px;height:32px;text-align:center;font-size:18px;color:#fff;background:url(../../../images/gain.gif) no-repeat;border:none;outline:none;}
+.gain button a {font-size:18px;color:#fff;border:none;}
+.gain button a:hover {font-size:18px;color:#fff;border:none;}
+.gain p{float:left;width:196px;height:53px;padding:4px 18px 0 48px;border-right:1px solid #e2e2e2;border-left:1px solid #e2e2e2;background:url(../../../images/graits.gif) no-repeat top left #fdedee;line-height:24px;}
+.gain a{color:#ff0000;}
+.gain strong a{color:#ff0000;text-decoration:underline;}
+.effective{width:254px;padding:8px 0 0 8px;height:208px;border-right:1px solid #e2e2e2;border-left:1px solid #e2e2e2;overflow:hidden;}
+.effective dl{float:left;width:254px;background:url(../../../images/effective.gif) no-repeat left bottom;line-height:20px;overflow:hidden;}
+.effective dl dt{float:left;width:254px;height:44px;}
+.effective dl dd{float:left;width:242px;padding-left:12px;height:164px;}
+.effective dl dd strong{float:left;width:242px;line-height:28px;font-size:14px;font-weight:bold;color:#462716;}
+.effective dl dd span{float:left;width:218px;padding-left:12px;line-height:20px;color:#575755;}
+
+.accede{width:264px;padding-bottom:10px;background:url("../../../images/obtain.gif") no-repeat bottom;overflow:hidden;margin-top:10px;}
+.inject{float:left;width:264px;background:url("../../../images/access.gif") no-repeat;line-height:33px;}
+.inject span{float:left;padding-left:5px;font-size:16px;color:#343434;}
+.inject a{float:right;padding-right:8px;color:#3d3d3d;}
+.accede ul{float:left;width:262px;border-right:1px solid #e2e2e2;border-left:1px solid #e2e2e2;}
+.accede ul li{float:left;width:246px;line-height:28px;border-bottom:1px dashed #a5a5a5;padding-left:18px;color:#545452;}
+.accede ul li a{color:#ff0000;}
+.accede ul li span{color:#c3c3c3;}
+.legitimate{float:left;width:262px;border-right:1px solid #e2e2e2;border-left:1px solid #e2e2e2;}
+.legitimate img{float:left;padding-top:5px;height:91px;}
+.accede .link{float:left;width:262px;border-right:1px solid #e2e2e2;border-left:1px solid #e2e2e2;}
+.accede .link a{float:left;width:120px;height:44px;margin:6px 4px 0 5px;background:#fff;}
+.accede .link img {border: 1px solid #CCC;height:44px;width:120px;}
+.accede .contact {float:left;margin:5px 0 0 10px;}
+.accede .contact a{float:none;width:69px;height:29px;margin:0;}
+.accede .contact img {border:none;width:69px;height:29px;}
+.dealer{width:264px;padding-bottom:10px;background:url(../../../images/obtain.gif) no-repeat bottom;overflow:hidden;margin-top:10px;}
+.dealer ol{float:left;width:262px;border-left:1px solid #e2e2e2;padding-top:5px;border-bottom:1px solid #ddd;border-right:1px solid #E2E2E2;}
+.dealer ol li{float:left;width:262px;}
+.dealer ol li a{float:left;width:130px;line-height:23px;text-align:center;background:url(../../../images/ability.gif) no-repeat;color:#3d3d3d;}
+.dealer ol li a:hover {background:#fff;color:#ff4e00;font-weight:bold;}
+.dealer ol li a.local {background:#fff;color:#ff4e00;font-weight:bold;}
+.adjust{float:left;width:252px;border-right:1px solid #e2e2e2;border-left:1px solid #e2e2e2;padding:10px 0 0 10px;height:100px;}
+
+.dealer dl{float:left;width:252px;border-right:1px solid #e2e2e2;border-left:1px solid #e2e2e2;padding:10px 0 0 10px;height:100px;}
+.dealer dl dt{float:left;width:105px;}
+.dealer dl dd{float:left;width:145px;}
+.dealer dl dd a{float:left;width:145px;line-height:24px;color:#3d3d3d;}
+.dealer ul{float:left;width:252px;border-right:1px solid #e2e2e2;border-left:1px solid #e2e2e2;padding-left:10px;}
+.dealer ul li{float:left;width:237px;padding-left:15px;line-height:24px;background:url(../../../images/commodity.gif) no-repeat top left;}
+.dealer ul li a{color:#3d3d3d;}
+
+#home_release .effective strong.red {color:red;}

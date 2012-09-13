@@ -1,0 +1,339 @@
+<?php
+$company = $__p__['company'];
+$zizhi   = $__p__['zizhi'];
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>商品信息页</title>
+<link href="css/vipsupply.css" rel="stylesheet" type="text/css" />
+<link rel="shortcut icon" href="images/favicon.ico" /> 
+<script type="text/javascript" src="assets/swfupload.js"></script>
+</head>
+<body>
+<div id="box">
+    <div id="top">
+      <div class="hd">
+            <span>您好，欢迎来到团购供货平台，企业营销新选择！</span>
+            <span class="et"><a href="vipsection?id=<?php echo $company['user_id'];?>"><?php echo $company['site_name']; ?></a> | <a href="/">101网站首页</a> | <a href="index?action=logout">退出</a></span></div>
+
+        <div class="bd">
+            <span class="biao"></span>
+        </div>
+    </div>
+    <div id="banner">
+        <div class="tuan"><span><?php echo $company['site_name']; ?></span><br /><span class="wang"><?php echo $company['url']; ?></span></div>
+        <div class="tell">商家供货电话：010-85197770-367<br />QQ:2547875407</div>
+    </div>
+    <div id="step">
+        <div class="hd">您正在<?php echo $company['site_name']; ?>商品信息页：</div>
+        <div class="fd">
+            <div class="stepys">
+                <span>第一步</span>
+                <span style="color:#e65100">请选择商品类型</span>
+            </div>
+            <div class="aw"></div>
+            <div class="stepys">
+                <span>第二步</span>
+                <span style="color:#e65100">提交商品信息</span>
+            </div>
+            <div class="aw"></div>
+            <div class="stephs">
+                <span>第三步</span>
+                <span style="color:#8a8a8a">请选择商品类型</span>
+            </div>
+        </div>
+    </div>
+    <form action="vipsupply?action=add" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="<?php echo $__p__['id']; ?>" />
+    <input type="hidden" name="qualification_id" value="<?php echo $zizhi['id']; ?>" />
+    <div id="tgxx">
+        <div class="hd"><span class="tg"><span style="font-size:14px;font-weight:bold">提供商品信息</span>（请认真填写以下信息，保证信息的准确性）</span>
+        </div>
+        <div class="tg_b">
+            <dl>
+                <dd>商品名称：<a id="hash_title"></a></dd>
+                <dt><input type="text" name="title" value=""  class="mc"/><span></span></dt>
+                <dd class="r">必填</dd>
+                <dd class="r1"><span id="title_mess"></span></dd>
+            </dl>
+            <dl>
+                <dd>最多团购人数：<a id="hash_max_buy"></dd>
+                <dt><input type="text" name="max_buy" value="" /></dt>
+                <dd class="r">必填</dd>
+              <dd class="r1"><span id="max_buy_mess"></span></dd>
+            </dl>
+            <dl>
+                <dd>每个用户可购买数量：<a id="hash_max_per"></dd>
+                <dt><input type="text" name="max_pre" value="" /></dt>
+                <dd class="r">必填</dd>
+                <dd class="r1"><span id="max_per_mess"></span></dd>
+            </dl>
+            <dl>
+                <dd>市场价：<a id="hash_market_price"></a></dd>
+                <dt><input type="text" name="market_price" value="" /></dt>
+                <dd class="r">必填</dd>
+                <dd class="r1"><span id="market_price_mess"></span></dd>
+            </dl>
+            <dl>
+                <dd>供货价：<a id="hash_supply_price"></a></dd>
+                <dt><input type="text" name="supply_price" value="" /></dt>
+                <dd class="r">必填</dd>
+                <dd class="r1"><span id="supply_price_mess"></span></dd>
+            </dl>
+            <dl class="ht">
+                <dd>商品摘要：<a id="hash_desc"></a></dd>
+                <dt>
+                  <textarea  name="desc" id="desc" cols="" rows=""></textarea>
+                </dt>
+                <dd class="r">必填</dd>
+                <dd class="r1"><span id="desc_mess"></span></dd>
+            </dl>
+            <dl class="ht">
+                <dd>商品说明：<a id="hash_explain"></a></dd>
+                <dt>
+                  <textarea name="explain"  id="explain" cols="" rows=""></textarea>
+                </dt>
+                <dd class="r">必填</dd>
+                <dd class="r1"><span id="explain_mess"></span></dd>
+            </dl>
+            <dl class="smt">
+                <dd>商品图片：<a id="hash_product_pic1"></a></dd>
+                <dt><a name="product_desc" id="product_desc"></a>
+        <div class="sort_right" id="textarea" style="position:relative;width:110px;">
+          <div class="upload_div">
+          <p></p>
+          <div id="upload1" ></div> 
+          <div id="upload1-picone"><ul id="upload1-pic-show" style="width:800px;"> </div>
+          <input type="hidden" name="product_pic1" id="product_pic1" value="" />
+        </div>
+        </div>
+        <dd><div class="rc" style="width:260px;color:red;">必填 <span style="color:#999">（建议把商品首图放到第一个上传）</span></div></dd>
+        </dt>
+                
+                <dd><span id="product_pic1_mess"></span></dd>
+            </dl>
+            
+      </div>
+</div>
+    <div id="uploading">
+    <?php if(empty($zizhi['image_certificate']) || empty($zizhi['image_license']) || empty($zizhi['image_tax']) || empty($zizhi['image_account']) || empty($zizhi['image_org']) || empty($zizhi['image_bui']) || empty($zizhi['image_qc']) || empty($zizhi['image_logo']) || empty($zizhi['insert_date'])){?>
+        <div class="hd">上传资质证件</div>
+        <div class="fd">
+        <div class="wxprompt">
+                <span>101兄弟温馨提示：</span>您上传的资质越齐全，通过审核越快，被推送到优质渠道商的机会就越大，所以101兄弟建议您尽量将要求的资质上传齐全；<br />
+                其中“营业执照”为必填项，其它为选填！</div>
+        <div class="ud_t">以下是 <span style="color:#f00;font-weight:bold">[新浪团]</span> 的商品资质要求，请选择商品类型上传证件：</div>
+            <div class="request">
+                <div class="j_require">
+                    <ul>
+                        <li class="bt">精品网货认证要求：</li>
+                        <li><span>营业执照</span><span>税务登记证</span></li>
+                        <li><span>组织机构代码证</span><span>商家授权书</span></li>
+                        <li><span>银行开户许可证</span><span>商标证复印件</span></li>
+                        <li><span>质量检测合格证</span></li>
+                    </ul>
+                </div>
+                <div class="b_require">
+                    <ul>
+                        <li class="bt">本地商品认证要求：</li>
+                        <li><span>营业执照</span><span>税务登记证</span></li>
+                        <li><span>组织机构代码证</span><span>银行开户许可证</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="clear"></div>
+            <div class="ud_b">
+            <?php if(empty($zizhi['image_license'])){ ?>
+                <div class="shang">
+                    <dl>
+                        <dd>上传营业执照：<a id="hash_image_license"></a></dd>
+                        <dt><input type="file"  size= "40"   name="image_license" value="" class="i"/></dt>
+                        <dd class="r">必填<span style="padding-left:20px;" id="image_license_mess"></span></dd>
+                        <dt></dt>
+                    </dl>
+                </div>
+<?php } else { ?>
+                <div class="shang">
+                    <dl>
+                        <dt>您已经上传过的资质：营业执照</dt>
+                        <dt></dt>
+                        <dd></dd>
+                        <dt></dt>
+                    </dl>
+                </div>
+<?php }
+            if(empty($zizhi['image_certificate'])){
+            ?>
+                <div class="shang">
+                   <dl>
+                       <dd>上传法人身份证：</dd>
+                       <dt><input type="file" size= "40"  name="image_certificate" value="" class="i"/></dt>
+                       <dd class="h">（证件许清晰有效的原件数码照，如发现虚假立即关闭账户）<span id="image_certificate"></span></dd>
+                   </dl>
+                </div>
+<?php } else { ?>
+                <div class="shang">
+                    <dl>
+                        <dt>您已经上传过的资质：法人身份证</dt>
+                        <dt></dt>
+                        <dd></dd>
+                        <dt></dt>
+                    </dl>
+                </div>
+<?php }
+            if(empty($zizhi['image_tax'])){
+            ?>
+                <div class="shang">
+                   <dl>
+                       <dd>上传税务登记证：</dd>
+                       <dt><input type="file" size= "40"  maxlength="50" name="image_tax" value="" class="i"/></dt>
+                       <dd><span  id="image_tax"></span><dd>
+                   </dl>
+                </div>
+<?php } else { ?>
+                <div class="shang">
+                    <dl>
+                        <dt>您已经上传过的资质：税务登记证</dt>
+                        <dt></dt>
+                        <dd></dd>
+                        <dt></dt>
+                    </dl>
+                </div>
+<?php }
+            if(empty($zizhi['image_account'])){
+            ?>
+                <div class="shang">
+                   <dl>
+                       <dd>上传组织机构代码证：</dd>
+                       <dt><input type="file" size= "40"   name="image_org" value="" class="i"/></dt>
+                       <dd><span  id="image_org"></span><dd>
+                   </dl>
+                </div>
+            <?php }  else { ?>
+                <div class="shang">
+                    <dl>
+                        <dt>您已经上传过的资质：织机构代码证</dt>
+                        <dt></dt>
+                        <dd></dd>
+                        <dt></dt>
+                    </dl>
+                </div>
+<?php }
+            if(empty($zizhi['image_org'])){
+            ?>
+                <div class="shang">
+                   <dl>
+                       <dd>上传银行开户许可证：</dd>
+                       <dt><input type="file" size= "40"   name="image_account" value="" class="i"/></dt>
+                       <dd><span id="image_account"></span><dd>
+                   </dl>
+                </div>
+            <?php } else { ?>
+                <div class="shang">
+                    <dl>
+                        <dt>您已经上传过的资质：银行开户许可证</dt>
+                        <dt></dt>
+                        <dd></dd>
+                        <dt></dt>
+                    </dl>
+                </div>
+<?php }
+            if(empty($zizhi['image_bui'])){
+            ?>
+                <div class="shang">
+                   <dl>
+                       <dd>上传商家授权书：</dd>
+                       <dt><input type="file" size= "40"   name="image_bui" value="" class="i"/></dt>
+                       <dd class="h">（精品网货上传）<span style="padding-left:20px;" id="image_bui"></span></dd>
+                   </dl>
+                </div>
+            <?php } else { ?>
+                <div class="shang">
+                    <dl>
+                        <dt>您已经上传过的资质：商家授权书</dt>
+                        <dt></dt>
+                        <dd></dd>
+                        <dt></dt>
+                    </dl>
+                </div>
+<?php }
+
+            if(empty($zizhi['image_qc'])){
+            ?>
+                <div class="shang">
+                   <dl>
+                       <dd>上传商品质检：</dd>
+                       <dt><input type="file" size= "40"   name="image_qc" value="" class="i"/></dt>
+                       <dd class="h">（精品网货上传）<span style="padding-left:20px;" id="image_qc"></span></dd>
+                   </dl>
+                </div>
+            <?php } else { ?>
+                <div class="shang">
+                    <dl>
+                        <dt>您已经上传过的资质：商品质检</dt>
+                        <dt></dt>
+                        <dd></dd>
+                        <dt></dt>
+                    </dl>
+                </div>
+<?php }
+            if(empty($zizhi['image_logo'])){
+            ?>
+                <div class="shang">
+                   <dl>
+                       <dd>上传商品商标：</dd>
+                       <dt><input type="file" size= "40"   name="image_logo" value="" class="i"/></dt>
+                       <dd class="h">（精品网货上传）<span style="padding-left:20px;" id="image_logo"></span></dd>
+                   </dl>
+                </div>
+            <?php } else { ?>
+                <div class="shang">
+                    <dl>
+                        <dt>您已经上传过的资质：商品商标</dt>
+                        <dt></dt>
+                        <dd></dd>
+                        <dt></dt>
+                    </dl>
+                </div>
+<?php }
+ 
+?>
+
+                <div class="clear"></div>
+              <div class="geshi">（仅支持jpg、png、bmp、gif的图片格式，大小不超过500K）</div>
+<?php } else { ?>
+<input type="hidden" name="import_qualification" value='1'>
+<?php }?>
+                <div class="btn">
+                  <input type="submit" name="input2" value="提 交" id="submit"/>
+                </div>
+<?php if(empty($zizhi['image_certificate']) || empty($zizhi['image_license']) || empty($zizhi['image_tax']) || empty($zizhi['image_account']) || empty($zizhi['image_org']) || empty($zizhi['image_bui']) || empty($zizhi['image_qc']) || empty($zizhi['image_logo']) || empty($zizhi['insert_date'])){?>
+</div>
+</div>
+<?php } ?>
+         </form>
+    </div>
+
+    
+     <div id="footer">
+    <div class="left"></div>
+        <div class="center">
+            <a target="_blank" href="/contact">联系我们</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a target="_blank" href="/profile">公司简介</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a target="_blank" href="/">团购供货找101兄弟</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a target="_blank" href="http://www.cnzz.com/stat/website.php?web_id=3240185">站长统计</a><br />ICP备案：鄂ICP备10207590号</div>
+        <div class="right">
+            <div class="hd">
+                <span style="font-size:14px;font-weight:bold;float:none;width:">服务热线：13521936489</span><br /><span>客服在您身边！（法定节假日除外）</span></div>
+            <div class="fd">
+               客服QQ：<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2534395200&site=qq&menu=yes"><img src="images/qq.gif" width="69" height="29" /></a><br />
+               客服在线时间: 每天09:00-18:00<br />
+               商务合作QQ：67315353<br />
+               在线时间: 每天10:00-22:00
+            </div>        
+        </div>
+    </div>
+</div>

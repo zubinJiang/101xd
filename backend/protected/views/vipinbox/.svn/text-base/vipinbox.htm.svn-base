@@ -1,0 +1,55 @@
+<?php
+$messages = isset($__p__['messages']) ? $__p__['messages'] : '';
+$unread = isset($__p__['unread']) ? $__p__['unread'] : '';
+$all = isset($__p__['all']) ? $__p__['all'] : '';
+$Page = isset($__p__['page']) ? $__p__['page'] : '';
+?>
+ <div class="et">
+            <div class="hd">收件箱</div>
+            <?php
+            echo "<div class='bd'>尊敬的<span>{$messages[0]['receiver']['Name']}</span>您共收到<span id='msg_notice_all'>[{$all}]</span>条消息，其中有<span style='color:#f00' id='msg_notice_unread'>[{$unread}]</span>条新消息</div>";
+            ?>
+            <div class="fd">
+                <div class="bt">
+                    <span>选项</span>
+                    <span>状态</span>
+                    <span style="width:450px;margin-right:15px">内容</span>
+                    <span style="width:150px;text-align:center">来自</span>
+                    <span style="text-align:center">管理</span>
+              </div>
+            <?php
+            foreach ($messages as $message){
+            $time = $message['timestamp'];
+            echo <<<EOF
+                <div class="explain" msgid={$message['id']} pid={$message['vipproduct_id']}>
+                  <span>
+                    <input name="msg" type="checkbox" value="{$message['id']}" />
+                  </span>
+                  <span><a href="javascript:void(0)" class="wd" style="color:{$message['color']}">{$message['readstatus']}</a></span>
+                  <span class="cg">
+                      <p class="msgtext"><a href="javascript:void(0)" style="color:#000" class="msg" content="{$message['maintext']}" status="{$message['status']}">{$message['maintext']}</a><a class="read" href="javascript:void(0)" style="color:#03C" msgid="{$message['id']}">[展开阅读]</a></p>
+                      <p class="hs">{$message['timestamp']}</p>
+                  </span>
+                  <span style="width:150px;text-align:center"><a href="#" style="color:#000">{$message['sender']['Name']}</a></span>
+                  <span style="text-align:center"><a href="#" class="msgdel" style="color:#777;" msgid="{$message['id']}">删除</a></span>
+              </div>
+EOF;
+    }
+            ?>
+              <div class="fy">
+                  <div class="wtt">
+                      <input id="selectall" type="submit" name="" value="全 选" />
+                      <input id="delall" type="submit" name="" value="删 除" onclick="DelAllSelected()" class="h"/>
+                  </div>
+                  <div class="ett">
+                      <?php
+                      echo $Page->show(4);
+                      ?>
+                  </div>
+              </div>
+          </div>
+        </div>
+    </div> 
+<!---box-->
+</div>
+<!---box-->

@@ -1,0 +1,58 @@
+#content{margin:0 auto;width:968px;height:1700px;border:1px #ccc solid}
+.content1{width:960px;height:148px;padding:9px 0 0 8px;}
+.content2{width:960px;height:65px;padding-left:8px;}
+.content2_t{width:960px;height:30px;}
+.content2_t ul{float:left;text-align:left;line-height:30px;font-size:14px;overflow:hidden;width:100%}
+.content2_t ul li{width:90px;height:29px;padding-left:33px;float:left;background:url(../../../images/qiehuan.gif) no-repeat right top;overflow:hidden}
+.content2_t ul li.l{width:90px;height:29px;padding-left:33px;float:left;background:url(../../../images/qiehuan.gif) no-repeat right -29px;overflow:hidden}
+.content2_t ul li a{color:#fff;font-weight:bold;}
+.content2_f{width:928px;height:27px;border:1px #ffc798 solid;background:#ffe1c8;padding-left:20px;line-height:27px}
+.content3{width:960px;height:265px;padding-left:8px;border-bottom:1px #CCC dashed;line-height:18px}
+.dingwei3{ width:63px; height:63px; position:absolute; left:39px;*left:39px; top:0px;*top:0px }
+.content3 h2{width:950px;height:31px;float:left;font-size:14px;border-bottom:1px #CCC dashed;}
+.content3 h2 span{padding-left:20px;line-height:31px;float:left;}
+.content3 h2 span.s{padding-left:20px;line-height:31px;float:left;font-weight:normal}
+.content3 h2 span a{color:#000;}
+.content3 ul{float:left;height:221px;padding-top:11px;text-align:center;width:100%}
+.content3 ul li{float:left;width:259px;height:211px;padding:2px 0 0 42px;position:relative;}
+.content3 ul li p.p{width:259px;padding-top:5px;height:157px;border:1px #CCC solid;}
+.content3 ul li p.p img{float:left;margin:0 0 7px 50px}
+.content3 ul li span.ss{width:254px;height:37px;border-top:1px #ffd9a9 solid;background:#fcfde0;float:left;text-align:left;padding-left:5px}
+.content3 ul li span.biaoti{width:250px;height:19px;float:left;line-height:19px}
+.content3 ul li span.xinxi a {color:#000;}
+.content3 ul li span.xinxi{float:left;width:130px;}
+.content3 ul li span.xiaoshou{float:left;width:120px;font-weight:bold;color:#333}
+
+.content3 ul li p.pp{width:259px;height:50px;float:right;text-align:left;line-height:26px;padding-top:5px;}
+.content3 ul li p.pp span.sp{float:left;width:137px;height:26px;background:url(../../../images/goumai.gif) no-repeat left bottom;font-weight:bold;font-size:15px;color:#fff;}
+.content3 ul li p.pp span.spa{float:left;width:120px;height:26px;text-align:right;}
+.content3 ul li p.pp span.spp{float:left;width:137px;height:26px;}
+.content3 ul li p.pp span.saa{float:left;width:110px;height:26px;}
+
+.content4{width:950px;height:160px;padding-left:8px;border-bottom:1px #CCC dashed;}
+.content4_l{float:left;width:282px;height:152px;padding:8px 0 0;}
+.content4_l span.shuzi{float:left;width:60px;height:152px;font-size:24px;text-align:right;font-weight:bold;color:#C00;font-style:italic}
+.content4_l span.im{width:215px;height:145px;float:left}
+.content4_r{float:left;width:668px;height:142px;padding-top:18px}
+.content4_r h2{width:625px;height:50px;text-align:left;line-height:24px;font-size:16px;float:left;padding-left:10px;overflow:hidden;}
+.content4_r p.ppp{float:left;width:622px;height:75px;line-height:36px;background:#feffdd;border:1px #ffdcaf solid;padding:5px 0 0 10px}
+.content4_r span.gou, span.startdate{color:#C00;font-size:13px;font-weight:bold;height:20px;text-align:left;display:block;float:left;}
+.content4_r span.gou{width:130px;}
+.content4_r span.startdate{width:160px;}
+.content4_r span.jia,span.source{text-align:left;height:20px;display:block;float:left;}
+.content4_r span.jia{width:130px;}
+.content4_r span.source{width:160px;}
+
+.zhongxin h2 a {color:#000;}
+.content3 .ss a {color:#000;}
+.content100{width:968px;height:85px;text-align:center;}
+.content100 .info{width:968px;height:30px;float:left;line-height:30px;text-align:center;color:#C00;font-size:14px}
+.content100 span.current{width:10px;height:20px;text-align:center;color:#C00;font-size:14px;float:none;}
+.content100 .fanye{width:700px;height:30px;line-height:30px;text-align:left;font-size:14px;margin:0 auto;}
+.content100 .yi{float:left;padding:0;color:#000;line-height:26px;}
+.content100 .yi a{color:#000;}
+.content100 .in{float:left;width:40px;height:31px;padding-top:3px;margin:0 0 0 5px;}
+.content100 .in input{float:left;width:28px;height:16px;border:1px #000 solid;;line-height:16px}
+.content100 .bo{float:left;width:30px;height:28px;float:left;padding-top:3px}
+.content100 .bo a{width:28px;float:left;height:19px;border:1px #000 solid;background:#eaeaea;font-weight:bold;text-align:center;cursor:pointer;padding:0 5px 0 5px;line-height:19px}
+

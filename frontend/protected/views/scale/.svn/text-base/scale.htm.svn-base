@@ -1,0 +1,5 @@
+<div id="scale">
+    <p><input type="text" name="key" value="请输入团购网站的名称" class="dimen" />
+    <input type="submit" name="" value="搜索排名" class="sions" /><a href="javascript:void(0);" class="form">没有您的网站请点击这里</a></p>
+</div>
+

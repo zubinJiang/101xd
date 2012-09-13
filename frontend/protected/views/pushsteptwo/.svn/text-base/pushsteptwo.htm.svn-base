@@ -1,0 +1,121 @@
+<?php
+$users = $__p__['users'];
+$pid = $__p__['pid'];
+$uid = $__p__['uid'];
+?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>选择推送商家</title>
+<link href="/protected/views/pushsteptwo/pushsteptwo.css" rel="stylesheet" type="text/css" />
+<script src="assets/jquery-1.6.4.min.js" type="text/javascript"></script>
+<script src="assets/jquery.json-2.3.min.js" type="text/javascript" ></script>
+<script src="/protected/views/pushsteptwo/pushsteptwo.js" type="text/javascript" ></script>
+
+</head>
+
+<body class="b" pid="<?php echo $pid;?>">
+<div id="box">
+    <div id="top" onclick="location.href='/'"><input type="button" name="" value="进入101兄弟首页" onclick="location.href='/';"/></div>
+    <div id="banner">
+        <a href="#"><img src="../../../images/qdsbanner1.gif" width="960" height="288" /></a>
+    </div>
+    
+    <div id="step">
+        <div class="hd">还在担心商品信息提交到团购网站后台，便石沉大海吗？101兄弟平台帮您提高中选率，轻松四步，商品上渠道商就是这么容易！</div>
+        <div class="fd">
+            <div class="stepys">
+                <span>第一步</span>
+                <span style="color:#e65100">请选择商品类型</span>
+            </div>
+            <div class="aw"></div>
+            <div class="stepys">
+                <span>第二步</span>
+                <span style="color:#e65100">选择推送商品至哪些渠道商</span>
+            </div>
+            <div class="aw"></div>
+            <div class="stephs">
+                <span>第三步</span>
+                <span style="color:#8a8a8a">提交商品信息</span>
+            </div>
+            <div class="aw1"></div>
+            <div class="stephs">
+                <span>第四步</span>
+                <span style="color:#8a8a8a">完成，等待审核</span>
+            </div>
+            
+        </div>
+    </div>
+    
+    <div id="content">
+        <div class="hd">以下是101兄弟帮您筛选出满足您筛选条件的渠道商：</div>
+        <div class="fd">
+            <div class="prompt"><span style="color:#f00">101兄弟提示：</span>为了增加中选率，请根据自己的商品特色，权衡商品优势，理性的选择最适合的渠道商！</div>
+            <div class="hy">
+                <div class="hyt">101金牌会员列表每款商品最多可选【3】家渠道商做推送，请慎重选择！</div>
+                <div class="hyb">
+                    <div class="notice">
+                        <center><p>该列表里没有符合您筛选条件的渠道商...</p></center>
+                    </div>
+                    <!--<div class="hybn">-->
+                        <?php
+                        foreach ($users as $user){
+                            if ($user['vip'] ==1 ){      
+                            echo "<span><input type='checkbox' name='{$user['CompanyName']}' uid='{$user['UserID']}' utp='{$user['UserType']}'/><span>{$user['CompanyName']}</span></span>";
+                            };
+                            }
+                        ?>
+                        <!-- </div>-->
+                    <!--
+                    <div class="hybn">
+                        <?php
+                        foreach ($users as $user){
+                            if ($user['vip'] ==0 ){      
+                            echo "<span><input type='checkbox' name='{$user['CompanyName']}' uid='{$user['UserID']}' utp='{$user['UserType']}'/><span>{$user['CompanyName']}</span></span>";
+                            }
+                            }
+                        ?>
+                    </div>
+                    -->
+                </div>
+            </div>
+            <div class="hy">
+                <div class="hyt1"><span>渠道商会员列表：</span>该列表中，每款商品最多可选【5】家渠道商做推送，请慎重选择！</div>
+                <div class="hyb1">
+                    <div class="notice">
+                        <center><p>该列表里没有符合您筛选条件的渠道商...</p></center>
+                    </div>
+                    <?php
+                        foreach ($users as $user){
+                            if ($user['vip'] ==2 ){      
+                            echo "<span><input type='checkbox' name='{$user['CompanyName']}' uid='{$user['UserID']}' utp='{$user['UserType']}'/><span>{$user['CompanyName']}</span></span>";
+                            }
+                            }
+                        ?>
+                </div>
+            </div>
+            <div class="four"><input name="prevstep" uid="<?php echo $uid;?> "type="button" value="上一步" onclick="location.href='/pushstepone'"/><input uid="<?php echo $uid;?>" name="nextstep" type="button" value="下一步"/></div>
+        </div>
+    </div>
+<!-- pop start -->
+<div id="case">
+    <div class="hd">
+        <div class="left">101兄弟，团购供货平台！</div>
+        <div class="center"><a href="forget">忘记密码？</a></div>
+        <div class="right"><a href="javascript:void(0);" id="close" onclick="$('#case').hide()"><img src="images/pop_close.gif" width="12" height="12" onclick="$('#case').hide()"/></a></div>
+    </div>
+    <div class="fd">
+        <div class="you">
+            <ul>
+                <li>对不起，您还没有登录哦！</li>
+                <li>
+                    <input type="submit" name="" value="立即登录" onclick="location.href='/login?action=pushstepone';" />
+                    <input type="submit" name="" value="免费注册" onclick="location.href='/register?action=pushstepone';" />
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+ <!-- end pop--> 

@@ -1,0 +1,39 @@
+a{text-decoration:none}
+a:hover {color:#2781bf}
+#main{width:1200px;}
+#content .et{width:980px;float:right;border:1px solid #d4d4d4;}
+#content .et .pd{width:962px;border-bottom:1px solid #d4d4d4}
+#content .et .pd .hd{width:968px;height:30px;line-height:30px;padding-left:12px;background:url(../../../images/bsbg_4.gif) repeat-x;color:#338ccc;font-size:14px;font-weight:bold;margin-bottom:8px}
+#content .et .pd .bd{width:978px;height:33px;padding-bottom:5px}
+#content .et .pd .bd form{width:978px;float:left}
+#content .et .pd .bd form .dv{width:970px;height:30px;clear:both;padding-left:5px}
+#content .et .pd .bd form label{float:left;height:30px;line-height:30px;text-align:right;color:#000;font-size:12px;padding:0 5px 0 5px}
+#content .et .pd .bd form input{float:left;height:16px;line-height:16px;margin:3px 0 0 0}
+#content .et .pd .bd form input.an{width:88px;height:26px;font-size:14px;font-weight:bold;color:#fff;float:left;background:url(../../../images/bsbg_10.gif) no-repeat top;cursor:pointer;border:none;margin-left:10px;line-height:26px}
+#content .et .pd .bd form select{float:left;margin:4px 0 0 0;width:120px;padding:1px 0 1px 0}
+#content .et .main{width:956px;padding:8px 0 0 6px}
+#content .et .main .qiehuan{width:956px;height:32px;line-height:32px;text-align:center;position:relative;font-size:14px}
+#content .et .main .dw1{width:168px;height:32px;position:absolute;left:20px;top:1px;background:url(../../../images/bsbg_10.gif) no-repeat bottom;}
+#content .et .main .dw1 a{color:#eb3700;font-weight:bold}
+#content .et .main .dw2{width:168px;height:32px;position:absolute;left:200px;top:1px;}
+#content .et .main .dw2 a{color:#000;}
+#content .et .main .xianshi{width:948px;height:29px;border:1px solid #f0d998;line-height:29px;background:#fdf6df}
+#content .et .main .xianshi ul{width:948px;float:left}
+#content .et .main .xianshi ul li{height:29px;float:left;line-height:29px;margin-right:8px}
+#content .et .main .xianshi ul li select{width:86px;margin-top:3px}
+#content .et .main .neirong{width:950px;clear:both;height:55px;border-bottom:1px dashed #d4d4d4}
+#content .et .main .neirong ul{width:954px;float:left}
+#content .et .main .neirong ul li{height:50px;float:left;line-height:50px;margin-right:8px;padding-top:5px}
+#content .et .main .neirong ul li a{color:#33F}
+#content .et .main .neirong ul li.mc{height:50px;float:left;line-height:23px;margin-right:10px;padding-top:5px;width:140px}
+#content .et .main .neirong ul li.mc a{color:#000;}
+#content .et .main .neirong ul li.mc a:hover{text-decoration:underline}
+#content .et .main .page{width:575px;clear:both;height:45px;line-height:45px;padding-left:275px}
+#content .et .main .page a{padding:0 5px 0 5px;color:#000}
+#content .et .main .page a:hover {color:#f00}
+#content .et .main .page select{float:left;margin:12px 0 0 5px}
+#bottom{width:814px;padding-left:210px;background:#e5e5e5;border-top:1px solid #ccc;overflow:hidden;clear:both;}
+#bottom p{clear:both;width:590px;background:#f1f1f1;line-height:150%;text-align:center;color:#b7b7b7;padding:10px 0 10px 0;}
+#bottom p a{color:#b7b7b7;}
+
+

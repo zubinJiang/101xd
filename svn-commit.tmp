@@ -1,0 +1,31 @@
+update
+--This line, and those below, will be ignored--
+
+A    backend/protected/services/insert_contact.php
+M    backend/protected/presenters/ReleasenetsPresenter.php
+M    backend/protected/presenters/GoldrollPresenter.php
+M    backend/protected/presenters/LocalPresenter.php
+M    backend/protected/releasenets.html
+M    backend/protected/models/MProduct.php
+M    backend/protected/models/MAddress.php
+M    backend/protected/models/MContact.php
+M    backend/protected/models/MSite.php
+M    backend/protected/models/MConfirmsupply.php
+M    backend/protected/views/title/title.htm
+M    backend/protected/views/local_goods/local_goods.htm
+M    backend/protected/views/local_other/local_other.htm
+M    backend/protected/views/releasenetsother/releasenetsother.htm
+M    backend/protected/views/releasenetsother/releasenetsother.js
+M    backend/protected/views/goldrollother/goldrollother.htm
+M    backend/protected/views/goldrollother/goldrollother.js
+M    backend/protected/views/contact/contact.htm
+M    backend/protected/views/manageGoodList/manageGoodList.htm
+M    backend/protected/views/manageGoodList/manageGoodList.js
+M    backend/protected/views/navigation/navigation.htm
+M    backend/protected/views/local_business/local_business.htm
+M    backend/protected/views/releasenets/releasenets.htm
+M    backend/protected/views/goldroll/goldroll.js
+M    backend/protected/config/fileupload.php
+M    backend/protected/config/env.php
+M    backend/index-test.php
+M    backend/index.php

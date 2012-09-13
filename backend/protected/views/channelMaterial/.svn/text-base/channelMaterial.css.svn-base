@@ -1,0 +1,17 @@
+body{font-size:12px;}
+#doc3{margin:0;}
+a{/*text-decoration:none*/}
+a:hover {color:#2781bf}
+#main{width:1300px;}
+#channelMaterial {border:1px solid #C9181E; float:right; padding-left:20px; width:1036px; height:750px;font-size:12px;font-weight:normal}
+#channelMaterial span{float:left}
+#channelMaterial .top span{width:120px;height:36px;font-size:18px;background:#999;margin: 0px 4px 0px 2px;padding:0px 4px 0px 4px;}
+#channelMaterial .top span a{text-decoration:  none;}
+#channelMaterial .top span a:hover{color:red}
+#channelMaterial h3{height:20px;margin:10px 0;font-size:16px;}
+#channelMaterial .top a{height:30px;margin:0px 10px;font-size:14px;}
+#channelMaterial .head_data{width:90%;height:25px;margin:2px 8px;font-size:12px;float:left;padding:0px}
+#channelMaterial .head_data .left{width:100px;margin:2px 10px;font-size:12px;text-align:right;padding:0px;font-weight:100}
+#channelMaterial .head_data .right {width:180px;font-size:14px;margin:0px;padding:0px;height:100%}
+#channelMaterial .head_data .right input{border:1px solid #7F9DB9;height:80%;margin:0px;padding:0px}
+#channelMaterial .head_data .right input.gj{width:75px}

@@ -1,0 +1,22 @@
+<?php
+$title = isset($__p__['left_title']) ? $__p__['left_title'] : '';
+$data = isset($__p__['left_data']) ? $__p__['left_data'] : '';
+?>
+<div id="merchant">
+<h1><span><?php echo $title['1']; ?></span><a href="#"><?php echo $title['2'] ?></a></h1>
+    <p><?php echo $title['3']; ?></p>
+    <ul>
+<?php
+      if (!empty($data)) {
+          foreach($data as $k=>$v) {
+              echo "<li>";
+              echo <<<EOF
+    &nbsp;<a>{$v}</a>&nbsp;
+EOF;
+              echo "</li>";
+          }
+      }
+?>    
+    </ul>
+  </div>
+

@@ -1,0 +1,90 @@
+<?php
+$error_msg = isset($__p__['error_msg']) ? $__p__['error_msg'] : '';
+$data_list = isset($__p__['data_list']) ? $__p__['data_list'] : '';
+$page = isset($__p__['page']) ? $__p__['page'] : '';
+$str = isset($_GET['str']) ? $_GET['str'] : '';
+if($str=='1'){
+    $error_str = "删除成功";
+} else {
+    $error_str = "删除失败";
+}
+?>
+<style>
+#sms{width:100%;height:300px;}
+.option{padding-left:100px;}
+.option div{margin-top:20px;}
+.option span{padding-right:20px;padding-left:2px;}
+.option font{color:red;padding-left:10px;}
+</style>
+<div class="concerned" id="sms" >
+    <div id="release">
+    <div class="issue"><div id="current_location">友情链接</div></div>
+    <?php
+if(empty($_GET['action']) || 'list'!=$_GET['action']) { 
+?>
+    <div class="material"><span style="float:right;padding-right:5px;"><a href="?action=list" id="quan">查看已有的链接</a></span></div>
+<div style="<?php if('添加成功'==$error_msg){ echo 'color:green;';} else { echo 'color:red;';}?>font-size:14px;font-weight:bolder;text-align:center;width:100%;"><?php echo $error_msg;?></div>
+
+    <div class="option">
+        <form action="?action=add" method="post">
+            <div><input type="radio" name="type" checked value="1"><span>一级</span>
+            <input type="radio" name="type" value="2"><span>二级</span>
+            <input type="radio" name="type" value="3"><span>三级</span>
+            <input type="radio" name="type" value="4"><span>四级</span></div>
+            <div>网站名称：<input type="text" style="width:260px;" name="name" value=""><font>*</font></div>
+            <div>网站网址：<input type="text" style="width:260px;" name="url" value=""><font>*</font></div>
+            <div>详细描述：<textarea name="desc" rows="5" cols="50"></textarea></div>
+            <div style="width:100%;clear:both;margin:10px 0 100px 0;">
+            <input type="submit" value="提交链接" style="width:120px;height:30px;float:left;margin:0 0 0 60px;"/></div>
+        </form>
+    </div>
+<?php
+} else {
+    if(!empty($_GET['str'])){
+?>
+<div style="<?php if('删除成功'==$error_str){ echo 'color:green;';} else { echo 'color:red;';}?>font-size:14px;font-weight:bolder;text-align:center;width:100%;"><?php echo $error_str;?></div>
+<?php } ?>
+    <div class="data_link">
+      <div class="global">
+      <span class="wid40">ID</span>
+      <span class="wid120">网站名称</span>
+      <span class="wid120">网站网址</span>
+      <span class="wid40">栏目</span>
+      <span class="wid120" style="width:200px;">详细描述</span>
+      <span class="wid120">添加时间</span>
+      <span class="wid40">操作</span></div>
+      <div class="choice" rel="<?php echo $_GET['action'];?>" style="margin:0 0 20px 0;">
+  <?php
+if(!empty($data_list)) {
+    foreach($data_list as $v) {
+        if(!empty($v['type'])){
+            switch($v['type']){
+            case 1: $str='一级';break;
+            case 2: $str='二级';break;
+            case 3: $str='三级';break;
+            case 4: $str='四级';break;
+            }
+        }
+?>
+        <ul id="<?php echo $v['id'];?>" class="global">
+        <li class="wid40"><?php echo $v['id'];?></li>
+        <li class="wid120"><?php echo $v['site_name'];?></li>
+        <li class="wid120"><?php echo $v['site_url'];?></li>
+        <li class="wid40"><?php echo $str; ?></li>
+        <li class="wid120" style="width:200px;"><?php echo $v['site_desc'];?></li>
+        <li class="wid120"><?php echo $v['insert_date'];?></li>
+        <li class="wid40"><a href="?action=del&id=<?php echo $v['id'];?>">[删除]</a></li>
+        </ul>
+  <?php
+    }
+}
+?>
+</div>
+
+<div class="global"> <?php echo $page->show(4);?> </div>
+    <?php
+}
+?>
+    </div>
+</div>
+

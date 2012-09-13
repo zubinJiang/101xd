@@ -1,0 +1,78 @@
+<?php
+$user = isset($__p__['user_data']) ? $__p__['user_data'] : array();
+$info = isset($__p__['update_info']) ? $__p__['update_info'] : '';
+$action = isset($_GET['action']) ? $_GET['action'] : '';
+
+if('tophoto'==$_GET['action']) {
+    $css_two = 'class="current"';
+} else {
+    $css_one = 'class="current"';
+}
+?>
+<div id="account">
+    <h1>账户资料</h1>
+    <div class="data">
+    <div class="datum"><a href="#" id="material" <?php echo $css_one;?> >基本资料</a><a href="#" id="head" <?php echo $css_two;?>>上传头像</a><a href="#" id="password">密码设置</a></div>
+      <div class="metadata">
+        <form name="form_metadata" method="post" action="?action=update">
+        <input type="hidden" name="cid" value="<?php echo $user['cid'];?>" />
+        <?php
+if(!empty($info)) {
+    echo <<<EOF
+         <div class="revamp_all"><div class="revamp_l"></div><div class="revamp_r"><font color="green">{$info}</font></div></div>
+EOF;
+}
+?>
+        <div class="revamp_all"><div class="revamp_l">用户名：</div><div class="revamp_r"><input name="name" type="text" value="<?php echo $user['Name']?>" readonly="readonly" /></div></div>
+        <div class="revamp_all"><div class="revamp_l">联系人：</div><div class="revamp_r"><input name="person_name" type="text" value="<?php echo $user['ContactName'];?>" /><span>业务联系人姓名</span></div></div>
+          <div class="revamp_all"><div class="revamp_l">公司名称：</div><div class="revamp_r"><input name="company_name" type="text" value="<?php echo $user['cname'];?>" /></div></div>
+          <div class="revamp_all"><div class="revamp_l">公司电话：</div><div class="revamp_r"><input type="text" name="phone" value="<?php echo $user['cphone'];?>" class="text2" /></div></div>
+          <div class="revamp_all"><div class="revamp_l">手机：</div><div class="revamp_r"><input type="text" name="mobile" value="<?php if($user['UserTel']!=$user['UserID']) {echo $user['UserTel'];}?>" class="text2" /></div></div>
+          <div class="revamp_all"><div class="revamp_l">QQ：</div><div class="revamp_r"><input type="text" name="qq" value="<?php echo $user['QQ'];?>" class="text2" /></div></div>
+          <div class="revamp_all"><div class="revamp_l">Email：</div><div class="revamp_r"><input type="text" name="email" value="<?php echo $user['Email'];?>" class="text2" /></div></div>
+          <button type="submit" class="conserve"></button>
+        </form>
+      </div>
+      <div class="portrait" style="display:none;">
+        <div class="img_now">
+          <div class="img_text">当前头像</div>
+          <div id="photo_show">
+            <div id="photo_show_priview">
+            <?php
+if(!empty($user['Photo'])) {
+?>
+            <a href="<?php echo $user['Photo'];?>" target="_blank"><img src="<?php echo $user['Photo'];?>" width="126" height="117" border="0" /></a>
+<?php
+} else {
+?>
+            <img src="images/shangchuan.gif" border="0" />
+<?php
+}
+?>
+        
+            </div>
+            <input type="hidden" id="x" />
+            <input type="hidden" id="y" />
+            <input type="hidden" id="h" />
+            <input type="hidden" id="w" />
+          </div>
+        </div>
+        <div id="photo_jcop">
+            <div class="photo_text">请上传头像</div>
+        </div>
+        <div class="revamp_all"><div class="revamp_l">更换头像：</div><div class="revamp_r" id="upload1"></div></div>
+        <p>支持jpg,jpeg,png,gif格式的图片<input type="hidden" id="upload_photo" name="upload_photo" value="" /></p>
+        <p class="error" ></p>
+        <button type="submit" class="conserve" id="photo_sure"></button>
+      </div>
+      <div class="revamp" style="display:none;">
+          <p>修改密码</p>
+          <div class="revamp_all"><div class="revamp_l">旧密码：</div><div class="revamp_r"><input type="password" name="old_pass" value="" /></div></div>
+          <div class="revamp_all"><div class="revamp_l">新的密码：</div><div class="revamp_r"><input type="password" name="news_pass" value="" /><span>建议采用易记、难猜的英文数字组合[密码安全攻略]</span></div></div>
+          <div class="revamp_all"><div class="revamp_l">请确认新密码：</div><div class="revamp_r"><input type="password" name="again_pass" value="" /></div></div>
+          <p class="error" ></p>
+          <button type="button" class="conserve"></button>
+      </div>
+    </div>
+  </div>
+

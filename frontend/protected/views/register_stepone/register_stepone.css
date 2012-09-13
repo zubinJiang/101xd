@@ -1,0 +1,36 @@
+#registerstep{width:933px;border:1px solid #d3d2d2;padding:0 0 20px 35px;clear:both}
+.start{width:900px;height:44px;line-height:44px;font-size:16px;color:#000;border-bottom:1px dashed #c3c3c3;font-weight:bold;text-align:center}
+.type{width:900px;height:37px;line-height:29px;font-size:14px;padding-top:15px}
+.type span{width:169px;float:left;height:29px;}
+.type span.sj{width:230px;height:25px;}
+.type span.sj input{width:98px;height:25px;line-height:25px;text-align:center;background:url(../../../images/rsbg_1.gif) no-repeat top;margin-right:10px;font-weight:bold;color:#f06b00;border:none;cursor:pointer}
+.superiority{width:900px;height:135px;font-size:14px;margin-bottom:10px}
+.superiority .hd{width:900px;height:32px;line-height:32px;border-bottom:1px solid #42a12b;position:relative;font-weight:bold;color:#42a12b;margin-bottom:7px}
+.superiority .hd .jiao{width:8px;height:5px;position:absolute;left:27px;top:17px}
+.superiority .fd{width:870px;height:95px;padding:0 0 0 30px}
+.superiority .fd .wt{float:left;width:4px;height:95px;background:url(../../../images/rsbg_2.gif) no-repeat left bottom;}
+.superiority .fd .ct{float:left;width:787px;height:87px;padding:8px 0 0 25px;background:url(../../../images/rsbg_3.gif) repeat-x bottom;line-height:24px}
+.superiority .fd .et{float:left;width:4px;height:95px;background:url(../../../images/rsbg_2.gif) no-repeat right bottom;}
+.basic{width:900px;font-size:14px}
+.basic .hd{width:900px;height:32px;line-height:32px;border-bottom:1px solid #42a12b;position:relative;font-weight:bold;color:#42a12b;margin-bottom:10px}
+.basic .hd .jiao{width:8px;height:5px;position:absolute;left:27px;top:17px}
+.basic .fd{width:900px;}
+.basic .fd ul{width:900px;font-size:12px;}
+.basic .fd ul li{width:900px;height:30px;line-height:22px;float:left;padding-top:4px}
+.basic .fd ul li.treaty{width:792px;padding-left:108px;line-height:20px;}
+.basic .fd ul li.treaty a{text-decoration:underline}
+.basic .fd ul li.regist{width:640px;padding:0 0 0 260px;height:33px}
+.basic .fd ul li span{width:108px;float:left;height:30px;text-align:right}
+.basic .fd ul li span.bt{width:30px;color:#F00;text-align:left}
+.basic .fd ul li span.green{float:left;height:16px;padding:4px 0 0 0;width:200px;text-align:left;}
+.basic .fd ul li span.blue{width:319px;height:17px;border:1px solid #94d2fe;background:#e4f5ff;text-align:left;padding:3px 0 0 5px;line-height:15px;color:#666}
+.basic .fd ul li span.red{background:#fff2f2;width:240px;height:17px;border:1px solid #ff8080;text-align:left;padding:3px 0 0 5px;line-height:15px;color:#666}
+.basic .fd ul li span.mc{width:426px}
+.basic .fd ul li span.td{width:240px}
+.basic .fd ul li span.blue img{margin-right:5px;float:left}
+.basic .fd ul li span.red img{margin-right:5px;float:left}
+.basic .fd ul li input{width:190px;height:16px;float:left;margin-right:5px;font-size:12px;line-height:16px}
+.basic .fd ul li input.ch{width:260px;}
+.basic .fd ul li input.yz{width:115px;height:26px;line-height:18px}
+.basic .fd ul li input.cy{width:115px;height:26px;color:#666;}
+.basic .fd ul li input.zc{width:120px;height:33px;background:url(../../../images/rsbg_1.gif) no-repeat center -25px;color:#fff;font-size:16px;font-weight:bold;border:none;cursor:pointer;line-height:36px}

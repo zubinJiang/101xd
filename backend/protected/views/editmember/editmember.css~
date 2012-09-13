@@ -1,0 +1,13 @@
+#editmember {width:76%;height:600px;background-color:#FFF;padding:4px;font-size:12px;float:left;margin-left:0px;margin:8px;-webkit-border-top-left-radius:5px 10px;-webkit-border-top-right-radius:5px 10px;-webkit-border-bottom-right-radius:5px 10px;-webkit-border-bottom-left-radius:5px 10px;}
+#editmember p {float:left;height:14px;background-color:#FFF;padding:2px;margin:2px;width:80%}
+#editmember p input {float:right;background-color:#FFF;margin-right:140px;border: 1px solid #CCC;background: rgba(255, 255, 255, .85);border: 2px inset;-webkit-rtl-ordering: logical;-webkit-user-select: text;cursor: auto;line-height: 18px;height: 18px;text-indent: 5px;width: 300px;border: 1px solid #7F9DB9;}
+textarea {float:right;background-color:#FFF;margin-right:140px;border: 1px solid #CCC;background: rgba(255, 255, 255, .85);border: 2px inset;-webkit-rtl-ordering: logical;-webkit-user-select: text;cursor: auto;line-height: 18px;height: 120px;text-indent: 5px;width: 300px;border: 1px solid #7F9DB9;}
+#editmember p select {float:right;background-color:#FFF;margin-right:140px;font-size: 12px;vertical-align: middle;}
+#editmember p button {float:left;background-color:#FFF;color:#000;margin:0px;padding:0px;width:40px;height:18px}
+
+.govern p {line-height:26px;}
+
+{
+
+}
+

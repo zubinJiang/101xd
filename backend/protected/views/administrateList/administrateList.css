@@ -1,0 +1,22 @@
+#manageGoodList{}
+#manageGoodList .type{width:800px;height:20px;margin:10px 0;}
+#manageGoodList .type a {margin:10px;}
+#manageGoodList .category{width:800px;height:20px;margin:20px 0;}
+#manageGoodList .category a {margin:10px;}
+.material{font-size:14px;font-weight:bold;}
+
+#detail {border:2px solid #333;width:346px;height:346px;padding:0;background: #F2F2F2;}
+#detail ul {list-style:none;float:left;padding:0;margin:20px 0 0 50px;font-size:12px;width:70%;_margin:20px 0 0 30px;}
+#detail ul li {clear:both;margin:0;padding:0;line-height:30px;text-align:left;}
+#detail ul li label{width:60px;float:left;text-align:right;color:red;}
+
+/* Overlay */
+#contact-overlay {background-color:#444; cursor:wait;}
+/* Container */
+#contact-container {font: 16px/22px 'Trebuchet MS', Verdana, Arial; text-align:left;width:350px;height:350px;}
+
+#contact-container a.modal-close,
+#contact-container a.modal-close:link,
+#contact-container a.modal-close:active,
+#contact-container a.modal-close:visited {color:#999; font-size:18px; font-weight:bold; position:absolute; text-decoration:none; right:10px; top:3px;}
+#contact-container a.modal-close:hover {color:#ccc;}

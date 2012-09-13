@@ -1,0 +1,29 @@
+<?php include('beforebody.htm'); ?>
+<div id="doc3" class="yui-t7">
+    <div id="hd" role="banner">
+    <? CHtml::insert('index_top.htm'); ?>
+    </div>
+    <div id="bd" role="main">
+        <div class="yui-g">
+            <div id="box">
+                <? CHtml::insert('index_daohang.htm'); ?>
+            </div>
+            <div id="main">
+                <div id="focus">
+                    <? CHtml::insert('home_head.htm'); ?>
+                    <? CHtml::insert('home_center.htm'); ?>
+                </div>
+                <div id="groups" style="float:right;">
+                    <? CHtml::insert('home_release.htm'); ?>
+                    <? CHtml::insert('home_news.htm'); ?>
+                    <? CHtml::insert('home_brand.htm'); ?>
+                    <? CHtml::insert('home_contact.htm'); ?>
+                </div>
+          </div>
+		</div>
+    <div id="ft" role="contentinfo">
+    <? CHtml::insert('home_foot.htm'); ?>
+    </div>
+    </div>
+</div>
+<?php include('afterbody.htm'); ?>

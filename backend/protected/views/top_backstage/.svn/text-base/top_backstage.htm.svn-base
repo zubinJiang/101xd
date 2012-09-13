@@ -1,0 +1,23 @@
+<?php
+$login_flag = isset($__p__['login_flag']) ? $__p__['login_flag'] : false;
+$url        = isset($__p__['sinaAurl']) ? $__p__['sinaAurl'] : '';
+$user_id    = isset($__p__['login_user_id']) ? $__p__['login_user_id'] : '';
+$user_name  = isset($__p__['login_user_name']) ? $__p__['login_user_name'] : '';
+?>
+<div id="top_home">
+  <div class="logo"><a href="/user" target="_top"><img src="images/logo.gif" /></a></div>
+  <dl>
+<?php 
+//if($login_flag) {
+echo "<dd>";
+echo "<a href='index?action=logout'>退出</a>";  
+echo "<a href='message'>短消息</a>";
+echo "<a href='/user' class='accounts'>{$user_name}</a>";
+echo "<a href='/user' target='_self'>管理后台</a>";
+echo "<a href='/' target='_self'>首页</a>";
+echo "</dd>";
+//} 
+?>
+<dt><a href='#'><img src='images/gg.gif'/></a></dt>
+    </dl>  
+</div>

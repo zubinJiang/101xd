@@ -1,0 +1,26 @@
+#group{float:left;width:738px;background:#f0f0f0;border:1px solid #d6d6d6;padding:7px 0 0 10px;}
+#group p{float:left;width:728px;line-height:30px;text-align:right;color:#e97d57;}
+.group_title{float:left;width:713px;line-height:35px;background:url(../../../images/private.gif) no-repeat;padding:0 0 10px 15px;}
+.group_title a{float:left;width:83px;text-align:center;line-height:35px;font-size:14px;color:#777; cursor:pointer;outline:none;}
+.group_title span{float:right;color:red;}
+.group_title a:hover {background:url(../../../images/private_a.gif) no-repeat;color:#1f2563;font-weight:bold;}
+.tradi{float:left;width:724px;line-height:32px;background:url(../../../images/tradi.gif) no-repeat;padding-left:4px;}
+.tradi a{float:left;width:176px;text-align:center;line-height:32px;font-size:13px;color:#2e2d2d;}
+.tradi a:hover {background:url(../../../images/tradi_a.gif) no-repeat;font-size:14px;font-weight:bold;outline:none;}
+.data{float:left;width:728px;line-height:29px;background:url(../../../images/possibly.gif) no-repeat bottom;}
+.data ul{float:left;width:710px;padding:17px 0 26px 18px;line-height:29px;background:url(../../../images/possibly_ul.gif) repeat-y;font-size:14px;}
+.data ul li{float:left;width:170px;}
+.data ul li a{color:#050200; cursor:pointer;}
+#group .data p{float:left;padding-left:158px;width:500px;}
+#group .data p a{float:left;width:395px;background:url(../../../images/dredge_p.gif) no-repeat right;line-height:38px;font-size:15px;color:#ff0217;font-weight:bold;text-align:left; cursor:pointer;}
+#city .now {text-decoration:none;color:#ff4E00;font-weight:bold;}
+.flow{float:left;width:724px;line-height:32px;background:url(../../../images/tradi.gif) no-repeat;padding-left:4px;}
+.flow a{float:left;width:176px;text-align:center;line-height:32px;font-size:13px;color:#2e2d2d;}
+.flow a:hover {background:url(../../../images/tradi_a.gif) no-repeat;font-size:14px;font-weight:bold;outline:none;}
+#group .now {color:#ff4E00;background:url(../../../images/tradi_a.gif) no-repeat;font-size:14px;font-weight:bold;}
+#group .group_title a.now {color:#ff4E00;font-size:14px;font-weight:bold;background:none;outline:none;}
+#group .group_title a.now:hover {color:#ff4E00;font-size:14px;font-weight:bold;background:none;outline:none;}
+#group .data .first{overflow:hidden;}
+#group .data .two{overflow:hidden;}
+#group .data .three{overflow:hidden;}
+#group .data .four{overflow:hidden;}

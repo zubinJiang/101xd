@@ -1,0 +1,124 @@
+<?php
+$product =$__p__['product'] ? $__p__['product'] : array();
+?>
+<div class="audit">
+    <div class="manage">商品信息内页</div>
+    <div class="title"></div>
+    <div class="explain">
+    <p>您的该款商品选择推送至：
+    <?php
+    foreach($product['trac'] as $qudao){
+        echo "<a href='/vipsection?id={$qudao['quuid']}'>【{$qudao['quname']}】</a>";
+        };
+echo    "<p><span>商品类型：{$product['category']['name']}</span> <span>类别：{$product['category']['parent']}</span></p>
+            <p><span>商品状态：审核中</span></p>";
+    ?>
+    </div>
+    <div class="tuis2">
+      <div class="sp">
+        <div class="sp1">商品信息</div>
+        <div class="sp2">
+          <ul>
+              <li><span>最多团购人数：</span><?php echo $product['max_buy'];?></li>
+              <li><span>每个用户可购买数量：</span><?php echo $product['max_pre'];?></li>
+            <li>
+            <p><span>市场价：</span>￥<?php echo $product['market_price'];?></p>
+            <p><span> 供货价：</span>￥<?php echo $product['supply_price'];?></p>
+            </li>
+            <li style="line-height:24px;padding:5px 0"><span>商品摘要：</span><?php echo $product['desc'];?></li>
+            <li style="line-height:24px;padding:5px 0"><span>商品说明：</span><?php echo $product['explain'];?></li>
+            <li class="br"><span>商品图片：</span></li>
+            <?php
+            $p = explode('|',$product['images']);
+            foreach($p as $uri){
+                echo "<li class='ig'><img src='{$uri}'style='width:259px;height:113px;float:left;margin:12px;margin-top:4px;box-shadow:0px 0px 1px #999;border-radius: 4px;' /></li>";
+            }
+            ?>
+          </ul>
+        </div>
+      </div>
+      <div class="sw">
+        <div class="sw1">商务信息</div>
+        <div class="sw2">
+          <ul>
+            <li><span>是否需要渠道商代发货？</span><br />
+        <?php 
+        if ($product['delivery'] ==0){
+        echo '不需要';
+        }
+        else if ($product['delivery'] ==1){
+        echo '可自发货';
+        }
+        else if ($product['delivery'] ==2){
+        echo '需要渠道商代发货';
+        }
+        else if ($product['delivery'] ==2){
+        echo '自动发货或者需要渠道商代发货';
+        }
+        
+        ?>  </li>
+            <li><span>商品资质：</span><br />
+        <?php 
+        if ($product['qualification']['image_certificate']){
+        echo '<p>身份证</p>';
+        }
+        if ($product['qualification']['image_license']){
+        echo '<p>营业执照</p>';
+        }
+        if ($product['qualification']['image_tax']){
+        echo '<p>税务登记证</p>';
+        }
+        echo '<br/>';
+        if ($product['qualification']['image_account']){
+        echo '<p>开户许可证</p>';
+        }
+        if ($product['qualification']['image_org']){
+        echo '<p>组织机构代码证</p>';
+        }
+        if ($product['qualification']['image_bui']){
+        echo '<p>商家授权书</p>';
+        }
+        if ($product['qualification']['image_qc']){
+        echo '<p>商家质检书</p>';
+        }
+        if ($product['qualification']['image_logo']){
+        echo '<p>标商</p>';
+        }
+        ?>
+            </li>
+            <li style="border:none"><span>是否有广告推广需求？</span><br />
+            <?php
+            if ($product['ad']==0){
+                echo '无';
+            }elseif ($product['ad']==1){
+            echo '有';
+            }
+            ?>
+            <br />
+            audit<?php 
+            $ad_p = explode('|',$product['ad_position']);
+            foreach($ad_p as $p){
+           // 0:网站首页链接广告;1:网站首页商品推荐;2:右侧推荐位专题推广;3:其它，用“|”分开
+                if ($p=='0'){
+                    echo '网站首页广告';
+                }
+                if ($p=='1'){
+                    echo '网站首页商品推荐';
+                }
+                if ($p=='2'){
+                    echo '右侧推荐位专题推广';
+                }
+                if ($p=='3'){
+                    echo '其他';
+                }
+            }
+            ?>
+            <br />
+            <?php echo $product['ad_period'];?>
+            天
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>

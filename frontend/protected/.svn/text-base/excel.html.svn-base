@@ -1,0 +1,13 @@
+<?php include('beforebody.htm'); ?>
+<div id="doc3" class="yui-t7">
+    <div id="hd" role="banner"></div>
+    <div id="bd" role="main">
+		<div class="yui-g">
+            <? CHtml::insert('excel.htm'); ?>
+		</div>
+	</div>
+    <div id="ft" role="contentinfo">
+    </div>
+</div>
+<?php include('afterbody.htm'); ?>
+

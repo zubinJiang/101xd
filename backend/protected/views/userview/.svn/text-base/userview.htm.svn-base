@@ -1,0 +1,69 @@
+<?php
+$user = $__p__['user_data'];
+$comp = $__p__['company'];
+$addr = $__p__['address'];
+?>
+<div id='userview'>
+    <ul>
+    <li><b>用户信息：</b><input type='hidden' value='<?php echo $user['UserID'];?>' /></li>
+        <li>用户名：<?php echo $user['Name'];?></li>
+        <li>用户类别：<?php $type = ($user['UserType']==1) ? '渠道商' : '供货商'; echo $type;?></li>
+        <li>手机：<?php echo $user['UserTel'];?></li>
+        <li>Email：<?php echo $user['Email'];?></li>
+        <li>QQ：<?php echo $user['QQ'];?></li>
+        <?php
+if(!empty($comp)) {
+    echo "<li><hr/></li>";
+    
+    if(!empty($comp['cname'])) {
+        echo "<li>企业信息：{$comp['cname']}</li>";
+    }
+    
+    if(!empty($comp['cphone'])) {
+        echo "<li>企业电话：{$comp['cphone']}</li>";
+    }
+
+    if(!empty($comp['category_text'])) {
+        echo "<li>经营范围：{$comp['category_text']}</li>";
+    }
+
+    if(!empty($comp['sale'])) {
+        echo "<li>销售：{$comp['sale']}</li>";
+    }
+
+    if(!empty($comp['buy'])) {
+        echo "<li>求购：{$comp['buy']}</li>";
+    }
+
+    if(!empty($comp['site_name'])) {
+        echo "<li>网站名称：{$comp['site_name']}</li>";
+    }
+
+    if(!empty($comp['url'])) {
+        echo "<li>网站网址：{$comp['url']}</li>";
+    }
+
+    if(!empty($addr)) {
+        echo '<li>地址：';
+        if(!empty($addr['pname'])) {
+            echo $addr['pname'];
+        }
+        
+        if(!empty($addr['cname'])) {
+            echo $addr['cname'];
+        }
+
+        if(!empty($addr['desc'])) {
+            echo $addr['desc'];
+        }
+        echo '</li>';
+    }
+
+    if(!empty($comp['desc'])) {
+        echo "<li>企业介绍：{$comp['desc']}</li>";
+    }
+}
+?>
+    </ul>
+
+</div>

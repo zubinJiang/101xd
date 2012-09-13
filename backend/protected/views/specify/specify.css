@@ -1,0 +1,16 @@
+#specify{float:right;width:755px;height:500px;background:url(../../../images/specify.gif) no-repeat;}
+.elaborate{width:755px;}
+.length{float:left;width:440px;height:146px;padding:3px 0 0 10px;}
+.length p{float:left;width:440px;line-height:32px;height:36px;text-indent:14px;color:#333;background:url(../../../images/length.gif) no-repeat;}
+.length ul{float:left;width:440px;line-height:29px;color:#333;}
+.length ul li{float:left;width:428px;padding-left:12px;}
+.length ul li.complete{background:#ffe4f3;}
+.length ul li strong{color:#ff0000;}
+.length ul li a{color:#0d4ef4;}
+.system{float:right;width:281px;padding-top:4px;}
+.system h1{float:left;width:279px;line-height:27px;height:33px;background:url(../../../images/system.gif) no-repeat;font-size:14px;font-family:"黑体";color:#333;}
+.system h1 span{color:#ff4e00;}
+.system ul{float:left;width:273px;padding-left:6px;line-height:22px;color:#999;}
+.system ul li{float:left;width:260px;line-height:22px;background:url(../../../images/template.gif) no-repeat top left;padding-left:10px;}
+.system ul li a{float:left;width:150px;color:#333;}
+

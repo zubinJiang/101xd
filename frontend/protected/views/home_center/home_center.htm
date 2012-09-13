@@ -1,0 +1,109 @@
+<?php
+$product  = isset($__p__['product']) ? $__p__['product'] : '';
+$page     = isset($__p__['page']) ? $__p__['page'] : '';
+$type_sum = isset($__p__['type_sum']) ? $__p__['type_sum'] : '';
+$pic_path = isset($__p__['pic_path']) ? $__p__['pic_path'] : '';
+$type     = isset($__p__['type']) ? $__p__['type'] : '';
+$pic_url  = $__p__['pic_url'];
+
+if("net" == $type){
+    $comd = "精品网货";
+} elseif("goldroll" == $type) {
+    $comd = "代金券";
+} else {
+    $comd = "本地商品";
+}
+?>
+<div id="home_center">
+<a id='goods' name='goods'></a>
+    <div class="locality_top">
+    </div>
+    <div class="native">
+        <div class="locality">
+      <?php if(in_array($type,array('local', 'net','goldroll'))){ ?>
+            <div class="beijing"><span class="indigen"><?php echo $comd; ?></span><span>(北京)：</span></div>
+            <div class="category_type"><?php echo $type_sum; ?></div>
+            <div class="category_select">
+                <select name="" onchange="location.href=this.options[this.selectedIndex].value;">
+                    <option class='options' value='/index' selected>全部商品</option>
+                    <option class='options' value='/local' >本地商品</option>
+                    <option class='options' value='/net'>精品网货</option><!--<option>代金券</option>-->
+                </select>
+            </div>
+      <?php } else {
+     echo '&nbsp;'; 
+      }?>
+        </div>
+        <div class="affect">
+            <span>排序方式：</span>
+            <button type="button" class="schedule" id="date" ref="asc"></button>
+            <button type="button" class="tariff" id="price" ref="asc"></button>
+            <button type="button" class="beyond" id="attentions" ref="asc"></button>
+        </div>
+        <div class="center_bup">
+        
+        <?php if(!empty($product)){
+
+            echo '<ul>';
+    foreach($product as $v){
+        $photo = 'images/zanwu.gif';
+        if(!empty($v['default_image'])) {
+            $photo = $v['default_image'];
+
+            $tmp  = pathinfo($photo);
+            $tmp['filename']  = str_replace('660X420', '192X135', $tmp['filename']);
+            $tmp['extension'] = strstr($tmp['extension'], '?', true);
+            $file_name = $tmp['dirname'] . '/' . $tmp['filename'] .'.'. $tmp['extension'];
+            $tmp_name  = str_replace($pic_url, $pic_path, $file_name);
+            if(file_exists($tmp_name)) {
+                $photo = $file_name;
+            }
+
+        } elseif(!empty($v['image'])){
+            $images = explode('|',$v['image']);
+            $photo  = current($images);
+
+            $tmp  = pathinfo($photo);
+            $file_name = $tmp['dirname'] . '/' . $tmp['filename'] . '_660X420.' . $tmp['extension'];
+            $tmp_name  = str_replace($pic_url, $pic_path, $file_name);
+            if(file_exists($tmp_name)) {
+                $photo = $file_name;
+            }
+        }
+
+        //$photo = str_replace('http://image.101xd.com/', 'http://fast.101xd.com/', $photo);
+
+        $v['attentions'] = empty($v['attentions']) ? 0 : $v['attentions'];
+        $v['market_price'] = empty($v['market_price']) ? 0 : $v['market_price'];
+        if($v['market_price']>0 && is_numeric($v['supply_price'])) {
+            $num = $v['supply_price'] / $v['market_price'];
+            $num = $num * 10;
+            $zhe = number_format($num, 1, '.', '');
+            $string = "折扣价：<strong>{$zhe}</strong>折";
+        } else {
+                $string = '<font color=red>'.$v['supply_price'].'</font>';
+        }
+        $len = strlen($v['title']);
+
+        if($len>20){
+            $str = mb_substr($v['title'],0,19,"utf-8");
+        } else {
+            $str = $v['title'];
+        }
+        echo <<<EOF
+        <li>
+          <div class="title_li"><a target="_blank" href='product_{$v['id']}.html'><img width='192' src='{$photo}' alt='{$v['title']}' /></a></div>
+          <div class="desc_li"><div class='title'><a target="_blank" href='product_{$v['id']}.html' id={$v['id']}>{$str}</a></div><div class='desc'>市场价：{$v['market_price']}元  {$string}</div></div>
+        </li>
+EOF;
+    }
+}else {
+    echo "对比起没有当前分类的商品";
+}
+?>
+            </ul>
+        </div>
+        <p id="page_content"><?php echo $page->show(4); ?></p>
+    </div>
+    <div class="center_bottom"></div>
+</div>

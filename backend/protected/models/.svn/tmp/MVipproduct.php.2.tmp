@@ -1,0 +1,220 @@
+<?php
+
+class MVipproduct extends CModel {  
+    
+    //vip添加商品
+    function addVipproduct($product){
+        $data = $this->db->table('`vipproduct`')
+            ->insert($product);
+
+        return $this->db->last_insert_id();
+    }
+
+    //添加vip用户的资质
+    function vipAddQualification($data){
+        $data = $this->db->table('`qualification`')
+            ->insert($data);
+        return $this->db->last_insert_id();
+    }
+
+    //更新vip商品数据
+    function updateVipproduct($vipproduct){
+
+        $data = $this->db->exec("update `vipproduct` set title='{$vipproduct['title']}', max_buy='{$vipproduct['max_buy']}', max_pre='{$vipproduct['max_pre']}', market_price='{$vipproduct['market_price']}', supply_price='{$vipproduct['supply_price']}', `desc`='{$vipproduct['desc']}', `explain`='{$vipproduct['explain']}', images='{$vipproduct['images']}', qualification_id='{$vipproduct['qualification_id']}' where id='{$vipproduct['id']}'");
+    
+        return $data;
+    }
+
+    //计算该用户发布商品的次数
+    function userVipproductCount($user_id){
+
+        $data = $this->db->table('`vipproduct`')
+            ->select('qualification_id')
+            ->where("user_id='{$user_id}'")
+            ->getFirst();
+        return $data['qualification_id'];
+    }
+
+    //获取团购网站id
+    function getCpmpanyId($id){
+
+        $data = $this->db->table('`vipproduct`')
+            ->select('company_id')
+            ->where("id='{$id}'")
+            ->getFirst();
+
+        return $data;
+    }
+
+    /**
+     * admin
+     * 获取vip用户推送的产品
+     */
+    function getVipproductList($page, $num){
+
+        $data = $this->db->table('`vipproduct` p , `vipcategory` c, `user` u')
+            ->select('p.*, c.id as cid, c.name as cname, u.UserID as uid, u.Name as uname')
+            ->where('p.category_id=c.id')
+            ->where('p.user_id=u.UserID')
+            ->getNum($num, ($page-1)*$num);
+
+        $count = $this->db->table('`vipproduct`')
+            ->getCount();
+
+        $arr = array('list'=>$data, 'count'=>$count);
+
+        return $arr; 
+    }
+
+    /**
+     * js
+     * 获取category类型的数据
+     */
+
+    function getCategoryVipproductList($category_id, $page, $num){
+
+        if($category_id=='1'){
+            $category_comd = "p.category='1'";
+        } else if($category_id=='2'){
+            $category_comd = "p.category='2'";
+        } else {
+            $category_comd = "p.category_id='{$category_id}'";
+        }
+
+        $data = $this->db->table('`vipproduct` p , `vipcategory` c, `user` u')
+            ->select('p.*, c.id as cid, c.name as cname, u.UserID as uid, u.Name as uname')
+            ->where('p.category_id=c.id')
+            ->where('p.user_id=u.UserID')
+            ->where($category_comd)
+            ->getNum($num, ($page-1)*$num);
+
+        $count = $this->db->table('`vipproduct` p')
+            ->where($category_comd)
+            ->getCount();
+
+        $arr = array('list'=>$data, 'count'=>$count);
+
+        return $arr; 
+    
+    }
+
+    /**
+     * js
+     * 获取user_name类型的数据
+     */
+    function getUsernameVipproductList($id, $page, $num){
+        $data = $this->db->table('`vipproduct` p , `vipcategory` c, `user` u')
+            ->select('p.*, c.id as cid, c.name as cname, u.UserID as uid, u.Name as uname')
+            ->where('p.category_id=c.id')
+            ->where('p.user_id=u.UserID')
+            ->where("u.UserID='{$id}'")
+            ->getNum($num, ($page-1)*$num);
+
+        $count = $this->db->table('`vipproduct` p, `user` u')
+            ->where("u.UserID='{$id}'")
+            ->getCount();
+
+        $arr = array('list'=>$data, 'count'=>$count);
+
+        return $arr; 
+    }
+
+
+    /**
+     * search
+     * 搜索产品数据
+     */
+    function getSearchVipproduct($key, $page, $num){
+        $title_comd = FALSE;
+        if(!empty($key)){
+            $title_comd = "p.title like '%{$key}%'";
+        }
+        $data = $this->db->table('`vipproduct` p , `vipcategory` c, `user` u')
+            ->select('p.*, c.id as cid, c.name as cname, u.UserID as uid, u.Name as uname')
+            ->where('p.category_id=c.id')
+            ->where('p.user_id=u.UserID')
+            ->where($title_comd)
+            ->getNum($num, ($page-1)*$num);
+
+        $count = $this->db->table('`vipproduct` p')
+            ->where($title_comd)
+            ->getCount();
+
+        $arr = array('list'=>$data, 'count'=>$count);
+
+        return $arr; 
+     
+    }
+
+    /**
+     * page
+     * 分页数据
+     */
+    function getPageVipproductList($page, $num){
+
+        $data = $this->db->table('`vipproduct` p , `vipcategory` c, `user` u')
+            ->select('p.*, c.id as cid, c.name as cname, u.UserID as uid, u.Name as uname')
+            ->where('p.category_id=c.id')
+            ->where('p.user_id=u.UserID')
+            ->getNum($num, ($page-1)*$num);
+
+        $count = $this->db->table('`vipproduct`')
+            ->getCount();
+
+        $arr = array('list'=>$data, 'count'=>$count);
+
+        return $arr; 
+    
+    }
+    function getRelateVipproductData($id_){
+        $vipproduct = $this->db->table('`vipproduct`')
+            ->select('*')
+            ->where("id={$id_}")
+            ->getFirst();
+        if ($vipproduct['category_id'] && $vipproduct['company_id'] && $vipproduct['user_id']){
+            $category = $this->db->table('`category`')
+                ->select('*')
+                ->where("id='{$vipproduct['category_id']}'")
+                ->getFirst();
+            $company  = $this->db->table('`company`')
+                ->select('*')
+                ->where("id='{$vipproduct['company_id']}'")
+                ->getFirst();
+             
+            $user = $this->db->table('`user`')
+                ->select('*')
+                ->where("UserID='{$vipproduct['user_id']}'")
+                ->getFirst();
+            $address = $this->db->table('`address`')
+                ->select('*')
+                ->where("id='{$company['address_id']}'")
+                ->getFirst();
+            $province = $this->db->table('`province`')
+                ->select('*')
+                ->where("id='{$address['province_id']}'")
+                ->getFirst();
+            $qualification = $this->db->table('`qualification`')
+                ->select('*')
+                ->where("id='{$vipproduct['qualification_id']}'")
+                ->getFirst();
+            $vipproduct['user'] = $user;
+            $vipproduct['category'] = $category;
+            $vipproduct['company'] = $company;
+            $vipproduct['qualification'] = $qualification;
+            $vipproduct['address'] = $address;
+        }
+        return $vipproduct;
+    }
+
+    /**
+     * news vip 
+     * 审核通过，拒绝product
+     */
+    function processVipproductData($state, $id){
+
+        $data = $this->db->exec("update `vipproduct` set state='{$state}' where id='{$id}' ");
+
+        return $data;
+    
+    }
+}

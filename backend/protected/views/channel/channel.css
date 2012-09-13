@@ -1,0 +1,41 @@
+#channel{float:right;width:755px;height:682px;background:url(../../../images/channel.gif) no-repeat;}
+.methods{float:left;width:440px;height:146px;padding:2px 0 0 10px;position:relative;}
+.methods p{float:left;width:440px;line-height:32px;height:36px;text-indent:14px;color:#333;background:url(../../../images/length.gif) no-repeat;}
+.methods ul{float:left;width:440px;line-height:29px;color:#333;}
+.methods ul li{float:left;width:428px;padding-left:12px;}
+.methods ul li.complete{background:#ffe4f3;}
+.methods ul li strong{color:#ff0000;}
+.methods ul li a{color:#0d4ef4;}
+.offers{
+	float:left;
+	width:280px;
+	line-height:34px;
+	background:url(../../../images/offers.gif) no-repeat;
+	position:absolute;
+	left: 157px;
+	top: 82px;
+}
+.offers p{float:left;width:256px;color:#333;line-height:24px;background:none;text-indent:12px;}
+.offers p a{color:#0d4efe;}
+.offers a.close{float:left;}
+.offers a img{float:left;}
+
+.economic{width:755px;}
+.terminals{float:left;width:456px;padding:15px 0 0 8px;}
+.terminals dl{float:left;width:149px;padding:3px 0 0 2px;height:158px;line-height:150%;background:url(../../../images/economic.gif) no-repeat;position:relative;overflow:hidden;}
+.terminals dl a.parse{float:left;width:136px;text-align:left;padding:0 1px 0px 1px;overflow:hidden;}
+.terminals dl dt{float:left;width:138px;height:111px;}
+.terminals dl dd{float:left;width:138px;text-align:center;}
+.terminals dl dd a{color:#777;}
+.terminals dl span{
+	float:left;
+	width:33px;
+	height:33px;
+	position:absolute;
+	left: 108px;
+	top: 2px;
+}
+.board ul{float:left;width:265px;padding-left:15px;}
+.board ul li{float:left;width:259px;padding-left:6px;line-height:24px;background:url(../../../images/charts.gif) no-repeat top left;}
+.board ul li a{color:#333;}
+

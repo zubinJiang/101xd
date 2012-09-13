@@ -1,0 +1,18 @@
+<?php
+$news = isset($__p__['news']) ? $__p__['news'] : '';
+?>
+<div id="home_concern">
+<?php
+if(!empty($news)){
+
+    $len = strlen($news['title']);
+
+    if($len>90){
+        $str = mb_substr($news['title'],0,89);
+    } else {
+        $str = $news['title'];
+    }
+    echo "<span>{$str}</span><a href='product?id={$news['id']}' style='padding-left:30px;'>立刻关注</a>";
+}
+?>
+</div>

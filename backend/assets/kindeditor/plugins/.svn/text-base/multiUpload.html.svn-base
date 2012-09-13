@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Multiplel Upload Image</title>
+<link rel='stylesheet' id='colors-css'  href='css/css/colors-fresh.dev.css?ver=20100610' type='text/css' media='all' />
+<style type="text/css" rel="stylesheet">
+body { font: 12px "Lucida Grande",Verdana,Arial,"Bitstream Vera Sans",sans-serif,"新宋体","宋体";background:#F9F9F9;}
+.submit input, .button, input.button, .button-primary, input.button-primary, .button-secondary, input.button-secondary, .button-highlighted, input.button-highlighted, #postcustomstuff .submit input { font-size: 12px !important; }
+.wrap h2 { font: normal 24px/35px Georgia,"Times New Roman","Bitstream Charter",Times,serif,"Microsoft YaHei Bold","Microsoft YaHei","微软雅黑","WenQuanYi Zen Hei","文泉驿正黑","WenQuanYi Micro Hei","文泉驿微米黑","黑体"; }
+.howto { font-style: normal; }
+div.fieldset { border:  1px solid #afe14c; margin: 10px 0; padding: 20px 10px; }
+form { margin:0; }
+label { cursor:pointer; }
+#resetBtn { margin-left:10px; cursor:pointer; }
+.main { margin: 0 10px; }
+.clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+.tab-navi { width:98%; border-bottom:1px solid #A0A0A0; padding-left:5px; margin-bottom:10px; }
+.tab-navi ul  { list-style-image:none; list-style-position:outside; list-style-type:none; margin:0; padding:0; }
+.tab-navi li { position: relative; border: 1px solid #A0A0A0; background-color: #E0E0E0; margin: 0 2px -1px 0; padding: 0 20px; float: left; line-height: 25px; text-align: center; color: #555555; cursor: pointer; } 
+.tab-navi li.selected { background-color: #F0F0EE; border-bottom: 1px solid #F0F0EE; color: #000000; cursor: default; }
+.tab-navi li.on { background-color: #F0F0EE; color: #000000; }
+.table  { list-style-image:none; list-style-position:outside; list-style-type:none; margin:0; padding:0; display:block; }
+.table li { padding:0; margin-bottom:10px; display:list-item; }
+.table li label { font-weight:bold; }
+.table li input { vertical-align:middle; }
+.table li img { vertical-align:middle; }
+div.fieldset span.legend { position: relative; background-color:#F9F9F9; padding: 3px; top: -30px; font: 700 14px Arial, Helvetica, sans-serif; color: #464646; }
+div.flash { width: 375px; margin: 10px 5px; border-color: #D9E4FF; -moz-border-radius-topleft : 5px; -webkit-border-top-left-radius : 5px; -moz-border-radius-topright : 5px; -webkit-border-top-right-radius : 5px; -moz-border-radiuploadSuccessus-bottomleft : 5px; -webkit-border-bottom-left-radius : 5px; -moz-border-radius-bottomright : 5px; -webkit-border-bottom-right-radius : 5px; }
+.progressWrapper { width: 357px; overflow: hidden; }
+.progressContainer { margin: 5px; padding: 4px; border: solid 1px #E8E8E8; background-color: #F7F7F7; overflow: hidden; }
+.blue { border: solid 1px #CEE2F2; background-color: #F0F5FF; }
+a.progressCancel { font-size: 0; display: block; height: 14px; width: 14px; background-image: url(../../../images/cancelbutton.gif); background-repeat: no-repeat; background-position: -14px 0px; float: right; }
+a.progressCancel:hover { background-position: 0px 0px; }
+.progressName { font-size: 8pt; font-weight: 700; color: #555; width: 323px; height: 14px; text-align: left; white-space: nowrap; overflow: hidden; }
+.progressBarInProgress, .progressBarComplete, .progressBarError { font-size: 0; width: 0%; height: 2px; background-color: blue; margin-top: 2px; }
+.progressBarComplete { width: 100%; background-color: green; visibility: hidden; }
+.progressBarError { width: 100%; background-color: red; visibility: hidden; }
+.progressBarStatus { margin-top: 2px; width: 337px; font-size: 7pt; font-family: Arial; text-align: left; white-space: nowrap; }
+</style>
+<script type="text/javascript" src="../../jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../wp/swfupload.js"></script>
+<script type="text/javascript" src="../../wp/swfupload.queue.js"></script>
+<script type="text/javascript" src="../../wp/fileprogress.js"></script>
+<script type="text/javascript" src="../../wp/kehandlers.js?c=<?php echo date('YmdHis')?>"></script>
+<script type="text/javascript">
+//var swfu;
+
+window.onload = function() {
+    var settings = {
+        upload_url : "../../../mediaNew",
+        flash_url : "../../../images/swfupload.swf",
+        post_params: {"PHPSESSID" : "<?php echo session_id(); ?>"},
+        file_size_limit : "100 MB",
+        file_types : "*.*",
+        file_types_description : "All Files",
+        file_post_name: "imgFile",
+        file_upload_limit : 100,
+        file_queue_limit : 0,
+        custom_settings : {
+            progressTarget : "fsUploadProgress",
+            cancelButtonId : "cancel-upload"
+        },
+        debug: false,
+
+        // Button settings
+        button_image_url: '../../../images/upload.png',
+        button_placeholder_id: "flash-browse-button",
+        button_text: '<span class="button">选择文件<\/span>',
+        button_text_style: '.button { text-align: center; font-weight: bold; font-family:"Lucida Grande",Verdana,Arial,"Bitstream Vera Sans",sans-serif; font-size: 11px; text-shadow: 0 1px 0 #FFFFFF; color:#464646; }',
+        button_height: "23",
+        button_width: "132",
+        button_text_left_padding: 12,
+        button_text_top_padding: 3,
+
+        // The event handler functions are defined in handlers.js
+        file_queued_handler : fileQueued,
+        file_queue_error_handler : fileQueueError,
+        file_dialog_complete_handler : fileDialogComplete,
+        upload_start_handler : uploadStart,
+        upload_progress_handler : uploadProgress,
+        upload_error_handler : uploadError,
+        upload_success_handler : uploadSuccess,
+        upload_complete_handler : uploadComplete,
+        queue_complete_handler : queueComplete	// Queue plugin event
+    };
+
+    swfu = new SWFUpload(settings);
+};
+
+var KE = parent.KindEditor;
+var KEInsertImageFun = null;
+var KEInsertCompleteFun = null;
+location.href.match(/\?id=([\w-]+)/i);
+var id = RegExp.$1;
+KE.event.ready(function() {
+
+    KEInsertImageFun = function(imgSrc) {
+		html = '<p><img src="' + imgSrc + '" kesrc="' + imgSrc + '" ';
+		html += 'border="0" /></p>';
+		KE.util.insertHtml(id, html);
+    };
+
+    KEInsertCompleteFun = function() {
+        KE.dialog.hide();
+    };
+
+    KE.util.hideLoadingPage(id);
+
+}, window, document);
+        </script>
+    </head>
+    <body>
+    <form id="form1" action="mediaNew" method="post" enctype="multipart/form-data">
+    <div class="wrap">
+        <div id="flash-upload-ui" >
+            <div>
+            選擇文件上傳	<div id="flash-browse-button"></div>
+            <span><input id="cancel-upload" disabled="disabled" onclick="swfu.cancelQueue();" type="button" value="取消上傳" class="button" /></span>
+            </div>
+            <p class="media-upload-size">上傳文件最大尺寸：8MB</p>
+        </div>
+        <div class="fieldset flash" id="fsUploadProgress"> <span class="legend">上傳進度</span> </div>
+        <div id="divStatus">上傳了0個文件</div>
+        <p style="display:none;"> <input type="submit" class="button savebutton hide-if-no-js" name="save" value="保存所有更改" /> </p>
+    </div>
+    </form>
+    </body>
+</html>

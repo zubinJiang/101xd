@@ -1,0 +1,14 @@
+<?php
+
+class MRegister extends CModel
+{   
+    public function add_company_data($arr){
+    
+    
+    return $arr;
+    
+    
+    }
+}
+
+?>

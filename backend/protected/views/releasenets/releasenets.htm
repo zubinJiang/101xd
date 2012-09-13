@@ -1,0 +1,165 @@
+<?php
+$province = isset($__p__['province']) ? $__p__['province'] : "";
+$type     = isset($__p__['type']) ? $__p__['type'] : '';
+$product  = isset($__p__['product']) ? $__p__['product'] : '';
+$address  = isset($__p__['address']) ? $__p__['address'] : '';
+$business = isset($__p__['business']) ? $__p__['business'] : '';
+$user_type= isset($__p__['user_type']) ? $__p__['user_type'] : '';
+if(!empty($address['aid'])) {
+    $address['id'] = $address['aid'];
+}
+$contact  = isset($__p__['contact']) ? $__p__['contact'] : '';
+$category_data= isset($__p__['category_data']) ? $__p__['category_data'] : '';
+$city_list= isset($__p__['city_list']) ? $__p__['city_list'] : '';
+?>
+<div id="dialog"></div>
+<form action="<?php if(!empty($product)){ echo '?action=update&id='. $product['id'];} else { echo '?action=index'; }?>" method="post">
+<input  type="hidden" name="user_type" value="<?php echo $user_type; ?>" />
+<div id="img_show">
+<div class="close">[关闭]</div>
+<div id="big_image">
+    <div id="upstream">
+      <p>上传图片</p>
+      <dl>
+        <dd>您可以从电脑中直接上传图片</dd>
+        <dt><div id="uploadfile"></div></dt>
+      </dl>
+    </div>
+</div>
+<div class="upload_ok_botton">
+    <input type="hidden" id="x" name="x" />
+    <input type="hidden" id="y" name="y" />
+    <input type="hidden" id="w" name="w" />
+    <input type="hidden" id="h" name="h" />
+    <input type="button" id="uploadok"/>
+</div>
+<div class="preview">预览框</div>
+<div id="small_image"> </div>
+</div>
+<input type="hidden" name="w_type" value="<?php echo $type;?>">
+<div id="releasenets">
+<?php 
+if(!empty($product)) {
+?>
+<input type="hidden" name="product_id" value="<?php echo $product['id'];?>">
+<?php
+}?>
+<?php 
+if(!empty($business)) {
+?>
+<input type="hidden" name="business_id" value="<?php echo $business['id'];?>">
+<?php
+}
+if(!empty($contact)) {
+?>
+<input type="hidden" name="contact_id" value="<?php echo $contact['id'];?>">
+<?php
+}
+if(!empty($address)) {
+?>
+<input type="hidden" name="address_id" value="<?php echo $address['id'];?>">
+<?php
+}
+?>
+<h2 style="border:none;">产品基本信息：</h2>
+
+     <?php
+if(!empty($category_data)) {
+?>
+      <div class="sort">
+        <div class="sort_left">产品类别：</div>
+        <div class="sort_right"><select name="category_id">
+        <?php
+foreach($category_data as $v) {
+?>
+    <option value="<?php echo $v['id'];?>" <?php if(intval($product['category_id'])==intval($v['id'])) {echo 'selected';}?>><?php echo $v['name'];?> </option>
+    <?php
+}
+?>
+        </select></div>
+      </div>
+<?php
+}
+?>
+<div class="sort">
+        <div class="sort_left">标题：<a name="pro_name" id="pro_name"></a></div>
+        <div class="sort_right"><input type="text" name="title" value="<?php echo $product['title'];?>" class="text1" /><font style="color:red;">*</font>
+        <p>最长50个汉字，建议在标题中包含产品名称和相应关键词</p></div>
+</div>
+<div style="padding-left:150px;color:red;" class="mess_title"></div>
+<div class="sort">
+        <div class="sort_left">关键词：</div>
+        <div class="sort_right"><input type="text" name="keywords" value="<?php echo $product['keywords'];?>" class="text1" />
+        <p>为了让更多渠道商找到您的商品，建议填写商品关键词，多个关键词用空格隔开，最多填写5个</p></div>
+</div>
+<div class="sort">
+        <div class="sort_left">市场价格：<a name="product_mprice" id="product_mprice"></a></div>
+        <div class="sort_right"><input name="price"  id="market_price" type="text" value="<?php echo $product['market_price'];?>" class="text3 request"><font style="color:red;">*</font>
+        <span style="padding-left:10px;">建议团购价：<a name="product_sprice" id="product_sprice"></a></span><input  id="supply_price" name="price_s"  type="text" value="<?php echo $product['supply_price'];?>" class="text3 request">
+        <font style="color:red;">*</font><p>建议团购价为数字类型时，要低于市场价格</p></div>
+</div>
+<div style="padding-left:150px;color:red;" class="mess_market_price"></div>
+<div class="sort">
+        <div class="sort_left" >供货价：<a name="product_fprice" id="product_fprice"></a></div>
+        <div class="sort_right" ><input type="text"  id="foreign_price" name="foreign_price" value="<?php echo $product['foreign_price'];?>" class="text3 request"/><font color="red">*</font></div>
+</div>
+<div style="padding-left:150px;color:red;" class="mess_foreign_price"></div>
+<div class="sort">
+        <div class="sort_left">商品单位：</div>
+        <div class="sort_right"><input name="unit"  type="text" value="<?php echo $product['unit'];?>" class="text3">
+        <span style="padding-left:20px;">补货周期：</span><input  name="cycle"  type="text" value="<?php echo $product['cycle'];?>" class="text3"></div>
+      </div>
+
+<div class="sort">
+        <div class="sort_left">库存量：</div>
+        <div class="sort_right"><input type="text" id='storage' name="storage" <?php if($product['storage']=='-1') {?> onclick="this.value='';"<?php }?> value="<?php if($product['storage']=='-1'){ echo "库存量充足";}else{ echo $product['storage'];}?>" class="text3"/><p>不填写表示库存充足</p></div>
+</div>
+<div class="sort">
+        <div class="sort_left">商品默认图片：</div>
+        <div class="sort_right">
+            <div id="uploaddefault" style="float:left;">
+                <a id="open_pic" href="#" ></a>
+            </div>
+            <div class="default_image_show" >
+        <?php
+if(!empty($product['default_image'])) {
+    echo <<<EOF
+    <img height="148" width="211" src="{$product['default_image']}">
+    <input type="hidden" id="defaultpic" name="defaultpic" value="{$product['default_image']}" />
+    <div class="del_default_pic" id="{$product['id']}"><span class="del_default_cha"></span></div>
+EOF;
+}
+?>
+            </div>
+        </div>
+</div>
+<div class="sort">
+<div class="sort_left">商品内容描述：<a name="product_desc" id="product_desc"></a></div>
+        <div class="sort_right" id="textarea" >
+        <div class="">
+          <p>最多可同时上传<b style="color:red;">5</b>张JPG,BMP等格式的产品图片，每张不大于2M，请勿在图片中添加公司或个人信息水印。</p>
+          <div id="upload1" ></div> 
+          <div id="upload1-picone"><ul id="upload1-pic-show">
+<?php  if(!empty($product['image'])){
+    $image_array = explode('|', $product['image']);
+    foreach ($image_array as $v){
+        if(empty($v)) {continue;}
+?>
+<li>
+    <a href="<?php echo $v; ?>" target="_blank"><img src="<?php echo $v; ?>" alt="<?php echo $product['title'] ?>" width="100" height="100" border="0" /></a>
+    <div class="del" rel="<?php echo $v; ?>"><span class="del_cha"></span></div>    
+</li>
+<?php
+    }
+}?>
+          </ul>
+          </div>
+          <input type="hidden" name="product_pic1" id="product_pic1" value="<?php echo $product['image']?>" />
+        </div>
+        <textarea id="content" name="content" value="" style="width:100%;height:300px;"><?php echo $product['description'];?></textarea>
+        <font color="red">*</font> <span style="color:red;" class="mess_content"></span></div>
+      </div>
+<div class="sort">
+        <div class="sort_left">视频地址：</div>
+        <div class="sort_right"><input type="text" name="vedio" class="text1" value="<?php echo $product['vedio'];?>" /></div>
+</div>

@@ -1,0 +1,58 @@
+﻿<?php
+$data  = isset($__p__['data']) ? $__p__['data'] : '';
+$style  = isset($__p__['style']) ? $__p__['style'] : '';
+$product  = isset($__p__['product']) ? $__p__['product'] : '';
+?>
+<div id="header">
+        <div class="logo"><a href='http://www.101xd.com' target='_self' title='101团购供货平台' >网商渠道聚集地</a></div>
+        <div class="wt">
+        </div>
+        <div class="et">
+            <img src="images/icon_1.gif" width="58" height="22" />
+            <span>给百家渠道商供货!</span>
+            <div class="fabu"><a href="/login?action=fabu">点击发布您的产品信息</a></div>
+        </div>
+    </div>
+    <div id="nav">
+        <div class="hd"> 
+            <ul>
+              <li>
+                  <a href="/" <?php if('index'==$product['category']) { ?> class="a" <?php } ?> onfocus="this.blur();">首 页</a>
+                  <a href="/local" <?php if('local'==$product['category']) { ?> class="a" <?php } ?> onfocus="this.blur();">本地商品</a>
+                  <a href="/net" <?php if('net'==$product['category']) { ?> class="a" <?php } ?> onfocus="this.blur();">精品网货</a>
+                  <a href="/daohang" <?php if('daohang'==$product['category']) { ?> class="a" <?php } ?> onfocus="this.blur();">排 名</a>
+                  <a href="/ranking" <?php if('ranking'==$product['category']) { ?> class="a" <?php } ?> onfocus="this.blur();">热卖商品</a>
+                  <a href="/hellovip" <?php if('hellovip'==$current_page) { ?> class="a" <?php } ?> onfocus="this.blur();">渠道商会员</a>
+              </li>
+            </ul>
+        </div>
+        <div class="fd">
+<?php
+    if(!empty($style)){
+     $count = count($style);
+        $i = 1;
+        foreach ($style as $k=>$v){
+            $css = '';
+            if($k==$product['category_id']) {
+                $css = 'class="font_size"';
+            }
+            if($i == $count){
+                 echo  "<a href='childpages_{$k}.html' {$css} value='{$k}'>{$v}</a>"; 
+            } else {
+                 echo "<a href='childpages_{$k}.html'  {$css} value='{$k}'>{$v}</a><span>|</span>";
+            }
+            $i++;
+        }
+    } else {
+        echo <<<EOF
+<div class="concern">&nbsp;</div>
+EOF;
+    }
+?>
+        </div>
+    </div>
+
+<input type="hidden" name="type" value="<?php echo $id; ?>">
+<input type="hidden" name="cpage" value="1">
+<input type="hidden" name="sort" value="date">
+

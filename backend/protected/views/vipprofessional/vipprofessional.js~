@@ -1,0 +1,20 @@
+$(document).ready(function(){
+    //ȫѡ
+    $('#zizhi_local .local_quan').click(function(){
+    
+        var value = $(this).attr("checked");
+        $('#zizhi_local input[type="checkbox"]').each(function(){
+            $(this).attr("checked", value);
+        });
+    });
+
+
+    $('#zizhi_net .net_quan').click(function(){
+    
+        var value = $(this).attr("checked");
+        $('#zizhi_net input[type="checkbox"]').each(function(){
+            $(this).attr("checked", value);
+        });
+    });
+});
+

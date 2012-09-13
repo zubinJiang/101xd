@@ -1,0 +1,94 @@
+body,div,p,span,label,ul,ol,li,dl,dd,dt,input,h1,h2,h3,h4,h5,h6{margin:0;padding:0}
+body{font-size:12px;font-family:Arial,"宋体";text-align:left;background:url(../../../images/qdsbg_4.gif) repeat-x;color:#434343}
+img{border:none}
+ul,ol,li{list-style:none}
+a{text-decoration:none}a:hover{text-decoration:underline}
+.clear{clear:both}
+
+#textarea table{margin:10px 0 0 0;clear:both;}
+#current_location {float:left;font-size:14px;font-weight:bold;}
+.red{color:red;height:20px;}
+#upload1-pic-show li {float:left;margin:0 10px 0 0;width:100px;height:100px;position:relative;}
+#upload1-pic-show li a {width:100px;height:100px;display:block;}
+#upload1-pic-show li a img {margin:0;}
+#upload1-pic-show li .del{display:none;position:absolute;top:0;width:100%;height:20px;background:#f2f2f2;}
+#upload1-pic-show li .del .del_cha{float:right;width:16px;height:14px;background:url("../../../images/upload_sets.png") repeat scroll -77px 0 transparent;cursor:pointer;margin:0;}
+
+#box{margin:0 auto;width:970px;}
+#top{width:970px;height:35px;padding-top:5px}
+#top input{width:159px;height:30px;background:url(../../../images/qdsbg_3.gif) no-repeat;line-height:30px;float:right;color:#fff;font-weight:bold;border:none}
+#banner{width:964px;height:294px;margin-bottom:5px;padding:4px 0 0 4px;font-family:"黑体";border:1px solid #cfcfcf;background:#fff}
+#step{width:966px;height:81px;margin-bottom:5px;background:#fff;border:2px solid #88bf1f;position:relative;padding-top:35px}
+#step .hd{width:941px;height:42px;background:url(../../../images/qdsbg_2.gif) no-repeat left;padding-left:27px;line-height:35px;font-size:14px;color:#649900;font-weight:bold;position:absolute;left:-6px;top:5px;}
+#step .fd{width:953px;height:63px;padding:12px 0 0 15px;text-align:center;font-size:14px;}
+.stepys{width:200px;height:60px;float:left;background:url(../../../images/ddtsbg_4.gif) no-repeat left top;}
+#step .fd span{width:200px;height:30px;float:left;line-height:30px;color:#fff;font-weight:bold}
+.stephs{width:200px;height:60px;float:left;background:url(../../../images/ddtsbg_4.gif) no-repeat left bottom;}
+.aw{width:36px;height:15px;float:left;background:url(../../../images/qdsbg_1.gif) no-repeat center top;margin-top:25px;padding:0 5px 0 5px}
+.aw1{width:36px;height:15px;float:left;background:url(../../../images/qdsbg_1.gif) no-repeat center bottom;margin-top:25px;padding:0 5px 0 5px}
+#already{width:963px;height:86px;padding-left:5px;margin-bottom:5px;border:1px solid #d4d4d4}
+#already .hd{width:950px;height:31px;line-height:31px;border-bottom:1px dashed #72a74c;font-size:14px;font-weight:bold;color:#509220;padding-left:10px;float:left}
+#already .fd{width:951px;padding:8px 0 8px 9px;float:left}
+#already .fd .name{width:95px;height:35px;background:#f1f0f0;border:1px solid #dad9d9;line-height:35px;text-align:center;font-size:14px;font-weight:bold;position:relative;margin-right:7px;float:left}
+#already .fd .name .close{width:11px;height:11px;position:absolute;right:0;top:0}
+
+#content{width:970px;background:#fff;}
+#tgxx{width:968px;height:570px;background:#fff;margin-bottom:12px;border:1px solid #d4d4d4}
+#tgxx .hd{width:945px;height:33px;line-height:33px;background:url(../../../images/qdssbg_2.gif) no-repeat left top;margin-bottom:8px;padding-left:23px;color:#000;}
+.tg_t{width:313px;height:36px;background:url(../../../images/imbg_1.gif) no-repeat center;position:absolute;left:25px;top:-7px;font-size:14px;color:#fff;text-align:center;line-height:36px;font-weight:bold;}
+.tg_t span{font-weight:normal;font-size:12px}
+.tg_b{width:951px;padding-left:17px;font-size:13px;float:left}
+.tg_b dl{width:951px;height:33px;float:left}
+.tg_b dl.ht{height:105px;float:left;margin-bottom:10px;}
+.tg_b dl.htt{height:105px;float:left;margin-bottom:10px;}
+.tg_b dl.smt{height:39px;float:left;}
+.tg_b dl dd{height:25px;line-height:22px;padding-right:10px;text-align:right;float:left;width:130px}
+.tg_b dl dd.r{height:25px;line-height:22px;padding-left:10px;text-align:left;float:left;color:#F00;width:25px;font-size:12px}
+.tg_b dl dd.r img{margin-top:5px;float:left}
+.tg_b dl dd.rc{height:25px;line-height:26px;padding-left:10px;text-align:left;float:left;color:#F00;width:225px;font-size:12px}
+.tg_b dl dt{height:25px;float:left;font-size:12px}
+.tg_b dl dt input{width:238px;height:20px;line-height:20px;border:1px solid #d3d3d3;float:left}
+.tg_b dl dt input.mc{width:468px;height:20px;line-height:20px}
+.tg_b dl dt input.sm{width:92px;height:29px;line-height:29px;color:#fff;font-size:14px;background:url(../../../images/ddtsbg_9.gif) no-repeat bottom;border:none;font-weight:bold;line-height:29px;cursor:pointer;margin-bottom:10px}
+.tg_b textarea{width:550px;border:1px solid #d3d3d3;float:left;height:100px;font-size:12px;}
+.tutu{width:790px;padding-left:150px;font-size:14px;color:#cfcfcf;margin-bottom:10px;}
+.tutu .tt{width:118px;height:83px;float:left;border:1px solid #cfcfcf;text-align:center;line-height:83px;margin:5px 5px 0 0}
+#uploading{width:968px;border:1px solid #cfcfcf;background:#fff;margin-bottom:5px;}
+#uploading .hd{width:945px;height:33px;line-height:33px;margin-bottom:8px;background:url(../../../images/qdssbg_2.gif) no-repeat left bottom;font-size:14px;font-weight:bold;color:#000;padding-left:23px}
+#uploading .fd{width:948px;padding-left:20px}
+.ud_p{width:283px;height:36px;background:url(../../../images/imbg_1.gif) no-repeat bottom;position:absolute;left:32px;top:-7px;font-size:14px;color:#fff;text-align:center;line-height:36px;font-weight:bold}
+.ud_t{width:948px;height:35px;line-height:34px;font-size:14px;}
+.request{width:920px;height:82px;border:1px solid #d4d4d4;margin-bottom:15px}
+.b_require{width:920px;height:40px;border-bottom:1px dashed #cfcfcf;line-height:40px}
+.j_require{width:920px;height:41px;line-height:41px;}
+.b_require ul,.j_require ul{width:920px}
+.b_require ul li,.j_require ul li{height:40px;float:left;padding:0 14px 0 14px;text-align:center}
+.b_require ul li.bg,.j_require ul li.bg{font-weight:bold;font-size:14px;color:#000;background:url(../../../images/qdssbg_4.gif) no-repeat center center;width:105px}
+.wxprompt{width:943px;height:55px;font-size:14px;color:#7f7f7f;margin:5px 0 10px 0;background:url(../../../images/ddtsbg_10.gif) no-repeat center left;padding:5px 0 0 5px;line-height:25px;color:#F00}
+.wxprompt span{font-size:16px;font-weight:bold;color:#F00}
+.ud_t{font-weight:bold}
+.ud_b{width:948px;}
+.ud_b .shang{width:948px;height:30px;margin:10px 0 3px;_margin:0 0 3px;*margin:0 0 3px;}
+.ud_b dl{width:948px;height:30px;float:left}
+.ud_b dl dd{height:25px;line-height:22px;padding-right:10px;text-align:right;float:left;width:130px;font-size:13px}
+.ud_b dl dd.r{height:25px;line-height:22px;padding:0 5px 0 10px;text-align:left;float:left;color:#F00;font-size:12px}
+.ud_b dl dd.h{height:25px;line-height:22px;padding-left:10px;text-align:left;float:left;color:#999;width:345px;font-size:12px}
+.ud_b dl dt{height:25px;float:left;font-size:12px}
+.ud_b dl dt input.i{width:295px;height:21px;line-height:21px;border:1px solid #d3d3d3;float:left;margin-right:8px;_margin-right:6px}
+.ud_b dl dt input{width:58px;height:21px;font-size:12px;line-height:18px}
+.ud_b .xia{width:812px;height:66px;padding-left:136px;position:relative}
+.ud_b .xia .xinxt{width:95px;height:58px;border:1px solid #cfcfcf;}
+.ud_b .xia .pt{width:11px;height:11px;position:absolute;left:222px;top:0px;}
+.ud_b .geshi{width:818px;height:24px;line-height:24px;margin-bottom:6px;color:#999;padding-left:130px}
+.four{width:634px;height:35px;margin:8px 0 8px 0;padding-left:315px}
+.four input{float:left;width:92px;height:33px;background:url(../../../images/ddtsbg_7.gif) no-repeat center;font-size:14px;font-weight:bold;color:#fff;border:none;cursor:pointer;margin-right:60px}
+
+#footer{width:968px;height:172px;border:1px solid #d3d2d2;border-bottom:none;background:#fff}
+#footer .left{width:228px;height:172px;float:left;background:url(../../../images/logo.gif) no-repeat center;}
+#footer .center{width:488px;height:130px;float:left;background:#f3f3f3;padding-top:42px;text-align:center;line-height:30px;color:#666}
+#footer .center a{color:#666}
+#footer .right{width:236px;height:160px;float:left;background:url(../../../images/showbg_4.gif) no-repeat center;padding:12px 0 0 12px;}
+#footer .right .hd{width:220px;height:42px;text-align:center;color:#fff;line-height:19px;padding-top:5px;background:none}
+#footer .right .hd span{float:none}
+#footer .right .fd{width:190px;height:97px;padding:3px 0 0 23px;line-height:19px}
+

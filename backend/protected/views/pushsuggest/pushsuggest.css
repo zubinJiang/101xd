@@ -1,0 +1,16 @@
+dd,dt{ float:left;height:25px;font-size:16px;}
+dd{width:90px;margin-right:20px}
+.push_suggest_box{display:none;width:760px;height:360px;border:1px solid #999;padding:4px;z-index:100;position:fixed;top:30%;left:30%;background:#FFF;box-shadow: 0px 0px 4px #999;border-radius: 4px;}
+.push_suggest_box .push_suggest_msg{width:750px;height:100px;border-bottom:1px dashed #000;padding-left:4px;padding-right:4px;margin:0px}
+.push_suggest_box .push_suggest_msg p span#hide_box:hover{color:#000}
+.push_suggest_box .push_suggest_select{width:750px;height:110px;border:0px; #000;padding:0px;padding-left:14px;padding-right:8px;margin:0px}
+.push_suggest_box .push_suggest_add{width:750px;height:25px;border:0px;padding:0px;margin:8px;float:left;margin-left:15px;}
+.push_suggest_box .push_suggest_tool{width:750px;height:95px;border:0px;padding:0px;margin:8px;float:left;margin-left:15px}
+.push_suggest_entrybox{width: 180px;height: 25px;text-align: left;font-family: 'Arial';font-size: 13px;color: black;font-style: normal;font-weight: normal;text-decoration: none;}
+.push_suggest_button{width:auto;height: 25px;text-align: center;font-family: 'Arial';font-size: 13px;color: black;font-style: normal;font-weight: normal;text-decoration: none;padding-left:20px;padding-right:20px;margin-left:14px;}
+.push_suggest_tuan{width:60px;;height:36px;float:left;}
+.push_suggest_tuan .push_suggest_deltuan{width:auto;height:16px;float:right;margin:0px;padding:0px;color:red}
+.push_suggest_tuan .push_suggest_deltuan:hover {width:auto;height:16px;float:right;margin:0px;padding:0px;color:#000}
+.push_suggest_tuan .push_suggest_tuanname{width:60px;height:20px;float:right;margin:0px;padding:0px;text-align:right;}
+#companyinfo{width:160px;height:320px;position:fixed;top:50%;left:0px;z-index:100;font-size:13px;}
+#companyinfo dl{}

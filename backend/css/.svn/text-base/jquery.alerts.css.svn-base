@@ -1,0 +1,142 @@
+#popup_container {
+	font-family: Arial, sans-serif;
+	font-size: 12px;
+	min-width: 420px; /* Dialog will be no smaller than this */
+	max-width: 490px; /* Dialog will wrap after this width */
+    height:128px;
+	background: #FFF;
+	border: solid 6px #aeaeae;
+	color: #000;
+    margin:0px;
+}
+
+#popup_title {
+    width:490px;
+    height:24px;
+	font-size: 14px;
+	text-align: left;
+	line-height: 24px;
+	color: #666;
+	border: solid 0px #FFF;
+	border-bottom: solid 1px #dadada;
+	cursor: default;
+	padding: 0em;
+	margin: 0em;
+}
+
+#popup_content {
+	background: 16px 16px no-repeat url(/user/images/biaoqing.gif);
+	padding: 0px;
+	margin: 0px;
+    height:100px;
+    width:420px;
+}
+
+#popup_content.alert {
+	background-image: url(/user/images/biaoqing.gif);
+    width:420px;
+    height:100px;
+}
+
+#popup_content.confirm {
+	background-image: url(/user/images/biaoqing.gif);
+    height:100px;
+    width:420px;
+}
+
+#popup_content.prompt {
+	background-image: url(/user/images/biaoqing.gif);
+}
+
+#popup_message {
+	padding-left: 48px;
+    font-size:16px;
+    text-align:center;
+    display: list-item;
+    font-family: Arial, 宋体;
+    font-size: 16px;
+    font-weight: bold;
+    height: 30px;
+    line-height: 35px;
+    list-style-image: none;
+    list-style-position: outside;
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+    width: 100%;
+}
+
+#popup_panel {
+	text-align: center;
+	padding-left: 48px;
+    font-size:16px;
+	margin: 1em 0em 0em 6em;
+}
+
+#popup_panel input[type=button]{
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: transparent;
+    background-image: url(/user/images/loginbj.gif);
+    background-origin: padding-box;
+    border-bottom-color: white;
+    border-bottom-style: none;
+    border-bottom-width: 0px;
+    border-left-color: white;
+    border-left-style: none;
+    border-left-width: 0px;
+    border-right-color: white;
+    border-right-style: none;
+    border-right-width: 0px;
+    border-top-color: white;
+    border-top-style: none;
+    border-top-width: 0px;
+    box-sizing: border-box;
+    color: white;
+    cursor: pointer;
+    display: block;
+    float: left;
+    font-family: Arial;
+    font-size: 14px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: bold;
+    height: 30px;
+    letter-spacing: normal;
+    line-height: normal;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 20px;
+    margin-top: 0px;
+    padding: 0px;
+    text-align: center;
+    text-indent: 0px;
+    text-shadow: none;
+    text-transform: none;
+    white-space: pre;
+    width: 85px;
+    word-spacing: 0px; 
+    float:left; 
+   } 
+
+#popup_prompt {
+    background-color: white;
+    border-width: 1px;
+    border-style: solid;
+    border-width: 1px;
+    color: black;
+    float: right;
+    font-family: monospace;
+    font-size: 12px;
+    font-weight: normal;
+    height: 28px;
+    margin: 0px 0px 0px 4px;
+    padding: 0px 0px 0px 0px;
+    text-align: auto;
+    text-indent: 0px;
+    text-shadow: none;
+    text-transform: none;
+    width: 60px;
+    word-spacing: 0px;
+}

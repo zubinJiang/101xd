@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=8" />
+    <meta name="google-site-verification" content="5N-Hagk9RTjSxecoiJB7oZ6ogUeV-Rq52w_OH0PGk5E" />
+    <link rel="shortcut icon" href="images/favicon.ico" /> 
+    <!--[if lt IE 9]>
+    <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+    <![endif]-->
+<?php
+if(PAGE=='agent') { 
+    $__p__['title'] = '团购网站快速供货服务_团购网站代理_101兄弟团购供货平台';
+}
+
+if(isset($__p__['title'])) {
+    echo <<<EOF
+    <title>{$__p__['title']}</title>
+    <meta name="keywords" content="{$__p__['keywords']}" /> 
+    <meta name="description" content="{$__p__['description']}" /> 
+EOF;
+} else {
+    echo <<<EOF
+    <title>101兄弟 101xd 团购供货平台，企业营销新选择！</title>
+    <meta name="keywords" content="101兄弟,团购供货,团购批发,团购货源,团购网站的商品,电子商务,企业社区" /> 
+    <meta name="description" content="101兄弟（101xd.com）为团购网站等渠道商供货平台，提供本地商品、精品网货、网站优惠券等多种商品类型，同时是企业商务社区，扩展人脉、互动交流平台，101兄弟，是企业营销新选择！" /> 
+EOF;
+}
+
+if(PAGE!='agent') {
+    if($_SERVER['HTTP_HOST']=='dev.101xd.com') {
+?>
+    <link rel="stylesheet" href="css/reset-fonts-grids.css" type="text/css">
+    <?php
+    } else {
+?>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/2.8.0r4/build/reset-fonts-grids/reset-fonts-grids.css" type="text/css">
+    <?php
+    }
+?>
+    <link rel="stylesheet" href="css/base.css?c=<?php echo date('YmdHis');?>" type="text/css" /> 
+    <?php
+    if(PAGE=='product') {
+?>
+    <link rel="stylesheet" href="css/pop.css" type="text/css" /> 
+<?php
+    }
+}
+?>
+    <?php CHtml::css(); ?>
+</head>
+<body>

@@ -1,0 +1,42 @@
+body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,form,fieldset,blockquote{margin:0;padding:0}body{font-size:12px;font-family:\5B8B\4F53,Arial;line-height:1.5}ul,ol{list-style:none}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:bold}input,textarea,select{font-size:12px;vertical-align:middle}img{border:none}a{text-decoration:none}a:hover{text-decoration:underline}.fl{float:left}.fr{float:right}.tl{text-align:left}.tr{text-align:right}.tc{text-align:center}.fb{font-weight:bold}.dis{display:block}.undis,.logo h1{display:none}.disline{display:inline}.clear{clear:both;height:0;overflow:hidden;display:block}.clear10{clear:both;height:10px;overflow:hidden;display:block}.cl{clear:left}.cr{clear:right}.cb{clear:both}.crumbs,.crumbs a,.red{color:#ee2e1f;}
+
+#top_home{width:970px;margin:0 auto;overflow:hidden;padding-top:10px;}
+.logo{float:left;}
+#top_home dl{float:right;width:700px;}
+#top_home dl dd{float:left;width:700px;line-height:26px;}
+#top_home dl dd a{float:right;font-size:13px;color:#333;padding-right:15px;}
+#top_home dl dt{float:left;width:700px;}
+#top_home form{float:right;width:970px;padding-top:10px;height:43px;}
+#top_home form input{float:right;width:308px;height:33px;line-height:33px;border:none;background:url(../images/hunt_input.gif) no-repeat;text-indent:30px;color:#afafaf;padding:0;}
+#top_home form button{float:right;width:70px;height:33px;background:url(../images/hunt.gif) no-repeat;border:none;}
+#top_home form a{float:right;padding-left:10px;line-height:33px;font-size:14px;color:#505050;}
+#top_home form a.accounts{background:url(../images/triangle.gif) no-repeat right top;padding-right:14px;}
+
+
+#main{width:970px;margin:0 auto;overflow:hidden;padding-bottom:10px;}
+.itemize {float:left;width:205px;}
+
+
+.audit{float:right;width:733px;border:1px solid #c9181e;padding:10px;}
+.audit .manage{width:732px;height:30px;line-height:30px;font-size:16px;font-weight:bold;float:left}
+.audit .material{float:left;width:733px;border-bottom:1px solid #d4d4d4;padding-bottom:4px;}
+.audit .material p{float:left;width:300px;line-height:25px;background:url(../../../images/material.gif) no-repeat top left;text-indent:20px;border:none;text-align:left}
+.audit .material p a{color:#F00;}
+.audit .gong{float:right;width:161px;line-height:28px;font-size:14px;color:#fff;font-weight:bold;text-align:center;background:url(../../../images/govern.gif) no-repeat;}
+.audit .status{float:left;width:733px;line-height:32px;height:32px}
+.audit .status a{padding:0 10px 0 10px;float:left;display:block;color:#000}
+.audit .pack{float:left;width:721px;padding-left:10px;border:1px solid #babcbc;line-height:27px;height:27px;text-align:center;color:#136000;}
+.audit .neirong{width:723px;float:left;padding-left:10px}
+.audit .neirong ul{width:723px;float:left}
+.audit .neirong ul li{width:723px;line-height:18px;padding:10px 0 8px 0;border-bottom:1px dashed #d4d4d4;float:left;}
+.audit .neirong ul li input{float:left;}
+.audit1{float:left;width:55px;text-align:left;}
+.audit1 a{color:#00F}
+.audit2{float:left;width:200px;padding-right:20px;text-align:left;}
+.audit2 a{color:#000}
+.audit3{float:left;width:86px;padding-right:10px;}
+.audit .xia{width:721px;height:18px;line-height:18px;float:left;margin-top:10px;border:1px solid #babcbc;padding:5px 0 5px 10px}
+.audit .xia input{float:left}
+.audit .xia a{float:left;height:16px;display:block;padding:2px 5px 0 5px;color:#136000}
+
+

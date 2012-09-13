@@ -1,0 +1,213 @@
+<?php
+$product = isset($__p__['product']) ? $__p__['product'] : array();
+?>
+<div class="plain_right">
+    <div class="plain_right_top_info" style="">
+        <div class="push_tuan" style="width:140px;height:auto">
+           <div>返回上一页</div>
+           <div style="width:120px">该款商品推送至：</div>
+       </div>
+       <?php 
+       foreach($product['trac'] as $qudao ){
+       echo "<div class='push_tuan'><div class='deltuan' qid='{$qudao['quuid']}' pid='{$product['id']}'>X</div><div class='showtuan'>{$qudao['quname']}</div></div>";
+           }
+        ?>
+    </div>
+    <div class="plain_right_main_info">
+        <p>101兄弟推送</p>
+    </div>
+    <div class="plain_right_main_left">
+        <p style="border-width:0px;font-size:20px;font-weight:bold"> 商品信息</p>
+        <p>
+        <span class="plain_right_mian_left_key">商品类型：</span>
+        <span class="plain_right_main_left_value">
+            <?php echo $product['category']['name']; ?>
+        </span>
+        </p>
+        <p>
+        <span class="plain_right_mian_left_key">类别：</span>
+        <span class="plain_right_main_left_value">
+            <?php echo $product['category']['parent']; ?>
+        </span>
+        </p>
+        <p>
+        <span class="plain_right_mian_left_key">商品名称：</span>
+        <span class="plain_right_main_left_value">
+            <?php echo $product['title']; ?>
+        </span>
+        </p>
+        <p>
+        <span class="plain_right_mian_left_key">最多团购人数：</span>
+        <span class="plain_right_main_left_value">
+            <?php echo $product['max_buy']; ?>人
+        </span>
+        </p>
+        <p>
+        <span class="plain_right_mian_left_key">市场价：</span>
+        <span class="plain_right_main_left_value">
+            <?php echo $product['market_price']; ?>
+        </span>
+        </p>
+        <p>
+        <span class="plain_right_mian_left_key">供货价：</span>
+        <span class="plain_right_main_left_value">
+            <?php echo $product['supply_price']; ?>
+        </span>
+        </p>
+        <p>
+        <span class="plain_right_mian_left_key">商品摘要：</span>
+        <span class="plain_right_main_left_value">
+            <?php echo $product['desc']; ?>
+        </span>
+        </p>
+        <p>
+        <span class="plain_right_mian_left_key">商品说明：</span>
+        <span class="plain_right_main_left_value">
+            <?php echo $product['explain']; ?>
+        </span>
+        </p>
+        <p>
+        <span class="plain_right_mian_left_key">商品图片：</span>
+        <span class="plain_right_main_left_value">
+            <?php
+            $p = explode('|',$product['images']);
+            foreach($p as $uri){
+            echo "<img src='{$uri}'style='width:480px;height:320px;float:left;margin:12px;margin-top:4px;box-shadow:0px 0px 1px #999;border-radius: 4px;' />";
+            }
+            ?>
+        </span>
+        </p>
+    </div>
+    <div class="plain_right_main_right">
+        <div>
+            <p class="plain_right_mian_key">商务信息：</p>
+            <p class="plain_right_mian_value" ></p>
+        </div>
+        <div>
+        <p class="plain_right_mian_key" style="color:red">是否需要渠道商代发货？</p>
+        <p class="plain_right_mian_value" style="">
+        <?php 
+        if ($product['delivery'] ==0){
+        echo '不需要';
+        }
+        else if ($product['delivery'] ==1){
+        echo '可自发货';
+        }
+        else if ($product['delivery'] ==2){
+        echo '需要渠道商代发货';
+        }
+        else if ($product['delivery'] ==2){
+        echo '自动发货或者需要渠道商代发货';
+        }
+        
+        ?>
+        </p>
+        </div>
+        <div>
+        <p class="plain_right_mian_key" style="color:red">商品资质：</p>
+        <p class="plain_right_mian_value">
+        <?php 
+        if ($product['qualification']['image_certificate']){
+         echo '身份证&nbsp;&nbsp;';
+        }
+        if ($product['qualification']['image_license']){
+         echo '营业执照&nbsp;&nbsp;';
+        }
+        if ($product['qualification']['image_tax']){
+         echo '税务登记证&nbsp;&nbsp;';
+        }
+        if ($product['qualification']['image_account']){
+         echo '开户许可证&nbsp;&nbsp;';
+        }
+        if ($product['qualification']['image_org']){
+         echo '组织机构代码证&nbsp;&nbsp;';
+        }
+        if ($product['qualification']['image_bui']){
+         echo '商家授权书&nbsp;&nbsp;';
+        }
+        if ($product['qualification']['image_qc']){
+         echo '商家质检书&nbsp;&nbsp;';
+        }
+        if ($product['qualification']['image_logo']){
+         echo '标商&nbsp;&nbsp;';
+        }
+        ?>
+        </p>
+        </div>
+        <div>
+        <p class="plain_right_mian_key" style="color:red">是否有广告推广需求：</p>
+        <p class="plain_right_mian_value">
+        <?php
+        if ($product['ad']==0){
+        echo '无';
+        }
+        else if ($product['ad']==1){
+            echo '有:';
+            $ad_p = explode('|',$product['ad_position']);
+            foreach($ad_p as $p){
+           // 0:网站首页链接广告;1:网站首页商品推荐;2:右侧推荐位专题推广;3:其它，用“|”分开
+                if ($p=='0'){
+                    echo '网站首页广告';
+                }
+                if ($p=='1'){
+                    echo '网站首页商品推荐';
+                }
+                if ($p=='2'){
+                    echo '右侧推荐位专题推广';
+                }
+                if ($p=='3'){
+                    echo '其他';
+                }
+            }
+        }
+        ?>
+        </p>
+        </div>
+        <div>
+        <p class="plain_right_mian_key">商家信息：</p>
+        <p class="plain_right_mian_value">
+        <p>商家名称：
+        <?php 
+        echo $product['user']['Name'];
+        ?>
+        </p>
+        <p>地区：
+        <?php 
+        echo $product['province']['name'];
+        ?>
+        </p>
+        <p>联系人：
+        <?php 
+        echo $product['user']['ContactName'];
+        ?>
+        </p>
+        <p>联系电话：
+        <?php 
+        echo $product['user']['UserTel'];
+        ?>
+        </p>
+        <p>其它联系方式:
+        <?php 
+        echo $product['company']['contact_tel'];
+        ?>
+        </p>
+        <p>qq：
+        <?php 
+        echo $product['user']['QQ'];
+        ?>
+        </p>
+        </div>
+    </div>
+    <div class="plain_botton_area">
+        <center>
+            <button type="button" class="plain_botton" id="agree" product="<?php echo $product['id']; ?>" value="审核通过">审核通过</button>
+            <button type="button" class="plain_botton" id="deny"  product="<?php echo $product['id']; ?>" value="拒绝">拒绝</button>
+        </center>
+    </div>
+    <!--<div class="plain_suggest_box">
+    </div>
+    <div class="plain_suggest_msg">
+    </div>
+    -->
+    
+</div>

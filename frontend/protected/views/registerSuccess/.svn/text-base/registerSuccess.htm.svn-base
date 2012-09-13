@@ -1,0 +1,143 @@
+<?php
+$citys     = $__p__['citys'];
+$provinces = $__p__['provinces'];
+$error     = $__p__['error'];
+$load      = isset($_GET['load']) ? $_GET['load'] : '';
+$address   = isset($__p__['address']) ? $__p__['address'] : '';
+$company   = isset($__p__['company']) ? $__p__['company'] : '';
+$category = isset($__p__['category']) ? $__p__['category'] : "";
+?>
+<div id="box">
+    <div id="content">
+        <div class="start">
+        <?php if($_GET['act']=='complete'){
+
+            echo "完善会员信息";
+        } else {
+            echo "恭喜您注册成功！成为101兄弟会员！";
+        }?>
+        </div>
+        <div class="type">
+           <span style="font-weight:bold">101兄弟建议您：</span>
+           <span style="font-size:13px;">请花几十秒的时间完善以下信息，详细、完善的会员资料，有助您获得他人的信任，结交更多潜在的商业伙伴，获取更多的商机！</span>
+        </div>
+        <div class="superiority">   
+            <div class="hd">完善信息有哪些好处？
+                <div class="jiao"><img src="images/rsicon_1.gif" width="8" height="5" /></div>
+            </div>
+            <div class="fd">
+                <div class="wt"></div>
+              <div class="ct">
+                   <span style="font-weight:bold">1、</span>其他商业伙伴更加了解您，且能及时联系到您。<br />
+                   <span style="font-weight:bold">2、</span>资料填写的越详细、越真实，被其他商业伙伴的关注率就越高，合作机会就越多。<br />
+              </div>
+                <div class="et"></div>
+            </div>
+      </div>
+        <div class="basic">
+          <div class="hd">完善会员信息:
+            <div class="jiao"><img src="images/rsicon_1.gif" width="8" height="5" /></div>
+          </div>
+          <form action="registerSuccess?action=reg<?php if($_GET['act']=='complete'){ echo '&act=complete';} if(!empty($_GET['id'])){ echo "&id={$_GET['id']}";}?>" method="post">
+          <input type="hidden" name="address_id" value="<?php echo $address['id'] ?>">
+          <input type="hidden" name="company_id" value="<?php echo $company['CompanyID'] ?>"> 
+          <div class="fd">
+              <ul>
+              <li><span>企业联系人：</span><input type="text" value="<?php if(!empty($company['contact_name'])){ echo $company['contact_name']; } ?>" name="contact_name" />
+                      <span class="green"><img  style="display:none;" src="images/rsicon_2.gif" width="14" height="14" /></span>
+				   </li>
+                   <li><span>职务：</span><input type="text" name="position" value="<?php if(!empty($company['position'])){ echo $company['position']; } ?>"/>
+				       <span class="green"><img style="display:none;" src="images/rsicon_2.gif" width="14" height="14" /></span>
+				   </li>
+                   <li><span>其他联系电话：</span><input type="text" name="contact_tel" value="<?php if(!empty($company['contact_tel'])){ echo $company['contact_tel']; } ?>"/>
+				       <span class="green"><img style="display:none;" src="images/rsicon_2.gif" width="14" height="14" /></span>
+				   </li>
+                   <li><span>QQ号：</span><input type="text" name="QQ" value="<?php if(!empty($company['QQ'])){ echo $company['QQ']; } ?>"/>
+				       <span class="green"><img style="display:none;" src="images/rsicon_2.gif" width="14" height="14" /></span>
+				   </li>
+                   <li><span>公司地区：</span>
+                       <select name="add_province" class="province_id">
+                       <option value="">--请选择省份--</option>
+      <?php
+if(!empty($provinces)) {
+    foreach($provinces as $v) {
+?>
+    <option value="<?php echo $v['id'];?>" <?php if($address['province_id']==$v['id']){ echo "selected";}?>><?php echo $v['name'];?></option>
+<?php
+    }
+}
+?>
+      </select>
+                       <select name="add_city" class="area_id">
+                       <option value="">--请选择市区--</option>
+<?php
+   if(!empty($citys)) {
+            foreach($citys as $v) {
+    ?>
+        <option value="<?php echo $v['id'];?>" <?php if($address['area_id']==$v['id']){ echo "selected";}?> ><?php echo $v['name'];?></option>
+    <?php
+            }
+        }
+?>
+</select>
+                       <span class="green" id="area_mess"><img style="display:none;" src="images/rsicon_2.gif" width="14" height="14" /></span>
+				   </li>
+                   <li><span>公司地址：</span><input type="text" value="<?php if(!empty($address['desc'])){ echo $address['desc']; } ?>" name="add_text" class="ch"/>
+				       <span class="green"><img style="display:none;" src="images/rsicon_2.gif" width="14" height="14" /></span>
+				   </li>
+				   <li><span>邮编：</span><input type="text" name="postcode" value="<?php if(!empty($company['postcode'])){ echo $company['postcode']; } ?>"/>
+				       <span class="green"><img style="display:none;" src="images/rsicon_2.gif" width="14" height="14" /></span>
+				   </li>
+                   <li><span>公司网址：</span><input type="text" name="gro_url" 
+                   value="<?php if(!empty($company['url'])){ echo $company['url']; }else{ echo "http://"; } ?>" class="ch"/>
+				       <span class="green"><img style="display:none;" src="images/rsicon_2.gif" width="14" height="14" /></span>
+				   </li>
+				   <li><span>主营行业：</span>
+                       <select name="category" id="category"><option value="">选择经营行业</option>
+                            <?php if(!empty($category)){
+
+    foreach($category as $v){
+?>
+    <option value="<?php echo $v['id']; ?>"  <?php if($company['category_id']==$v['id']){ echo "selected=true"; } ?> ><?php echo $v['name']; ?></option>
+<?php   
+    }
+                            }?>
+                       </select>
+                       <span class="green" id="category_mess"><img style="display:none;"  src="images/rsicon_2.gif" width="14" height="14" /></span>
+                       <span class="blue" id="category_tishi">
+                          <img src="images/rsicon_3.gif" width="14" height="14" />
+                          请选择企业主要经营范围。                   
+				       </span>                   
+				   </li>
+                   <li><span>主营产品关键字：</span>
+
+<?php  if(!empty($company['key'])){
+
+    $key_str = explode("|",$company['key']);
+
+} ?>
+    <input type="text" value="<?php echo $key_str['0']; ?>" name="key[]" class="gj"/>
+					   <input type="text" value="<?php echo $key_str['1']; ?>" name="key[]" class="gj"/>
+					   <input type="text" value="<?php echo $key_str['2']; ?>" name="key[]" class="gj"/>
+					   <input type="text" value="<?php echo $key_str['3']; ?>" name="key[]" class="gj"/>
+					   <span class="green" id="key_mess"><img style="display:none;" src="images/rsicon_2.gif" width="14" height="14" /></span>
+                       <span class="blue" id="key_tishi">
+                          <img src="images/rsicon_3.gif" width="14" height="14" />
+                          请填写企业主营产品关键字，方便其它客户更加了解您。      
+					   </span>
+				   </li>
+				   <li class="introduce"><span>企业介绍：</span>
+                   <textarea name="com_desc" cols="" rows="" id="com_desc"><?php echo $company['desc']; ?></textarea>
+                   &nbsp;&nbsp;<span class="green" id="com_desc_mess"><img style="display:none;" src="images/rsicon_2.gif" width="14" height="14" /></span>
+				   </li>
+                   <li class="regist">
+				       <input type="submit" value="提交信息 " name="" class="zc"/>
+
+					   <input type="button"  onclick="location.href='/'" value="以后再说 " class="zh"/>
+				   </li>
+                </ul>
+          </div>
+          </form>
+      </div>
+    </div>
+</div>

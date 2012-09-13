@@ -1,0 +1,11 @@
+body {background-color:#F8F8F8;direction: ltr; font-family: "lucida grande",tahoma,verdana,arial,sans-serif; font-size: 12px;text-align:left;padding:0;margin:0;}
+#doc3{margin:0 10px;float:left;background-color:#F8F8F8;width:100%;}
+#wpbody-content{background-color:#F8F8F8;padding:0;margin:0;}
+#ui-datepicker-div{background-color:#F8F8F8;padding:0;margin:0;}
+a { color: #3B5998; cursor: pointer; text-decoration: none; } 
+a:hover { text-decoration: underline; } 
+
+#bd { width: 100%; margin: 0 auto; position: relative; }
+
+.sort span.button a {color:#fff;}
+#contact_info{clear:both;width:100%;}

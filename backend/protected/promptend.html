@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>开通专页成功</title>
+<link href="css/pt9.css" rel="stylesheet" type="text/css" />
+<style>
+body,div,p,span,label,ul,ol,li,dl,dd,dt,input,h1,h2,h3,h4,h5,h6{margin:0;padding:0}
+body{font-size:12px;font-family:Arial,"宋体";text-align:left}
+img{border:none}
+ul,ol,li{list-style:none}
+a{text-decoration:none}a:hover{text-decoration:underline}
+
+#case{width:600px;height:130px;margin:0 auto;border:solid 6px #aeaeae}
+#case .hd{width:600px;height:24px;border-bottom:1px solid #dadada;line-height:24px;float:left}
+#case .hd .left{width:510px;height:24px;float:left;color:#999;padding-left:10px;}
+#case .hd .right{width:17px;height:17px;float:right;padding:4px 6px 0 0;}
+#case .fd{width:600px;height:104px;background:url(images/biaoqing.gif) no-repeat 8px 10px;float:left}
+#case .fd .you{width:495px;height:96px;float:right;padding-top:8px}
+#case .fd .you ul{width:495px;font-size:14px;font-weight:bold;line-height:20px}
+#case .fd .you ul li{width:495px;height:20px;float:left;text-align:center;font-size:14px}
+#case .fd .you ul li.ft{font-size:12px;font-weight:normal;height:18px;line-height:18px}
+#case .fd .you ul li.xiao{font-size:14px;font-weight:normal;height:30px;margin-top:5px}
+#case .fd .you ul li input{color:#fff;width:85px;height:29px;background:url(images/loginbj.gif) no-repeat;font-weight:bold;font-size:16px;border:none;cursor:pointer}
+#case .fd .you ul li input.after{color:#fff;width:85px;height:29px;background:url(images/loginbj2.gif) no-repeat;margin-left:30px}
+
+</style>
+</head>
+
+<body>
+<div id="case">
+    <div class="hd">
+      <div class="left">101兄弟提示您！</div>
+        <div class="right"><a href="#"><img src="images/close.gif" width="17" height="17" /></a></div>
+    </div>
+    <div class="fd">
+        <div class="you">
+            <ul>
+                <li>恭喜您！已成功开通专页，如有供货商给您推送商品，请到管理中心查看！</li>
+                <li class="ft">您的专页地址为：<a href="http://www.101xd.com/vipsection?id=<?php echo $_GET['id']; ?>">http://www.101xd.com/vipsection?id=<?php echo $_GET['id']; ?></a></li>
+                <li class="ft" style="color:#999">（请右键复制，并牢记，直接输入该地址可访问您的专页！）</li>
+                <li class="xiao">
+                  <input type="button" name="input" value="知道了"  onclick="location.href='vipindex'"/>
+                </li> 
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<?php 
+$data = isset($__p__['data']) ? $__p__['data'] : "";
+$count = isset($__p__['count']) ? $__p__['count'] : "";
+$page = isset($__p__['page']) ? $__p__['page'] : "";
+$num = isset($__p__['state_num']) ? $__p__['state_num'] : "";
+?>
+<div class="audit">
+    <div class="manage">推送商品管理</div>
+    <div class="material">
+    <p>您已成功发布&nbsp;<a href="#"><?php echo $count; ?></a>&nbsp;条推送商品信息！</p>
+      <a href="/agent" class="gong">推送商品信息</a></div>
+    <div class="status"> 
+    <a href="?action=state&state=0">审核中（<b style="color:#f00"><?php echo $num['count']; ?></b>）</a> 
+    <a href="?action=state&state=1">审核通过（<b style="color:#f00"><?php echo $num['count1']; ?></b>）</a> 
+    <a href="?action=state&state=2">驳回（<b style="color:#f00"><?php echo $num['count2']; ?></b>）</a> 
+    <a href="?action=collect&collect=1">被渠道商收藏（<b style="color:#f00"><?php echo $num['count3']; ?></b>）</a> 
+    <a href="?action=collect&collect=2">被渠道商忽略（<b style="color:#f00"><?php echo $num['count4']; ?></b>）</a>
+    </div>
+    <div class="pack">
+      <p>
+      <span class="audit1">选项</span>
+      <span class="audit2">商品名称</span>
+      <span class="audit3">商品类型</span> 
+      <span class="audit3">商品状态</span> 
+      <span class="audit3">推送至</span>
+      <span class="audit3">推送时间</span>
+      <span class="audit1">操作</span></p>
+    </div>
+    <div class="neirong">
+          <ul>
+<?php if(!empty($data)){
+
+    foreach($data as $v){ 
+        if($v['category']=='1'){
+            $category_type = "本地商品";
+        } else if($v['category']=='2'){
+            $category_type = "精品网货";
+        } else {
+            $category_type = "其它";
+        }
+
+        if($v['state']=='0'){
+            $state_comd = "未处理";
+        } else if($v['state']=='1'){
+            $state_comd = "审核通过";
+        } else {
+            $state_comd = "拒绝";
+        }
+
+        if($v['ad']=='0'){
+
+            $ad_comd = "否";
+        } else {
+
+            $ad_comd = "是";
+        }
+
+        if($v['delivery']=='0'){
+            $delivery_comd = "否";
+        } else if($v['delivery']=='1') {
+            $delivery_comd = "是";
+        } else {
+            $delivery_comd = "皆可";
+        }
+
+        if(!empty($v['insertdate'])){
+        
+            $date = date("Y-m-d", $v['insertdate']);
+        }
+
+      
+        $str_title = $v['title'];
+        if(strlen($v['title'])>40){
+
+            $str_title = mb_substr($v['title'],0,40,"utf-8").'...';
+        }
+
+?>
+        <li class="obj_<?php echo $v['id']; ?>">
+        <span class="audit1" style="width:55px;height:55px;"><input name="checkbox" type="checkbox" value="<?php echo $v['id']; ?>"/></span> 
+        <span class="audit2" style="width:200px;height:55px;"><a href="#"><?php echo $str_title; ?></a></span> 
+        <span class="audit3" style="width:86px;height:55px;"><?php echo $category_type; ?><br /><?php echo $v['cname']; ?></span> <span class="audit3"><?php echo $state_comd; ?></span> 
+        <span class="audit3" style="width:86px;height:55px;"><?php echo $v['site_name']; ?></span>
+        <span class="audit3" style="width:86px;height:55px;"><?php echo $date; ?></span> 
+        <span class="audit1" style="width:55px;height:55px;"><a href="viewpushdetail?id=<?php echo $v['id']; ?>">查看</a>
+        <a href="#" class="delete_id" id="<?php echo $v['id']; ?>">删除</a></span> 
+        </li>
+<?php
+    }
+
+}?>
+      </ul>
+    </div>
+    <div class="xia">
+    <input id="all_select" name="" type="checkbox" value="" />
+        <a href="#">全选</a><a href="#" id="delete">删除</a>&nbsp;&nbsp;
+        <?php
+        if(!empty($page)) {
+            echo $page->show(4);
+        }
+?>
+    </div>
+  </div>
+</div>

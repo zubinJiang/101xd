@@ -1,0 +1,151 @@
+<?php 
+$user = isset($__p__['user_data']) ? $__p__['user_data'] : "";
+$company = isset($__p__['company_data']) ? $__p__['company_data'] : "";
+$address = isset($__p__['address_data']) ? $__p__['address_data'] : "";
+$provinces = isset($__p__['province']) ? $__p__['province'] : "";
+$category = isset($__p__['category']) ? $__p__['category'] : "";
+$citys = isset($__p__['city_list']) ? $__p__['city_list'] : "";
+?>
+<div class="et">
+            <div class="tsfw">
+                <div class="hd">修改账户信息</div>
+                <div class="fd">
+                    <form action="vipchannelMaterial?action=update" method="post">
+                        <input type="hidden" name="set_code" value="">
+                        <input type="hidden" name="address_id" value="<?php echo $company['address_id'];?>">
+                        <input type="hidden" name="company_id" value="<?php echo $user['CompanyID'];?>">
+                        <div class="bd">
+                        <label>用户名：</label>
+                        <input type="text" name="user_name" value="<?php echo $user['Name']; ?>" id="user_name">
+                        <label class="ll"><span style="color:#f00">（必填）</span>用户名在注册后是不可修改的</label>
+                        </div>
+                        <div class="bd">
+                        <label>企业名称：</label>
+                        <input type="text" name="comapny_name" value="<?php echo $user['CompanyName']; ?>" style="width:330px">
+                        <label class="ll">（选填） 如：101兄弟</label>
+                        </div>
+                        <div class="bd">
+                        <label>电子邮箱：</label>
+                        <input type="text" name="email" value="<?php echo $user['Email']; ?>">
+                        <label class="ll">（选填） 如：service@101xd.com</label>
+                        </div>
+                        <div class="bd">
+                        <label>手机号：</label>
+                        <input type="text" name="usertel"  id="user_tel" value="<?php echo $user['UserTel']; ?>">
+                        <input type="reset" value="修改手机号" id="update_tel"  style="width:80px;height:24px;font-size:12px"/>
+                        <input type="button"  value="免费获取验证码" id='getcode' class="yz"  name="59" style="display:none;width:110px;height:24px;font-size:12px;"/>
+                        <label class="ll" style="width:230"><span style="color:#f00">（必填）</span><span>修改手机号必须重新进行手机绑定</span></label>
+                        </div>
+                        <div class="bd" id="usercode" style="display:none;">
+                        <label>验证码：</label>
+                        <input type="text" value="" name="usercode" />
+                        <label class="ll"><span style="color:#f00">（必填）</span><span style="display:none"></span>若修改手机号，验证码为必填</label>
+                        </div>
+                        <div class="bd">
+                        <label>企业联系人：</label>
+                        <input type="text" name="contact_name" value="<?php echo $company['contact_name']; ?>">
+                        <label class="ll">（选填） 如：张三</label>
+                        </div>
+                        <div class="bd">
+                        <label>职务：</label>
+                        <input type="text" name="position" value="<?php echo $company['position']; ?>">
+                        <label class="ll">（选填） 如：业务总监</label>
+                        </div>
+                        <div class="bd">
+                        <label>其他联系电话：</label>
+                        <input type="text" name="contact_tel" value="<?php echo $company['contact_tel']; ?>">
+                        <label class="ll">（选填） 如：010-85197770  或手机号</label>
+                        </div>
+                        <div class="bd">
+                        <label>QQ号：</label>
+                        <input type="text" name="QQ" value="<?php echo $company['QQ']; ?>"/>
+                        <label class="ll">（选填） 如：2534395200</label>
+                        </div>
+                        <div class="bd">
+                        <label>公司地区：</label>
+                            <select name="add_province" class="province_id">
+                        <option value="">--请选择省份--</option>
+      <?php
+if(!empty($provinces)) {
+    foreach($provinces as $v) {
+?>
+    <option value="<?php echo $v['id'];?>" <?php if($address['province_id']==$v['id']){ echo "selected";}?>><?php echo $v['name'];?></option>
+<?php
+    }
+}
+?>
+                       </select>
+                       <select name="add_city" class="area_id">
+                       <option value="">--请选择市区--</option>
+<?php
+   if(!empty($citys)) {
+            foreach($citys as $v) {
+    ?>
+        <option value="<?php echo $v['id'];?>" <?php if($address['area_id']==$v['id']){ echo "selected";}?> ><?php echo $v['name'];?></option>
+    <?php
+            }
+        }
+?>
+</select>
+                        <label class="ll">（选填）</label>
+                        </div>
+                        <div class="bd">
+                        <label>公司地址：</label>
+                        <input type="text" name="address_desc" value="<?php echo $address['desc']; ?>" style="width:350px;">
+                        <label class="ll">（选填） 如：北京INN大厦2号楼12层A-16</label>
+                        </div>
+                        <div class="bd">
+                        <label>邮编：</label>
+                        <input type="text" name="postcode" value="<?php echo $company['postcode']; ?>">
+                        <label class="ll">（选填） 如：125000</label>
+                        </div>
+                        <div class="bd">
+                        <label>公司网址：</label>
+                        <input type="text" name="url" value="<?php if(!empty($company['url'])){ echo $company['url']; }else{ echo "http://"; }?>" style="width:350px;">
+                        <label class="ll">（选填） 如：http://www.101xd.com</label>
+                        </div>
+                        <div class="bd">
+                        <label>主营行业：</label>
+                        <select name="category">
+                            <option value="">请选择行业</option>
+                            <?php if(!empty($category)){
+
+    foreach($category as $v){
+?>
+    <option value="<?php echo $v['id']; ?>"  <?php if($company['category_id']==$v['id']){ echo "selected=true"; } ?> ><?php echo $v['name']; ?></option>
+<?php   
+    }
+
+                            }?>
+
+                        </select>
+                        <label class="ll">（选填）</label>
+                        </div>
+                        <div class="bd">
+                        <label>主营产品关键字：</label>
+<?php  if(!empty($company['key'])){
+
+    $key_str = explode("|",$company['key']);
+
+} ?>
+                        <input type="text" name="key[]" value="<?php echo $key_str['0']; ?>" style="width:80px;"/>
+                        <input type="text" name="key[]" value="<?php echo $key_str['1']; ?>" style="width:80px;"/>
+                        <input type="text" name="key[]" value="<?php echo $key_str['2']; ?>" style="width:80px;"/>
+                        <input type="text" name="key[]" value="<?php echo $key_str['3']; ?>" style="width:80px;"/>
+                        <label class="ll">（选填） 如：食品类 化妆品 服装鞋帽</label>
+                        </div>
+                        <div class="ja">
+                        <label>企业介绍：</label>
+                        <textarea name="com_desc" cols="" rows="" ><?php echo $company['desc']; ?></textarea>
+                        <label class="lx">（选填） 企业介绍。最多允许输入500个汉字！不能有非法词汇！</label>
+                        </div>
+                    <div class="an">
+                        <input type="submit" id="submit" name="" value="修 改" />
+                    </div>
+                    </form>
+                </div>
+            </div>
+            <div class="tsq"></div>
+        </div>
+    </div> 
+</div>

@@ -1,0 +1,113 @@
+<?php
+$photo = isset($__p__['user_data']['Photo']) ? $__p__['user_data']['Photo'] : '';
+$auth  = isset($__p__['user_auth']['role_id']) ? $__p__['user_auth']['role_id'] : '';
+if(empty($photo)) {
+   $photo = isset($__p__['login_user_photo']) ? $__p__['login_user_photo'] : '';
+} 
+?>
+<div id="navigation">
+    <div class="contorl">
+      <h1>101xd有限责任公司</h1>
+      <dl>
+<?php 
+      if(!empty($photo)) {
+?>
+      <dt><img src="<?php echo $photo;?>" width="125" height="116" border="0" /></a></dt>
+<?php         
+      } else {
+          ?>
+      <dt><img src="images/shangchuan.gif" width="130" height="89" border="0" /></a></dt>
+<?php
+      
+      } 
+?>
+      <dd><a href="account?action=tophoto#photo" >修改头像</a><a href="account">查看资料</a></dd>
+      </dl>
+    </div>
+<?php
+if(1==$__p__['login_UserType']) {
+?>
+    <div class="contorl">
+      <h1>我是渠道商</h1>
+      <ul>
+        <li><a href="publishers" target="_self">我关注的卖家</a></li>
+        <li><a href="favorite" target="_self">商品收藏夹</a></li>
+      </ul>
+    </div>
+    <div class="contorl">
+      <h1>我是卖家</h1>
+      <ul>
+        
+        <li><a href="supply" target="_self" >发布供应商品</a></li>
+        <li><a href="manageGood?type=all" target="_self" >管理供应商品</a></li>
+        <li><a href="concerned">谁关注了我</a></li>
+      </ul>
+    </div>
+    <div class="contorl">
+      <h1>推送商品管理</h1>
+      <ul>
+        <li><a href="buyPushManagement" target="_self" >推送商品管理</a></li>
+      </ul>
+    </div>
+<?php
+} else {
+?>
+    <div class="contorl">
+      <h1>我是卖家</h1>
+      <ul>
+        <li><a href="buyPushManagement" target="_self" >推送商品管理</a></li>
+        <li><a href="supply" target="_self" >发布供应商品</a></li>
+        <li><a href="manageGood?type=all" target="_self" >管理供应商品</a></li>
+        <li><a href="concerned" target="_self">谁关注了我</a></li>
+        <li><a href="favorite" target="_self">商品收藏夹</a></li>
+      </ul>
+    </div>
+    <div class="contorl">
+      <h1>推送商品管理</h1>
+      <ul>
+        <li><a href="buyPushManagement" target="_self" >推送商品管理</a></li>
+      </ul>
+    </div>
+    <div class="contorl">
+      <h1>我是渠道商</h1>
+      <ul>
+        <li><a href="publishers" target="_self">我关注的卖家</a></li>
+      </ul>
+    </div>
+
+<?php
+}
+
+if(isset($_COOKIE['_userv_'])) {
+
+    if($auth=='1' || $auth=='2') {
+?>
+    <div class="contorl">
+      <h1>后台操作</h1>
+      <ul>
+        <li><a href="reviewe" target="_self">审核产品</a></li>
+        <li><a href="administrate" target="_self">管理产品</a></li>
+        <li><a href="procedure" target="_self">批量发布</a></li>
+        <li><a href="sms" target="_self">短信发布</a></li>
+        <li><a href="link" target="_self">友情链接</a></li>
+        <li><a href="member" target="_self">会员管理</a></li>
+        <li><a href="permissions" target="_self">角色分配</a></li>
+        <li><a href="role" target="_self">权限管理</a></li>
+      </ul>
+    </div>
+    <div class="contorl">
+      <h1>快速供货服务管理</h1>
+      <ul>
+        <li><a href="inputchannels" target="_self">渠道商录入</a></li>
+        <li><a href="channelManagement" target="_self">渠道商管理</a></li>
+        <li><a href="pushManagement" target="_self">推送商品管理</a></li>
+        <li><a href="adminfastsupply" target="_self">使用商品管理</a></li>
+      </ul>
+    </div>
+    <?php
+    }
+}
+?>
+    <div class="advise_a"><a href="#"><img src="images/advise.gif" /></a></div>
+  </div>
+

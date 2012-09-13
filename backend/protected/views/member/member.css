@@ -1,0 +1,25 @@
+#member .choice {width:1024px;float:none;}
+#member .choice ul li a {width:30px;float:none;}
+#member .choice ul  {width:740px}
+.gobal {width:740px;}
+
+#detail {border:2px solid #333;width:346px;height:346px;padding:0;background: #F2F2F2;}
+#detail ul {list-style:none;float:left;padding:0;margin:20px 0 0 50px;font-size:12px;width:70%;}
+#detail ul li {clear:both;margin:0;padding:0;line-height:30px;text-align:left;}
+#detail ul li label{width:60px;float:left;text-align:right;}
+
+/* Overlay */
+#contact-overlay {background-color:#444; cursor:wait;}
+/* Container */
+#contact-container {font: 16px/22px 'Trebuchet MS', Verdana, Arial; text-align:left;width:350px;height:350px;}
+#contact-container .contact-content {background-color:#333; color:#ddd; height:40px;}
+#contact-container .contact-loading {background:url(../../../images/lightbox-ico-loading.gif) no-repeat; height:32px; margin:-14px 0 0 190px; padding:0; position:absolute; width:32px; z-index:8000;}
+#contact-container .contact-message {text-align:center;}
+#contact-container .contact-error {background:#000; border:2px solid #ccc; font-size:14px; font-weight:bold; line-height:18px; margin:0 auto; padding:2px; width:92%;}
+#contact-container a.modal-close,
+#contact-container a.modal-close:link,
+#contact-container a.modal-close:active,
+#contact-container a.modal-close:visited {color:#999; font-size:18px; font-weight:bold; position:absolute; text-decoration:none; right:10px; top:3px;}
+#contact-container a.modal-close:hover {color:#ccc;}
+.wid120 {width:90px;overflow: hidden;}
+.wid90 {width:70px;overflow: hidden;}

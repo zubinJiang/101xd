@@ -1,0 +1,17 @@
+<?php
+$data  = isset($__p__['data']) ? $__p__['data'] : '';
+?>
+<div id="form">
+    <div class="close">
+    <span class="left">将您的网站加入导航</span>
+    <span class="right">[<a class="close_a">关闭</a>]</span>
+    </div>
+    <ul>
+        <li>网站名称：<input type="text" name="name" value="" />&nbsp;&nbsp;<font color=red>*</font></li>
+        <li>网站地址：<input type="text" name="url" value="" />&nbsp;&nbsp;<font color=red>*</font></li>
+        <li>API&nbsp;&nbsp;地址：<input type="text" name="api_url" value="" /></li>
+        <li>网站简介：<textarea rows=4 cols=40 name="desc" ></textarea></li>
+        <li><input type="submit" class="form_submit" name="" value="确认添加"></li>
+        <li><span class="error"></span></li>
+    </ul>
+</div>

@@ -1,0 +1,259 @@
+<?php 
+$data = isset($__p__['data']) ? $__p__['data'] : "";
+$page = isset($__p__['page']) ? $__p__['page'] : "";
+$category = isset($__p__['category']) ? $__p__['category'] : "";
+$vip_user = isset($__p__['vip_user']) ? $__p__['vip_user'] : "";
+$provinces = isset($__p__['province']) ? $__p__['province'] : "";
+?>
+<div id="content">
+<div class="et">
+            <div class="pd">
+                <div class="hd">推送商品管理</div>
+                <div class="bd">
+                        <div class="dv">
+                        <form action="pushManagement?action=search" method="post">
+                        <label>商品搜索：</label>
+                        <input name="key" name="keyworde" value="可以按标题搜索" style="width:220px;"/>
+                        <input type="submit" value="搜  索" class="an">
+                        </form>
+                        </div>
+                </div>
+            </div>
+            <div class="main">
+                <div class="qiehuan">
+                    <div class="dw1"><a href="pushManagement">全部推送商品管理</a></div>
+                </div>
+                <div class="xianshi">
+                    <ul>
+                        <li style="width:140px;text-align:center">商品名称</li>
+                        <li>
+                            <select name="user_name" class="user_name"><option value="">选择推送方</option>
+                            <option value="1">供应商</option>
+                            <option value="0">101兄弟</option></select>
+                        </li>
+                        <li style="width:80px;text-align:center">推送至</li>
+                        <li>
+                            <select  class="category"><option value="">选择类型</option>
+                            <option value="1">本地商品</option>
+                            <option value="2">精品网货</option></select>
+                        </li>
+                        <li>
+                            <select name="category_id" class="category"><option>选择类别</option>
+<?php if(!empty($category)){
+
+    foreach($category as $v){
+?>
+    <option value="<?php echo $v['id']; ?>"><?php echo $v['name']; ?></option>
+<?php   
+    }
+
+}?></select>
+                        </li>
+                        <li style="width:70px;text-align:center">推送时间</li>
+                        <li style="width:50px;text-align:center">代发货</li>
+                        <li style="width:70px;text-align:center">广告需求</li>
+                        
+                        <li style="width:70px;text-align:center">商品状态</li> 
+                
+                        <li  style="width:100px;text-align:center">操作</li>
+                    </ul>
+                </div>
+                <div class="center">
+<?php if(!empty($data)){
+
+    foreach($data as $v){ 
+        if($v['category']=='1'){
+            $category_type = "本地商品";
+        } else if($v['category']=='2'){
+            $category_type = "精品网货";
+        } else {
+            $category_type = "其它";
+        }
+
+        if($v['state']=='0'){
+            $state_comd = "未处理";
+        } else if($v['state']=='1'){
+            $state_comd = "审核通过";
+        } else {
+            $state_comd = "拒绝";
+        }
+
+        if($v['ad']=='0'){
+
+            $ad_comd = "否";
+        } else {
+
+            $ad_comd = "是";
+        }
+
+        if($v['delivery']=='0'){
+            $delivery_comd = "否";
+        } else if($v['delivery']=='1') {
+            $delivery_comd = "是";
+        } else {
+            $delivery_comd = "皆可";
+        }
+
+        if(!empty($v['insertdate'])){
+        
+            $date = date("Y-m-d", $v['insertdate']);
+        }
+
+        $str_title = $v['title'];
+        if(strlen($v['title'])>20){
+
+            $str_title = mb_substr($v['title'],0,20,"utf-8").'...';
+        }
+?>
+
+        <div class="neirong">
+        <ul>
+        <li class="mc">
+        <a href="vipdetail?id=<?php echo $v['id']; ?>"><?php echo $str_title; ?></a></li>
+        <li style="width:84px;text-align:center"><?php echo $v['uname']; ?></li>
+        <li style="width:84px;text-align:center"><?php echo $v['sitename']; ?></li>
+        <li style="width:84px;text-align:center"><?php echo $category_type; ?></li>
+        <li style="width:84px;text-align:center"><?php echo $v['cname']; ?></li>
+        <li style="width:70px;text-align:center"><?php echo $date; ?></li>
+        <li style="width:50px;text-align:center"><?php echo $delivery_comd; ?></li>
+        <li style="width:70px;text-align:center"><?php echo $ad_comd; ?></li>
+        <li style="width:70px;text-align:center" id="auth_<?php echo $v['id']; ?>"><?php echo $state_comd; ?></li>
+        <li style="text-align:center;width:100px;margin:0">
+        <a href="viewpullproduct?id=<?php echo $v['id']; ?>">查看</a>/
+        <a href="#" class="pass" name="<?php echo $v['sitename']; ?>" id="<?php echo $v['uid']; ?>" value="<?php echo $v['id']; ?>" title="<?php echo $str_title; ?>">通过</a>/
+        <a href="#" class="refuse" name="<?php echo $v['sitename']; ?>" id="<?php echo $v['uid']; ?>" value="<?php echo $v['id']; ?>" title="<?php echo $str_title; ?>" >拒绝</a></li>
+        <ul>
+        </div>
+<?php
+    }
+
+}?>
+</div>
+                <div class="page">
+<?php
+        if(!empty($page)) {
+            echo $page->show(4);
+        }
+?>
+                </div>
+          </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<!--<div id="pushManagement">
+    <h3>推送商品管理<h3>
+    <h3><a href="pushManagement">全部推送商品管理</a></span><h3>
+    <hr>
+    <div class="zhongxin">
+        <div class="title">
+        <form action="pushManagement?action=search" method="post">
+        搜索<input type="text" style="width:200px;" name="key" value="可以按标题搜索">&nbsp;&nbsp;
+        
+        <input type="submit" value="搜  索">
+        </form>
+        </div>
+        <hr>
+        <a id='goods' name='goods'></a>
+        <div class="head">
+            <div class="sup">
+            <li class="wid120">商品标题</li>
+            <li class="wid90"><select name="user_name" style="width: 84px;" class="user_name"><option value="">选择推送方</option>
+            <option value="1">供应商</option>
+            <option value="O">101兄弟</option>
+            </select></li>
+            <li class="wid90">&nbsp;推送至</li>
+            <li class="wid90"><select  class="category"><option value="">选择类型</option><option value="1">本地商品</option><option value="2">精品网货</option></select></li>
+            <li class="wid90"><select name="category_id" class="category"><option>选择类别</option>
+<?php if(!empty($category)){
+
+    foreach($category as $v){
+?>
+    <option value="<?php echo $v['id']; ?>"><?php echo $v['name']; ?></option>
+<?php   
+    }
+
+}?></select></li>
+            <li class="wid90">推送时间</li>
+            <li class="wid90">代发货</li>
+            <li class="wid90">广告代理</li>
+            <li class="wid90">商品状态</li>
+            <li class="wid90">操作</li>
+            </div><br/>
+            <div class="bup">
+<?php if(!empty($data)){
+
+    foreach($data as $v){ 
+        if($v['category']=='1'){
+            $category_type = "本地商品";
+        } else if($v['category']=='2'){
+            $category_type = "精品网货";
+        } else {
+            $category_type = "其它";
+        }
+
+        if($v['state']=='0'){
+            $state_comd = "未处理";
+        } else if($v['state']=='1'){
+            $state_comd = "审核通过";
+        } else {
+            $state_comd = "拒绝";
+        }
+
+        if($v['ad']=='0'){
+
+            $ad_comd = "否";
+        } else {
+
+            $ad_comd = "是";
+        }
+
+        if($v['delivery']=='0'){
+            $delivery_comd = "否";
+        } else if($v['delivery']=='1') {
+            $delivery_comd = "是";
+        } else {
+            $delivery_comd = "皆可";
+        }
+
+        if(!empty($v['insertdate'])){
+        
+            $date = date("Y-m-d", $v['insertdate']);
+        }
+
+        $str_title = $v['title'];
+        if(strlen($v['title'])>20){
+
+            $str_title = mb_substr($v['title'],0,20,"utf-8").'...';
+        }
+?>
+        <ul>
+        <li class="mc"><a href="viewpullproduct?id=<?php echo $v['id']; ?>"><?php echo $str_title; ?></a></li>
+        <li class="wid90"><?php echo $v['uname']; ?></li>
+        <li class="wid90"><?php echo $v['sitename']; ?></li>
+        <li class="wid90"><?php echo $category_type; ?></li>
+        <li class="wid90"><?php echo $v['cname']; ?></li>
+        <li class="wid90"><?php echo $date; ?></li>
+        <li class="wid90"><?php echo $delivery_comd; ?></li>
+        <li class="wid90"><?php echo $ad_comd; ?></li>
+        <li class="wid90" id="auth_<?php echo $v['id']; ?>"><?php echo $state_comd; ?></li>
+        <li class="wid90"><a href="viewpullproduct?id=<?php echo $v['id']; ?>">查看</a>/<a href="#" class="pass" value="<?php echo $v['id']; ?>">通过</a>/<a href="#" class="refuse" value="<?php echo $v['id']; ?>">拒绝</a></li>
+        </ul>
+    
+<?php
+    }
+
+}?>
+            </div>
+        </div>
+<div class="page">
+
+<?php
+        if(!empty($page)) {
+            echo $page->show(4);
+        }
+?>
+</div>
+    </div>
+</div>-->

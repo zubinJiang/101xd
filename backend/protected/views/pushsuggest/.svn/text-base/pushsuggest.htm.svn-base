@@ -1,0 +1,79 @@
+<?php
+//已推送到的渠道商的数据，类型如下
+$product = isset($__p__['product']) ? $__p__['product'] : array() ;
+$pushed = isset($__p__['pushed']) ? $__p__['pushed'] : array() ;
+$suggestpush = isset($__p__['suggestpush']) ? $__p__['suggestpush'] : array() ;
+$d=array(
+    array("id"=>"123","name"=>"新浪团"),
+    array("id"=>"123","name"=>"新浪团"),
+    array("id"=>"123","name"=>"新浪团"),
+    array("id"=>"123","name"=>"新浪团"),
+    );
+//$product = array('id'=>1233);
+?>
+
+<div class="push_suggest_box">
+    <div class="push_suggest_msg">
+        <div style="height:30px;font-size:20px;font-weight:normal;width:100%;float:left;">商品推送操作<span id="hide_box" style="float:right;color:red" onclick="$(this).parent().parent().parent().hide()">X</span></div>
+        <span style="font-size:15px;color:#999;text-indent:20px;width:100%;float:left;">您确认审核通过该商品？通过后，该款商品直接推送到</span>
+        <?php
+        foreach ($pushed as $p ){
+        echo $p;
+        echo "<span class='push_suggest_tuan'><div class='push_suggest_deltuan' company='{$p['UserID']}' product='{$product['id']}' onclick='DelPushTuan(this)'>X</div><div class='push_suggest_tuanname' company_id='{$p['UserID']}' vcid='{$p['CompanyID']}' uid='{$p['UserID']}' pid='{$product['id']}' p_title='{$product['title']}' p_name='{$p['Name']}'>{$p['Name']}</div></span>";
+        }
+        ?>
+    </div>
+    <div class="push_suggest_select">
+        <form>
+            <p style="height:25px;font-size:15px">该款商品属于　本地商品　餐饮美食类，以下渠道商可能对它感兴趣：</p>
+            <dl>
+                <?php 
+                foreach($suggestpush as $p){
+                echo "<dt>
+                    <input type='checkbox' name=pushto vcid='{$p['CompanyID']}' uid='{$p['UserID']}' pid='{$product['id']} p_title='{$product['title']}' p_name='{$p['Name']}' />
+                    </dt>
+                    <dd class='tuan_name' vcid='{$p['CompanyID']}' uid='{$p['UserID']}' pid='{$product['id']} p_title='{$product['title']}' p_name='{$p['Name']}' >
+                    {$p['Name']}
+                    </dd>";
+                }
+               ?>
+            </dl>     
+        </form>
+    </div>
+    <div class="push_suggest_add">
+        <dl>
+            <dt>
+            <input class="push_suggest_entrybox" name="addpush" type="text" value="添加推送渠道商"/>
+            </dt>
+            <dd>
+            <button class="push_suggest_button" name="add" type="button">添加</button>
+            </dd>
+        </dl>
+    </div>
+    <div class="push_suggest_tool">
+        <center>
+            <button class="push_suggest_button" name="agree" type="button">通过审核，推送</button>
+            <button class="push_suggest_button" name="pass" type="button">以后再说</button>
+            <button class="push_suggest_button" name="deny" type="button">拒绝通过</button>
+        </center>
+    </div>
+</div>
+<div  id="companyinfo">
+</div>
+    <script id="company" type="text/x-jquery-tmpl">
+        <dl>
+            <p>${company.name}</p>
+            <div>
+            {{each auth_loc}}
+            <li><strong>${$value}</strong></li>
+            {{/each}}
+            </div>
+            <div>
+            <li>
+            {{each auth_net}}
+            <li><strong>${$value}</strong></li>
+            {{/each}}
+            </li>
+            </div>
+        </li>
+    </script>

@@ -1,0 +1,66 @@
+<div id="content">
+    <div class="start">免费注册101兄弟--网上渠道聚集地，新的商机从这里开始！</div>
+    <div class="type">
+        根据您的实际情况选择您要注册的会员类型，若您已经是会员，请<a href="login" style="color:#F00;font-weight:bold">[登录]</a>
+    </div>
+    <div class="register">
+        <div class="qd">
+            <div class="hd">
+                <div class="wt">
+                    <span class="member1">渠道商会员</span>
+                    <span>团购网站、B2C网站、批发商、零售商</span>
+                </div>
+                <div class="et"><img src="images/rsicon_5.gif" width="65" height="70" /></div>
+            </div>
+            <div class="bd">
+              <p><span>渠道商入驻101兄弟可得到：</span><br />
+                   1.符合您要求的优质商品推送到您的会员管理中心。<br />
+                   2.免费开通企业专页，提高企业形象，获得更多生意机会。<br />
+                   3.增加企业的外部链接，为网站导入流量。</p>
+                <p class="gw"><img src="images/rspic_1.gif" width="146" height="72" /><br />优质商品</p>
+                <p class="gw"><img src="images/rspic_2.gif" width="146" height="72" /><br />企业专页</p>
+                <p class="gw"><img src="images/rspic_3.gif" width="146" height="72" /><br />增加网站流量</p>
+            </div>
+            <div class="fd">
+                <form action="?step=2" method="post" >
+                <input type="hidden" value='1' name='type' />
+                <input type="submit" value="渠道商免费注册" name="" id='qudao' />
+                </form>
+            </div>
+      </div>
+        <div class="gh">
+          <div class="hd">
+              <div class="wt">
+                  <span class="member1">渠道商会员</span>
+                  <span>厂商、代理商</span>
+              </div>
+              <div class="et"><img src="images/rsicon_6.gif" width="65" height="70" /></div>
+          </div>
+          <div class="bd">
+              <p><span>供货商入驻101兄弟可得到：</span><br />
+                <span class="yi">1.为网站数百家的渠道商会员供货，更容易与大渠道商合作，增加销售渠道。
+                  </span>
+                  <span class="yi">2.免费发布商品信息，101兄弟为您量身定做商品推广方案。</span>
+                  <span class="er">3.提升企业品牌，商品品牌形象和影响力。</span>
+              </p>
+          </div>
+          <div class="fd">
+            <form action="?step=2" method="post" >
+                <input type="hidden" value='0' name='type' />
+                <input type="submit" value="供货商免费注册" name="" id="supply"/>
+            </form>
+          </div>
+      </div>
+    </div>
+    <div class="ruzhu">
+        <div class="hd"><span>这些渠道商已入驻：</span><span class="dianji"><a href="register?step=2">渠道商入驻，请点击！</a></span></div>
+        <div class="fd">
+            <p><a href="/vipsection?id=426"><img src="images/rsxl.gif" width="127" height="62" /></a></p>
+            <p><a href="/vipsection?id=421"><img src="images/rstb.gif" width="127" height="62" /></a></p>
+            <p><a href="/vipsection?id=425"><img src="images/rsde.gif" width="127" height="62" /></a></p>
+            <p><a href="/vipsection?id=424"><img src="images/rstw.gif" width="127" height="62" /></a></p>
+            <p><a href="/vipsection?id=427"><img src="images/rsx800.gif" width="127" height="62" /></a></p>
+            <p><a href="#"><img src="/images/index_like.gif" width="127" height="62" /></a></p>
+        </div>
+    </div>
+</div>

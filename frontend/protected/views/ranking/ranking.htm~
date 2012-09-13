@@ -1,0 +1,106 @@
+﻿<?php
+$data = isset($__p__['data']) ? $__p__['data'] : '';
+$count= $__p__['count'];
+$page = isset($__p__['page']) ? $__p__['page'] : 1;
+$day = date('m')-1;
+?>
+<div id="content">
+    <div class="content1"><img src="/images/agent_banner.gif" width="953" height="140" /></div>
+    <div class="content2">
+    <div class="content2_t">
+        <ul>
+        <li><a href="####"><?php echo $day; ?>月热卖榜</a></li>
+        </ul>
+    </div>
+    <div class="content2_f"><?php echo $day; ?>的热卖商品排行榜</div>
+</div>
+<a id='goods' name='goods'></a>
+<div class="content3">
+    <h2><span>排序方式：</span>
+    <span><a href="#" value="desc"  class="bought" >购买量↑</a></span>
+    <span class="s"><a  value="desc" class="starttime" href="#" >开团日期↑</a></span>
+    <span class="s"><a  value="desc" class="boughtperhour" href="#"  >日均购买量↑</a></span>
+    <span class="s"><a  value="desc" class="sales" href="#"  >销售额↑</a></span></h2>
+    <ul>
+<?php  
+if(!empty($data)){
+    foreach($data as $k=>$v){
+        $str_title = $v['title'];
+        if(!empty($v['title'])){
+            if(strlen($v['title'])>20){
+                $str_title = mb_substr($v['title'],0,20,"utf-8");
+            } 
+        }
+
+        $start_date = $v['starttime'];
+        if(!empty($v['starttime'])){
+            $start_date = date("Y-m-d",$v['starttime']);
+        }
+        if($k<3){
+?>
+        <li>
+        <div class="dingwei3"><img src="/images/no.<?php echo $k+1; ?>.gif" width="63" height="63" /></div>
+        <p class="p"><a href="<?php echo $v['url'];?>" target="_blank" rel="nofflow"><img src="<?php echo $v['image']; ?>" width="158" height="111" /></a>
+        <span class="ss">
+        <span class="biaoti"><a href="<?php echo $v['url'];?>" target="_blank" rel="nofflow"><?php echo $str_title; ?></a></span><span class="xinxi">信息来源：<a href='####' title='日均IP：<?php echo $v['ip'];?>'><?php echo $v['web_name']; ?></a></span><span class="xiaoshou">销售额：￥<?php echo $v['Sales'];?></span>
+        </span></p>
+        <p class="pp">
+        <span class="sp">&nbsp;购买量：<?php echo $v['bought']; ?></span>
+        <span class="spa">上团日期：<?php echo $start_date; ?></span>
+        <span class="spp">&nbsp;日均购买量：<?php echo floor($v['boughtperhour']*24); ?></span>
+        <span class="saa">团购价：￥<?php echo $v['price']; ?>元</span></p>
+        </li>
+<?php 
+        } 
+    }
+} ?>
+    </ul>
+</div>
+<div class="zhongxin">
+<?php  
+    if(!empty($data)){
+    foreach($data as $k=>$v){
+        if($k<3) { continue;}
+        $str_title = $v['title'];
+        if(!empty($v['title'])){
+            if(strlen($v['title'])>35){
+                $str_title = mb_substr($v['title'],0,35,"utf-8") . '...';
+            } 
+        }
+        $start_date = $v['starttime'];
+        if(!empty($v['starttime'])){
+            $start_date = date("Y-m-d",$v['starttime']);
+        }
+?>
+<div class="content4">
+    <div class="content4_l">
+    <span class="shuzi"><?php echo $k+1;?>.</span>
+    <span class="im"><a href="<?php echo $v['url'];?>" target="_blank" rel="nofflow"><img src="<?php echo $v['image']; ?>" width="195" height="145" /></a></span>
+    </div>
+    <div class="content4_r">
+    <h2><a href="<?php echo $v['url'];?>" target="_blank" rel="nofflow"><?php echo $str_title; ?></a><br/></h2>
+        <p class="ppp"><span class="gou">购买量：<?php echo $v['bought']; ?></span><span class="gou">销售额：￥<?php  echo $v['Sales']; ?></span><span class="startdate">上团日期：<?php  echo $start_date; ?></span> 
+        <span class="gou">日均购买量：<?php echo floor($v['boughtperhour']*24); ?></span><br /><span class="jia">团购价：￥<?php echo $v['price']; ?></span> 
+        <span class="jia">市场价：￥<?php echo $v['value']; ?></span>
+        <span class="source">信息来源：<?php echo $v['web_name']; ?></span><span>日均IP：<?php echo $v['ip']; ?></span></p>
+    </div>
+</div>
+<?php 
+    } 
+} 
+?>
+
+</div>
+ 
+  </div>
+  <div class="content100">
+    <div class="info">本排行榜的数据来源排名前100的团购网站，商品购买量排名靠前的热卖商品！（仅供参考）</div>
+    <div class="fanye">
+        <div class="yi"> <?php echo $page->show(4); ?> 共<?php echo $count;?>个商品 </div>
+        <div class="in"><input type="text" name="go" value="" /></div>
+        <div class="bo"><a  href="#" id="go">GO</a></div>
+    </div>
+  </div>
+</div>
+<input type="hidden" name="order" value="asc">
+<input type="hidden" name="sort" value="bought">

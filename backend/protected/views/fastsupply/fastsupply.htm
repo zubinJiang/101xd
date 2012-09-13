@@ -1,0 +1,75 @@
+<?php
+$Products = isset($__p__['ProductList']) ? $__p__['ProductList'] : array();
+$Page   = isset($__p__['page']) ? $__p__['page'] : '';
+$count  = $__p__['ProductCount'];
+$auth   = isset($_GET['auth']) ? intval($_GET['auth']) : 0;
+?>
+<div id="fastsupply">
+    <div class="issue" style="padding:0;">
+        <div id="current_location">快速供货服务管理 -> 提交商品管理</font></div>
+        <div style="float:right;" class="paging"></div> 
+    </div>
+    <p>
+        <span class="audit90">选项</span>
+        <span class="audit90">发布人</span>
+        <span class="audit235">产品名</span>
+        <span class="audit90">提交时间</span>
+        <span class="audit90">
+            <select name='status' onchange='location.href=this.options[this.selectedIndex].value;'>
+                <option value='?auth=0' <?php if($auth==0) {echo 'selected';}?>>状态</option>
+                <option value='?auth=2' <?php if($auth==2) {echo 'selected';}?>>审核中</option>
+                <option value='?auth=3' <?php if($auth==3) {echo 'selected';}?>>不通过</option>
+                <option value='?auth=1' <?php if($auth==1) {echo 'selected';}?>>通过</option>
+                <option value='?auth=4' <?php if($auth==4) {echo 'selected';}?>>vip供货</option>
+            </select>
+        </span>
+        <span class="audit90" style="width:160px;">操作</span>
+    </p>
+    <ul>
+    <?php
+if(!empty($Products)) {
+        foreach ($Products as $product)
+        {
+            if ($product['auth']==1) {
+                $product['reviewestatus']='已通过';
+
+            } elseif ($product['auth']==0) {
+                $product['reviewestatus']='审核中';
+            
+            } elseif ($product['auth']=='2') {
+                $product['reviewestatus']='未通过';
+            }
+            
+            if($product['vip']=='1') {
+                $product['reviewestatus'] = 'vip供货';
+            }
+?>
+<li id="<?php echo $product['id'];?>">
+<span class="audit90"><input type='checkbox' name='' value='<?php echo $product['id'];?>' /></span>
+<span class="audit90"><a href='userview?id=<?php echo $product['uid'];?>' target='_blank'><?php echo $product['name'];?></a></span>
+<span class="audit235"><a href="productview?id=<?php echo $product['id']; ?>" target="_blank"><?php echo $product['title'];?></a></span>
+<span class="audit90"><?php $insert_time = strtotime($product['insertdate']);echo date('Y-m-d', $insert_time);?></span>
+<span class="audit90 <?php echo $product['id'];?>_status"><?php echo $product['reviewestatus'];?></span>
+<?php
+echo "<a href='javascript:void(0);' rel='services/manage_product.php?action=delete&id={$product['id']}' class='active' title='此操作将永久删除此信息' >删除</a>";
+echo '|';
+echo "<a href='javascript:void(0);' rel='reviewe?action=reviewe&code=1&id={$product['id']}' class='active'  title='此操作将通过审核' >通过</a>";
+echo '|';
+
+echo "<a href='javascript:void(0);' rel='reviewe?action=reviewe&code=2&id={$product['id']}' class='through'  title='此操作将使产品状态变为不通过'>不通过</a>";
+echo '|';
+echo "<a href='javascript:void(0);' rel='reviewe?action=reviewe&code=0&id={$product['id']}' class='active'  title='vip供货'>vip供货</a>";
+?>
+    </li>
+<?php
+        }
+}
+?>
+    </ul>
+    <div class="page">
+    <?php
+    echo $Page->show();
+    echo "&nbsp;&nbsp;&nbsp;共有<font color=red>{$count}</font>条数据";
+    ?>
+  </div>
+</div>

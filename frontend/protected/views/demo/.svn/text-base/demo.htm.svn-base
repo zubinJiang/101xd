@@ -1,0 +1,9 @@
+<?php
+header("content-type:text/html; charset=utf-8");   
+$xmloutput  = isset($__p__['xmloutput']) ? $__p__['xmloutput'] : ''; 
+
+$file = fopen("/mnt/release/b2b/trunk/codes/frontend/sitemap.xml","w");
+fwrite($file,$xmloutput);
+fclose($file);
+unset($xmlitems);
+?>

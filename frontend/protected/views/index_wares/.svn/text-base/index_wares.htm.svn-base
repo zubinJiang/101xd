@@ -1,0 +1,86 @@
+<?php
+$product_list  = $__p__['product'];
+$category_list = $__p__['category'];
+$pic_url       = $__p__['pic_url'];
+$pic_path      = $__p__['pic_path'];
+?>
+<div id="wares">
+        <div class="wares_t">&nbsp;</div>
+        <div class="wares_c">
+            <div class="hd">
+                <ul>
+                    <li><a href="####" rel='0' onfocus="this.blur();"><img src="images/pic_5.gif" width="180" height="19" onfocus="onblur();" /></a></li>
+                    <li><a href="####" rel='1' onfocus="this.blur();">最受关注商品</a></li>
+                </ul>
+            </div>
+            <div class="bd">
+                <?php
+    if(!empty($category_list)) {
+        foreach($category_list as $v) {
+            ?>
+                <a href="childpages?id=<?php echo $v['id'];?>"><?php echo $v['name'];?></a> | 
+<?php
+        }
+    }
+?>
+            </div>
+            <div class="fd">
+                <?php
+if(!empty($product_list)) {
+    foreach($product_list as $v) {
+                $photo = 'images/zanwu.gif';
+        if(!empty($v['default_image'])) {
+            $photo = $v['default_image'];
+
+            $tmp  = pathinfo($photo);
+            $tmp['filename']  = str_replace('660X420', '192X135', $tmp['filename']);
+            $tmp['extension'] = strstr($tmp['extension'], '?', true);
+            $file_name = $tmp['dirname'] . '/' . $tmp['filename'] .'.'. $tmp['extension'];
+            $tmp_name  = str_replace($pic_url, $pic_path, $file_name);
+            if(file_exists($tmp_name)) {
+                $photo = $file_name;
+            }
+
+        } elseif(!empty($v['image'])){
+            $images = explode('|',$v['image']);
+            $photo  = current($images);
+
+            $tmp  = pathinfo($photo);
+            $file_name = $tmp['dirname'] . '/' . $tmp['filename'] . '_660X420.' . $tmp['extension'];
+            $tmp_name  = str_replace($pic_url, $pic_path, $file_name);
+            if(file_exists($tmp_name)) {
+                $photo = $file_name;
+            }
+        }
+
+        //$photo = str_replace('http://image.101xd.com/', 'http://fast.101xd.com/', $photo);
+
+        if(strlen($v['title'])>15){
+            $v['title'] = mb_substr($v['title'],0,15,"utf-8");
+        }
+
+        $v['market_price'] = empty($v['market_price']) ? 0 : $v['market_price'];
+        if($v['market_price']>0 && is_numeric($v['supply_price'])) {
+            $num = $v['supply_price'] / $v['market_price'];
+            $num = $num * 10;
+            $zhe = number_format($num, 1, '.', '');
+            $string = "折扣价：<b style='color:#f00;'>{$zhe}</b>折";
+        } else {
+            $string = "<b style='color:#f00;'>{$v['supply_price']}</b>";
+        }
+?>
+                <div class="product">
+                <div class="pic"><a href="product_<?php echo $v['id'];?>.html" target='_blank'><img src="<?php echo $photo;?>" width="193" height="135" /></a></div>
+                    <div class="price">
+                        <div class="title_pro"><a href="product_<?php echo $v['id'];?>.html" target='_blank'><?php echo $v['title'];?></a></div>
+                        <div class="price_pro"><span class='m_p_pro'>市场价：<b style="color:#f00"><?php echo $v['market_price'];?></b>元</span><span class='s_p_pro'><?php echo $string;?></span></div>
+                    </div>
+                </div>
+<?php
+    }
+}
+?>
+            </div>
+        </div>
+        <div class="wares_f">&nbsp;</div>
+    </div>

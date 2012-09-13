@@ -1,0 +1,240 @@
+<?php
+$business_data = isset($__p__['business']) ? $__p__['business'] : '';
+$product  = isset($__p__['product']) ? $__p__['product'] : '';
+$business = empty($business_data) ? "" : $business_data['business'];
+$address  = empty($business_data) ? "" : $business_data['address'];
+$attention= isset($__p__['attention_flag']) ? $__p__['attention_flag'] : FALSE;
+$category_list = isset($__p__['category_list']) ? $__p__['category_list'] : '';
+$contact    = isset($__p__['contact']) ? $__p__['contact'] : '';
+$free_city  = isset($__p__['free_city']) ? $__p__['free_city'] : '';
+$user_auth  = isset($__p__['user_auth']['role_id']) ? $__p__['user_auth']['role_id'] : '';
+global $pic_path;
+$pic_path = $__p__['pic_path'];
+$pic_url  = $__p__['pic_url'];
+
+$photo = 'images/wares.gif';
+
+function getImage($img, $pic_path) {
+    global $pic_path;
+    $tmp  = pathinfo($img);
+    $file_name = $tmp['dirname'] . '/' . $tmp['filename'] . '_660X420.' . $tmp['extension'];
+    $tmp_name  = str_replace('http://image.101xd.com/', $pic_path, $file_name);
+    if(file_exists($tmp_name)) {
+        $img = $file_name;
+    }
+
+    //$img  = str_replace('http://image.101xd.com/', 'http://fast.101xd.com/', $img);
+
+    return $img;
+}
+
+if(!empty($product['default_image'])) {
+
+    $photo  = $product['default_image'];
+    if($product['batch']==1) {
+        $photo  = $pic_url . $product['default_image'];
+    }
+}elseif(!empty($product['image'])){
+    $images = explode('|',$product['image']);
+    $photo  = current($images);
+    $photo  = getImage($photo, $pic_path);
+
+    if($product['batch']==1) {
+        $photo  = $pic_url . $photo;
+    }
+} 
+
+if($product['payment_id'] == 1){
+    $payment = "商家定";
+} elseif($product['payment_id'] == 2) {
+    $payment = "渠道商定";
+} else {
+    $payment = "可协商"; 
+}
+
+if($product['freight'] == 0){
+    $freight = "自行发货";
+} elseif($product['freight'] == 1){
+    $freight = "可代发货";
+} else {
+    $freight = "101兄弟代发货";
+}
+?>
+
+<div id="liaison">
+<!-- pop start -->
+<div class="pop" style="display:none;">
+<div id="case">
+    <div class="hd">
+        <div class="left">101兄弟，团购供货平台！</div>
+        <div class="center"><a href="forget">忘记密码？</a></div>
+        <div class="right"><a href="#" id="close"><img src="images/pop_close.gif" width="12" height="12" /></a></div>
+    </div>
+    <div class="fd">
+        <div class="you">
+            <ul>
+                <li>对不起，您还没有登录哦！</li>
+                <li>
+                    <input type="submit" name="" value="立即登录" onclick="location.href='/login';" />
+                    <input type="submit" name="" value="免费注册" onclick="location.href='/register';" />
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</div>
+ <!-- end pop-->
+    <div class="liaison_o">
+      <div class="liaison_a">
+        <div class="liaison_left">
+          <h2><?php if($product['auth']!=1){echo '【商品预览】'; } echo $product['title'];?></h2>
+          <dl>
+            <dt><img  src='<?php echo $photo; ?>' alt="<?php echo $__p__['title'];?>"/></dt>
+            <dd><span id="favorite">商品收藏人气：<font><?php echo empty($product['favorite']) ? 0 : $product['favorite']; ?></font></span><a href="javascript:void(0);" title='收藏此商品' rel="nofollow" name="<?php echo $product['id'];?>" class="favorite">添加收藏</a></dd> 
+          </dl>
+          <ol>
+            <li>市场价<br />￥<?php echo $product['market_price'];?></li>
+            <li>折扣<br /><?php 
+if ($product['market_price']>0 && is_numeric($product['supply_price'])){ 
+    $Discount=round($product['supply_price']/$product['market_price'],1);
+    echo $Discount*10;
+    echo '折';
+}else{
+    echo "&nbsp;";   
+}
+
+$supply = '电话洽谈';
+if(!empty($product['supply_price'])) {
+    $supply = "￥{$product['supply_price']}";
+    if(!is_numeric($product['supply_price'])) {
+        $supply = $product['supply_price'];
+    }
+}
+?></li>
+            <li style="border:none;">建议团购价<br /><strong <?php if(empty($product['supply_price'])){echo 'style="font-size:12px;"';}?>><?php echo $supply;?></strong></li>
+          </ol>
+          <ul>
+<?php 
+if($product['category'] == 'local'){ 
+?>
+            <li>商家名称：<?php echo $business['name']; ?></li>
+            <li>结算方式：<?php echo $payment; ?></li>
+            <li>座位数：<?php echo $business['seats']; ?></li>
+            <li>所在地区：<?php echo $address['cname']; ?></li>
+<?php
+} else {
+?>
+            <li><span>商品单位：<?php echo $product['unit'];?></span>
+            <span>库存量：<?php if($product['storage']=='-1'){
+                echo "库存量充足";
+            } else {
+                echo $product['storage'];
+            }?></span></li>
+            <li><span>供货身份：
+<?php if($product['gonghuoren']=='1'){
+    echo "商家";
+} elseif($product['gonghuoren']=='2'){
+    echo "代理人";
+} else {
+    echo "厂家";
+} ?>
+            </span><span>结算方式：<?php echo $payment; ?></span></li>
+            <li><span>货运方式：
+<?php if($product['freight']=='0'){
+    echo "自行发货";
+} elseif($product['freight']=='1'){
+    echo "可代发货";
+}else{
+    echo "101兄弟待发货";
+}?>
+            </span>
+            <span>发货地：<?php echo $address['cname']; ?></span></li>
+            <li>包邮：
+<?php if($product['free_mail']=='0'){
+    echo "不包邮";
+} elseif($product['free_mail']=='1'){
+    echo "全国包邮";
+}else{
+
+    if(!empty($free_city)){
+        foreach($free_city as $v){
+            echo $v['name']."&nbsp;";
+        }
+    } else {
+        echo "包邮部分城市";
+    }
+}
+?></li>
+<?php } ?>
+
+<li><span>发布时间：<?php 
+$str_time = strtotime($product['insertdate']);
+echo date("Y-m-d",$str_time);?></span>
+            <span>有效期：
+<?php  
+    if ($product['expire_date']=='0' || $product['expire_date']==NULL){   
+        echo "永久有效";
+    } else {
+        $day = ($product['expire_date']-strtotime($product['insertdate']))/86400;
+        $day = ceil($day);
+        echo $day."天"; 
+    }
+?></span></li>
+          </ul>
+        </div>
+        <div class="liaison_right">
+          <ol>
+            <!-- <li>商家认证：<img src="images/approve.gif" />&nbsp;<img src="images/status.gif" /></li>  -->
+            <li>商家名称：<?php echo $business['name']; ?></li>
+<?php if($product['category'] == 'local'){  ?>
+            <li><span>营业年限：<?php echo $business['number_years']; ?>
+            </span><span>注册资金：<?php echo $business['funds']; ?></span></li>
+                <li>连锁店铺：
+<?php 
+if(empty($product["chain_desc"])){
+    echo "否";
+} else {
+    echo "是";
+}
+?></li>
+            <?php if(!empty($product["chain_desc"])){ echo "<li>连锁店铺信息：{$product['chain_desc']}</li>";}?>
+<?php } else {?>
+<li>所在地区：<?php echo $address['pname'].$address['cname']; ?></li>
+<li>详细地址：<?php echo $address['desc'];?></li>
+<?php } ?>
+          </ol>
+          <div class="contact_way">
+          <p><span>联系方式</span><span class='attentions'>
+<?php
+if($product['user_id']==$__p__['user_id'] || $product['auth']==1) {
+    if($attention) {
+?>
+        商家人气：
+<?php 
+        echo empty($product['attentions']) ? 0 : $product['attentions']; 
+    }
+}
+?>
+</span></p>
+            <div style="display:block;" class="innocuous">
+<?php
+if($user_auth=='1' || $user_auth=='2' || $product['user_id']==$__p__['user_id'] || PAGE=='vip' || $product['auth']==1) {
+    if($user_auth=='1' || $user_auth=='2' || $product['user_id']==$__p__['user_id'] || $attention) {
+?>
+联系人：<?php echo $contact['name'];?><br />联系电话：<?php echo $contact['tel'];?><br />QQ：<?php echo $contact['qq'];?><br />其他联系电话：<?php echo $contact['other_tel'];?><br />详细地址：<?php echo $address['pname'] . $address['cname'] . $address['desc'];?>
+<?php
+    } else {
+?>
+            <p>关注该卖家，就可以拿到联系方式喽!</p>
+            <p><button type="submit" class="guanzhu" name="<?php echo $product['id'];?>" rel="<?php echo $product['user_id'];?>" id="guanzhu">关注卖家</button></p>
+            <p class="renqi">商家人气：<?php echo empty($product['attentions']) ? 0 : $product['attentions']; ?></p>
+<?php
+    }
+}
+?>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

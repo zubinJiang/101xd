@@ -1,0 +1,112 @@
+<?php
+$province = isset($__p__['province']) ? $__p__['province'] : "";
+$business = isset($__p__['business']) ? $__p__['business'] : '';
+$address  = isset($__p__['address']) ? $__p__['address'] : '';
+$contact = isset($__p__['contact']) ? $__p__['contact'] : '';
+$b_count = isset($__p__['b_count']) ? $__p__['b_count'] : 0;
+$c_count = isset($__p__['c_count']) ? $__p__['c_count'] : 0;
+?>
+<input type="hidden" name="import_contact_id"  value=''>
+<input type="hidden" name="import_business_id"  value=''>
+<div id="local_business">
+    <div id="dialog"></div>
+    <div id="contact_info"></div>
+    <h2>商家信息：<span>为了便于渠道商联系，请正确填写以下信息</span></h2>
+    <div class="sort"> 
+      <div class="sort_left">商家名称：<a name="product_bname" id="product_bname"></a></div>
+      <div class="sort_right"><input type="text" name="b_name" id="b_name" value="<?php echo $business['name']; ?>" class="request text2" /><font color="red">*</font>
+      <?php if($b_count) { ?> <a href="#" id="import">从历史商家名称中选择</a> <?php }?> </div>
+    </div>
+      <div style="padding-left:150px;color:red;"  class="mess_b_name"></div>
+
+   <div class="sort">
+      <div class="sort_left">法人姓名：</div>
+      <div class="sort_right"><input type="text"  name="legal_name" value="<?php echo $business['legal_name']; ?>" class="text2" /></div>
+    </div>
+    <div class="sort">
+      <div class="sort_left">法人电话：</div>
+      <div class="sort_right"><input type="text"  name="legal_tel" value="<?php echo $business['legal_tel'];?>"  class="text2" /></div>
+    </div>
+
+    <div class="sort">
+      <div class="sort_left">联系人姓名：<a name="product_cname" id="product_cname"></a></div>
+      <div class="sort_right"><input type="text" id="p_name" name="p_name" value="<?php echo $contact['name'];?>" class="request text2" /><font style="color:red;">*</font>
+      <?php if($c_count) {?><a href="#" id="contact_import">从历史联系信息中导入</a><?php }?></div>
+    </div>
+    <div style="padding-left:150px;" class="sort mess_p_name"><p style="color:#999999;">请提供联系人姓名</p></div>
+    <div class="sort">
+      <div class="sort_left">联系电话：<a name="product_ctel" id="product_ctel"></a></div>
+      <div class="sort_right"><input type="text" id="p_tel" name="p_tel" value="<?php echo $contact['tel'];?>" class="text2 request" /><font style="color:red;">*</font></div>
+    </div>
+    <div style="padding-left:150px;" class="sort mess_p_tel"><p style="color:#999999;">请提供联系人电话</p></div>
+    <div class="sort">
+      <div class="sort_left">其他联系人姓名：</div>
+      <div class="sort_right"><input type="text" id="p_name" name="other_name" value="<?php echo $contact['other_name']; ?>" class="text2" /></div>
+    </div>
+    <div class="sort">
+      <div class="sort_left">其他联系电话：</div>
+      <div class="sort_right"><input type="text" id="p_tel" name="other_tel" value="<?php echo $contact['other_tel']; ?>" class="text2" /></div>
+    </div>
+    <div class="sort">
+      <div class="sort_left">Q Q：</div>
+      <div class="sort_right"><input type="text" id="p_qq" name="p_qq" value="<?php echo$contact['qq'];?>" class="text2" /></div>
+    </div>
+    <div class="sort">
+      <div class="sort_left">Email：</div>
+      <div class="sort_right"><input type="text" id="p_email" name="p_email" value="<?php echo$contact['email'];?>" class="text2" /></div>
+    </div>
+    <div class="sort">
+      <div class="sort_left">营业年限：</div>
+      <div class="sort_right"><input type="text" name="b_year" id="b_year" value="<?php echo $business['number_years']; ?>" class="text2" /></div>
+    </div>
+    <div class="sort">
+      <div class="sort_left">座位数：</div>
+      <div class="sort_right"><input type="text" name="b_seat" id="b_seat" value="<?php echo $business['seats']; ?>" class="text2" /></div>
+    </div>
+    <div class="sort">
+      <div class="sort_left">注册资金：</div>
+      <div class="sort_right"><input type="text" name="b_fund" id="b_fund" value="<?php echo $business['funds']; ?>" class="text2" /></div>
+    </div>
+    <div class="sort">
+      <div class="sort_left">营业面积：</div>
+      <div class="sort_right"><input type="text" name="area" id="area" value="<?php echo $business['business_area']; ?>"  class="text2" /></div>
+    </div>
+    <div class="sort">
+      <div class="sort_left">商家地址：<a name="product_province" id="product_address"></a><a name="product_area" id="product_area"></a><a name="product_address" id="product_address"></a></div>
+      <div class="sort_right">
+        <select name="b_province" id="province_id">
+        <option value=0 <?php if(empty($address)){ echo 'selected';} ?>>--请选择省份--</option>
+            <?php 
+                if(!empty($province)){
+                    foreach($province as $v){
+            ?>
+                <option  value="<?php echo $v['id']; ?>" <?php if($address['province_id'] == $v['id']){ echo 'selected';}?>><?php echo $v['name']; ?></option>;
+            <?
+                    }
+                } 
+            ?>
+        </select>
+        <select name="b_area" id="area_id" style="float:left;margin:0 0 0 5px;">
+<?php if(!empty($address)){
+?>
+        <option value="<?php echo $address['id']?>" selected><?php echo $address['name'];?></option>
+<?php
+} else {
+?>
+<option value=0 selected='selected'>--请选择城市--</option>
+<?php
+}
+?>
+        </select><font color="red">*</font><br/><br/>
+        <div style="float:left;clear:both;" >
+            <input type="text"  name="b_address" value="<?php if(!empty($address['desc'])){ echo $address['desc'];}?>" id="b_address"/><font color="red">*</font>
+        </div>
+        <div  class='mess_address'><p style="color:#999999;">请填写商家详细地址</p></div>
+        <!-- <div id="map_canvas"></div> -->
+        </div>
+        <!--
+        <input type="hidden" name="lat" id="lat"  value="<?php echo $address['lat'];?>"/>
+        <input type="hidden" name="lng" id="lng"  value="<?php echo $address['lng']; ?>"/>
+        -->
+    </div>
+</div>

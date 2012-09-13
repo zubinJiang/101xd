@@ -1,0 +1,26 @@
+<div id="top">
+    <div class="topc">
+        <span class="welcome">您好，欢迎来到101兄弟，网商渠道聚集地！</span>
+        <span class="login <?php if(isset($_COOKIE['_userv_'])){ echo 'user';} ?>">
+<?php
+if(isset($_COOKIE['_userv_'])){
+    $sys_cookie = base64_decode($_COOKIE['_userv_']);
+    $cookie     = explode("|", $sys_cookie);
+    $user_name  = $cookie['2'];
+
+?>
+            <a><?php echo $user_name; ?></a><span>|</span><a href="/user/index">管理中心</a><span>|</span><a href='index?action=logout'>退出</a>
+<?php } elseif (PAGE!='login') { ?>
+            <form name="form" action="login" method="post" onsubmit="javascrpit:void(0)">
+            <label>账号：</label>
+            <input type="text" name="name" value="" />
+            <label>密码：</label>
+            <input type="password" name="pass" value="" />
+            <input type="submit" name="" value="登陆" class="lg"/>
+            </form>
+            <a href="/forget">忘记密码？</a>
+            <a href="/register">免费注册</a>
+<?php } ?>
+        </span>
+    </div>
+</div>

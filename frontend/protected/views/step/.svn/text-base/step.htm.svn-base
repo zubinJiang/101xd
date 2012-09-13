@@ -1,0 +1,65 @@
+<?php if('2'==$__p__['error_tag'] || empty($__p__['error_msg'])){ ?>
+<div id="forget">
+  <div class="footer_t">
+  <span>找回101密码：</span>
+  <div class="yibu_2">1.输入101帐号</div>
+  <div class="erbu_2">2.选择找回密码方式</div>
+  <div class="sanbu_2">3.找回密码</div>
+  </div>
+  <?php
+    if(empty($_GET['action']) || $__p__['error_tag'] == "2") {
+?>
+<form action="?name=<?php echo $_GET['name']?>&action=code" method="post">
+  <div class="move">
+    <h2><?php if($__p__['error_tag']=='2'){ echo $__p__['error_msg']; }else{ echo "手机找回密码"; }?></h2>
+    <ul>
+      <li><span>您绑定的手机号：</span><input type="text" value="" name="tel" />&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="hidden" value="<?php echo $_GET['name']; ?>" name="name" />
+      <input type="hidden" name="user_id" value="">
+      <a href="#" class="getmess">获取短信</a></li>
+      <li class="get_again" style="display:none;">验证码已发送到您的绑定手机，请注意查收！如未收到，请<a href="#" class="getmess">重新获取</a></li>
+      <li class="pa"><span>输入短信验证码：</span><input type="text" value="" name="code" /></li>
+    </ul>
+    <div class="login"><input type="submit"  value="下一步" class="step_login" />
+    </div>
+  </div>
+ </form>
+
+ <?php
+    } 
+    
+if('code'==$_GET['action'] && $__p__['error_tag'] != "2") {
+?>
+ <div class="lobster" >
+    <h2>重新绑定手机</h2>
+    <form action="?action=updatepass" method="post">
+      <input type="hidden" value="<?php echo $_GET['name']; ?>" name="name" />
+      <input type="hidden" name="user_id" value="<?php echo $_POST['user_id']; ?>">
+      <ul>
+      <li><span>您绑定的手机号：</span><input type="text" value="<?php echo $__p__['user_tel']; ?>" name="news_tel" /></li>
+      <li><span>请输入登录密码：</span><input type="password" value="" name="news_pass" /></li>
+      <li><span>请输入确认密码：</span><input type="password" value="" name="news_pass_again" /></li>
+      <li class="bang"><input type="submit" value="绑定手机"  class="pinless"/></li>
+      </ul>
+    </form>
+  </div>
+<?php
+    }
+    ?>
+</div>
+<?php
+}else{ ?>
+<div class="queren">
+  <h2><?php echo $__p__['error_msg']; ?></h2>
+  <ul>
+    <?php if($__p__['error_msg']=="对不起，绑定失败"){ ?>
+    <li class="li"><input type="submit" onclick="location.href='forget'" name="" value="重新找回" /></li>
+    <?php } else { ?>
+    <li>亲爱的：<?php echo $__p__['user_name']; ?></li>
+    <li>恭喜您！您的新密码已设置完成，请您牢记密码！</li>
+    <li>如有问题，请联系网站客服人员。</li>
+    <li class="li"><input type="submit" onclick="location.href='login'" name="" value="点此登录" /></li>
+    <?php } ?>
+  </ul>
+</div>
+<?php } ?>

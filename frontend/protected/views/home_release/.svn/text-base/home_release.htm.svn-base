@@ -1,0 +1,17 @@
+<div id="home_release">
+    <div class="gain">
+      <a href="/login?action=fabu" class="fabu">免费发布商品信息</a>
+      <p>希望给200家团购网站供应产品么？请<a href="/login?action=fabu">提交供应信息</a></p>
+      <div class="effective">
+        <dl>
+          <dt><a href="#"><img src="images/achieve.gif" /></a></dt>
+          <dd>
+          <strong>1、<a href="<?php if($_SESSION['login_user_name'] != ''){ echo '####'; } else{ echo 'register?load=news';} ?>">轻松注册</a></strong>
+            <span style="margin-bottom:26px;">只需1分钟即可加入101兄弟，浏览数种大品牌商品；</span>
+            <strong class="red">2、关注卖家</strong>
+            <span>心仪的商品，想要它的联系方式吗？关注它的卖家，就可以和卖家联系啦！</span>
+          </dd>
+        </dl>
+      </div>
+    </div>
+</div>

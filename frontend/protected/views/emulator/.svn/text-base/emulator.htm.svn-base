@@ -1,0 +1,46 @@
+<?php
+$browse_record = isset($__p__['browse_record']) ? $__p__['browse_record'] : '';
+$site_data     = isset($__p__['site_data']) ? $__p__['site_data'] : '';
+$data = isset($__p__['site_data']) ? $__p__['site_data'] : '';
+$group= isset($__p__['group']) ? $__p__['group'] : '';
+?>
+<div id="emulator">
+      <div class="ecriture">
+      <?php
+if(!empty($browse_record)) {
+?>
+        <h2>这些用户浏览过<?php if(!empty($site_data)) {echo $site_data['name']; }?></h2>
+        <ul>
+        <?php
+
+    foreach($browse_record as $v) {
+?>
+    <li><?php echo $v['user_name'];?></li>
+    <?php
+    }
+?>
+        </ul>
+<?php
+}
+?>
+        <div class="ecriture_h2">
+        <h2><?php echo $data['name'];?>正在团购ing</h2>
+        </div>    
+<?php
+if(!empty($group)) {
+    foreach($group as $v) {
+        $title = mb_substr($v['title'], 0, 34, 'utf-8');
+        $title .= '...';
+?>
+        <dl>
+        <dt><a href="<?php echo $v['url'];?>" target="_blank" rel="nofollow"><img src="<?php echo $v['image'];?>" width="188" height="119" border="0" /></a></dt>
+        <dd><a href="<?php echo $v['url'];?>" target="_blank" rel="nofollow"><?php echo $title; ?></a></dd>
+        </dl>
+<?php
+    }
+}
+?>
+        <p><a href="<?php echo $data['url'];?>" target="_blank" rel="nofollow">更多您感兴趣的团购</a></p>
+      </div>    
+    </div>
+

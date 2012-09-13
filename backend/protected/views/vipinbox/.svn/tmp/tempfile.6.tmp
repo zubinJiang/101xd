@@ -1,0 +1,134 @@
+var color_unread='red';
+var color_read='green';
+$(document).ready(FoldContext());
+$(document).ready(
+      bindinput() 
+        );
+
+function bindinput() {$('#selectall').click(function () {if ($('#selectall').attr('checked')==true){$(':input').attr('checked',false);}else if ($('#selectall').attr('checked')==false){$(':input').attr('checked',true);}});}
+
+function  DelMessage (message_id){
+                $.ajax({
+                            url: 'inbox?action=del&id='+message_id,
+                            dataType: "json",
+                            success: function(data) {
+                                    var qs='.explain[msgid='+message_id+']';
+                                    $(qs).slideUp();
+                                    var all=data.all;
+                                    var unread=data.unread;
+                                    $('#msg_notice_all').text(all);
+                                    $('#msg_notice_unread').text(unread);
+                                    }
+                                }); 
+            }
+            
+function  ReadMessage (message_id){
+                $.ajax({
+                            url: 'inbox?action=read&id='+message_id,
+                            dataType: "json",
+                            success: function(data) {
+                                    var all=data.all;
+                                    var unread=data.unread;
+                                    $('#msg_notice_all').text(all);
+                                    $('#msg_notice_unread').text(unread);
+                                    var qs='.explain[msgid='+message_id+']  span a.wd';
+                                    $(qs).text('已读').css('color','green');
+                                    }
+                                });     
+            }
+
+
+function FoldContext(){
+    $All_Context=$('.trou');
+    var num=80;
+    $('.explain').each(
+            function (num) {
+                    if ($(this).find('p.msgtext a.msg').text().length>num)
+                        {
+                            var text=$(this).find('p.msgtext a.msg').text();
+                            var omission=text.substring(0,40)+'.....';
+                            $(this).find('p.msgtext a.msg').text(omission);
+                            $(this).find('a.msgdel').click(
+                            /*绑定点击删除删除msg的事件
+                            */
+                            function () {
+                            var msg_id = $(this).attr('msgid');
+                            jConfirm('确认？','将要删除项目.',function (r){
+                                if (r==true)
+                                {
+                                DelMessage(msg_id);
+                                }})
+                                return false;
+                            }
+                            )
+                            //展开和收起文字内容
+                            $(this).find('p.msgtext a.read').click(
+                                function ()   {
+                                    var text = $(this).prev().attr('content');
+                                    if ($(this).text()=="[展开阅读]"){
+                                        $(this).prev().text(text);
+                                        $(this).text('[收起]');
+                                        if ($(this).prev().attr('status')=='0')
+                                        {
+                                            $(this).prev().css('color','#778877');
+                                            var message_id = $(this).attr('msgid');
+                                            alert(message_id); 
+                                            ReadMessage(message_id);}
+                                    }
+                                    else if ($(this).text()=='[收起]'){
+                                        var clipstext = text.substring(0,40)+'.....';
+                                        $(this).prev().text(clipstext);
+                                        $(this).text("[展开阅读]");
+                                    }});
+                        };
+                });
+            }
+
+
+
+function SelectAllinput()
+        {   
+            if ($(':input[name="selectall"]').attr('checked')==false)
+            {
+                $(':input').attr('checked',true);
+                }
+            else if ($(':input[name="selectall"]').attr('checked')==true)
+            {
+            $(':input').attr('checked',false);
+            }}
+
+function DelAllSelected()
+    {
+    if (checkselect()==0){
+    jAlert('请选择项目','未选中任何项目');}
+    else {
+    jConfirm('确认？','将要全部删除.',function (r){
+    if(r ===true)   
+    {
+    $('input[name=msg]').each(
+            function () {
+                if ($(this).attr('checked')==true)
+                {
+                    var message_id=$(this).attr('value');
+                    DelMessage(message_id);
+                };
+                        }
+                            );}
+            });
+        }
+    }
+
+
+function checkselect()
+{
+    var a=0;
+    $('input[name=msg]').each(
+        function () {if($(this).attr('checked')==true)
+        {
+        a=a+1;
+        };}
+        );
+    return a;
+}
+
+

@@ -1,0 +1,238 @@
+<?php
+$company_name = $__p__['company_name'];
+print_r($__P__);
+$company_id = $__p__['company_id'];
+$company_user_id = $__p__['company_user_id']; //此user_id为标记团购网站的user_id
+$user_id = $__p__['user_id']; //此user_id为登陆用户的user_id
+$data = $__p__['data'];
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>推送服务</title>
+<link href="/protected/views/pushstepone/pushstepone.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="/css/jquery.tooltip.css" type="text/css" /> 
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.3.min.js"></script> 
+<script src="/protected/views/pushstepone/pushstepone.js"></script>
+<script src="/assets/jquery.simplemodal.js"></script>
+<script src="/assets/jquery.tooltip.min.js"></script>
+</head>
+
+
+
+<body class="b">
+<!--错误提示modal-->
+<div id="case" style="display:none;z-index:10">
+    <div class="hd">
+      <div class="left">101兄弟提示您：</div>
+        <div class="right"><a href="#" onclick="$('#case').hide()"><img src="../../../images/supply/close.gif" width="12" height="12" /></a></div>
+    </div>
+    <div class="fd">
+        <div class="you">
+            <ul>
+                <li>抱歉，您还没有进行匹配度筛选！</li>
+                <li>
+                    <input type="submit" name="" value="知道了" onclick="$('#case').hide()" />
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--错误提示modal-->
+
+
+<div id="box">
+    <div id="top" onclick="location.href='/';"><input type="button" name="" value="进入101兄弟首页" onclick="location.href='/';"/></div>
+    <div id="banner">
+        <a href="#"><img src="/images/qdsbanner1.gif" width="960" height="288" /></a>
+    </div>
+    
+    <div id="step">
+        <div class="hd">还在担心商品信息提交到团购网站后台，便石沉大海吗？101兄弟平台帮您提高中选率，轻松四步，商品上渠道商就是这么容易！</div>
+        <div class="fd">
+            <div class="stepys">
+                <span>第一步</span>
+                <span style="color:#e65100">请选择商品类型</span>
+            </div>
+            <div class="aw"></div>
+            <div class="stephs">
+                <span>第二步</span>
+                <span style="color:#8a8a8a">选择推送商品至哪些渠道商</span>
+            </div>
+            <div class="aw1"></div>
+            <div class="stephs">
+                <span>第三步</span>
+                <span style="color:#8a8a8a">提交商品信息</span>
+            </div>
+            <div class="aw1"></div>
+            <div class="stephs">
+                <span>第四步</span>
+                <span style="color:#8a8a8a">完成，等待审核</span>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="content">
+        <form action='' method="POST">
+        <div class="hd">让渠道商更加了解您的商品信息，请先填写以下信息：</div>
+        <div class="fd">
+            <div class="one">
+                <div class="wt"></div>
+                <div class="et">
+                    <dl style="line-height:30px;height:34px;font-size:14px;color:#000">
+                      预提交商品属于哪一类型的商品？
+                    </dl>
+                    <dl>
+                      <dd><input name="category_id" type="radio" value="1" /></dd>
+                      <dt>美食餐饮</dt>
+                      <dd><input name="category_id" type="radio" value="2" /></dd>
+                      <dt>酒店旅游</dt>
+                      <dd><input name="category_id" type="radio" value="3" /></dd>
+                      <dt>休闲娱乐</dt>
+                      <dd><input name="category_id" type="radio" value="4" /></dd>
+                      <dt>美容护发</dt>
+                      <dd><input name="category_id" type="radio" value="5" /></dd>
+                      <dt>摄影</dt>
+                      <dd><input name="category_id" type="radio" value="6" /></dd>
+                      <dt>化妆品</dt>
+                      <dd><input name="category_id" type="radio" value="7" /></dd>
+                      <dt>服装箱包</dt>
+                      <dd><input name="category_id" type="radio" value="8" /></dd>
+                      <dt>数码家电</dt>
+                    </dl>
+                    <dl>
+                      <dd><input name="category_id" type="radio" value="9" /></dd>
+                      <dt>家居用品</dt>
+                      <dd><input name="category_id" type="radio" value="10" /></dd>
+                      <dt>配件饰品</dt>
+                      <dd><input name="category_id" type="radio" value="11" /></dd>
+                      <dt>运动户外</dt>
+                      <dd><input name="category_id" type="radio" value="12" /></dd>
+                      <dt>图书音乐</dt>
+                      <dd><input name="category_id" type="radio" value="13" /></dd>
+                      <dt>食品饮料</dt>
+                      <dd><input name="category_id" type="radio" value="14" /></dd>
+                      <dt>文体用品</dt>
+                      <dd><input name="category_id" type="radio" value="15" /></dd>
+                      <dt>皮革皮具</dt>
+                      <dd><input name="category_id" type="radio" value="16" /></dd>
+                      <dt>玩具礼品</dt>
+                    </dl>
+                    <dl>
+                      <dd><input name="category_id" type="radio" value="17" /></dd>
+                      <dt>母婴用品</dt>
+                      <dd><input name="category_id" type="radio" value="18" /></dd>
+                      <dt>其它</dt>
+                    </dl>
+              </div>
+            </div>
+            <div class="clear"></div>
+            <div class="two">
+                <div class="wt"></div>
+                <div class="et">
+                    <dl style="line-height:30px;height:34px;font-size:14px;color:#000">
+                      商品是否需要代发货？
+                    </dl>
+                    <dl>
+                        <dd><input name="delivery" type="radio" value="0" /></dd>
+                        <dt>不需要，可自发货</dt>
+                        <dd><input name="delivery" type="radio" value="1" /></dd>
+                        <dt>需要渠道商代发货</dt>
+                        <dd><input name="delivery" type="radio" value="2" /></dd>
+                        <dt>皆可</dt>
+                    </dl>
+                </div>
+            </div>
+        
+
+            <div class="three">
+                <div class="wt"></div>
+                <div class="et">
+                    <dl style="line-height:30px;height:34px;font-size:14px;color:#000;width:837px;float:left">
+                      商品可提供的资质证明？
+                    </dl>
+                    <dl>
+                        <dd style="float:left"><input name="qualification[]" type="checkbox" value="all" /></dd>
+                        <dt>全选</dt>
+                        <dd style="float:left"><input name="qualification[]" type="checkbox" value="license" /></dd>
+                        <dt>营业执照</dt>
+                        <dd style="float:left"><input name="qualification[]" type="checkbox" value="tax" /></dd>
+                        <dt>税务登记证</dt>
+                        <dd style="float:left"><input name="qualification[]" type="checkbox" value="certificate" /></dd>
+                        <dt>法人身份证</dt>
+                        <dd style="float:left"><input name="qualification[]" type="checkbox" value="org" /></dd>
+                        <dt>组织机构代码证</dt>
+                        <dd style="float:left"><input name="qualification[]" type="checkbox" value="bui" /></dd>
+                        <dt>商家授权书</dt>
+                    </dl>
+                    <dl>
+                        <dd style="float:left"><input name="qualification[]" type="checkbox" value="account" /></dd>
+                        <dt>银行开户许可证</dt>
+                        <dd style="float:left"><input name="qualification[]" type="checkbox" value="qc" /></dd>
+                        <dt>商品质量检测合格证</dt>
+                        <dd style="float:left"><input name="qualification[]" type="checkbox" value="logo" /></dd>
+                        <dt>商品商标</dt>
+                    </dl>
+                </div>
+            </div>
+
+
+
+            <div class="four">
+             <div class="wt"></div>
+                <div class="et">
+                    <div class="ht">
+                        <dl style="line-height:30px;height:34px;font-size:14px;color:#000">
+                          您的商品是否需要做推广？
+                        </dl>
+                        <dl>
+                            <dd><input name="ad" type="radio" value="1" /></dd>
+                            <dt>需要推广</dt>
+                            <dd><input name="ad" type="radio" value="0" /></dd>
+                            <dt>暂时不需要</dt>
+                        </dl>
+                    </div>
+                  <div class="ft" style="display:none">
+                      <dl style="line-height:30px;height:34px;font-size:14px;color:#000">
+                          请选择推广方式？
+                      </dl>
+                      <dl>
+                          <dd><input name="ad_position[]" type="checkbox" value="0" /></dd>
+                          <dt>网站首页链接广告</dt>
+                          <dd><input name="ad_position[]" type="checkbox" value="1" /></dd>
+                          <dt>网站首页商品推荐</dt>
+                          <dd><input name="ad_position[]" type="checkbox" value="2" /></dd>
+                          <dt class="yw">右侧推荐位</dt>
+                          <dd><input name="ad_position[]" type="checkbox" value="3" /></dd>
+                          <dt class="zt">专题推广</dt>
+                          <dd><input name="ad_position[]" type="checkbox" value="4" /></dd>
+                          <dt class="qt">其它</dt>
+                      </dl>
+                      <dl style="line-height:32px;height:34px;font-size:14px;color:#000;width:550px;border-top:1px dashed #999;margin-top:3px">
+                          请选择推广周期？
+                      </dl>
+                      <dl>
+                          <dd><input name="ad_period" type="radio" value="1" /></dd>
+                          <dt class="qt">一天</dt>
+                          <dd><input name="ad_period" type="radio" value="7" /></dd>
+                          <dt class="qt">一周</dt>
+                          <dd><input name="ad_period" type="radio" value="30" /></dd>
+                          <dt class="zt">一个月</dt>
+                          <dd><input name="ad_period" type="radio" value="90" /></dd>
+                          <dt class="zt">三个月</dt>
+                          <dd><input name="ad_period" type="radio" value="180" /></dd>
+                          <dt class="zt">六个月</dt>
+                          <dd><input name="" type="radio" value="0" /></dd>
+                          <dt class="zt">其他时间</dt>
+                      </dl>
+                    </div>
+                </div>
+            </div>
+            <input name="user_id" type="text" style="display:none" value="<?php echo $user_id;?>">
+            <input name="company_id" type="text" style="display:none" value="<?php echo $company_user_id;?>">
+            <div class="five"><input name="submit" type="submit" value="查看筛选结果"/></div>
+        </div>
+    </form>
+    </div>

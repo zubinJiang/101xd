@@ -1,0 +1,33 @@
+#variiables{float:right;width:264px;}
+.irreversible{width:264px;padding-bottom:10px;background:url(../../../images/obtain.gif) no-repeat bottom;overflow:hidden;margin-bottom:10px;}
+.irreversible ul{float:left;width:252px;padding:5px 0 0 10px;_padding:2px 0 0 10px;color:#3d3d3d;}
+.irreversible ul li{float:left;width:237px;padding-left:15px;line-height:180%;background:url(../../../images/commodity.gif) no-repeat top left;}
+.irreversible ul li a{color:#ff0000;}
+.irreversible .marquee {width:262px;height:110px;border-left:1px solid #E2E2E2;border-right:1px solid #E2E2E2;overflow:hidden;}
+.state{float:left;width:247px;padding-left:15px;border-right:1px solid #e2e2e2;border-left:1px solid #e2e2e2;}
+.state dl{float:left;width:230px;margin-top:10px;background:#f4f1e2;}
+.state dl dt{float:left;width:230px;height:150px;overflow:hidden;}
+.state dl dd{float:left;width:230px;color:#575755;text-align:center;line-height:24px;padding-top:5px;height:55px;}
+.state dl dd strong{color:#ff0000;}
+.dealer{width:264px;padding-bottom:10px;background:url(../../../images/obtain.gif) no-repeat bottom;overflow:hidden;margin-top:10px;}
+.dealer ol{float:left;width:262px;border-right:1px solid #e2e2e2;border-left:1px solid #e2e2e2;padding-top:3px;border-bottom:2px solid #ff6fb5;}
+.dealer ol li{float:left;width:262px;}
+.dealer ol li a{float:left;width:72px;line-height:23px;text-align:center;margin-right:6px;background:url(../../../images/actually.gif) no-repeat;color:#3d3d3d;}
+.dealer ol li a:hover{background:url(../../../images/ability.gif) no-repeat;color:#9e0011;}
+.dealer dl{float:left;width:252px;border-right:1px solid #e2e2e2;border-left:1px solid #e2e2e2;padding:10px 0 0 10px;height:100px;}
+.dealer dl dt{float:left;width:105px;}
+.dealer dl dd{float:left;width:145px;}
+.dealer dl dd a{float:left;width:145px;line-height:18px;color:#3d3d3d;}
+.dealer ul{float:left;width:252px;border-right:1px solid #e2e2e2;border-left:1px solid #e2e2e2;padding-left:10px;}
+.dealer ul li{float:left;width:237px;padding-left:15px;line-height:24px;background:url(../../../images/commodity.gif) no-repeat top left;}
+.dealer ul li a{color:#3d3d3d;}
+.inject{float:left;width:264px;background:url(../../../images/access.gif) no-repeat;line-height:33px;}
+.inject span{float:left;padding-left:5px;font-size:16px;color:#343434;font-family:"黑体";}
+.inject a{float:right;padding-right:8px;color:#3d3d3d;}
+
+.top {border-left:1px solid #E2E2E2;border-right:1px solid #E2E2E2;float:left;height:100px;padding:10px 0 0 10px;width:252px;}
+.top .top_img {float:left;width:105px;}
+.top .top_con {float:right;width:140px;}
+.top .top_title_con {clear:both;width:100%;}
+.top .top_title_con a {color:#3D3D3D;float:left;line-height:24px;width:145px;font-weight:bolder;}
+.top .top_body_con a {color:#3D3D3D;text-align:left;width:100%;clear:both;line-height:150%;}

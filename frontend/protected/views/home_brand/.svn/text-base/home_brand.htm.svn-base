@@ -1,0 +1,9 @@
+<div class="accede">
+    <div class="inject"><span>品牌专区</span><!-- <a href="/login">点击加入</a>--></div>
+    <div class="link">
+        <a href="####" target='_blank'><img src="images/index_kangbite.gif" width="120" height="44" /></a>
+        <a href="product_621.html" target='_blank'><img src="images/index_geli.gif" width="120" height="44" /></a>
+        <a href="product_700.html" target='_blank'><img src="images/index_hongxing.gif" width="120" height="44" /></a>
+        <a href="product_723.html" target='_blank'><img src="images/index_jiuyang.gif" width="120" height="44" /></a>
+    </div>
+</div>

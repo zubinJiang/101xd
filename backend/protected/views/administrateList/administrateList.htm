@@ -1,0 +1,193 @@
+<?php
+$list = isset($__p__['list']) ? $__p__['list'] : '';
+$page = isset($__p__['page']) ? $__p__['page'] : '';
+$count= isset($__p__['count'])? $__p__['count']: 0 ;
+$status = isset($__p__['status']) ? $__p__['status'] : '';
+$key    = isset($__p__['key'])  ? $__p__['key'] : '';
+$type   = isset($_GET['type'])  ? $_GET['type'] : '';
+$order  = isset($_GET['order']) ? $_GET['order'] : '';
+$pic_url= $__p__['pic_url'];
+    
+if($type=='' || $type=='all'){
+    $type_cond = "所有";
+} else if($type=='local'){
+    $type_cond = "本地商品";
+} else {
+    $type_cond = "精品网货";
+}
+?>
+<div class="govern" id="manageGoodList">
+    <div class="issue"></div>
+    <div class="material">商品管理</div>
+    <ul><li><a href="?type=all" <?php if(empty($type) || 'all'==$type) { ?> class="current" style="font-weight:bolder;" <?php }?> >所有商品</a>
+    <a href="?status=<?php echo $status;?>&type=local" <?php if('local'==$type) { ?> class="current" <?php }?> >本地商品</a>
+    <a href="?status=<?php echo $status;?>&type=net" <?php if('net'==$type) { ?> class="current" <?php }?>>网货精品</a>
+    <!-- <a href="?status=<?php echo $status;?>&type=goldroll" <?php if('goldroll'==$type) { ?> class="current" <?php }?>>网站代金券</a> -->
+   </li></ul>
+    <div>总共<?php echo $type_cond; ?>商品<font style="color:red;"><?php echo $count; ?></font>件</div>
+    <div class="paging">
+      <form name="searchForm" action="" method="get">
+      <input type='hidden' name='action' value='search' />
+      <span style="float:left;"><select name="title_type"><option value="1">标题</option><option value='2'>发布人</option></select>&nbsp;&nbsp;</span>
+      <span style="clear:both;"><input type="text" name="key" value="<?php echo $key;?>" />
+      <input type="submit" name="" value="查询" class="refer" /></span>
+      </form>
+<?php
+        if(!empty($page)) {
+?>
+        <span style="float:right;">
+<?php
+            echo $page->show(4);
+?>
+        </span>
+<?php
+        }
+?>
+    </div>
+ <div class="option">
+      <div class="global"><span class="wid40">选项</span>
+      <span class="wid90">图片</span>
+      <span class="wid120" style="width:140px;">标题</span>
+      <span class="wid40"><select  onchange="location.href=this.options[this.selectedIndex].value;">
+      <option value="####">类型</option>
+      <option value="?type=all">全部商品</option>
+      <option value="?status=<?php echo $status;?>&type=local">本地商品</option>
+      <option value="?status=<?php echo $status;?>&type=net">网货精品</option>
+      </select></span>
+      <span class="wid90" style="width:100px;"><select onchange="location.href=this.options[this.selectedIndex].value;">
+      <option value="####">状态</option>
+      <option value="?status=authyes&type=<?php echo $type;?>">已发布上网</option>
+      <option value="?status=authunknow&type=<?php echo $type;?>">审核中</option>
+      <option value="?status=authno&type=<?php echo $type;?>">审核未通过</option>
+      <option value="?status=expire&type=<?php echo $type;?>">过期信息</option>
+      <option value="?status=shelves&type=<?php echo $type;?>">下架商品</option>
+      </select></span>
+      <span class="wid90">上传者</span>
+      <span class="wid90">上传时间</span>
+      <span class="wid90">操作</span></div>
+      <div class="choice">
+  <?php
+if(!empty($list)) {
+    foreach($list as $v) {
+
+        if('local' == $v['category']) {
+            $str = 'local';
+            $category = '本地商品';
+        } elseif ('net' == $v['category']) {
+            $str = 'releasenets'; 
+            $category = '网货精品';
+        } elseif ('goldroll' == $v['category']) {
+            $str = 'goldroll';
+            $category = '网站代金券';
+        }
+
+        $auth = '';
+        if(0==$v['auth']) {
+            $auth = '审核中';
+        }
+
+        if(1==$v['auth'] && 1==$v['status']) {
+            $auth = '通过';
+        }
+        
+        if(2==$v['auth']) {
+            $auth = '未通过';
+        }
+
+        if(1==$v['auth'] && 0==$v['status']) {
+            $auth = '已下架';
+        }
+
+        if($v['expire_date']==0){
+            $dateline = "永久有效";
+        } else {
+            $dateline = date('Y-m-d',$v['expire_date']);
+            $date_cha = time()-$v['expire_date']; 
+             $date_cha = $v['expire_date']-time();
+            if($date_cha<=0) {
+                $auth = '已过期';
+            }
+        }
+        $image = 'images/zanwu.gif';
+        if(!empty($v['default_image'])) {
+            $image = $v['default_image'];
+            if($v['batch']==1) {
+                $image = $pic_url . $v['default_image'];
+            }
+        } else {
+            if(!empty($v['image'])) {
+                $image = current(explode('|', $v['image']));
+                if($v['batch']==1) {
+                    $image = $pic_url . $image;
+                }
+            }
+        }
+        if(!empty($v['insertdate'])){
+            $up_date = strtotime($v['insertdate']);
+            $up_date = date("Y-m-d",$up_date);
+        }
+?>
+<ul id="<?php echo $v['id'];?>">
+          <li class="checkbox"><input type="checkbox" class="checkbox"  value="<?php echo $v['id'];?>" name="id[]" /></li>
+          <li class="above" style="width:70px;"><a target="_blank"  href="/product_<?php echo $v['id'];?>.html"><img src="<?php echo $image;?>" width="50" height="50" border="0" /></a></li>
+          <li class="wid120"><span><a target="_blank" href="/product_<?php echo $v['id'];?>.html" <?php if(1!=$v['status']){ echo 'class="gray"';}?>><?php echo $v['title'];?></a></span></li>
+          <li class="wid90"><span><?php echo $category;?></span></li>
+          <li class="wid90"><span><?php echo $auth;?></span></li>
+          <li class="wid90"><?php echo $v['Name']; ?></li>
+          <li class="wid90"><span><?php echo $up_date;?></span></li>
+          <li>
+          <a href="<?php echo $str;?>?action=toupdate&id=<?php echo $v['id']; ?>&type=1" class="wid24">修改</a><span>/</span>
+          <a rel="<?php echo $v['id'];?>" href="####" type="1" title="删除此商品" class="delete_id wid24">删除</a><span>/</span>
+          <a rel="<?php echo $v['id'];?>" value="<?php echo $v['title'];  ?>" href="####" type="1" title="移动此商品" class="move_id wid24">移动</a></li>
+        </ul>
+<?php
+    }
+} else {
+?>
+<div style="color:red;line-height:150%;margin:10px 0;">
+<?php
+    if("local" == $type) {
+        $style="本地商品";
+    } elseif('goldroll' == $type) {
+        $style="网站代金券";
+    } elseif('net' == $type ){
+        $style="精品网货";
+    } else {
+        $style="供应商品";
+    }
+
+    if($_GET['status'] == 'authyes'){
+        $comd = '审核通过的';
+    } elseif($_GET['status'] == 'authunknow'){
+        $comd = '审核中的';
+    } elseif($_GET['status'] == 'authno'){
+        $comd = '审核未通过的';
+    } elseif($_GET['status'] == 'expire'){
+        $comd = '过期的';
+    } elseif($_GET['status'] == 'shelves'){
+        $comd = '下架的';
+    } else {
+        $comd = '';
+    }
+    echo  "对不起,您没有{$comd}商品信息";
+?>
+</div>
+<?php
+}
+?>
+      </div>
+      <div class="global"><input id="all_select" type="checkbox" value="1" /><span class="all">全选</span><span class="batch_manage">
+      <a href="javascript:void(0);" id="delete" class="send">删除</a></span>
+        <select id="order" onchange='javascript:location.href=("?action=order&type=<?php echo $type;?>&order=" + this.value );'>
+            <option value="1" <?php if(1==$order) echo "selected";?>>发布时间从新到旧</option>
+            <option value="2" <?php if(2==$order) echo "selected";?>>发布时间从旧到新</option>
+            <option value="3" <?php if(3==$order) echo "selected";?>>访问人数从多到少</option>
+            <option value="4" <?php if(4==$order) echo "selected";?>>访问人数从少到多</option>
+        </select>
+    <?php
+if(!empty($page)) {
+    echo $page->show(4);
+}
+?>   
+  </div>
+</div>

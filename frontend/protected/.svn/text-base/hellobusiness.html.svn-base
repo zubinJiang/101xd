@@ -1,0 +1,3 @@
+<? CHtml::insert('hellobusiness.htm'); ?> 
+<?php include('afterbody.htm');?>
+            

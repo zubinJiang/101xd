@@ -1,0 +1,13 @@
+#userCenter{width:970px;margin:0 auto;overflow:hidden;padding-bottom:10px;}
+#navigation {float:left;width:205px;}
+.contorl{float:left;width:203px;border:1px solid #ddd;margin-bottom:10px;}
+.contorl h1{float:left;width:203px;line-height:28px;font-size:14px;color:#e50014;text-indent:30px;background:url(../../../images/contorl_h1.gif) no-repeat;border-bottom:1px solid #ddd;}
+
+.contorl dl{float:left;width:203px;line-height:25px;background:url(../../../images/contorl.gif) repeat-x top;padding-top:11px;}
+.contorl dl dt{float:left;width:203px;height:120px;text-align:center;}
+.contorl dl dd{float:left;padding-left:40px;width:163px;_padding:20px;}
+.contorl dl dd a{float:left;width:80px;color:#0c4ef3;}
+.contorl ul{float:left;width:189px;line-height:25px;background:url(../../../images/contorl.gif) repeat-x top;padding:7px 0 3px 14px;}
+.contorl ul li{float:left;width:180px;line-height:25px;background:url(../../../images/contorl_li.gif) no-repeat top left;text-indent:20px;}
+.contorl ul li a{color:#303030}
+.advise_a{float:left;width:205px;}

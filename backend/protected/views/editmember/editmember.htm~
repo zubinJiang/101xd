@@ -1,0 +1,86 @@
+<?php
+$user = $__p__['user'];
+?>
+<div class="govern" id="editmember">
+    <form id="userinfo" action="/user/editmember" method="post">
+        <?php
+            $cselect[strval($user['Cooperation'])]='selected';
+            if ($user['UserType'] == 0){
+            $usertype = '供货商';
+            }
+            else if ($user['UserType'] == 1){
+            $usertype = '渠道商';
+            }
+            else{
+            $usertype = '未知';
+            };
+            $usertypeselect[strval($user['UserType'])]='selected';
+            $category_id=$user['category']['id'];
+            $select[strval($category_id)]='selected';
+echo <<<EOF
+            <p><input type="hidden" name="user_id" value="{$user['UserID']}"/></p>
+            <p>用户名<input type="text"  name="contactname" value="{$user['ContactName']}" /></p>
+            <p>网站ip<input type="text"  name="ip" value="{$user['ip']}" /><br/></p>
+            <p>会员类型
+            <select name="usertype">
+                <option {$usertypeselect['0']}  value="0">供货商</option>
+                <option {$usertypeselect['1']}  value="1">渠道商</option>
+            </select>
+            </p>
+
+            <p>Email<input type="text"  name="email" value="{$user['Email']}" /><br/></p>
+            <p>QQ<input type="text"  name="qq" value="{$user['QQ']}" /><br/></p>
+            <p>联系电话<input type="text"  name="usertel" value="{$user['UserTel']}" /><br/></p>
+            <p>企业联系人<input type="text"  name="company_contact_name" value="{$user['company']['contact_name']}" /><br/></p>
+            <p>职务<input type="text"  name="company_position" value="{$user['company']['position']}" /><br/></p>
+            <p>其他联系电话<input type="text"  name="company_contact_tel" value="{$user['company']['contact_tel']}" /><br/></p>
+            <p>公司地区-省<input type="text"  name="address_province_id" value="{$user['address']['province']}" />[不可修改]<br/></p>
+            <p>公司地区-市<input type="text"  name="address_city_id" value="{$user['address']['city']}" />[不可修改]<br/></p>
+            <p>公司地址<input type="text"  name="address_desc" value="{$user['address']['desc']}" /><br/></p>
+            <p>公司邮编<input type="text"  name="company_postcode" value="{$user['company']['postcode']}" /><br/></p>
+            <p>公司网址<input type="text"  name="company_url" value="{$user['company']['url']}" /><br/></p>
+            <p>产品关键词<input type="text"  name="company_key" value="{$user['company']['key']}" /><br/></p>
+            <p>公司简介<input type="text"  name="company_desc" value="{$user['company']['desc']}" /><br/></p>
+            <p>经营范围 <select name="category_id">
+
+                <option {$select['2']}  value="2">本地商品</option>
+                <option {$select['3']}  value="3">精品网货</option>
+                <option {$select['4']}  value="4">代金券</option>
+                <option {$select['5']}  value="5">美食餐饮</option>
+                <option {$select['6']}  value="6">休闲娱乐</option>
+                <option {$select['7']}  value="7">美容护发</option>
+                <option {$select['8']}  value="8">摄影</option>
+                <option {$select['9']}  value="9">酒店住宿</option>
+                <option {$select['10']}  value="10">旅游景点</option>
+                <option {$select['14']}  value="14">食品饮料</option>
+                <option {$select['15']}  value="15">化妆品</option>
+                <option {$select['16']}  value="16">母婴用品</option>
+                <option {$select['17']}  value="17">服饰箱包</option>
+                <option {$select['18']}  value="18">家居用品</option>
+                <option {$select['19']}  value="19">数码家电</option>
+                <option {$select['21']}  value="21">美食餐饮</option>
+                <option {$select['22']}  value="22">休闲娱乐</option>
+                <option {$select['23']}  value="23">生活服务</option>
+                <option {$select['24']}  value="24">购物</option>
+                <option {$select['25']}  value="25">优惠票券</option>
+                <option {$select['26']}  value="26">配件饰品</option>
+                <option {$select['27']}  value="27">文体户外</option>
+                <option {$select['28']}  value="28">其它</option>
+                <option {$select['29']}  value="29">图书音乐</option>
+                <option {$select['30']}  value="30">食品饮料</option>
+                <option {$select['31']}  value="31">其它</option>
+
+            </select></p>
+            <p><select name="cooperation">合作状态
+                <option {$cselect['1']} value='1'>已经合作</option>
+                <option {$cselect['2']} value='2'>跟踪中</option>
+                <option {$cselect['3']} value='3'>无效</option>
+                <option {$cselect['4']} value='4'>其他</option>
+            </select></p>
+            <p style="height: 160px;">备注详情<textarea rows="6" cols="20" name="note" value="{$user['Note']}" style="margin-left: 100px" >{$user['Note']}</textarea></p>
+EOF;
+?>
+    <p><button type="submit">提交</button></p>
+    </form>
+
+</div>

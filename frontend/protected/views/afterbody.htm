@@ -1,0 +1,58 @@
+<?php
+if($_SERVER['HTTP_HOST']=='dev.101xd.com') {
+?>
+<script src="assets/jquery.min_74d4241a45212d40c4b6cb3495d99310.js"></script>
+<?php
+} else {
+?>
+<script src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.4.min.js"></script>
+<?php
+}
+if(PAGE!='index') {
+?>
+<script src="assets/jquery.easing.1.3_03575a6d4bd2738decd673f9fbdbf299.js" type="text/javascript"></script>
+<script src="assets/slides.jquery_12b357b1ef9ff33d4b90b7fbf565fee4.js" type="text/javascript" ></script>
+<?php
+} else {
+?>
+<script type="text/javascript" src="assets/jquery.cycle.js"></script>
+<script src="assets/jquery.KinSlideshow-1.2.1.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function(){
+	$("#KinSlideshow").KinSlideshow({
+			moveStyle:"right",
+            moveBox:{moveBox_width:680,moveBox_height:280},
+			titleBar:{titleBar_height:28,titleBar_bgColor:"#B4B4B4",titleBar_alpha:0.9},
+			titleFont:{TitleFont_size:12,TitleFont_color:"#FFFFFF",TitleFont_weight:"normal"},
+			btn:{btn_bgColor:"#FFFFFF",btn_bgHoverColor:"#F18600",btn_fontColor:"#000000",btn_fontHoverColor:"#FFFFFF",btn_borderColor:"#B5B9BA",btn_borderHoverColor:"#F18600",btn_borderWidth:1}
+	});
+})
+</script>
+<?php
+}
+if(PAGE=='product') {
+?>
+<script src="assets/marquee.js" type="text/javascript" ></script>
+<script type='text/javascript' src='assets/jquery.simplemodal.js'></script>
+<script type='text/javascript' src='assets/favorite.js'></script>
+<? 
+}
+CHtml::javascript(); ?>
+
+<?php
+if(PAGE=='ranking') {
+?>
+<script type='text/javascript' src='assets/ranking.js?c=<?php echo date('YmdHis');?>'></script>
+<?php 
+}
+
+$pages = array('index','local','net','childpages');
+
+if(in_array(PAGE, $pages)) {
+?>
+<script type='text/javascript' src='assets/home_daohang.js?c=<?php echo date('YmdHis');?>'></script>
+<?php 
+}
+include_once("analyticstracking.php") ?>
+</body>
+</html>

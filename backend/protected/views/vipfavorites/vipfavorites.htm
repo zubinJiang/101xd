@@ -1,0 +1,176 @@
+<?php 
+$data = isset($__p__['data']) ? $__p__['data'] : "";
+$page = isset($__p__['page']) ? $__p__['page'] : "";
+$category = isset($__p__['category']) ? $__p__['category'] : "";
+$vip_user = isset($__p__['vip_user']) ? $__p__['vip_user'] : "";
+$provinces = isset($__p__['province']) ? $__p__['province'] : "";
+$count = isset($__p__['count']) ? $__p__['count'] : "";
+$collect = isset($__p__['collect']) ? $__p__['collect'] : "";
+?>
+<div class="et">
+            <div class="pd">
+                <div class="hd">推送商品收藏夹</div>
+                <div class="bd">
+                        <div class="dv">
+                        <form action="vipmanagement?action=search" method="post">
+                            <label>商品搜索：</label>
+                            <input type="text" name="key" value="" style="width:220px;margin-right:5px"/>
+                            <input type="submit"  value="搜 索" class="an"/>
+                        <!--<label>按推送时间：</label>
+                        <input type="text" name="" value="" style="width:100px"/>
+                        <label style="color:#999">|</label>
+                        <input type="text" name="" value="" style="width:100px;margin-right:5px"/>
+                        <label>按是否代发货：</label>
+                        <select name="">
+                            <option>需要代发货</option>
+                            <option>暂时不需要</option>
+                        </select>
+                        </div>
+                        <div class="dv">
+                        <label style="margin-top:2px">按是否有广告推广要求：</label>
+                        <select name="" style="width:142px">
+                            <option selected="selected">请选择推广方式</option>
+                            <option>网站首页广告链接</option>
+                            <option>网站首页商品推荐</option>
+                            <option>网站右侧推荐位</option>
+                            <option>网站专区推广</option>
+                        </select>-->
+                        </form>
+                        </div>
+                </div>
+            </div>
+            <div class="main">
+                <div class="qiehuan">
+                    <div class="dw2"><a href="vipmanagement">全部推送商品（<?php echo $count; ?>）</a></div>
+                    <div class="dw1"><a href="vipfavorites">推送商品收藏夹（<?php echo $collect; ?>）</a></div>
+                </div>
+                <div class="xianshi">
+                    <ul>
+                        <li style="width:140px;text-align:center">商品名称</li>
+                        <li>
+                        <li style="width:70px;text-align:center">推送方</li>
+                            <!--<select name="user_name" class="user_name"><option value="">选择推送方</option>
+                            <option value="1">供应商</option>
+                            <option value="0">101兄弟</option>
+                            </select>-->
+                        </li>
+                        <li>
+                            <select  class="category"><option value="">选择类型</option><option value="1">本地商品</option><option value="2">精品网货</option></select>
+                        </li>
+                        <li>
+                            <select name="category_id" class="category"><option>选择类别</option>
+<?php if(!empty($category)){
+
+    foreach($category as $v){
+?>
+    <option value="<?php echo $v['id']; ?>"><?php echo $v['name']; ?></option>
+<?php   
+    }
+
+}?></select>
+                        </li>
+                        <li style="width:70px;text-align:center">推送时间</li>
+                        <li style="width:50px;text-align:center">代发货</li>
+                        <li style="width:68px;text-align:center">广告需求</li>
+                        
+                        <li>
+                           <select name="trac"  id="trac" style="width:105px">
+                                <option value="">商品跟踪记录</option>
+                                <option value="0">无记录</option>
+                                <option value="1">跟踪中</option>
+                                <option value="2">已签合同</option>
+                                <option value="3">已上团</option>
+                                <option value="4">其它</option>
+                            </select>
+                        </li>
+                        <li style="width:70px;text-align:center;margin:0">操作</li>
+                    </ul>
+                </div>
+                <div class="center">
+<?php if(!empty($data)){
+
+    foreach($data as $v){ 
+        if($v['category']=='1'){
+            $category_type = "本地商品";
+        } else if($v['category']=='2'){
+            $category_type = "精品网货";
+        } else {
+            $category_type = "其它";
+        }
+
+        if($v['state']=='0'){
+            $state_comd = "未处理";
+        } else if($v['state']=='1'){
+            $state_comd = "审核通过";
+        } else {
+            $state_comd = "拒绝";
+        }
+
+        if($v['ad']=='0'){
+
+            $ad_comd = "否";
+        } else {
+
+            $ad_comd = "是";
+        }
+
+        if($v['delivery']=='0'){
+            $delivery_comd = "否";
+        } else if($v['delivery']=='1') {
+            $delivery_comd = "是";
+        } else {
+            $delivery_comd = "皆可";
+        }
+
+        if(!empty($v['insertdate'])){
+        
+            $date = date("Y-m-d", $v['insertdate']);
+        }
+
+            switch($v['trac'])
+            {
+            case 1: $trac_comd = "跟踪中"; break;
+            case 2: $trac_comd = "已签合同"; break;
+            case 3: $trac_comd = "已上团"; break;
+            case 4: $trac_comd = "其它"; break;
+
+            default: $trac_comd = "无记录";
+            
+            }
+
+        $str_title = $v['title'];
+        if(strlen($v['title'])>22){
+
+            $str_title = mb_substr($v['title'],0,22,"utf-8").'...';
+        }
+?>
+        <div class="neirong">
+        <ul>
+        <li class="mc"><a href="vipdetail?id=<?php echo $v['id']; ?>"><?php echo $str_title; ?></a></li>
+        <li style="width:84px;text-align:center"><?php echo $v['uname']; ?></li>
+        <li style="width:84px;text-align:center"><?php echo $category_type; ?></li>
+        <li style="width:84px;text-align:center"><?php echo $v['cname']; ?></li>
+        <li style="width:70px;text-align:center"><?php echo $date; ?></li>
+        <li style="width:50px;text-align:center"><?php echo $delivery_comd; ?></li>
+        <li style="width:70px;text-align:center"><?php echo $ad_comd; ?></li>
+        <li style="width:105px;text-align:center"><?php echo $trac_comd; ?></li>
+        <li style="text-align:center;width:84px;margin:0"><a href="vipdetail?id=<?php echo $v['id']; ?>">查看</a></li>
+        <ul>
+        </div>
+<?php
+    }
+
+}?>
+</div>
+                <div class="fy">
+<?php
+        if(!empty($page)) {
+            echo $page->show(4);
+        }
+?>
+                </div>
+          </div>
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,39 @@
+body{ width:564px; margin:0 auto; text-align:left; }
+a{font-size:14px;text-decoration:none;color:#fff;}
+a:hover{text-decoration:none;color:#fff;}
+
+#hd{ margin:5px; }
+#hd .logo{ float:left; background:url("images/welcome/logo_f.gif"); width:171px; height:59px; }
+#bd h3{ font-size:18px; color:#55911b; line-height:24px; font-weight:bold; margin:10px 5px; }
+#bd .product{ background:url("images/welcome/product.gif"); width:564px; height:27px; margin-top:40px; }
+#bd .product_img{ background:url("images/welcome/product_img.gif"); width:546px; height:105px; margin:10px auto; }
+#bd .product_img .wt{ float:left; width:300px; margin:20px 0 0 90px; _margin-left:45px; }
+#bd .product_img .wt b{ line-height:26px; }
+#bd .product_img a{ float:right; background:url("images/welcome/facebook_bt3a.png"); width:108px; height:30px; margin:38px 19px 0 0; }
+*html #bd .product_img a{filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src="images/welcome/facebook_bt3a.png");background:none;}
+#bd .product_img a:hover{ float:right; background:url("images/welcome/facebook_bt3b.png"); width:108px; height:30px; margin:38px 19px 0 0; }
+*html #bd .product_img a:hover{filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src="images/welcome/facebook_bt3b.png");background:none;}
+#bd .service{ background:url("images/welcome/service.gif"); width:564px; height:27px; margin-top:40px; }
+#bd .service_img1{ background:url("images/welcome/service_img1.gif"); width:546px; height:105px; margin:10px auto; }
+#bd .service_img1 .wt{ float:left; width:380px; margin:20px 0 0 20px; _margin-left:10px; }
+#bd .service_img1 .wt b{ line-height:26px; }
+#bd .service_img1 a{ float:right; background:url("images/welcome/facebook_bt1a.png"); width:108px; height:30px; margin:38px 19px 0 0; }
+*html #bd .service_img1 a{filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src="images/welcome/facebook_bt1a.png");background:none;}
+#bd .service_img1 a:hover{ background:url("images/welcome/facebook_bt1b.png"); }
+*html #bd .service_img1 a:hover{filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src="images/welcome/facebook_bt1b.png");background:none;}
+#bd .service_img2{ background:url("images/welcome/service_img2.gif"); width:546px; height:105px; margin:10px auto; }
+#bd .service_img2 .wt{ float:left; width:380px; margin:20px 0 0 20px; _margin-left:10px; }
+#bd .service_img2 .wt b{ line-height:26px; }
+#bd .service_img2 a{ float:right; background:url("images/welcome/facebook_bt2a.png"); width:108px; height:30px; margin:38px 19px 0 0; }
+*html #bd .service_img2 a{filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src="images/welcome/facebook_bt2a.png");background:none;}
+#bd .service_img2 a:hover{ background:url("images/welcome/facebook_bt2b.png"); }
+*html #bd .service_img2 a:hover{filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src="images/welcome/facebook_bt2b.png");background:none;}
+#bd .service_img3{ background:url("images/welcome/service_img3.gif"); width:546px; height:105px; margin:10px auto; }
+#bd .service_img3 .wt{ float:left; width:380px; margin:20px 0 0 20px; _margin-left:10px; }
+#bd .service_img3 .wt b{ line-height:26px; }
+#bd .service_img3 a{ float:right; background:url("images/welcome/facebook_bt3a.png"); width:108px; height:30px; margin:38px 19px 0 0; }
+*html #bd .service_img3 a{filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src="images/welcome/facebook_bt3a.png");background:none;}
+#bd .service_img3 a:hover{ background:url("images/welcome/facebook_bt3b.png"); }
+*html #bd .service_img3 a:hover{filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src="images/welcome/facebook_bt3b.png");background:none;}
+#bd .customer{ background:url("images/welcome/customer.gif"); width:564px; height:27px; margin-top:40px; }
+#bd .customer_img{ background:url("images/welcome/customer_img.gif"); width:564px; height:66px; margin:10px auto; }

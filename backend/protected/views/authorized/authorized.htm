@@ -1,0 +1,104 @@
+<?php
+$data = isset($__p__['form']) ? $__p__['form'] : '';
+$role = isset($__p__['role']) ? $__p__['role'] : '';
+?>
+<div class="govern" id="member">
+    <div class="issue"><div id="current_location">角色授权</font></div></div>
+    <div class="material"></div>
+    <div class="option">
+      <div class="choice">
+      <form action="?action=update&id=<?php echo $role['id']?>" method="post" >
+    <?php
+if(!empty($role)) {
+    echo "角色名：" . $role['role_name'];
+}
+
+    echo '<br/>';
+if(!empty($data)) {
+
+    foreach($data as $v) {
+    
+        echo $v['name'];
+?>
+
+    <?php
+    if('reviewe'==$v['ename']) {
+?>
+    <br/>
+    <input type="checkbox" name="<?php echo $v['ename'];?>[]" value="1" <?php if($v['permission']&1) { echo 'checked'; }?> /> 浏览&nbsp;&nbsp;
+    <input type="checkbox" name="<?php echo $v['ename'];?>[]" value="2" <?php if($v['permission']&2) { echo 'checked'; }?> /> 删除&nbsp;&nbsp;
+    <input type="checkbox" name="<?php echo $v['ename'];?>[]" value="4" <?php if($v['permission']&4) { echo 'checked'; }?> /> 推荐/取消推荐&nbsp;&nbsp;
+    <input type="checkbox" name="<?php echo $v['ename'];?>[]" value="8" <?php if($v['permission']&8) { echo 'checked'; }?> /> 通过/不通过&nbsp;&nbsp;
+    <br/>
+    <br/>
+<?php
+    } elseif ('administrate'==$v['ename']) {
+?>
+    <br/>
+    <input type="checkbox" name="<?php echo $v['ename'];?>[]" value="1" <?php if($v['permission']&1) { echo 'checked'; }?> /> 浏览&nbsp;&nbsp;
+    <input type="checkbox" name="<?php echo $v['ename'];?>[]" value="2" <?php if($v['permission']&2) { echo 'checked'; }?> /> 删除&nbsp;&nbsp;
+    <input type="checkbox" name="<?php echo $v['ename'];?>[]" value="4" <?php if($v['permission']&4) { echo 'checked'; }?> /> 修改&nbsp;&nbsp;
+    <input type="checkbox" name="<?php echo $v['ename'];?>[]" value="8" <?php if($v['permission']&8) { echo 'checked'; }?> /> 移动&nbsp;&nbsp;
+    <br/>
+    <br/>
+<?php
+    } elseif ('member'==$v['ename']) {
+?>
+    <br/>
+    <input type="checkbox" name="<?php echo $v['ename'];?>[]" value="1" <?php if($v['permission']&1) { echo 'checked'; }?> /> 浏览&nbsp;&nbsp;
+    <input type="checkbox" name="<?php echo $v['ename'];?>[]" value="2" <?php if($v['permission']&2) { echo 'checked'; }?> /> 删除&nbsp;&nbsp;
+    <input type="checkbox" name="<?php echo $v['ename'];?>[]" value="4" <?php if($v['permission']&4) { echo 'checked'; }?> /> 修改&nbsp;&nbsp;
+    <br/>
+    <br/>
+<?php
+    } elseif ('permissions'==$v['ename']) {
+?>
+    <br/>
+    <input type="checkbox" name="<?php echo $v['ename'];?>[]" value="1" <?php if($v['permission']&1) { echo 'checked'; }?> /> 浏览&nbsp;&nbsp;
+    <input type="checkbox" name="<?php echo $v['ename'];?>[]" value="2" <?php if($v['permission']&2) { echo 'checked'; }?> /> 删除&nbsp;&nbsp;
+    <br/>
+    <br/>
+<?php
+    } elseif ('sms'==$v['ename']) {
+?>
+    <br/>
+    <input type="checkbox" name="<?php echo $v['ename'];?>[]" value="1" <?php if($v['permission']&1) { echo 'checked'; }?> /> 浏览&nbsp;&nbsp;
+    <input type="checkbox" name="<?php echo $v['ename'];?>[]" value="2" <?php if($v['permission']&2) { echo 'checked'; }?> /> 发布&nbsp;&nbsp;
+    <br/>
+    <br/>
+<?php
+    } elseif ('link'==$v['ename']) {
+?>
+    <br/>
+    <input type="checkbox" name="<?php echo $v['ename'];?>[]" value="1" <?php if($v['permission']&1) { echo 'checked'; }?> /> 浏览&nbsp;&nbsp;
+    <input type="checkbox" name="<?php echo $v['ename'];?>[]" value="2" <?php if($v['permission']&2) { echo 'checked'; }?> /> 删除&nbsp;&nbsp;
+    <input type="checkbox" name="<?php echo $v['ename'];?>[]" value="4" <?php if($v['permission']&4) { echo 'checked'; }?> /> 发布&nbsp;&nbsp;
+    <br/>
+    <br/>
+<?php
+    } elseif ('role'==$v['ename']) {
+?>
+    <br/>
+    <input type="checkbox" name="<?php echo $v['ename'];?>[]" value="1" <?php if($v['permission']&1) { echo 'checked'; }?> /> 浏览&nbsp;&nbsp;
+    <input type="checkbox" name="<?php echo $v['ename'];?>[]" value="2" <?php if($v['permission']&2) { echo 'checked'; }?> /> 删除&nbsp;&nbsp;
+    <input type="checkbox" name="<?php echo $v['ename'];?>[]" value="4" <?php if($v['permission']&4) { echo 'checked'; }?> /> 授权&nbsp;&nbsp;
+    <br/>
+    <br/>
+<?php
+    } elseif ('procedure'==$v['ename']) {
+?>
+    <br/>
+    <input type="checkbox" name="<?php echo $v['ename'];?>[]" value="1" <?php if($v['permission']&1) { echo 'checked'; }?> /> 发布&nbsp;&nbsp;
+    <br/>
+    <br/>
+<?php
+    }
+}
+?>
+<input type="submit" value="提交" />
+<?php
+}
+?>
+    </form>
+        </div>
+</div>

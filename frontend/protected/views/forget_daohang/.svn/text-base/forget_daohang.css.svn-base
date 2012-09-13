@@ -1,0 +1,109 @@
+/*共同部分*/
+#forget_daohang{width:968px;height:118px;margin:0 auto;}
+.logo{width:311px;height:84px;float:left;padding-top:12px}
+.top_right{width:284px;height:35px;float:right;line-height:24px;color:#666;padding:35px 30px 0 0}
+.top_right a{float:right;display:block;color:#666}
+.top_right a.ti{float:right;display:block;color:#666;background:url(../img/jianyi.gif) no-repeat center left;padding-left:22px}
+.top_right span{float:right;padding:0 5px 0 5px;}
+
+#forget{width:968px;height:388px;margin:0 auto;border:1px #c8c8c8 solid;padding-top:13px;background:url(../../../images/footer_bj.gif) repeat-x bottom}
+#pwdemail{width:968px;height:388px;margin:0 auto;border:1px #c8c8c8 solid;padding-top:13px;background:url(../../../images/footer_bj.gif) repeat-x bottom}
+.footer_t{width:968px;height:28px;text-align:center;line-height:28px;font-size:14px}
+.footer_t span{width:142px;height:28px;float:left;font-weight:bold;}
+
+/*输入101帐号*/
+.yibu{width:261px;height:28px;float:left;margin-right:10px;background: url(../../../images/yibu.gif) no-repeat left;color:#FFF;font-weight:bold;}
+.erbu{width:263px;height:28px;float:left;margin-right:10px;background: url(../../../images/erbu.gif) no-repeat left;color:#666}
+.sanbu{width:260px;height:28px;float:left;background: url(../../../images/sanbu.gif) no-repeat left;color:#666}
+.kuang{position:relative;left:305px;top:66px;width:420px;height:185px;float:left;font-size:14px}
+.kuang ul{float:left;width:100%}
+.kuang ul li.li{float:left;width:100%;height:35px;}
+.kuang ul li{float:left;width:100%;height:30px;}
+.kuang ul li input{line-height:20px}
+.kuang ul li.lii{float:left;width:100%;height:53px;line-height:24px}
+.kuang span.i{width:206px;height:24px;border:1px #CCC solid}
+.kuang span{float:left;}
+.kuang span.sp{text-align:right;width:66px;float:left}
+.kuang span.in{padding-left:10px;line-height:20px}
+.kuang span.spn{padding-left:66px;float:left}
+.kuang span.spa{float:none}
+.kuang .spn input{width:84px;height:27px;border:none;background:url(../../../images/button_forget.gif) no-repeat;font-size:16px;color:#fff;text-align:center;line-height:27px;font-family:Arial,Helvetica,sans-serif;font-weight:bold;cursor:pointer;}
+
+/*选择找回密码方式*/
+.yibu_1{width:261px;height:28px;float:left;margin-right:10px;background: url(../../../images/yibu_l.gif) no-repeat left;color:#666;font-weight:normal}
+.erbu_1{width:263px;height:28px;float:left;margin-right:10px;background: url(../../../images/erbu_l.gif) no-repeat left;color:#FFF;font-weight:bold;}
+.sanbu_1{width:260px;height:28px;float:left;background: url(../../../images/sanbu.gif) no-repeat left;color:#666}
+.kuang2{position:relative;left:255px;top:40px;width:470px;height:255px;}
+.kuang2 ul{float:left;font-weight:bold;width:470px;font-size:14px}
+.kuang2 ul li{width:470px;height:40px;line-height:32px;}
+.kuang2 ul li.l{font-weight:normal}
+.kuang2 ul li span{color:red}
+.kuang2 ul li a{font-weight:normal;text-decoration:underline}
+.kuang2 ul li a.img{padding-right:40px}
+
+/*手机找回密码*/
+.yibu_2{width:261px;height:28px;float:left;margin-right:10px;background: url(../../../images/yibu_l.gif) no-repeat left;color:#666;font-weight:normal}
+.erbu_2{width:263px;height:28px;float:left;margin-right:10px;background: url(../../../images/erbu_e.gif) no-repeat left;color:#666;font-weight:normal}
+.sanbu_2{width:260px;height:28px;float:left;background: url(../../../images/sanbu_l.gif) no-repeat left;color:#FFF;font-weight:bold;}
+.move{position:relative;left:265px;top:64px;width:476px;height:350px}
+.move h2{font-size:14px;line-height:32px;float:left}
+.move ul{float:left;width:100%}
+.move ul li{width:400px;height:40px;line-height:28px}
+.move ul li span{float:left;padding-right:10px}
+.move ul li input{float:left;width:160px;height:20px;}
+.move ul li a.link{float:left;display:block;padding:0 5px 0 5px;text-decoration:underline;color:#039}
+.get_again{width:468px;height:38px;border:1px #b0b0b0 solid;background:#fff9e7;line-height:38px;text-align:center}
+.huo{color:#900;}
+.pa{padding-top:15px}
+.login{width:330px;height:28px;float:left;padding-left:140px;}
+.login input{width:84px;height:27px;background:url(../../../images/button.gif) no-repeat;font-weight:bold;color:#FFF;font-size:16px;font-family:Arial,Helvetica,sans-serif;margin-right:20px;border:none;line-height:20px;cursor:pointer}
+/*重新绑定手机*/
+.lobster{position:relative;left:350px;top:87px;width:274px;height:350px}
+.lobster h2{font-size:14px;line-height:36px;float:left}
+.lobster ul{float:left;width:100%}
+.lobster ul li{width:470px;height:36px;line-height:28px}
+.lobster ul li span{float:left;line-height:30px;padding-right:10px}
+.lobster ul li input{float:left;width:160px;height:20px;line-height:20px}
+.bang{padding-left:96px}
+.lobster ul li input.pinless{width:84px;height:27px;background:url(../../../images/button.gif) repeat-x;color:#fff;font-weight:bold;font-size:16px;border:none;cursor:pointer;}
+
+/*手机确认信息*/
+.queren{width:908px;height:240px;margin:0 auto;border:1px #c8c8c8 solid;background:url(../../../images/footer_bj.gif) repeat-x bottom;padding:20px 0 0 160px}
+.queren h2{float:left;width:900px;height:35px;line-height:35px;font-size:14px;}
+.queren ul{float:left;width:670px;}
+.queren ul li{width:670px;height:32px;line-height:32px;}
+.queren ul li.li{padding-left:50px}
+.queren ul li input{width:84px;height:27px;background:url(../../../images/button.gif) no-repeat;border:none;font-size:16px;font-weight:bold;color:#fff;cursor:pointer;line-height:20px}
+
+
+/*邮箱找回密码*/
+.kuang6{position:relative;left:273px;top:100px;width:460px;height:105px}
+.kuang6 h2{font-size:14px;line-height:28px;float:left}
+.kuang6 ul{float:left;width:100%}
+.kuang6 ul li{width:460px;height:36px;line-height:28px}
+.kuang6 ul li.zhuc{padding-top:10px}
+.kuang6 ul li span{float:left;line-height:28px;padding:0 10px 0 10px}
+.kuang6 ul li input{float:left;width:160px;height:20px;line-height:20px;margin-right:10px}
+.kuang6 ul li input.next{float:left;width:84px;height:27px;background:url(../../../images/button_forget.gif) no-repeat;color:#fff;font-weight:bold;font-size:16px;border:none;cursor:pointer;}
+.kuang6 ul li a{text-decoration:underline;color:#039;}
+
+/*邮箱确认信息*/
+.kuang7{position:relative;left:250px;top:100px;width:515px;height:83px}
+.kuang7 ul{float:left;width:100%}
+.kuang7 ul li{width:515px;height:36px;line-height:36px}
+.kuang7 ul li.inp{padding:10px 0 0 200px;}
+.kuang7 ul li input{width:84px;height:27px;background:url(../../../images/button_forget.gif) no-repeat;color:#fff;font-weight:bold;font-size:16px;border:none;cursor:pointer;text-align:center;}
+
+#editpass{width:908px;height:240px;margin:0 auto;border:1px #c8c8c8 solid;padding-top:13px;background:url(../../../images/footer_bj.gif) repeat-x bottom;padding:20px 0 0 60px}
+#editpass h2{float:left;width:900px;height:35px;line-height:35px;font-size:14px;font-weight:bolder;}
+#editpass ul{float:left;width:670px;}
+#editpass ul li{width:670px;height:32px;line-height:32px;}
+#editpass ul li.ll{height:40px}
+#editpass ul li.li{padding-left:240px}
+#editpass ul li span{float:left;text-align:right;}
+#editpass ul li span.sp{background:#fee8c6;padding:0 10px 0 10px;text-align:center;height:24px;line-height:24px}
+#editpass ul li span.ss{padding-right:100px}
+#editpass ul li span.spa{padding:0 10px 0 10px;text-align:center;height:24px;line-height:24px;background:#fee8c6;}
+#editpass ul li span.span{width:120px;text-align:right}
+#editpass ul li input{margin-right:10px;float:left;width:165px;height:20px;line-height:20px;}
+#editpass ul li input.button{width:84px;height:27px;background:url(../../../images/button_forget.gif) no-repeat;border:none;font-size:16px;font-weight:bold;color:#fff;cursor:pointer}

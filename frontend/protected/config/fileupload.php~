@@ -1,0 +1,11 @@
+<?php
+
+return array(
+    'rootpath'      => '/mnt/bak/localhost/trunk/codes/frontend/upload/',
+    'profilePath'   => 'profile/',
+    'articlePath'   => 'article/',
+    'urlpath'       => 'http://image2.101xd.com/'
+);
+
+
+?>

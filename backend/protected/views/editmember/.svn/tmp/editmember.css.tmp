@@ -1,0 +1,8 @@
+#editmember {width:480px;height:600px;background-color:#FFF;padding:4px;font-size:12px;float:left;margin-left:0px;border: 4px dashed #dd45c6;margin:8px;-webkit-border-top-left-radius:5px 10px;-webkit-border-top-right-radius:5px 10px;-webkit-border-bottom-right-radius:5px 10px;-webkit-border-bottom-left-radius:5px 10px;}
+#editmember p {float:left;height:14px;background-color:#FFF;padding:2px;margin:2px;width:80%}
+#editmember p input {float:right;background-color:#bffeeb;margin-right:80px;border: 1px solid #CCC;background: rgba(255, 255, 255, .85);border: 2px inset;-webkit-rtl-ordering: logical;-webkit-user-select: text;cursor: auto;}
+#editmember p select {float:right;background-color:#bffeeb;margin-right:80px;border: 1px solid #CCC;background: rgba(255, 255, 255, .85);border: 2px inset;-webkit-rtl-ordering: logical;-webkit-user-select: text;cursor: auto;}
+#editmember p button {float:left;background-color:#00882D;color:#fff;margin:0px;padding:0px}
+
+.govern p {line-height:26px;}
+

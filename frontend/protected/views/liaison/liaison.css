@@ -1,0 +1,112 @@
+#liaison{widht:970px;background:url(../../../images/liaison.gif) no-repeat top;padding:4px 0 10px 0;}
+.liaison_o{width:970px;background:url(../../../images/liaison_o.gif) no-repeat bottom;padding-bottom:4px;}
+.liaison_a{width:958px;padding-left:12px;background:url(../../../images/liaison_a.gif) repeat-y;overflow:hidden;}
+.liaison_left{float:left;width:683px;border-right:1px solid #dadada;}
+.liaison_left h2{float:left;width:683px;line-height:36px;font-size:16px;font-family:Arial, Helvetica, sans-serif;font-weight:bold;}
+.liaison_left dl{float:left;width:365px;}
+.liaison_left dl dt{float:left;width:334px;}
+.liaison_left dl dt img{float:left;width:334px;height:212px;}
+.liaison_left dl dd{float:left;width:320px;line-height:36px;padding-left:14px;}
+.liaison_left dl dd span{float:left;width:178px;font-size:13px;font-family:Arial, Helvetica, sans-serif;font-weight:bold;color:#b10509;}
+.liaison_left dl dd a{float:right;color:#1802c7;text-decoration:underline;outline:none;line-height:36px;display:block;}
+.liaison_left ol{float:left;width:265px;padding:10px 0 10px 17px;background:#ffebeb;border:1px solid #ff9199;line-height:20px;}
+.liaison_left ol li{float:left;width:80px;text-align:center;border-right:1px dashed #8e8a8a;}
+.liaison_left ol li strong{font-size:18px;color:#d61213;font-family:Arial, Helvetica, sans-serif;}
+.liaison_left ul{float:left;width:310px;padding:10px 0 0 4px;}
+.liaison_left ul li{float:left;width:310px;line-height:28px;color:#2b2b2b;}
+.liaison_left ul li span{float:left;width:155px;}
+.liaison_right{float:left;width:265px;padding-left:6px;}
+.liaison_right ol{float:left;width:230px;padding-left:4px;height:115px;}
+.liaison_right ol li{float:left;width:230px;line-height:22px;color:#414141;}
+.liaison_right ol li span{float:left;width:115px;}
+.contact_way{float:left;wdith:261px;height:163px;background:url(../../../images/current.gif) no-repeat;}
+.contact_way p{float:left;width:242px;line-height:36px;text-align:center;font-size:13px;color:#606060;font-weight:bold;font-family:Arial, Helvetica, sans-serif;}
+.contact_way p span{float:left;padding-left:11px;font-size:15px;color:#d61213;}
+.contact_way p button.guanzhu{cursor: pointer;float:left;width:100px;text-align:center;height:32px;line-height:32px;font-size:18px;font-family:Arial, Helvetica, sans-serif;font-weight:bold;color:#fff;background:url(../../../images/contact_way.gif) no-repeat;border:none;margin:15px 0 0 70px;}
+.contact_way p span.attentions{float:right;font-size:12px;font-weight:normal;}
+p.renqi {font-weight:normal;color:red;font-size:12px;}
+.innocuous{float:left;width:242px;line-height:20px;padding-left:13px;color:#414141;}
+.relation{float:left;width:242px;line-height:24px;padding-left:13px;color:#414141;}
+.cover{float:left;width:694px;border:1px solid #dadada;border-top:none}/*new*/
+
+#cover{float:left;width:694px;border:1px solid #dadada;position:relative;overflow:hidden;}
+#cover h2{float:left;width:680px;line-height:150%;font-size:18px;color:#000;text-align:center;text-align:left;margin:10px 0 0 8px;font-weight:bolder;}
+/*#cover p{float:left;width:690px;line-height:24px;color:#888;text-align:right;}*/
+.changing-over{float:left;width:686px;padding:0 0 20px 8px;}
+.switchover{float:left;width:356px;height:212px;overflow:hidden;}
+.switchover img{float:left;width:334px;}
+.changing-over ul{float:left;width:320px;padding-top:10px;line-height:29px;color:#535353;}
+.changing-over ul li{float:left;width:320px;}
+.changing-over ul li strong.namic{color:#535353;font-size:14px;}
+.changing-over ul li strong{width:326px;line-height:35px;font-size:18px;font-family:"黑体";color:#ff0000;}
+.changing-over ul li button{width:85px;line-height:27px;height:27px;background:url(../../../images/piece.gif) no-repeat;border:none;font-size:16px;color:#fff;font-weight:bold;font-family:Arial, Helvetica, sans-serif;}
+.depict{float:left;width:696px;line-height:32px;background:url(../../../images/depict.gif) no-repeat;color:#9e0011;font-size:14px;font-weight:bold;font-family:Arial, Helvetica, sans-serif;text-indent:15px;}
+.represent{float:left;width:694px;text-align:center;padding:10px 0 10px 0;}
+.describe{float:left;width:670px;padding:10px 0 10px 10px;line-height:24px;margin:10px 0 0 0;}
+.describe p{clear:both;}
+.describe img{max-width:670px;}
+.represent img{padding-top:15px;}
+
+
+#liaison .pop {background:#fff;width:400px;position:absolute;z-index:1000;left:100px;top:140px;}
+#case{width:388px;height:138px;margin:0 auto;border:solid 6px #aeaeae}
+#case .hd{width:388px;height:24px;border-bottom:1px solid #dadada;line-height:24px;float:left}
+#case .hd .left{width:286px;height:24px;float:left;color:#999;padding-left:10px;background:none;}
+#case .hd .center{width:60px;height:23px;float:left;color:#999;padding-top:0;background:none;}
+#case .hd .center a{color:#999;float:left;line-height:25px;}
+#case .hd .right{width:12px;height:19px;float:right;padding:0;margin:1px 5px 0 0;}
+#case .fd{width:388px;height:112px;background:url(../../../images/pop_biaoqing.gif) no-repeat 13px 8px;float:left}
+#case .fd .you{width:228px;height:100px;float:right;padding-top:12px}
+#case .fd .you ul{width:228px;font-size:14px;font-weight:bold;line-height:40px}
+#case .fd .you ul li{width:228px;height:50px;float:left}
+#case .fd .you ul li input{width:85px;height:30px;float:left;margin-right:10px;background:url(../../../images/pop_loginbj.gif) no-repeat;font-size:14px;font-weight:bold;color:#fff;cursor:pointer;border:none}
+
+#contact{clear:both;}
+#contact .contact_info{width:100%;height:80px;background:#D3D3D3;}
+#contact .bind{color:#000;font-weight:14px;padding:0 0 0 10px;}
+#contact .telnum{margin:10px 0 0 20px;font-weight:bolder;color:#000;}
+
+#progressbar { position:absolute;z-index:3;left:50%;top:50%;border-width:2px;border-color:black;display:none;color:green;background:#fff}
+#progressbar tr {width:90%;font-weight:14px; padding:8px 0 0 0}
+#progressbar tr td{  width:80%;height:40px;font-weight:14px; padding:0 0 0 8px}
+
+/*登录 注册*/
+.tery{width:376px;height:39px;line-height:20px;clear:both;}
+.tery a{color:#333;}
+.tery_l{float:left;width:99px;text-align:right;}
+.tery_r .error{color:red;font-size:12px;line-height:15px;}
+.tery_r{float:left;width:260px;}
+.tery_r input{float:left;height:18px;line-height:18px;width:170px;text-indent:5px;border:1px solid #7F9DB9;}
+.checked{float:left;width:14px;height:14px;overflow:hidden;margin-left:100px;}
+.tery span {color:#19578a;}
+.tery span a{color:#19578a;}
+.tery_r select{float:left;height:20px;line-height:20px;}
+
+/*添加收藏*/
+.collect_form{width:552px;height:112px;background:url(../../../images/cellect.gif) no-repeat;}
+.collect_form .collect_body{width:538px;height:98px;background:#fff;float:left;margin:7px 0 0 7px;_margin:7px 0 0 3px;}
+.collect_form p{float:left;width:520px;line-height:30px;height:40px;}
+.collect_form p span{float:left;font-size:16px;font-family:Arial,Helvetica,sans-serif;font-weight:bold;color:#444e3b;margin:0 0 0 10px;}
+.collect_form p input{float:left;width:270px;line-height:18px;height:18px;color:#a0a0a0;margin-left:30px;}
+.collect_form p select{float:left;margin-left:8px;height:24px;line-height:24px;}
+.collect_form p input.rine{width:84px;height:27px;border:none;background:url(../../../images/pinless.gif) no-repeat;margin-left:8px;font-size:16px;color:#fff;text-align:center;line-height:27px;font-family:Arial,Helvetica,sans-serif;font-weight:bold;}
+.collection{width:552px;height:112px;background:url(../../../images/collection.gif) no-repeat;}
+.collection p{float:left;width:330px;padding-left:130px;line-height:24px;padding-top:15px;}
+.collection p a{color:#1607a0;text-decoration:underline;}
+
+/* Overlay */
+#contact-overlay {background-color:#444; cursor:wait;}
+/* Container */
+#contact-container {font: 16px/22px 'Trebuchet MS', Verdana, Arial; text-align:left;width:552px;height:112px;}
+#contact-container .contact-content {background-color:#333; color:#ddd; height:40px;}
+#contact-container .contact-loading {background:url(../../../images/lightbox-ico-loading.gif) no-repeat; height:32px; margin:-14px 0 0 190px; padding:0; position:absolute; width:32px; z-index:8000;}
+#contact-container .contact-message {text-align:center;}
+#contact-container .contact-error {background:#000; border:2px solid #ccc; font-size:14px; font-weight:bold; line-height:18px; margin:0 auto; padding:2px; width:92%;}
+#contact-container a.modal-close,
+#contact-container a.modal-close:link,
+#contact-container a.modal-close:active,
+#contact-container a.modal-close:visited {color:#999; font-size:18px; font-weight:bold; position:absolute; text-decoration:none; right:15px; top:5px;}
+#contact-container a.modal-close:hover {color:#ccc;}
+#contact-container .collection{width:552px;height:112px;background-image:url(../../../images/collection.gif) no-repeat;background-color:#fff;}
+#contact-container .collection p{float:left;width:360px;padding-left:130px;line-height:24px;padding-top:15px;}
+#contact-container .collection p a{color:#1607a0;text-decoration:underline;}

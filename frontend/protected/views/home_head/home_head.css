@@ -1,0 +1,37 @@
+#focus{float:left;width:696px;}
+#focus .slides_button{width:680px;height:85px;z-index:1000;position:absolute;outline:none;top:100px;left:8px;_width:680px;_left:6px;}
+#focus .slides_button a.prev{width:16px;float:left;}
+#focus .slides_button a.next{width:16px;float:right;}
+#focus .slides_button a {outline:none;}
+.panel{width:660px;height:250px;_height:200px;_width:660px;_margin:0 0 0 10px;}
+.panel h2.title { margin-bottom: 0px }
+.panel .panel-wrapper{float:left;margin:0 0 0 30px;_margin:0 0 0 15px;}
+
+#focus h2{width:640px;line-height:150%;padding:4px 14px 0 14px;font-size:16px;color:#b20024;height:50px;_padding:4px 0 0 0;text-align:center;}
+#focus h2 a{color:#000;font-family:'黑体';font-size:20px;}
+
+.collective{width:696px;height:303px;background:url(../../../images/collective.gif) no-repeat;padding-bottom:10px;}
+.collective h2 a{color:#000;}
+.collective h2 a strong{font-size:24px;color:#ff9f00;}
+.charge{float:left;width:696px;line-height:37px;font-size:18px;color:#262626;font-family:Arial, Helvetica, sans-serif;font-weight:bold;border-bottom:1px solid #ddd;text-indent:10px;padding-top:1px;}
+.charge span{color:#ff4200;font-size:14px;}
+
+.franco{width:685px;padding:0 5px 0 5px;height:260px;position:relative;overflow:hidden;_width:690px;_height:250px;_padding:0;float:left;}
+.vouchers{float:left;width:590px;height:182px;overflow:hidden;}
+.allowance{float:left;width:347px;}
+.allowance img{float:left;width:316px;height:181px;}
+.commercial{float:left;width:243px;line-height:29px;color:#535353;}
+.commercial ul{float:left;width:225px;padding:8px 0 0 16px;height:50px;line-height:22px;background:#ffebeb;border:1px solid #ff9199;}
+.commercial ul li{float:left;width:62px;text-align:center;border-right:1px dashed #8e8a8a;}
+.commercial ul li span{float:left;width:63px;}
+.commercial ul li strong{float:left;width:62px;color:#ff3600;font-size:13px;font-family:Arial, Helvetica, sans-serif;}
+.commercial ul li.regretful{float:left;width:95px;text-align:center;border:none;}
+.commercial ul li.regretful cursor:pointerspan{float:left;width:95px;}
+.commercial ul li.regretful strong{float:left;width:95px;color:#ff3600;font-size:18px;font-family:Arial, Helvetica, sans-serif;}
+.commercial p{float:left;width:241px;text-align:center;line-height:26px;color:#535353;margin:10px 0;background:#ffebeb;border:1px solid #ff9199;height:26px;overflow:hidden;}
+.acquiring{float:left;width:231px;padding:8px 0 0 10px;background:#ffebeb;border:1px solid #ff9199;color:#535353;overflow:hidden;}
+.acquiring strong{float:left;width:104px;line-height:27px;}
+.acquiring button{float:left;width:85px;line-height:27px;height:27px;background:url(../../../images/piece.gif) no-repeat;border:none;font-size:16px;color:#fff;font-weight:bold;font-family:Arial, Helvetica, sans-serif;overflow:hidden;}
+.acquiring span{float:left;width:221px;text-align:center;line-height:34px;height:34px;}
+.acquiring b{color:#ff0000;}
+#attention{cursor:pointer}

@@ -1,0 +1,83 @@
+body,div,h1,h2,h3,h4,h5,h6,ul,ol,li,label,dd,dt,dl,p,span{margin:0;padding:0}
+body{font-size:12px;font-family:Arial, Helvetica, sans-serif;text-align:left}
+ul,li,ol{list-style:none}h2{font-size:14px}
+div{margin:0;padding:0;}
+img{border:none}a{text-decoration:none}
+.clear{clear:both}
+
+#top{width:100%;height:30px;line-height:30px;background:url(../../../images/bg_1.gif) repeat-x left;color:#666;margin-bottom:10px}
+#top .topc{margin:0 auto;width:1024px;height:30px}
+#top span.welcome{width:400px;float:left;}
+#top span.right{float:right;padding-top:5px;height:25px;line-height:25px}
+#top span.right a{color:#666;}
+
+#box{width:1024px;margin:0 auto}
+#header{width:1024px;height:85px;margin-bottom:20px;position:relative}
+#header .logo{float:left;height:85px;width:200px;}
+#header .lt{
+	color:#000;
+	height:20px;
+	text-align:left;
+	width:120px;
+	font-family:"黑体";
+	font-size:18px;
+	position:absolute;
+	left:177px;
+	top:49px;
+    font-weight: bold;
+}
+#header .rt{width:684px;height:85px;float:right;}
+
+#content{width:1024px;clear:both;height:735px;margin-bottom:10px}
+#content .wt{width:150px;float:left;margin-right:10px}
+#content .wt .account{width:150px;height:92px;margin-bottom:10px}
+#content .wt .commodity{width:150px;height:122px;margin-bottom:10px}
+#content .wt .sms{width:150px;height:72px;}
+#content .wt .account .hd,#content .wt .commodity .hd,#content .wt .sms .hd{width:150px;height:30px;margin-bottom:5px;background:url(../../../images/bsbg_1.gif) no-repeat center top;font-size:14px;font-weight:bold;color:#fff;line-height:30px;text-align:center}
+#content .wt .account .fd{width:146px;height:54px;border:1px solid #d1e6f1;}
+#content .wt .commodity .fd{width:146px;height:83px;border:1px solid #d1e6f1;}
+#content .wt .sms .fd{width:146px;height:33px;border:1px solid #d1e6f1;}
+#content .wt .account .fd ul,#content .wt .commodity .fd ul,#content .wt .sms .fd ul{float:left;width:138px;padding-left:8px}
+#content .wt .account .fd ul li,#content .wt .commodity .fd ul li,#content .wt .sms .fd ul li{float:left;width:123px;height:25px;line-height:25px;background:url(../../../images/bsbg_2.gif) no-repeat left center;padding-left:15px}
+#content .wt .account .fd ul li a,#content .wt .commodity .fd ul li a,#content .wt .sms .fd ul li a{font-size:14px;color:#000;}
+#content .wt .account .fd ul li a:hover,#content .wt .commodity .fd ul li a:hover,#content .wt .sms .fd ul li a:hover{color:#03F}
+#content .et{width:862px;float:right;border:1px solid #d4d4d4;}
+#content .et{width:862px;float:right;border:1px solid #d4d4d4;position:relative}
+#content .et .ts1{width:150px;height:35px;line-height:35px;font-size:16px;font-weight:bold;color:#fff;background:url(../../../images/bsbg_1.gif) no-repeat bottom;position:absolute;left:20px;top:75px;text-align:center;z-index:9999}
+#content .et .ts2{width:200px;height:30px;line-height:30px;position:absolute;left:625px;top:80px;text-align:right;z-index:999}
+#content .et .pd{width:862px;}
+#content .et .pd .hd{width:850px;height:30px;line-height:30px;padding-left:12px;background:url(../../../images/bsbg_4.gif) repeat-x;color:#338ccc;font-size:14px;font-weight:bold}
+#content .et .main{width:856px;padding:8px 0 0 6px}
+#content .et .main .qiehuan{width:856px;height:32px;line-height:32px;text-align:center;position:relative;font-size:14px;}
+#content .et .main .dw1{width:168px;height:32px;position:absolute;left:20px;top:1px;background:url(../../../images/bsbg_10.gif) no-repeat bottom;border-bottom:1px solid #f0d998}
+#content .et .main .dw1 a{color:#eb3700;font-weight:bold}
+#content .et .main .dw2{width:168px;height:32px;position:absolute;left:200px;top:1px;}
+#content .et .main .dw2 a{color:#000;}
+#content .et .main .xianshi{width:825px;height:29px;border:1px solid #f0d998;line-height:29px;padding-left:23px;position:relative}
+#content .et .main .xianshi a{color:#000;}
+#content .et .main .fd{width:849px;}
+#content .et .main .fd .tuis{width:835px;border:1px solid #ffd18e;padding:40px 0 0 14px;float:left;padding-bottom:10px;z-index:888;margin-top:10px}
+#content .et .main .fd .tuis1{float:left;width:790px;line-height:25px;margin-bottom:5px;font-size:16px;font-weight:bold;text-align:center;padding:0 20px 0 20px}
+#content .et .main .fd .tuis2{float:left;width:830px}
+#content .et .main .fd .tuis2 .sp{width:526px;border:1px solid #d4d4d4;float:left}
+#content .et .main .fd .tuis2 .sp .sp1{width:516px;height:30px;background:url(../../../images/bsbg_8.gif) repeat-x;float:left;padding-left:10px;font-size:16px;font-weight:bold;line-height:30px;float:left}
+#content .et .main .fd .tuis2 .sp .sp2{width:516px;padding-left:10px;float:left}
+#content .et .main .fd .tuis2 .sp .sp2 ul{width:506px;}
+#content .et .main .fd .tuis2 .sp .sp2 ul li{width:506px;line-height:28px;float:left;border-bottom:1px dashed #d4d4d4}
+#content .et .main .fd .tuis2 .sp .sp2 ul li.br{border:none}
+#content .et .main .fd .tuis2 .sp .sp2 ul li.ig{margin-bottom:5px;border:none;text-align:center}
+#content .et .main .fd .tuis2 .sp .sp2 ul li p{float:left;width:150px;}
+#content .et .main .fd .tuis2 .sp .sp2 ul li span{font-weight:bold}
+#content .et .main .fd .tuis2 .sw{width:290px;border:1px solid #f5e6bc;background:#fef9ea;float:left;margin-left:5px;padding-bottom:10px}
+#content .et .main .fd .tuis2 .sw .sw1{width:280px;height:30px;line-height:30px;border-bottom:1px solid #f5e6bc;font-weight:bold;font-size:16px;padding-left:10px}
+#content .et .main .fd .tuis2 .sw .sw2{width:280px;padding-left:10px;}
+#content .et .main .fd .tuis2 .sw .sw2 ul{width:270px;float:left;}
+#content .et .main .fd .tuis2 .sw .sw2 ul li{float:left;width:270px;padding:5px 0;line-height:25px;border-bottom:1px dashed #d4d4d4}
+#content .et .main .fd .tuis2 .sw .sw2 ul li span{font-size:14px;font-weight:bold}
+#content .et .main .fd .tuis2 .sw .sw2 ul li p{float:left;width:78px}
+#content .et .main .fy{width:605px;clear:both;height:45px;padding-left:245px}
+#content .et .main .fy input{width:157px;height:33px;float:left;background:url(../../../images/bsbg_1.gif) no-repeat center -95px;margin:7px 40px 0 0;font-size:16px;color:#fff;font-weight:bold;cursor:pointer;border:none}
+#content .et .main .fy input.hl{width:75px;height:33px;float:left;background:url(../../../images/bsbg_1.gif) no-repeat center -128px;margin:7px 30px 0 0}
+#bottom{width:814px;padding-left:210px;background:#e5e5e5;border-top:1px solid #ccc;overflow:hidden;clear:both;}
+#bottom p{clear:both;width:590px;background:#f1f1f1;line-height:150%;text-align:center;color:#b7b7b7;padding:10px 0 10px 0;}
+#bottom p a{color:#b7b7b7;}

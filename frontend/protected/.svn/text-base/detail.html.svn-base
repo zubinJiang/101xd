@@ -1,0 +1,26 @@
+<?php include('beforebody.htm'); ?>
+<div id="doc3" class="yui-t7">
+    <div id="hd" role="banner">
+    <? CHtml::insert('index_top.htm'); ?>
+    </div>
+    <div id="bd" role="main">
+        <div class="yui-g">
+            <div id="box">
+                <? CHtml::insert('index_daohang.htm'); ?>
+            </div>
+          <div id="main" style="position:relative;">
+            <? CHtml::insert('scale.htm'); ?>
+            <? CHtml::insert('form.htm'); ?>
+            <? CHtml::insert('delivery.htm'); ?>
+            <div id="fortran">
+                <? CHtml::insert('verbal.htm'); ?>
+                <? CHtml::insert('emulator.htm'); ?>
+            </div>
+          </div>
+		</div>
+    <div id="ft" role="contentinfo">
+    <? CHtml::insert('home_foot.htm'); ?>
+    </div>
+    </div>
+</div>
+<?php include('afterbody.htm'); ?>

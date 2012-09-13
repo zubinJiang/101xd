@@ -1,0 +1,142 @@
+<?php
+$user_data = isset($__p__['user_data']) ? $__p__['user_data'] : '';
+$message_count = isset($__p__['message_count']) ? $__p__['message_count'] : '';
+?>
+  <div class="et">
+            <div class="hy">
+              <div class="hd">
+                <p>会员（<?php echo $user_data['Name'];?>）欢迎您使用101会员管理中心！</p> 
+
+<?php if($message_count>0){ ?>
+                <p class="xiaoxi"><a href="vipinbox"><img src="images/dxx.gif" width="96" height="16" /></a></p>
+<?php } ?>
+                </div>
+                <div class="fd">
+                    <p class="yi">基本信息</p>
+                    <p class="er">登陆次数：<?php echo $user_data['CountVisits']; ?>次</p>
+                    <p>注册时间：<?php echo $user_data['DateInserted'];?> </p>
+                    <p>上次使用时间：<?php echo $user_data['DateLastActive'];?></p>
+                </div>
+            </div>
+            <div class="tsfw">
+                <div class="hd">101商品推送服务</div>
+                <div class="fd">
+                  <div class="zs">
+                        <div class="zs1">统计小助手</div>
+                        <div class="zs2"><img src="images/bspic_2.gif" width="100" height="151" /></div>
+                  </div>
+                    <div class="lb">
+                        <div class="sp">
+                            <ul>
+                                <li class="bt">商品推送统计</li>
+                                <li style="border-top:1px solid #aad2e7">
+                                    <span class="duan">101推送：</span>
+                                    <span class="chang">101兄弟为您推送符合您要求的商品共
+                                    <span style="color:#f00">【100】</span>款，其中本地商品
+                                    <span style="color:#f00">【50】</span>款，网货精品<span style="color:#f00">【50】</span>款。</span>
+                                </li>
+                                <li>
+                                    <span class="duan">供货商推送：</span>
+                                    <span class="chang">供货商为您推送商品共<span style="color:#f00">【100】</span>款，其中本地商品
+                                    <span style="color:#f00">【50】</span>款，网货精品<span style="color:#f00">【50】</span>款。</span>
+                                </li>
+                                <li>
+                                    <span class="duan">总 计：</span>
+                                    <span class="chang">101兄弟为您推送符合您要求的商品共<span style="color:#f00">【100】</span>款，其中本地商品
+                                    <span style="color:#f00">【50】</span>款，网货精品<span style="color:#f00">【50】</span>款。</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="xx">
+                            <ul>
+                                <li class="bt">信息操作统计</li>
+                                <li style="border-top:1px solid #aad2e7;height:64px">
+                                    <span class="duan" style="height:64px;line-height:64px">操作情况：</span>
+                                    <span class="chang" style="border-bottom:1px dashed #aad2e7">您共加入收藏<span style="color:#f00">【70】</span>款商品，其中本地商品
+                                    <span style="color:#f00">【30】</span>款，网货精品<span style="color:#f00">【40】</span>款。</span>
+                                    <span class="chang"><p>您共忽略了<span style="color:#f00">【70】</span>款商品，其中本地商品
+                                    <span style="color:#f00">【30】</span>款，网货精品<span style="color:#f00">【40】</span>款。</p></span>
+                                </li>
+                                <li>
+                                    <span class="duan">商品跟踪状态：</span>
+                                    <span class="chang">无记录<span style="color:#f00">【50】</span>  已上线<span style="color:#f00">【10】</span>  
+                                    电话跟踪<span style="color:#f00">【10】</span>  已签合同<span style="color:#f00">【15】</span></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          <div class="tsq">
+            <div class="hd">商品推送区</div>
+              <div class="fd">
+                  <div class="ts">101商品推送</div>
+                  <div class="ts1">
+                      <a href="#">我的商品收藏夹</a>
+                      <a href="#">推送商品管理</a>
+                      <a href="#">历史推送商品</a>
+                  </div>
+                  <div class="tuis" id="companyinfo">
+                  </div>
+                <!--use jquery template to render the data -->
+                 <script id="company" type="text/x-jquery-tmpl"> 
+                     <div class="left"><a href="#" id="prev_product" cid="${id}" cursor="${cursor}">&nbsp;</a></div>
+                      <div class="center">
+                          <div class="cr1">
+                              <div class="cr1_h"><a href="#"><img src="${image}" width="281" height="165" /></a></div>
+                              <div class="cr1_b">
+                                  <span style="width:282px;height:50px;float:left"><a href="#">${title}</a></span>
+                                  <span style="font-weight:normal;width:141px;height:25px;float:left">市场价：<span style="font-weight:bold">￥${market_price}</span></span>  
+                                  <span style="font-weight:normal;width:141px;height:25px;float:left">供货价：<span style="font-weight:bold">￥${supply_price}</span></span></div>
+                              <div class="cr1_f">
+                                  <span style="font-size:14px;font-weight:bold">商家信息：</span><br />
+                                  商家名称：${user.CompanyName}<br />
+                                  地    区：${province.name}<br />
+                                  联 系 人：${company.contact_name}<br />
+                                  联系电话：${company.contact_tel}
+                              </div>
+                          </div>
+                          <div class="cr">
+                          <div class="cr2">
+                              <div class="cr2_h">
+                                  <span><b>商品类型：</b>${category.parent}</span>
+                                  <span><b>类 别：</b>${category.name}</span>
+                              </div>
+                              <div class="cr2_f">该商品满足您的如下条件：</div>
+                              <div class="cr2_f1">
+                                  <span style="width:454px;height:25px;font-size:14px;font-weight:bold;color:#f00;float:left;line-height:25px">是否需要代发货：</span>
+                                  <span style="width:454px;height:22px;float:left;line-height:22px">需要代发货</span>
+                              </div>
+                              <div class="cr2_f2">
+                                  <span style="width:454px;height:25px;font-size:14px;font-weight:bold;color:#f00;float:left;line-height:25px">商品资质：</span>
+                                  {{each qualification}}
+                                    <span>{$value}</span>    
+                                  {{/each}}
+                              <div class="cr2_f3">
+                                  <span style="width:454px;height:25px;font-size:14px;font-weight:bold;color:#f00;float:left;line-height:25px">是否有广告推广需求：</span>
+                                  <span style="width:454px;height:22px;float:left;line-height:22px">${ad}</span>
+                                  <span style="width:454px;height:22px;float:left;line-height:22px"><p>${ad_position}</p></span>
+                                  <span style="width:454px;height:22px;float:left;line-height:22px"><p>${ad_period}</p></span>
+                              </div>
+                              <div class="cr2_f4">推送时间：${insertdate}</div>
+                          </div>
+                          <div class="btn">
+                              <input type="submit" name="" value="查看详细信息"/>
+                              <input type="submit" name="" value="感兴趣加入收藏" class="sc"/>
+                              <input type="submit" name="" value="忽 略" class="hl"/>
+                          </div>
+                          </div>
+                      </div>
+                      <div class="right"><a href="#" id="next_product" cid="${id}" cursor="${cursor}">&nbsp;</a></div>
+                      </script> 
+                      <!-- end jquery tempalte -->
+              </div>
+            </div>
+        </div>
+    </div>
+    <div id="bottom">
+        <p style="padding-bottom:0;"><a target="_self" href="contact">联系我们</a><span>&nbsp;|&nbsp;</span><a target="_self" href="profile">公司简介</a><span>&nbsp;|&nbsp;</span><a target="_self" href="http://www.101xd.com/">团购供货找101兄弟</a><span>&nbsp;|&nbsp;</span><a title="站长统计" target="_blank" href="http://www.cnzz.com/stat/website.php?web_id=3240185">站长统计</a></p>
+  <p>ICP备案：鄂ICP备10207590号</p>
+</div>
+</div>
+

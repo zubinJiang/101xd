@@ -1,0 +1,25 @@
+<?php
+$user  = isset($__p__['user']) ? $__p__['user'] : '';
+$userType = isset($_SESSION['login_UserType']) ? $_SESSION['login_UserType'] : '';
+?>
+<div id="home_news">
+    <div class="accede">
+      <div class="inject"><span>最新加入的渠道商</span>
+<?php
+if(intval($userType)!=1) {
+?> 
+      <a href="/register?load=news">点击加入</a></div>
+<?php
+}
+?>
+      <ul>
+<?php if(!empty($user)){
+    foreach($user as $v){
+
+        echo "<li>{$v['Name']}最近加入了</li>";
+    }
+
+}?>
+      </ul>
+    </div>
+</div>

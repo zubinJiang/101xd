@@ -1,0 +1,56 @@
+<?php
+$recommend      = isset($__p__['recommed']) ? $__p__['recommed'] : '';
+?>
+<div id="extensive">
+      <h2>101今日商品推荐</h2>
+      <div class="netizens">
+        <?php
+if(!empty($recommend)) {
+    $i = 0;
+    foreach($recommend as $v) {
+
+        if(!empty($v['default_image'])) {
+            $i++;
+        } else {
+            continue;
+        }
+
+        if($i>4) { break; }
+
+        $v['market_price'] = empty($v['market_price']) ? 0 : $v['market_price'];
+        if($v['market_price']>0 && is_numeric($v['supply_price'])) {
+            $num = $v['supply_price'] / $v['market_price'];
+            $num = $num * 10;
+            $zhe = number_format($num, 1, '.', '');
+            $string = "折扣价：<strong>{$zhe}</strong>折";
+        } else {
+            $price_len = strlen($v['supply_price']);
+            if($price_len>3){
+                $zhe = mb_substr($v['supply_price'],0,2,"UTF-8");
+            } else {
+                $zhe = $v['supply_price'];
+            }
+                $string = "供货价：$zhe";
+        }
+        $len = strlen($v['title']);
+
+        if($len>20){
+            $str = mb_substr($v['title'],0,19,"utf-8");
+        } else {
+            $str = $v['title'];
+        }
+?>
+        <ul>
+        <li>
+            <div class="image"><a href="product_<?php echo $v['id'];?>.html"><img src="<?php echo $v['default_image'];?>" onload='if(this.width>140) this.width=140;' /></a></div>
+            <div class="title"><a href="product_<?php echo $v['id'];?>.html"><?php echo $str;?></a></div>
+            <div>市场价：<?php echo $v['market_price'];?>&nbsp;<?php echo $string;?></div>
+        </li>
+        </ul>
+<?php
+    }
+}
+?>
+      </div>
+    </div>
+

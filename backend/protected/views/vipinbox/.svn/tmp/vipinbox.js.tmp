@@ -1,0 +1,270 @@
+<<<<<<< .mine
+var color_unread='red';
+var color_read='green';
+$(document).ready(FoldContext());
+$(document).ready(
+      bindinput() 
+        );
+
+function bindinput() {$('#selectall').click(function () {if ($('#selectall').attr('checked')==true){$(':input').attr('checked',false);}else if ($('#selectall').attr('checked')==false){$(':input').attr('checked',true);}});}
+
+function  DelMessage (message_id){
+                $.ajax({
+                            url: 'inbox?action=del&id='+message_id,
+                            dataType: "json",
+                            success: function(data) {
+                                    var qs='.explain[msgid='+message_id+']';
+                                    $(qs).slideUp();
+                                    var all=data.all;
+                                    var unread=data.unread;
+                                    $('#msg_notice_all').text(all);
+                                    $('#msg_notice_unread').text(unread);
+                                    }
+                                }); 
+            }
+            
+function  ReadMessage (message_id){
+                $.ajax({
+                            url: 'inbox?action=read&id='+message_id,
+                            dataType: "json",
+                            success: function(data) {
+                                    var all=data.all;
+                                    var unread=data.unread;
+                                    $('#msg_notice_all').text(all);
+                                    $('#msg_notice_unread').text(unread);
+                                    var qs='.explain[msgid='+message_id+']  span a.wd';
+                                    $(qs).text('å·²è¯»').css('color','green');
+                                    }
+                                });     
+            }
+
+
+function FoldContext(){
+    $All_Context=$('.trou');
+    var num=80;
+    $('.explain').each(
+            function (num) {
+                    if ($(this).find('p.msgtext a.msg').text().length>num)
+                        {
+                            var text=$(this).find('p.msgtext a.msg').text();
+                            var omission=text.substring(0,40)+'.....';
+                            $(this).find('p.msgtext a.msg').text(omission);
+                            $(this).find('a.msgdel').click(
+                            /*ç»‘å®šç‚¹å‡»åˆ é™¤åˆ é™¤msgçš„äº‹ä»¶
+                            */
+                            function () {
+                            var msg_id = $(this).attr('msgid');
+                            jConfirm('ç¡®è®¤ï¼Ÿ','å°†è¦åˆ é™¤é¡¹ç›®.',function (r){
+                                if (r==true)
+                                {
+                                DelMessage(msg_id);
+                                }})
+                                return false;
+                            }
+                            )
+                            //å±•å¼€å’Œæ”¶èµ·æ–‡å­—å†…å®¹
+                            $(this).find('p.msgtext a.read').click(
+                                function ()   {
+                                    var text = $(this).prev().attr('content');
+                                    if ($(this).text()=="[å±•å¼€é˜…è¯»]"){
+                                        $(this).prev().text(text);
+                                        $(this).text('[æ”¶èµ·]');
+                                        if ($(this).prev().attr('status')=='0')
+                                        {
+                                            $(this).prev().css('color','#778877');
+                                            var message_id = $(this).attr('msgid');
+                                            alert(message_id); 
+                                            ReadMessage(message_id);}
+                                    }
+                                    else if ($(this).text()=='[æ”¶èµ·]'){
+                                        var clipstext = text.substring(0,40)+'.....';
+                                        $(this).prev().text(clipstext);
+                                        $(this).text("[å±•å¼€é˜…è¯»]");
+                                    }});
+                        };
+                });
+            }
+
+
+
+function SelectAllinput()
+        {   
+            if ($(':input[name="selectall"]').attr('checked')==false)
+            {
+                $(':input').attr('checked',true);
+                }
+            else if ($(':input[name="selectall"]').attr('checked')==true)
+            {
+            $(':input').attr('checked',false);
+            }}
+
+function DelAllSelected()
+    {
+    if (checkselect()==0){
+    jAlert('è¯·é€‰æ‹©é¡¹ç›®','æœªé€‰ä¸­ä»»ä½•é¡¹ç›®');}
+    else {
+    jConfirm('ç¡®è®¤ï¼Ÿ','å°†è¦å…¨éƒ¨åˆ é™¤.',function (r){
+    if(r ===true)   
+    {
+    $('input[name=msg]').each(
+            function () {
+                if ($(this).attr('checked')==true)
+                {
+                    var message_id=$(this).attr('value');
+                    DelMessage(message_id);
+                };
+                        }
+                            );}
+            });
+        }
+    }
+
+
+function checkselect()
+{
+    var a=0;
+    $('input[name=msg]').each(
+        function () {if($(this).attr('checked')==true)
+        {
+        a=a+1;
+        };}
+        );
+    return a;
+}
+
+=======
+var color_unread='red';
+var color_read='green';
+$(document).ready(FoldContext());
+$(document).ready(
+      bindinput() 
+        );
+
+function bindinput() {$('#selectall').click(function () {if ($('#selectall').attr('checked')==true){$(':input').attr('checked',false);}else if ($('#selectall').attr('checked')==false){$(':input').attr('checked',true);}});}
+
+function  DelMessage (message_id){
+                $.ajax({
+                            url: 'inbox?action=del&id='+message_id,
+                            dataType: "json",
+                            success: function(data) {
+                                    var qs='.explain[msgid='+message_id+']';
+                                    $(qs).slideUp();
+                                    var all=data.all;
+                                    var unread=data.unread;
+                                    $('#msg_notice_all').text(all);
+                                    $('#msg_notice_unread').text(unread);
+                                    }
+                                }); 
+            }
+            
+function  ReadMessage (message_id){
+                $.ajax({
+                            url: 'inbox?action=read&id='+message_id,
+                            dataType: "json",
+                            success: function(data) {
+                                    var all=data.all;
+                                    var unread=data.unread;
+                                    $('#msg_notice_all').text(all);
+                                    $('#msg_notice_unread').text(unread);
+                                    var qs='.explain[msgid='+message_id+']  span a.wd';
+                                    $(qs).text('ÒÑ¶Á').css('color','green');
+                                    }
+                                });     
+            }
+
+
+function FoldContext(){
+    $All_Context=$('.trou');
+    var num=80;
+    $('.explain').each(
+            function (num) {
+                    if ($(this).find('p.msgtext a.msg').text().length>num)
+                        {
+                            var text=$(this).find('p.msgtext a.msg').text();
+                            var omission=text.substring(0,40)+'.....';
+                            $(this).find('p.msgtext a.msg').text(omission);
+                            $(this).find('a.msgdel').click(
+                            /*°ó¶¨µã»÷É¾³ýÉ¾³ýmsgµÄÊÂ¼þ
+                            */
+                            function () {
+                            var msg_id = $(this).attr('msgid');
+                            jConfirm('È·ÈÏ£¿','½«ÒªÉ¾³ýÏîÄ¿.',function (r){
+                                if (r==true)
+                                {
+                                DelMessage(msg_id);
+                                }})
+                                return false;
+                            }
+                            )
+                            //Õ¹¿ªºÍÊÕÆðÎÄ×ÖÄÚÈÝ
+                            $(this).find('p.msgtext a.read').click(
+                                function ()   {
+                                    var text = $(this).prev().attr('content');
+                                    if ($(this).text()=="[Õ¹¿ªÔÄ¶Á]"){
+                                        $(this).prev().text(text);
+                                        $(this).text('[ÊÕÆð]');
+                                        if ($(this).prev().attr('status')=='0')
+                                        {
+                                            $(this).prev().css('color','#778877');
+                                            var message_id = $(this).attr('msgid');
+                                            alert(message_id); 
+                                            ReadMessage(message_id);}
+                                    }
+                                    else if ($(this).text()=='[ÊÕÆð]'){
+                                        var clipstext = text.substring(0,40)+'.....';
+                                        $(this).prev().text(clipstext);
+                                        $(this).text("[Õ¹¿ªÔÄ¶Á]");
+                                    }});
+                        };
+                });
+            }
+
+
+
+function SelectAllinput()
+        {   
+            if ($(':input[name="selectall"]').attr('checked')==false)
+            {
+                $(':input').attr('checked',true);
+                }
+            else if ($(':input[name="selectall"]').attr('checked')==true)
+            {
+            $(':input').attr('checked',false);
+            }}
+
+function DelAllSelected()
+    {
+    if (checkselect()==0){
+    jAlert('ÇëÑ¡ÔñÏîÄ¿','Î´Ñ¡ÖÐÈÎºÎÏîÄ¿');}
+    else {
+    jConfirm('È·ÈÏ£¿','½«ÒªÈ«²¿É¾³ý.',function (r){
+    if(r ===true)   
+    {
+    $('input[name=msg]').each(
+            function () {
+                if ($(this).attr('checked')==true)
+                {
+                    var message_id=$(this).attr('value');
+                    DelMessage(message_id);
+                };
+                        }
+                            );}
+            });
+        }
+    }
+
+
+function checkselect()
+{
+    var a=0;
+    $('input[name=msg]').each(
+        function () {if($(this).attr('checked')==true)
+        {
+        a=a+1;
+        };}
+        );
+    return a;
+}
+
+
+>>>>>>> .r4326

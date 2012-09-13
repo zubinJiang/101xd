@@ -1,0 +1,98 @@
+<?php
+$company = $__p__['company'];
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>商品信息提交成功</title>
+<link href="css/vipsupplySuccess.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="b">
+<div id="box">
+    <div id="top">
+      <div class="hd">
+            <span>您好，欢迎来到团购供货平台，企业营销新选择！</span>
+      <span class="et"><a href="vipsection?id=<?php echo $company['user_id'];?>"><?php echo $company['site_name']; ?></a> | <a href="/">101网站首页</a> | <a href="index?action=logout">退出</a></span></div>
+        <div class="bd">
+            <span class="biao"></span>
+        </div>
+    </div>
+    <div id="banner">
+        <div class="tuan"><span><?php echo $company['site_name']; ?></span><br /><span class="wang"><?php echo $company['url']; ?></span></div>
+        <div class="tell">商家供货电话：010-85197770-367<br />QQ:2547875407</div>
+    </div>
+    
+    <div id="step">
+        <div class="hd">您正在使用将商品推送至新浪团服务：</div>
+        <div class="fd">
+            <div class="stepys">
+                <span>第一步</span>
+                <span style="color:#e65100">请选择商品类型</span>
+            </div>
+            <div class="aw"></div>
+            <div class="stepys">
+                <span>第二步</span>
+                <span style="color:#e65100">提交商品信息</span>
+            </div>
+            <div class="aw"></div>
+            <div class="stepys">
+                <span>第三步</span>
+                <span style="color:#e65100">完成，等待审核</span>
+            </div>
+        </div>
+    </div>
+    
+    <div id="content">
+        <div class="hd">恭喜您的商品信息提交成功！</div>
+        <div class="clear"></div>
+        <div class="fd">
+        <div class="clear"></div>
+            <div class="yi">
+                <p>您的商品信息已提交到后台，我们的工作人员会尽快对您提交的商品进行严格的审核，审核时间最长为2个工作日，请您耐心等待；<br />
+                审核结果会以网站短消息形式通知您,请您注意查收！</p><br />
+                <p class="red">审核通过后，您的商品信息将直接推送至指定渠道商后台！</p></div>
+            <div class="er"><input name="" onclick="location.href='vipsupplystepone?id=<?php echo $company['user_id']; ?>';" type="button" value="继续推送商品信息"/>
+            <input name="" type="button"  onclick="location.href='/';" value="去首页逛逛"/></div>
+        </div>
+    </div>
+    <div id="tuijian">
+        <div class="hd">
+            <div class="dw">渠道商会员推荐</div></div>
+        <div class="fd">
+        <p><a href="#"><img src="images/800pic.gif" width="127" height="62" /></a></p>
+            <p><a href="#"><img src="images/xtpic.gif" width="127" height="62" /></a></p>
+            <p><a href="#"><img src="images/365pic.gif" width="127" height="62" /></a></p>
+            <p><a href="#"><img src="images/depic.gif" width="127" height="62" /></a></p>
+            <p><a href="#"><img src="images/hwpic.gif" width="127" height="62" /></a></p>
+            <p><a href="#"><img src="images/hspic.gif" width="127" height="62" /></a></p>
+            <p><a href="#"><img src="images/tbpic.gif" width="127" height="62" /></a></p>
+            <p><a href="#"><img src="images/twpic.gif" width="127" height="62" /></a></p>
+            <p><a href="#"><img src="images/mtpic.gif" width="127" height="62" /></a></p>
+            <p><a href="#"><img src="images/likepic.gif" width="127" height="62" /></a></p>
+        </div>
+        <div class="clear"></div>
+    </div>
+    
+    <div id="footer">
+    <div class="left"></div>
+        <div class="center">
+            <a target="_blank" href="/contact">联系我们</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a target="_blank" href="/profile">公司简介</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a target="_blank" href="/">团购供货找101兄弟</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a target="_blank" href="http://www.cnzz.com/stat/website.php?web_id=3240185">站长统计</a><br />ICP备案：鄂ICP备10207590号</div>
+        <div class="right">
+            <div class="hd">
+                <span style="font-size:14px;font-weight:bold;float:none;width:">服务热线：010-85197770-560</span><br /><span>客服在您身边！（法定节假日除外）</span></div>
+            <div class="fd">
+               客服QQ：<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2534395200&site=qq&menu=yes"><img src="images/qq.gif" width="69" height="29" /></a><br />
+               客服在线时间: 每天09:00-18:00<br />
+               商务合作QQ：67315353<br />
+               在线时间: 每天10:00-22:00
+            </div>        
+        </div>
+    </div>
+</div>
+</body>
+</html>

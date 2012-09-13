@@ -1,0 +1,97 @@
+<?php
+
+class MVipproduct extends CModel {  
+    
+    //vip添加商品
+    function addVipproduct($product){
+        $data = $this->db->table('`vipproduct`')
+            ->insert($product);
+
+        return $this->db->last_insert_id();
+    }
+
+    //添加vip用户的资质
+    function vipAddQualification($data){
+        $data = $this->db->table('`qualification`')
+            ->insert($data);
+        return $this->db->last_insert_id();
+    }
+
+    //更新vip商品数据
+    function updateVipproduct($vipproduct){
+
+        $data = $this->db->exec("update `vipproduct` set title='{$vipproduct['title']}', max_buy='{$vipproduct['max_buy']}', max_pre='{$vipproduct['max_pre']}', market_price='{$vipproduct['market_price']}', supply_price='{$vipproduct['supply_price']}', `desc`='{$vipproduct['desc']}', `explain`='{$vipproduct['explain']}', images='{$vipproduct['images']}', qualification_id='{$vipproduct['qualification_id']}' where id='{$vipproduct['id']}'");
+    
+        return $data;
+    }
+
+    //计算该用户发布商品的次数
+    function userVipproductCount($user_id){
+
+        $data = $this->db->table('`vipproduct`')
+            ->select('qualification_id')
+            ->where("user_id='{$user_id}'")
+            ->getFirst();
+        return $data['qualification_id'];
+    }
+
+    //获取团购网站id
+    function getCpmpanyId($id){
+
+        $data = $this->db->table('`vipproduct`')
+            ->select('company_id')
+            ->where("id='{$id}'")
+            ->getFirst();
+
+        return $data;
+    }
+
+    /**
+     * admin
+     * 获取vip用户推送的产品
+     */
+    function getVipproductList(){
+
+        $data = $this->db->table('`vipproduct`')
+            ->select('*')
+            ->getList();
+
+        $count = $this->db->table('`vipproduct`')
+            ->getCount();
+
+        $arr = array('list'=>$data, 'count'=>$count);
+
+        return $arr;
+    
+    }
+    function getRelateVipproductData($id_){
+        $vipproduct = $this->db->table('`vipproduct`')
+            ->select('*')
+            ->where("id={$id_}")
+            ->getFirst();
+        if ($vipproduct['category_id'] && $vipproduct['company_id'] && $vipproduct['user_id']){
+            $category = $this->db->table('`category`')
+                ->select('*')
+                ->where("id={$vipproduct['category_id']}")
+                ->getFirst();
+            $company  = $this->db->table('`company`')
+                ->select('*')
+                ->where("id={$vipproduct['company_id']}")
+                ->getFirst();
+             
+            $user = $this->db->table('`user`')
+                ->select('*')
+                ->where("UserID={$vipproduct['user_id']}")
+                ->getFirst();
+            $qualification = $this->db->table('`qualification`')
+                ->select('*')
+                ->where("id={$vipproduct['qualification_id']}")
+                ->getFirst();
+            $vipproduct['user'] = $user;
+            $vipproduct['category'] = $category;
+            $vipproduct['company'] = $company;
+            $vipproduct['qualification'] = $qualification;
+        }
+        return $vipproduct;
+    }
+}

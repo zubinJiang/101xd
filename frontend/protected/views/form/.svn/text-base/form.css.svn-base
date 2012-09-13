@@ -1,0 +1,10 @@
+#form{position:absolute;top:40px;left:250px;width:500px;z-index:999;background:#fff;border:3px solid #CDCEC9;height:350px;text-align:center;display:none;}
+#form .close {width:98%;clear:both;height:45px;border-bottom:1px solid #ccc;margin:0 auto;}
+#form .close .left{float:left;margin:10px 0 0 130px;font-family:'黑体';font-size:20px;width:200px;color:#B21827;background:none;height:20px;}
+#form .close .right{float:right;margin:5px 10px 0 0;background:none;width:40px;height:20px;}
+#form .close .close_a{cursor:pointer;color:#000;}
+#form .close .close_a:hover {color:#000;}
+#form ul {text-align:left;list-style:none;width:400px;margin:20px auto 0;}
+#form ul li {clear:both;margin:0;padding:0;line-height:30px;_margin:5px 0;}
+#form ul li input {width:200px;}
+#form ul li input.form_submit{width:80px;}

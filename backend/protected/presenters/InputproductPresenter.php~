@@ -1,0 +1,50 @@
+<?php
+class InputpresenterPresenter extends InitPresenter 
+{
+
+    public function __init__() {
+        parent::__init__();
+    }
+
+    public function getDataList() {
+        $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+        $num  = 10;
+
+        $type = isset($_GET['type']) ? intval($_GET['type']) : 0;
+        switch($type) {
+            case 1:
+                $user_type = 0;
+                break;
+            case 2:
+                $user_type = 1;
+                break;
+            default:
+                $user_type = null;
+        }
+
+        $data = $this->user->getUserDataList($page, $num, $user_type);
+
+        $this->__p__['list_data']  = $data['list'];
+        $this->__p__['count_data'] = $data['count'];
+
+        $page=new Page(array('total'=>$data['count'], 'perpage'=>$num,'page_name'=>'page'));
+        $this->__p__['page'] = $page;
+    }
+
+    public function __main__() {
+        $user_id = $this->checkLoginStatus();
+
+        $flag = $this->hasPermission($user_id, 6, 1);
+        if(!$flag) {
+            exit('您无权操作此页面');
+        }
+
+         //权限判断
+        $this->__p__['user_auth'] = $this->role->getUserAuth($user_id);
+
+        $this->getDataList();
+    }
+
+}
+
+?>

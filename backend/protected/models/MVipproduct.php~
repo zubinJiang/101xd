@@ -1,0 +1,1127 @@
+<?php
+
+class MVipproduct extends CModel {  
+    
+    //vip添加商品
+    function addVipproduct($product){
+        $data = $this->db->table('`vipproduct`')
+            ->insert($product);
+
+        return $this->db->last_insert_id();
+    }
+
+    //添加vip用户的资质
+    function vipAddQualification($data){
+        $data = $this->db->table('`qualification`')
+            ->insert($data);
+        return $this->db->last_insert_id();
+    }
+
+    //更新vip商品数据
+    function updateVipproduct($vipproduct){
+
+        $data = $this->db->exec("update `vipproduct` set title='{$vipproduct['title']}', max_buy='{$vipproduct['max_buy']}', max_pre='{$vipproduct['max_pre']}', market_price='{$vipproduct['market_price']}', supply_price='{$vipproduct['supply_price']}', `desc`='{$vipproduct['desc']}', `explain`='{$vipproduct['explain']}', images='{$vipproduct['images']}', qualification_id='{$vipproduct['qualification_id']}' where id='{$vipproduct['id']}'");
+    
+        return $data;
+    }
+
+    //计算该用户发布商品的次数
+    function userVipproductCount($user_id){
+
+        $data = $this->db->table('`vipproduct`')
+            ->select('qualification_id')
+            ->where("user_id='{$user_id}'")
+            ->getFirst();
+        return $data['qualification_id'];
+    }
+
+    //获取团购网站id
+    function getCpmpanyId($id){
+
+        $data = $this->db->table('`vipproduct`')
+            ->select('company_id')
+            ->where("id='{$id}'")
+            ->getFirst();
+
+        return $data;
+    }
+
+
+    /**
+     * delete
+     */
+    function deleteVipproductData($user_id, $id){
+
+
+        $rzt = $this->db->exec("update  `vipproduct` set state='3' where id in ($id) ");
+        
+        return $rzt;
+    }
+
+    /**
+     * 供货商
+     * 获取用户推送的产品数量
+     */
+    function getBuyVipproductCount($user_id){
+        $count = $this->db->table('`vipproduct`')
+                ->where("user_id='{$user_id}'")
+                ->where("state!='3'")
+                ->getCount();
+
+        return $count;
+    }
+    /**
+     * 供货商
+     * 获取用户推送的产品列表
+     */
+    function getBuyVipproductList($user_id, $page, $num){
+
+        $data = $this->db->table('`vipproduct` p , `vipcategory` c')
+            ->select('distinct p.id, p.title, p.category, p.insertdate, p.state, c.name as cname')
+            ->where('p.category_id=c.id')
+            ->where("p.user_id='{$user_id}'")
+            ->where("p.state!='3'")
+            ->order("insertdate",'desc')
+            ->getNum($num, ($page-1)*$num); 
+
+
+        if(!empty($data)){
+            
+            foreach($data as $k=>$v){
+                $site_name = $this->db->table('`vipproduct_pusher` pu, `company` com')
+                    ->select('distinct pu.pusher_id, com.site_name')
+                    ->where("pu.user_id=com.user_id")
+                    ->where("pu.pusher_id='{$user_id}'")
+                    ->where("pu.vipproduct_id='{$v['id']}'")
+                    ->getList();
+                if(!empty($site_name)){
+                    $site_names = "";
+                    foreach($site_name as $v){
+                        $site_names .= $v['site_name']." ";
+                    }
+                
+                }
+
+                $data["{$k}"]['site_name'] = $site_names;
+            }
+        }
+        return $data; 
+    
+    } 
+
+    /**
+     * 供货商
+     * 各种状态的商品数量
+     */
+    function getStateNum($user_id){
+        
+        $count = $this->db->table('`vipproduct`')
+                ->where("user_id='{$user_id}'")
+                ->where("state='0'")
+                ->getCount();
+
+
+        $count1 = $this->db->table('`vipproduct`')
+                ->where("user_id='{$user_id}'")
+                ->where("state='1'")
+                ->getCount();
+
+        $count2 = $this->db->table('`vipproduct`')
+                ->where("user_id='{$user_id}'")
+                ->where("state='2'")
+                ->getCount();
+
+        $count3 = $this->db->table('`vipproduct_pusher` pu')
+                ->where("pu.user_id='{$user_id}'")
+                ->where("pu.collect='1'")
+                ->getCount();
+
+        $count4 = $this->db->table('`vipproduct_pusher` pu')
+                ->where("pu.user_id='{$user_id}'")
+                ->where("pu.collect='2'")
+                ->getCount();
+
+        $arr = array('count'=>$count, 'count1'=>$count1, 'count2'=>$count2, 'count3'=>$count3, 'count4'=>$count4);
+
+        return $arr;
+
+    }
+
+    /**
+     * 供货商
+     * 各种状态的商品列表
+     */
+    function getBuyStateVipproductList($user_id, $state, $page, $num){
+    
+
+        $data = $this->db->table('`vipproduct` p , `vipcategory` c')
+            ->select('distinct p.id, p.title, p.category, p.insertdate, p.state, c.name as cname')
+            ->where('p.category_id=c.id')
+            ->where("p.user_id='{$user_id}'")
+            ->where("p.state='{$state}'")
+            ->order("insertdate",'desc')
+            ->getNum($num, ($page-1)*$num); 
+
+
+        if(!empty($data)){
+            foreach($data as $k=>$v){
+                $site_name = $this->db->table('`vipproduct_pusher` pu, `company` com')
+                    ->select('pu.pusher_id, com.site_name')
+                    ->where("pu.user_id=com.user_id")
+                    ->where("pu.pusher_id='{$user_id}'")
+                    ->where("pu.vipproduct_id='{$v['id']}'")
+                    ->getList();
+                if(!empty($site_name)){
+                    $site_names = "";
+                    foreach($site_name as $v){
+                        $site_names .= $v['site_name']." ";
+                    }
+                
+                }
+
+                $data["{$k}"]['site_name'] = $site_names;
+            }
+        }
+ 
+        $count = $this->db->table('`vipproduct` p, `vipproduct_pusher` pu')
+                ->where("p.id=pu.vipproduct_id")
+                ->where("pu.user_id='{$user_id}'")
+                ->where("p.state='{$state}'")
+                ->getCount();
+
+        return $arr = array('list'=>$data, 'count'=>$count);
+    
+    }
+
+    /**
+     * 渠道商
+     * 处理状态的商品列表
+     */
+    function getBuyCollectVipproductList($user_id, $collect, $page, $num){
+
+        $data = $this->db->table('`vipproduct` p , `vipcategory` c, `vipproduct_pusher` pu')
+            ->select('distinct p.id, p.title, p.category, p.insertdate, p.state, c.name as cname, pu.user_id, pu.collect')
+            ->where('p.category_id=c.id')
+            ->where("p.id=pu.vipproduct_id")
+            ->where("pu.user_id='{$user_id}'")
+            ->where("pu.collect='{$collect}'")
+            ->order("insertdate",'desc')
+            ->getNum($num, ($page-1)*$num); 
+
+
+        if(!empty($data)){
+            foreach($data as $k=>$v){
+                $site_name = $this->db->table('`vipproduct_pusher` pu, `company` com')
+                    ->select('pu.pusher_id, com.site_name')
+                    ->where("pu.pusher_id=com.user_id")
+                    ->where("pu.user_id='{$user_id}'")
+                    ->where("pu.vipproduct_id='{$v['id']}'")
+                    ->getList();
+                if(!empty($site_name)){
+                    foreach($site_name as $v){
+                        $site_names .= $v['site_name']." ";
+                    }
+                
+                }
+
+                $data["{$k}"]['site_name'] = $site_names;
+            }
+        }
+
+        $count = $this->db->table('`vipproduct` p, `vipproduct_pusher` pu')
+                ->where("p.id=pu.vipproduct_id")
+                ->where("pu.user_id='{$user_id}'")
+                ->where("pu.collect='{$collect}'")
+                ->getCount();
+
+        return $arr = array('list'=>$data, 'count'=>$count);
+    
+    }
+
+
+    /**
+     * admin
+     * 获取vip用户推送的产品
+     */
+    function getVipproductList($user_id, $page, $num, $type=null){
+
+        $user_id_comd = FALSE;
+        $state_comd =   FALSE;
+        
+        if($user_id!='admin'){
+            $user_id_comd = "pu.user_id='{$user_id}'";
+            if($type==null){
+                $state_comd = "p.state='1'";
+            }
+        }
+        $data = $this->db->table('`vipproduct` p , `vipcategory` c, `user` u, `company` com, `vipproduct_pusher` pu')
+            ->select('distinct p.*, c.id as cid, c.name as cname, u.UserID as uid, u.Name as uname, com.user_id, com.site_name as sitename, pu.collect, pu.trac')
+            ->where('p.category_id=c.id')
+            ->where('p.user_id=u.UserID')
+            ->where('p.company_id=com.user_id')
+            ->where("p.id=pu.vipproduct_id")
+            ->where($user_id_comd)
+            ->where($state_comd)
+            ->where("p.state!='3'")
+            ->order("insertdate",'desc')
+            ->getNum($num, ($page-1)*$num);
+
+        $count = $this->db->table('`vipproduct` p, `vipproduct_pusher` pu')
+                ->where("p.id=pu.vipproduct_id")
+                ->where($user_id_comd)
+                ->where($state_comd)
+                ->getCount();
+
+        $arr = array('list'=>$data, 'count'=>$count);
+
+        return $arr; 
+    }
+
+    /**
+     * js
+     * 获取category类型的数据
+     */
+
+    function getCategoryVipproductList($user_id, $category_id, $page, $num){
+
+        $user_id_comd = FALSE;
+        $state_comd =   FALSE;
+
+        if($user_id!='admin'){
+            $user_id_comd = "pu.user_id='{$user_id}'";
+            $state_comd = "p.state='1'";
+        }
+
+        if($category_id=='1'){
+            $category_comd = "p.category='1'";
+        } else if($category_id=='2'){
+            $category_comd = "p.category='2'";
+        } else {
+            $category_comd = "p.category_id='{$category_id}'";
+        }
+
+        $data = $this->db->table('`vipproduct` p , `vipcategory` c, `user` u, `company` com, `vipproduct_pusher` pu')
+            ->select('distinct p.*, c.id as cid, c.name as cname, u.UserID as uid, u.Name as uname, com.user_id, com.site_name as sitename, pu.collect, pu.trac')
+            ->where('p.category_id=c.id')
+            ->where('p.user_id=u.UserID')
+            ->where('p.company_id=com.user_id')
+            ->where("p.id=pu.vipproduct_id")
+            ->where($user_id_comd)
+            ->where($state_comd)
+            ->where($category_comd)
+            ->order("insertdate",'desc')
+            ->getNum($num, ($page-1)*$num);
+
+        $count = $this->db->table('`vipproduct` p, `vipproduct_pusher` pu')
+            ->where("p.id=pu.vipproduct_id")
+            ->where($user_id_comd)
+            ->where("p.state='1'")
+            ->where($category_comd)
+            ->getCount();
+
+        $arr = array('list'=>$data, 'count'=>$count);
+
+        return $arr; 
+    
+    }
+
+    /**
+     * js
+     * 获取user_name类型的数据
+     */
+    function getUsernameVipproductList($user_id, $id, $page, $num){
+        $user_id_comd = FALSE;
+        $state_comd =   FALSE;
+
+        if($user_id!='admin'){
+            $user_id_comd = "pu.user_id='{$user_id}'";
+            $state_comd = "p.state='1'";
+        }
+
+        $id = intval($id);
+        if($id==0){
+
+            $id_comd = "pu.pusher_id='0'";
+
+        } else {
+
+            $id_comd = "pu.pusher_id!='0'";
+        
+        }
+
+
+        $data = $this->db->table('`vipproduct` p , `vipcategory` c, `user` u, `company` com ,`vipproduct_pusher` pu')
+            ->select('distinct p.*, c.id as cid, c.name as cname, u.UserID as uid, u.Name as uname, com.user_id, com.site_name as sitename, pu.collect, pu.trac')
+            ->where('p.category_id=c.id')
+            ->where('p.user_id=u.UserID')
+            ->where('p.company_id=com.user_id')
+            ->where("p.id=pu.vipproduct_id")
+            ->where($id_comd)
+            ->where($user_id_comd)
+            ->where($state_comd)
+            ->order("insertdate",'desc')
+            ->getNum($num, ($page-1)*$num);
+
+        $count = $this->db->table('`vipproduct` p, `user` u, `vipproduct_pusher` pu')
+            ->where("u.UserID='{$id}'")
+            ->where("p.id=pu.vipproduct_id")
+            ->where($user_id_comd)
+            ->where("p.state='1'")
+            ->getCount();
+
+        $arr = array('list'=>$data, 'count'=>$count);
+
+        return $arr; 
+    }
+
+
+    /**
+     * vip
+     * 获取商品状态的数据
+     */
+    function getCollectVipproductList($user_id, $id, $page, $num){
+        $user_id_comd = FALSE;
+        $state_comd =   FALSE;
+
+        if($user_id!='admin'){
+            $user_id_comd = "pu.user_id='{$user_id}'";
+            $state_comd = "p.state='1'";
+        }
+
+        $data = $this->db->table('`vipproduct` p , `vipcategory` c, `user` u, `company` com, `vipproduct_pusher` pu')
+            ->select('distinct p.*, c.id as cid, c.name as cname, u.UserID as uid, u.Name as uname, com.user_id, com.site_name as sitename, pu.collect, pu.trac')
+            ->where('p.category_id=c.id')
+            ->where('p.user_id=u.UserID')
+            ->where('p.company_id=com.user_id')
+            ->where("p.id=pu.vipproduct_id")
+            ->where($user_id_comd)
+            ->where("pu.collect='{$id}'")
+            ->where($state_comd)
+            ->order("insertdate",'desc')
+            ->getNum($num, ($page-1)*$num);
+
+        $count = $this->db->table('`vipproduct` p, `vipproduct_pusher` pu')
+            ->where("p.id=pu.vipproduct_id")
+            ->where($user_id_comd)
+            ->where("p.state='1'")
+            ->where("pu.collect='{$id}'")
+            ->getCount();
+
+        $arr = array('list'=>$data, 'count'=>$count);
+
+        return $arr; 
+    }
+
+    /**
+     * vip
+     * 获取商品跟踪记录的数据
+     */
+    function getTrackVipproductList($user_id, $id, $page, $num){
+        $user_id_comd = FALSE;
+        $state_comd =   FALSE;
+
+        if($user_id!='admin'){
+            $user_id_comd = "pu.user_id='{$user_id}'";
+            $state_comd = "p.state='1'";
+        }
+
+        $data = $this->db->table('`vipproduct` p , `vipcategory` c, `user` u, `company` com, `vipproduct_pusher` pu')
+            ->select('distinct p.*, c.id as cid, c.name as cname, u.UserID as uid, u.Name as uname, com.user_id, com.site_name as sitename, pu.collect, pu.trac')
+            ->where('p.category_id=c.id')
+            ->where('p.user_id=u.UserID')
+            ->where('p.company_id=com.user_id')
+            ->where("p.id=pu.vipproduct_id")
+            ->where($user_id_comd)
+            ->where($state_comd) 
+            ->where("pu.trac='{$id}'")
+            ->order("insertdate",'desc')
+            ->getNum($num, ($page-1)*$num);
+
+        $count = $this->db->table('`vipproduct` p, `vipproduct_pusher` pu')
+            ->where("p.id=pu.vipproduct_id")
+            ->where($user_id_comd)
+            ->where("pu.trac='{$id}'")
+            ->where("p.state='1'")
+            ->getCount();
+
+        $arr = array('list'=>$data, 'count'=>$count);
+
+        return $arr; 
+    }
+
+    /**
+     * search
+     * 搜索产品数据
+     */
+    function getSearchVipproduct($user_id, $key, $page, $num){
+        $title_comd = FALSE;
+        if(!empty($key)){
+            $title_comd = "p.title like '%{$key}%'";
+        }
+
+        $user_id_comd = FALSE;
+        $state_comd =   FALSE;
+
+        if($user_id!='admin'){
+            $user_id_comd = "pu.user_id='{$user_id}'";
+            $state_comd = "p.state='1'";
+        }
+
+        $data = $this->db->table('`vipproduct` p , `vipcategory` c, `user` u, `company` com, `vipproduct_pusher` pu')
+            ->select('distinct p.*, c.id as cid, c.name as cname, u.UserID as uid, u.Name as uname, com.user_id, com.site_name as sitename, pu.collect, pu.trac')
+            ->where('p.category_id=c.id')
+            ->where('p.user_id=u.UserID')
+            ->where('p.company_id=com.user_id')
+            ->where("p.id=pu.vipproduct_id")
+            ->where($user_id_comd)
+            ->where($state_comd)
+            ->where($title_comd)
+            ->order("insertdate",'desc')
+            ->getNum($num, ($page-1)*$num);
+
+        $count = $this->db->table('`vipproduct` p, `vipproduct_pusher` pu')
+            ->where("p.id=pu.vipproduct_id")
+            ->where($user_id_comd)
+            ->where("p.state='1'")
+            ->where($title_comd)
+            ->getCount();
+
+        $arr = array('list'=>$data, 'count'=>$count);
+
+        return $arr; 
+     
+    }
+
+    /**
+     * page
+     * 分页数据
+     */
+    function getPageVipproductList($user_id, $page, $num){
+
+        $user_id_comd = FALSE;
+        $state_comd =   FALSE;
+
+        if($user_id!='admin'){
+            $user_id_comd = "pu.user_id='{$user_id}'";
+            $state_comd = "p.state='1'";
+        }
+
+        $data = $this->db->table('`vipproduct` p , `vipcategory` c, `user` u, `company` com, `vipproduct_pusher` pu')
+            ->select('distinct p.*, c.id as cid, c.name as cname, u.UserID as uid, u.Name as uname, com.user_id, com.site_name as sitename, pu.collect, pu.trac')
+            ->where('p.category_id=c.id')
+            ->where('p.user_id=u.UserID')
+            ->where('p.company_id=com.user_id')
+            ->where("p.id=pu.vipproduct_id")
+            ->where($user_id_comd)
+            ->where($state_comd)
+            ->order("insertdate",'desc')
+            ->getNum($num, ($page-1)*$num);
+
+        $count = $this->db->table('`vipproduct` p, `vipproduct_pusher` pu')
+            ->where("p.id=pu.vipproduct_id")
+
+            ->where($state_comd)
+            ->getCount();
+
+        $arr = array('list'=>$data, 'count'=>$count);
+
+        return $arr; 
+    
+    }
+    function getRelateVipproductData($id_,$qid=false){
+        $vipproduct = $this->db->table('`vipproduct`')
+            ->select('*')
+            ->where("id={$id_}")
+            ->getFirst();
+        //由于不能确定外捡是否有值 不用join查询
+        if ($vipproduct['category_id'] && $vipproduct['company_id'] && $vipproduct['user_id']){
+            $category = $this->db->table('`vipcategory`')
+                ->select('*')
+                ->where("id='{$vipproduct['category_id']}'")
+                ->getFirst();
+            $company  = $this->db->table('`company`')
+                ->select('*')
+                ->where("id='{$vipproduct['company_id']}'")
+                ->getFirst();
+             
+            $user = $this->db->table('`user`')
+                ->select('*')
+                ->where("UserID='{$vipproduct['user_id']}'")
+                ->getFirst();
+            $address = $this->db->table('`address`')
+                ->select('*')
+                ->where("id='{$company['address_id']}'")
+                ->getFirst();
+            $province = $this->db->table('`province`')
+                ->select('*')
+                ->where("id='{$address['province_id']}'")
+                ->getFirst();
+            $qualification = $this->db->table('`qualification`')
+                ->select('*')
+                ->where("id='{$vipproduct['qualification_id']}'")
+                ->getFirst();
+            //该商品的提交人
+            $vipproduct['user'] = $user;
+            //该商品的类别
+            $vipproduct['category'] = $category;
+            //该商品提交人的地址
+            $vipproduct['province'] = $province;
+            //提交该商品的用户的关联公司
+            $vipproduct['company'] = $company;
+            //该商品拥有的资质证明
+            $vipproduct['qualification'] = $qualification;
+            //提交该商品的用户的地址
+            $vipproduct['address'] = $address;
+        }
+        if ($qid){
+            //根据渠道商的id获取关联信息
+            $trac = $this->db->table('`vipproduct_pusher`')
+                ->select('*')
+                ->where("user_id='{$qid}'")
+                ->where("vipproduct_id='{$id_}'")
+                ->getFirst();
+            $vipproduct['trac'] = $trac;
+        }
+        else{
+            //没有指定渠道商id的时候获取所有的product的关联的推荐的渠道商的数据
+            $trac = $this->db->table('`vipproduct_pusher`  vp, `company`  comp')
+                ->select('vp.vipproduct_id as vipproduct_id, vp.id as vp_id, vp.pusher_id as pusher_id, vp.trac as trac,comp.name as quname,vp.user_id as quuid')
+                ->where("vp.vipproduct_id='{$id_}'")
+                ->where("comp.user_id=vp.user_id")
+                ->getList();
+            $vipproduct['trac'] = $trac;
+            }
+        return $vipproduct;
+    }
+
+    /**
+     * news vip 
+     * 审核通过，拒绝product  
+     * 101xd审核通过后渠道商才能看到推送信息
+     */
+    function processVipproductData($state, $id, $mag=null){
+
+        if(!empty($mag)){
+    
+            $data = $this->db->exec("update `vipproduct` set state='{$state}', deny_msg='{$mag}' where id='{$id}' ");
+
+        } else {
+            $data = $this->db->exec("update `vipproduct` set state='{$state}' where id='{$id}' ");
+
+        }
+        return $data;
+    
+    }
+    
+    /*
+     *根据渠道商的id获取该渠道商需要的资质证明
+     * */
+
+    function GetCertificationsByID($id_){
+        $data = $this->db->table('`company_vip`')
+            ->select('*')
+            ->where("company_id='{$id_}'")
+            ->getFirst();
+        $company = $this->db->table('`company`')
+            ->select('*')
+            ->where("id='{$id_}'")
+            ->getFirst();
+        //各字段意思参见数据库的注释
+        $res['company'] = $company;
+        $res['auth_loc'] = explode('|', $data['auth_local']);
+        $res['auth_net'] = explode('|', $data['auth_net']);
+        $res['company_vip'] = $data;
+        return $res;
+    }
+    /*获取某人的全部的收藏的商品
+    */
+    function totalCollect($uid){
+        $res = $this->db->table('`vipproduct_pusher`')
+                ->select('*')
+                ->where("user_id={$uid}")
+                ->where("collect=1")
+                ->getCount();
+        return $res;
+    }
+    
+    /*根据cursor获取需要加载的推荐商品的id
+     *  1：$cursor 当前游标 2：样式 type 为 3：渠道商id
+     */
+    function getIDByCursor($cursor,$type,$puller){
+        $c_cursor = intval($cursor)+intval($type);
+        //Fcollif ($c_cursor<0){$c_cursor=0;};
+        $data=$this->db->table('`vipproduct_pusher`')
+                ->select('*')
+                ->where("user_id={$puller}")
+                ->where("collect=3")
+                ->getNum(1,$c_cursor);
+        $res=$data[0];
+        return $res['vipproduct_id'];
+    
+    
+    }
+    /**
+     * vip
+     * 获取推送商品的数量
+     */
+    function getVipproductCount($user_id){
+
+        $count = $this->db->table('`vipproduct` p, vipproduct_pusher pu')
+            ->where("p.id=pu.vipproduct_id")
+            ->where("pu.user_id={$user_id}")
+            ->where("p.state='1'")
+            ->getCount();
+        return $count;
+    
+    }
+
+    /**
+     * vip 
+     * 获取推送收藏夹商品的数量
+     */
+    function getVipproductCollect($user_id){
+
+        $count = $this->db->table('`vipproduct` p, vipproduct_pusher pu')
+            ->where("p.id=pu.vipproduct_id")
+            ->where("pu.user_id={$user_id}")
+            ->where("p.state='1'")
+            ->where("pu.collect='1'")
+            ->getCount();
+        return $count;
+    
+    }
+     /**
+     * vip
+     * 收藏夹的数据列表
+     */
+    function getVipproductListCollect($user_id, $page, $num){
+
+        $user_id_comd = FALSE;
+        if($user_id!='admin'){
+            $user_id_comd = "pu.user_id='{$user_id}'";
+        }
+        $data = $this->db->table('`vipproduct` p , `vipcategory` c, `user` u, `company` com, `vipproduct_pusher` pu')
+            ->select('distinct p.*, c.id as cid, c.name as cname, u.UserID as uid, u.Name as uname, com.user_id, com.site_name as sitename, pu.collect, pu.trac')
+            ->where('p.category_id=c.id')
+            ->where('p.user_id=u.UserID')
+            ->where('p.company_id=com.user_id')
+            ->where("p.id=pu.vipproduct_id")
+            ->where($user_id_comd)
+            ->where("p.state='1'")
+            ->where("pu.collect='1'")
+            ->order("insertdate",'desc')
+            ->getNum($num, ($page-1)*$num);
+
+        $count = $this->db->table('`vipproduct` p , `vipproduct_pusher` pu')
+                ->where("p.id=pu.vipproduct_id")
+                ->where($user_id_comd)
+                ->where("p.state='1'")
+                ->where("pu.collect='1'")
+                ->getCount();
+
+        $arr = array('list'=>$data, 'count'=>$count);
+
+        return $arr; 
+    }
+
+    /**
+     * vip
+     * 获取category类型的数据
+     */
+
+    function getCategoryVipproductListCollect($user_id, $category_id, $page, $num){
+
+        $user_id_comd = FALSE;
+        if($user_id!='admin'){
+            $user_id_comd = "pu.user_id='{$user_id}'";
+        }
+        if($category_id=='1'){
+            $category_comd = "p.category='1'";
+        } else if($category_id=='2'){
+            $category_comd = "p.category='2'";
+        } else {
+            $category_comd = "p.category_id='{$category_id}'";
+        }
+
+        $data = $this->db->table('`vipproduct` p , `vipcategory` c, `user` u, `company` com, `vipproduct_pusher` pu')
+            ->select('distinct p.*, c.id as cid, c.name as cname, u.UserID as uid, u.Name as uname, com.user_id, com.site_name as sitename, pu.collect, pu.trac')
+            ->where('p.category_id=c.id')
+            ->where('p.user_id=u.UserID')
+            ->where('p.company_id=com.user_id')
+            ->where("p.id=pu.vipproduct_id")
+            ->where("pu.collect='1'")
+            ->where("p.state='1'")
+            ->where($category_comd)
+            ->where($user_id_comd)
+            ->order("insertdate",'desc')
+            ->getNum($num, ($page-1)*$num);
+
+        $count = $this->db->table('`vipproduct` p , `vipproduct_pusher` pu')
+            ->where("p.id=pu.vipproduct_id")
+            ->where($user_id_comd)
+            ->where("p.state='1'")
+            ->where($category_comd)
+            ->where("pu.collect='1'")
+            ->getCount();
+
+        $arr = array('list'=>$data, 'count'=>$count);
+
+        return $arr; 
+    
+    }
+
+    /**
+     * vip
+     * 获取user_name类型的数据
+     */
+    function getUsernameVipproductListCollect($user_id, $id, $page, $num){
+        $user_id_comd = FALSE;
+        if($user_id!='admin'){
+            $user_id_comd = "pu.user_id='{$user_id}'";
+        }
+
+        if($id=='0'){
+
+            $id_comd = "pu.pusher_id='0'";
+        } else {
+
+            $id_comd = "pu.pusher_id!='0'";
+        
+        }
+
+        $data = $this->db->table('`vipproduct` p , `vipcategory` c, `user` u, `company` com, `vipproduct_pusher` pu')
+            ->select('distinct p.*, c.id as cid, c.name as cname, u.UserID as uid, u.Name as uname, com.user_id, com.site_name as sitename, pu.collect, pu.trac')
+            ->where('p.category_id=c.id')
+            ->where('p.user_id=u.UserID')
+            ->where('p.company_id=com.user_id')
+            ->where("p.id=pu.vipproduct_id")
+            ->where("pu.collect='1'")
+            ->where("p.state='1'")
+            ->where($id_comd)
+            ->where($user_id_comd)
+            ->order("insertdate",'desc')
+            ->getNum($num, ($page-1)*$num);
+
+        $count = $this->db->table('`vipproduct` p, `user` u, `vipproduct_pusher` pu')
+            ->where("p.id=pu.vipproduct_id")
+            ->where($user_id_comd)
+            ->where("p.state='1'")
+            ->where("pu.collect='1'")
+            ->where("u.UserID='{$id}'")
+            ->getCount();
+
+        $arr = array('list'=>$data, 'count'=>$count);
+
+        return $arr; 
+    }
+
+    /**
+     * vip
+     * 获取商品跟踪记录的数据
+     */
+    function getTracVipproductListCollect($user_id, $id, $page, $num){
+        $user_id_comd = FALSE;
+        if($user_id!='admin'){
+
+            $user_id_comd = "pu.user_id='{$user_id}'";
+        }
+
+        $data = $this->db->table('`vipproduct` p , `vipcategory` c, `user` u, `company` com, `vipproduct_pusher` pu')
+            ->select('distinct p.*, c.id as cid, c.name as cname, u.UserID as uid, u.Name as uname, com.user_id, com.site_name as sitename, pu.collect, pu.trac')
+            ->where('p.category_id=c.id')
+            ->where('p.user_id=u.UserID')
+            ->where('p.company_id=com.user_id')
+            ->where("p.id=pu.vipproduct_id")
+            ->where($user_id_comd)
+            ->where("pu.collect='1'")
+            ->where("p.state='1'")
+            ->where("pu.trac='{$id}'")
+            ->order("insertdate",'desc')
+            ->getNum($num, ($page-1)*$num);
+
+        $count = $this->db->table('`vipproduct` p, `vipproduct_pusher` pu')
+            ->where("p.id=pu.vipproduct_id")
+            ->where($user_id_comd)
+            ->where("p.state='1'")
+            ->where("pu.collect='1'")
+            ->getCount();
+
+        $arr = array('list'=>$data, 'count'=>$count);
+
+        return $arr; 
+    }
+
+    /**
+     * vip search
+     * 搜索产品数据
+     */
+    function getSearchVipproductCollect($user_id, $key, $page, $num){
+        $title_comd = FALSE;
+        if(!empty($key)){
+            $title_comd = "p.title like '%{$key}%'";
+        }
+
+        $user_id_comd = FALSE;
+        if($user_id!='admin'){
+            $user_id_comd = "pu.user_id='{$user_id}'";
+        }
+        $data = $this->db->table('`vipproduct` p , `vipcategory` c, `user` u, `company` com, `vipproduct_pusher` pu')
+            ->select('distinct p.*, c.id as cid, c.name as cname, u.UserID as uid, u.Name as uname, com.user_id, com.site_name as sitename, pu.collect, pu.trac')
+            ->where('p.category_id=c.id')
+            ->where('p.user_id=u.UserID')
+            ->where('p.company_id=com.user_id')
+            ->where("p.id=pu.vipproduct_id")
+            ->where($user_id_comd)
+            ->where("pu.collect='1'")
+            ->where("p.state='1'")
+            ->where($title_comd)
+            ->order("insertdate",'desc')
+            ->getNum($num, ($page-1)*$num);
+
+        $count = $this->db->table('`vipproduct` p , `vipproduct_pusher` pu')
+            ->where("p.id=pu.vipproduct_id")
+            ->where("p.id=pu.vipproduct_id")
+            ->where("p.state='1'")
+            ->where($title_comd)
+            ->getCount();
+
+        $arr = array('list'=>$data, 'count'=>$count);
+
+        return $arr; 
+     
+    }
+
+    /**
+     * vip page
+     * 分页数据
+     */
+    function getPageVipproductListCollect($user_id, $page, $num){
+
+        $user_id_comd = FALSE;
+        if($user_id!='admin'){
+
+            $user_id_comd = "pu.user_id='{$user_id}'";
+        }
+
+        $data = $this->db->table('`vipproduct` p , `vipcategory` c, `user` u, `company` com, `vipproduct_pusher` pu')
+            ->select('distinct p.*, c.id as cid, c.name as cname, u.UserID as uid, u.Name as uname, com.user_id, com.site_name as sitename, pu.collect, pu.trac')
+            ->where('p.category_id=c.id')
+            ->where('p.user_id=u.UserID')
+            ->where('p.company_id=com.user_id')
+            ->where("p.id=pu.vipproduct_id")
+            ->where($user_id_comd)
+            ->where("pu.collect='1'")
+            ->where("p.state='1'")
+            ->order("insertdate",'desc')
+            ->getNum($num, ($page-1)*$num);
+
+        $count = $this->db->table('`vipproduct` p,`vipproduct_pusher` pu')
+            ->where("p.id=pu.vipproduct_id")
+            ->where($user_id_comd)
+            ->where("p.state='1'")
+            ->getCount();
+
+        $arr = array('list'=>$data, 'count'=>$count);
+
+        return $arr; 
+    
+    }
+
+    /**
+     * 101xd 推送产品数量,供应商推送
+     */
+    function getPushCount($user_id, $type=null){
+
+        $type_comd = "pu.pusher_id<>'0'";
+
+        if($type=='0'){
+            $type_comd = "pu.pusher_id='0'";
+        }
+        //总数
+        $count = $this->db->table('`vipproduct` p , `vipproduct_pusher` pu')
+            ->where("p.id=pu.vipproduct_id")
+            ->where("pu.user_id='{$user_id}'")
+            ->where("p.state='1'")
+            ->where($type_comd)
+            ->getCount();
+
+        //local
+        $local = $this->db->table('`vipproduct` p , `vipproduct_pusher` pu')
+            ->where("p.id=pu.vipproduct_id")
+            ->where("pu.user_id='{$user_id}'")
+            ->where("p.category='1'")
+            ->where("p.state='1'")
+            ->where($type_comd)
+            ->getCount();
+
+        $arr = array('num'=>$count, 'local_num'=>$local);
+
+        return $arr;
+    }
+
+    /**
+     * vip
+     * 收藏数量
+     */
+    function getVipproductCollectNum($user_id, $type=null){
+
+        $type_comd = "pu.collect='1'";
+
+        if($type=='2'){
+            $type_comd = "pu.collect='2'";
+        }
+        //总数
+        $count = $this->db->table('`vipproduct` p , `vipproduct_pusher` pu')
+            ->where("p.id=pu.vipproduct_id")
+            ->where("pu.user_id='{$user_id}'")
+            ->where("p.state='1'")
+            ->where($type_comd)
+            ->getCount();
+
+        //local
+        $local = $this->db->table('`vipproduct` p , `vipproduct_pusher` pu')
+            ->where("p.id=pu.vipproduct_id")
+            ->where("pu.user_id='{$user_id}'")
+            ->where("p.category='1'")
+            ->where("p.state='1'")
+            ->where($type_comd)
+            ->getCount();
+
+        $arr = array('num'=>$count, 'local_num'=>$local);
+
+        return $arr;
+    
+    
+    }
+
+     /**
+     * vip
+     * 跟踪数量
+     */
+    function getVipproductTrack($user_id, $type=null){
+
+        //总数
+        $count = $this->db->table('`vipproduct` p , `vipproduct_pusher` pu')
+            ->where("p.id=pu.vipproduct_id")
+            ->where("pu.user_id='{$user_id}'")
+            ->where("p.state='1'")
+            ->where("pu.trac='0'")
+            ->getCount();
+
+        //local
+        $count1 = $this->db->table('`vipproduct` p , `vipproduct_pusher` pu')
+            ->where("p.id=pu.vipproduct_id")
+            ->where("pu.user_id='{$user_id}'")
+            ->where("p.state='1'")
+            ->where("pu.trac='1'")
+            ->getCount();
+
+        $count2 = $this->db->table('`vipproduct` p , `vipproduct_pusher` pu')
+            ->where("p.id=pu.vipproduct_id")
+            ->where("pu.user_id='{$user_id}'")
+            ->where("p.state='1'")
+            ->where("pu.trac='2'")
+            ->getCount();
+
+        $count3 = $this->db->table('`vipproduct` p , `vipproduct_pusher` pu')
+            ->where("p.id=pu.vipproduct_id")
+            ->where("pu.user_id='{$user_id}'")
+            ->where("p.state='1'")
+            ->where("pu.trac='3'")
+            ->getCount();
+
+        $count4 = $this->db->table('`vipproduct` p , `vipproduct_pusher` pu')
+            ->where("p.id=pu.vipproduct_id")
+            ->where("pu.user_id='{$user_id}'")
+            ->where("p.state='1'")
+            ->where("pu.trac='4'")
+            ->getCount();
+
+
+        $arr = array('count'=>$count, 'count1'=>$count1, 'count2'=>$count2, 'count3'=>$count3, 'count4'=>$count4);
+
+        return $arr;
+    
+    
+    }
+    /*
+     * 处理商品收藏 忽略
+     */
+    function handCollect($pid,$uid,$type,$ignore_msg){
+        if (!empty($ignore_msg)){ 
+            //echo "update `vipproduct_pusher` set collect = '{$type}', ignore_msg='{$ignore_msg}' where user_id='{$uid}' and vipproduct_id='{$pid}'";
+            $res = $this->db->exec("update `vipproduct_pusher` set collect = '{$type}', ignore_msg='{$ignore_msg}' where user_id='{$uid}' and vipproduct_id='{$pid}'");
+        }
+        else{ 
+            //echo "update `vipproduct_pusher` set collect = '{$type}' where user_id='{$uid}' and vipproduct_id='{$pid}'";
+            $res = $this->db->exec("update `vipproduct_pusher` set collect = '{$type}' where user_id='{$uid}' and vipproduct_id='{$pid}'");
+        }
+
+        return $res;
+    }
+
+    /**
+     * vip
+     * update 商品跟踪记录
+     */
+    function processTracVipproductData($trac, $id, $user_id){
+
+        $rzt = $this->db->exec("update `vipproduct_pusher` set trac='{$trac}' where user_id='{$user_id}' and vipproduct_id='{$id}'");
+        return $rzt;
+    }
+    /*取消或者删除推送到模个渠道商
+     *$pid 推送商品的id $qid 渠道商的id
+     */
+    function CancelPushToTuan($pid,$qid){
+        $res=$this->db->exec("delete from `vipproduct_pusher` where user_id='{$qid}' and vipproduct_id='{$pid}'");
+        return $res;
+    }
+    /*检测该用户是否有权限查看某个商品[条件为有供货商推送该商品到该渠道商的时候]
+     *
+     */
+    function checkRelate($uid,$pid){
+        $res = $this->db->table('`vipproduct_pusher`')
+            ->select('*')
+            ->where("user_id='{$uid}'")
+            ->where("vipproduct_id='{$pid}'")
+            ->getFirst();
+        return $res;
+    }
+
+    /*根据vipproduct的id获取已经推送到的渠道商
+     */
+    function getPushedList($pid){
+        $res = $this->db->table('`vipproduct_pusher`')
+            ->select('*')
+            ->where("vipproduct_id='{$pid}'")
+            ->getList();
+        $pushedlist=array();
+        foreach($res as $p){
+            
+            $product = $this->db->table('`vipproduct`')->select('*')->where("id='{$p['vipproduct_id']}'")->getFirst();
+            
+            if ($product['state']==0){
+                $user = $this->db->table('`user`')->select('*')->where("UserID='{$p['user_id']}'")->getFirst();
+                array_push($pushedlist,$user);
+            }
+        }
+        return $pushedlist;
+    }
+
+    /*根据vipproduct的id获取建议推送到的渠道商
+     */
+    function getSuggestPush($pid){
+        $prod = $this->db->table('`vipproduct`')->select('*')->where("id={$pid}")->getFirst();
+        /*此部分为匹配条件，开始时数据库的数据很少，注视掉
+        $comps = $this->db->table('`company`')->select('*')->where("category_id={$prod['category_id']}")->getList();
+        $pushlist = array();
+        foreach($comps as $c){
+            $da = $this->db->table('`user`')->select('*')->where("UserID='{$c['user_id']}'")->getFirst();
+            array_push($pushlist,$da);
+        }
+         */
+        $pushlist = $this->db->table('`user`')->select('*')->where("UserType=1")->getNum(30,0);
+        return $pushlist;
+    } 
+
+}

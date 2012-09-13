@@ -1,0 +1,21 @@
+.triumph{width:743px;border:1px solid #c9181e;float:right;padding-left:10px;}
+.through{float:left;width:585px;line-height:30px;border:1px solid #ffdbab;color:#434343;text-indent:10px;margin-left:5px;padding:35px 0 25px 125px;}
+.through h1{float:left;width:500px;line-height:34px;background:url(../../../images/right.gif) no-repeat top left;text-indent:86px;font-size:24px;color:#333;}
+.through p{float:left;width:575px;color:#333;}
+.through p strong{color:#ff0000;}
+.goon{float:left;width:500px;padding:20px 0 0 80px;}
+.goon a{float:left;width:140px;color:#003399;text-align:center;line-height:39px;}
+.goon a.proceed{float:left;width:226px;background:url(../../../images/next_t.gif) no-repeat;font-size:20px;font-weight:bold;color:#fff;}
+.relation{float:left;width:730px;padding-left:4px;}
+.relation h1{float:left;width:720px;line-height:34px;color:#333;}
+.relation h1 span{float:left;font-size:14px;}
+.relation h1 a{float:right;color:#003399;font-weight:normal}
+.relation ul{float:left;width:722px;border-left:1px solid #ddd;border-bottom:1px solid #ddd;color:#333;overflow:hidden;}
+.relation ul li{float:left;width:722px;border-top:1px solid #ddd;line-height:26px;}
+.relation ul li strong{float:left;width:104px;border-right:1px solid #ddd;text-indent:5px;}
+.relation ul li span{float:left;border-right:1px solid #ddd;text-indent:5px;width:150px;}
+.relation ul li span.wid104{width:104px;}
+.relation ol{float:left;width:700px;padding:7px 0 7px 10px;color:#333;}
+.relation ol li{float:left;width:700px;line-height:32px;}
+.relation ol li a{color:#003399}
+

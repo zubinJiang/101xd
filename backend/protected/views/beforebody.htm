@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8" />
+<title>后台管理工具</title>
+<?php if(PAGE!='pushManagementt'){ ?>
+<link rel="stylesheet" type="text/css" href="css/base.css" />
+<?php
+}
+if($_SERVER['HTTP_HOST']=='backend.101xd.com') {
+?>
+<link rel="stylesheet" href="css/reset-fonts-grids.css" type="text/css">
+<?php
+} else {
+?>
+<link rel="stylesheet" href="http://yui.yahooapis.com/2.8.0r4/build/reset-fonts-grids/reset-fonts-grids.css" type="text/css">
+<?php
+}
+?>
+<link rel="stylesheet" href="css/style.css" type="text/css" /> 
+<link rel="stylesheet" href="css/jquery/jquery.ui.all.css" type="text/css" /> 
+<link rel="stylesheet" href="css/jquery/jquery.lightbox-0.5.css" type="text/css" /> 
+<link rel="stylesheet" href="css/jquery.alerts.css" type="text/css" /> 
+<?php
+if(PAGE=='account') {
+?>
+<link rel="stylesheet" href="css/jcrop/jquery.Jcrop.css" type="text/css" />
+<?php
+}
+if(in_array(PAGE,array('local','releasenets'))) {
+?>
+<script type="text/javascript" src="assets/jquery/jquery.min.js"></script>
+<link rel="stylesheet" href="css/jcrop/jquery.Jcrop.css" type="text/css" />
+<script type="text/javascript" src="assets/jquery/jquery.lightbox-0.5.pack.js"></script>
+<script type="text/javascript" src="assets/wp/swfupload.js"></script>
+<?php
+}
+?>
+<?php CHtml::css(); ?>
+<?php if(in_array(PAGE, array('vipdetail','vipindex','vipviewpush'))){?>
+<link rel="stylesheet" href="/css/jquery.tooltip.css" type="text/css" /> 
+<?php } ?>
+</head>
+<body>

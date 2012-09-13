@@ -1,0 +1,119 @@
+<?php
+$log_data   = isset($__p__['log_data']) ? $__p__['log_data'] : '';
+$product    = isset($__p__['product']) ? $__p__['product'] : array();
+$user_data  = isset($__p__['user_data']) ? $__p__['user_data'] : '';
+$suppliers  = isset($__p__['suppliers']) ? $__p__['suppliers'] : array();
+$pic_path = $__p__['pic_path'];
+$pic_url  = $__p__['pic_url'];
+$time = date('H',time());
+if($time>6 && $time<12){
+    $day = "上午好";
+} elseif($time<14){
+    $day = "中午好";
+} elseif($time<18){
+    $day = "下午好";
+} else {
+    $day = "晚上好";
+}
+
+?>
+<div id="channel">
+    <div class="elaborate">
+      <div class="methods">
+      <p><?php echo $day."!";?><a href='account' class='accounts'><?php echo $user_data['Name']; ?></a>,您上次访问的时间是<?php echo $user_data['DateLastActive'];?></p>
+        <ul>
+          <li class="complete" style="display:none;">您的账户资料只完成了&nbsp;<a href="#"><strong>45%</strong></a>&nbsp;，为了被更多的渠道商关注，请您<a href="#">完善资料！</a></li>
+          <li>您有新消息提醒&nbsp;<a href="message"><strong><?php echo $user_data['CountMessages']; ?></strong></a>&nbsp;条</li>
+          <li>共发布供应商品(<a href="manageGood?type=all" style="color:#333;"><?php echo $user_data['CountProducts']; ?></a>)条 <a href="manageGood?type=all">管理商品</a></li>
+        <div class="offers" style="display:none;"><p>您关注的卖家最近有商品更新，请<a href="#">点击查看</a></p><a href="#" class="close"><img src="images/xx.gif" /></a></div>
+        </ul>
+      </div>
+      <div class="system">
+        <h1>您的<span>历史</span>操作</h1>
+        <ul>
+<?php 
+if(!empty($log_data)){
+    $i = 0;
+    $count = count($log_data);
+    foreach($log_data as $v){
+        $i++;
+        if($i>4) {
+            continue;
+        }
+        echo "<li><a href='####'>关注了1卖家</a></li>";
+    }
+}
+?>
+        </ul>
+      </div>
+    </div>
+    <div class="economic">
+      <div class="particular">
+        <h1><span>最新供应商品</span><a href="http://www.101xd.com" target="_blank">更多商品</a></h1>
+        <div class="terminals">
+
+<?php if(!empty($product)){
+    foreach($product as $v){
+
+        $photo = 'images/wares.gif';
+        if(!empty($v['default_image'])) {
+            $photo = $v['default_image'];
+
+            $tmp  = pathinfo($photo);
+            $tmp['filename']  = str_replace('660X420', '192X135', $tmp['filename']);
+            $tmp['extension'] = strstr($tmp['extension'], '?', true);
+            $file_name = $tmp['dirname'] . '/' . $tmp['filename'] .'.'. $tmp['extension'];
+            $tmp_name  = str_replace($pic_url, $pic_path, $file_name);
+            if(file_exists($tmp_name)) {
+                $photo = $file_name;
+            }
+
+        } elseif(!empty($v['image'])){
+            $images = explode('|',$v['image']);
+            $photo  = current($images);
+
+            $tmp  = pathinfo($photo);
+            $file_name = $tmp['dirname'] . '/' . $tmp['filename'] . '_660X420.' . $tmp['extension'];
+            $tmp_name  = str_replace('http://image.101xd.com/', $file_path, $file_name);
+            if(file_exists($tmp_name)) {
+                $photo = $file_name;
+            }
+        }
+
+        $photo = str_replace('http://image.101xd.com/', 'http://fast.101xd.com/', $photo);
+
+        $title = mb_substr($v['title'], 0, 10, 'utf-8');
+
+        echo "<dl>";
+        echo "<a href='/product_{$v['id']}.html' target='_blank' ><img src='{$photo}' width='137' height='110' /></a>";
+        echo "<a href='/product_{$v['id']}.html' target='_blank' class='parse'>{$title}</a>";
+        echo "</dl>";
+    
+    }
+} ?>
+        </div>
+      </div>
+      <div class="board">
+        <h1>排行榜</h1>
+        <h2>供应商品关注排行榜</h2>
+        <ol>
+<?php 
+    if(!empty($suppliers)){
+        $i = 1;
+        foreach($suppliers as $v){
+                if(!empty($v['title'])){
+                    $len_title = strlen($v['title']);
+                    if($len_title>18){
+                        $sub_title = mb_substr($v['title'],0,18,'UTF-8');
+                    } else {
+                        $sub_title = $v['title'];
+                    }
+
+                }
+                echo "<li><a href='/product_{$v['id']}.html'>{$sub_title}</a></li>";
+    }
+}?>
+        </ol>
+      </div>
+    </div>
+  </div>

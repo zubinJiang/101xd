@@ -1,0 +1,9 @@
+#scale{width:970px;overflow:hidden;margin:10px 0;position:relative;}
+#scale p{float:left;width:970px;height:24px;}
+#scale p input{float:left;}
+.dimen{width:318px;line-height:18px;height:18px;color:#888;}
+.sions{width:76px;height:24px;line-height:24px;color:#fff;font-size:14px;font-weight:bold;text-align:center;background:url(../../../images/scale_i.gif) no-repeat;border:none;margin-left:10px;}
+#scale p span{float:left;width:55px;padding-left:5px;font-size:13px;color:#000002;}
+#scale p a{float:right;width:199px;line-height:27px;text-align:center;font-weight:bold;font-size:14px;color:#fff;background:url(../../../images/scale_a.gif) no-repeat;outline:none;}
+#scale .formhtml{position:absolute;top:10px;left:20px;width:500px;z-index:999;background:#fff;border:2px solid #444;}
+

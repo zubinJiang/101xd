@@ -1,0 +1,17 @@
+<?php
+$info = (isset($__p__['contact_info'])) ? $__p__['contact_info'] : array();
+$info['name'] = empty($info['name']) ? '&nbsp;' : $info['name'];
+$info['tel']  = empty($info['tel']) ? '&nbsp;' : $info['tel'];
+$info['mobile'] = empty($info['mobile']) ? '&nbsp;' : $info['mobile'];
+$info['email'] = empty($info['email']) ? '&nbsp;' : $info['email'];
+$info['qq'] = empty($info['qq']) ? '&nbsp;' : $info['qq'];
+?>
+<div class="triumph" id="successtitle">
+    <div class="issue"></div>
+    <div class="through">
+      <h1>发布成功，您的信息已提交审核！</h1>
+      <p>我们将在工作日<font style='color:red;'>&nbsp;30分钟&nbsp;</font>内完成审核，届时上网查看。请在“管理供应商品”中查看商品状态</p>
+      <div class="goon"><a href="supply" class="proceed">继续发布供应信息</a><a href="manageGood?type=all">管理供应商品</a></div>
+    </div>
+    <div style="height:10px;clear:both;"></div>
+</div>

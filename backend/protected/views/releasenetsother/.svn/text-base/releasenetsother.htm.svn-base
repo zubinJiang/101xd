@@ -1,0 +1,75 @@
+<?php
+$payment = isset($__p__['payment']) ? $__p__['payment'] : "";
+$product = isset($__p__['product']) ? $__p__['product'] : "";
+$city = isset($__p__['city']) ? $__p__['city'] : "";
+?>
+<div id="city_log"></div>
+<div id="releasenetsother">
+<h2>其他信息：<span>建议从以下方面描述您的供应产品要求</span></h2>
+
+<div class="sort">
+        <div class="sort_left">供货身份：</div><div class="sort_right">
+        <input type="radio" class="identity"   <?php if(empty($product['gonghuoren']) || $product['gonghuoren']==1){ echo 'checked="true"'; }?>  value="1" name="identity"><span>商家</span>
+        <input type="radio" value="2" name="identity" class="agent" <?php if($product['gonghuoren']==2){ echo 'checked="true"'; }?>><span>代理人</span>
+        <input type="radio" class="identity" value="3" name="identity" <?php if($product['gonghuoren']==3){ echo 'checked="true"'; }?>><span>厂家</span>
+        
+</div>
+<div class="sort">
+        <div class="sort_left">结算方式：</div>
+         <div class="sort_right"><?php
+if(!empty($payment)){
+    foreach($payment as $k=>$v){
+        if($k==0){
+?>
+            <input type="radio" name="way" <?php if($product['payment_id'] == $v['id'] || empty($product['payment_id'])){ echo 'checked="true"'; } ?> value="<?php echo $v['id'];?>">
+            <span><?php echo $v['name']; ?></span>
+<?php
+        } else {
+?>
+            <input type='radio' name='way' value="<?php echo $v['id'];?>" <?php if($product['payment_id'] == $v['id']){ echo 'checked="true"'; } ?> ><span><?php echo $v['name'];?></span>
+<?php
+        }
+    }
+}
+?></div>
+
+<div class="sort">
+        <div class="sort_left">货运方式：</div>
+        <div class="sort_right">
+        <input type="radio" class="way1"  <?php if($product['freight']==0 || empty($product['freight'])){ echo 'checked="true"'; } ?>  value="0" name="delivery"><span>自行发货</span>
+        <input type="radio" class="way2" value="1" <?php if($product['freight']==1){ echo 'checked="true"'; } ?> name="delivery"><span>可代发货</span>
+
+        <input type="radio" class="way1" value="2" <?php if($product['freight']==2){ echo 'checked="true"'; } ?> name="delivery">101兄弟代发货<span></span>
+        </div>
+</div>
+
+<div class="sort" id="express" <?php if(empty($product['freight']) || $product['freight']!=1){ ?>style="display:none;" <?php } ?>>
+        <div class="sort_left">包邮：</div>
+        <div class="sort_right"><input type="radio" class="mailing" value="0" <?php if(empty($product['free_mail']) || $product['free_mail']==0){ echo 'checked="true"'; } ?>  name="mailing"><span>否</span>
+        <input  type="radio" value="1" <?php if($product['free_mail']==1){ echo 'checked="true"'; } ?>  class="mailing" name="mailing"><span>全国包邮</span>
+        <input type="radio" value="2" <?php if($product['free_mail']==2){ echo 'checked="true"'; } ?> name="mailing" class="part"><span>部分包邮</span>
+        </div>
+</div>
+<?php 
+if($product['free_mail']==2){
+?>
+<div class="sort">
+        <div class="sort_left" id="cityname"><button id="city_mess">选择城市</button></div>
+        <div class="sort_right"  id="city_list">
+        已选择城市：<div><span class="city_list" value=""><?php if(!empty($city)){
+            foreach($city['city'] as $v){
+                echo "&nbsp;<a id={$v['id']}>{$v['area']}</a>&nbsp;";
+            }
+        }else {
+            echo "你没有选择邮寄城市，请选择";
+        }  ?></span></div></div>
+        <input  type='hidden' name="mailing_city" id="mailing_city" value="">
+</div>
+<?php }else{ ?>
+<div class="sort" id="cityname" style="display:none;">
+        <div class="sort_left"><button id="city_mess">选择城市</button></div>
+        <div class="sort_right" style="display:none;" id="city_list">
+        已选择城市：<div class="city_list"></div></div> 
+<?php } ?>
+<input  type='hidden' name="mailing_city" id="mailing_city" value="<?php echo $city['id']; ?>">
+</div>

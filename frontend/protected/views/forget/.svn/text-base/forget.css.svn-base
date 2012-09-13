@@ -1,0 +1,7 @@
+#forget{width:968px;height:388px;margin:0 auto;border:1px #c8c8c8 solid;padding-top:13px;background:url(../../../images/footer_bj.gif) repeat-x bottom}
+.footer_t{width:968px;height:28px;text-align:center;line-height:28px;font-size:14px}
+.footer_t span{width:142px;height:28px;float:left;font-weight:bold;}
+
+span.error{font-size:12px;float:left;margin: 0 0 0 5px;line-height:14px;}
+
+

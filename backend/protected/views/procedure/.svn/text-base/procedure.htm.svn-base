@@ -1,0 +1,20 @@
+<div id="procedure">
+<div class="magnitude">批量发布商品信息<input type="hidden" id="user_id" value="<?php echo $__p__['user_id'];?>"></div>
+    <div class="certificate">
+      <div class="focusing">
+        <div class="focuright">步骤1.</div><div class="foculeft"><span class="excel">请先下载excel，按照字段顺序在Excel中整理好要发布的内容>></span><img src="images/X.gif" /><a href="#" style="float:left;">（点击下载）</a></div>
+      </div>
+      <div class="focusing">
+        <div class="focuright">步骤2.</div><div class="foculeft">请将商品图片放到一个命名为：image的文件夹，商品图片分为两种：<br />1、首图，数量1张，命名规则为<span>（excel行号）head.jpg</span><br />2、商品描述图片，数量最多5张，命名规则为：<span>（excel行号）de1.jpg，（excel行号）de2.jpg，（excel行号）de3.jpg，（excel行号）deN.jpg</span></div>
+      </div>
+      <div class="focusing">
+        <div class="focuright">步骤3.</div><div class="foculeft">将excel商品信息表同商品图片一起打包成zip格式的压缩包后，点击最下方的“批量上传”按钮，进行上传操作；</div>
+      </div>
+      <div class="focusing">
+        <div class="focuright">步骤4.</div><div class="foculeft">批量发布成功后，请到“管理供应商品--审核中”中检查数据；</div>
+      </div>
+      <div class="focusing" style="margin:10px auto;width:200px;"><div id="upload1"></div><div id="zip_file"></div></div>
+      <p><a href="#">点击下载演示文档</a><a href="#">点击下载excel商品信息模版</a></p>
+    </div>
+  </div>
+

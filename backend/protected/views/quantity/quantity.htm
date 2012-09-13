@@ -1,0 +1,46 @@
+<?php
+$data     = isset($__p__['data']) ? $__p__['data'] : '';
+$count     = isset($__p__['count']) ? $__p__['count'] : '';
+$page = isset($__p__['page']) ? $__p__['page'] : '';
+$num = isset($__p__['num']) ? $__p__['num'] : '';
+$shu = isset($_GET['page']) ? $_GET['page'] : '1';
+?>
+<div id="quantity">
+    <div class="magnitude">批量发布商品信息</div>
+    <div class="price">
+    <p>共上传成功<?php echo $count;?>条信息，其中<span><?php echo $num; ?></span>条未成功！</p>
+      <ul>
+       <li><span class="count47">序号</span><span class="count164">商品名称</span><span class="count122">上传进度</span><span class="count90">操作</span><span class="count216">问题描述</span></li>
+<?php if(!empty($data)){ 
+    foreach($data as $v){
+        if(!empty($v['title'])){
+            $len = strlen($v['title']);
+            if($len>12){
+                $str = mb_substr($v['title'],0,12,"utf-8");
+            } else {
+                $str = $v['title'];
+            }
+        }
+        if($v['error_msg']!=NULL){
+            $hot = "style='color:red;'";
+        } else {
+            $hot='';
+        }
+?>
+<li <?php if(!empty($v['ERROR-MSG'])) { echo "style='color:red;'";}?>><span class="count47"><?php echo $v['id'];?></span><span class="count164" <?php echo $hot; ?>><?php echo $str; ?></span><span class="count122"><?php if(empty($v['ERROR-MSG'])) {?><font color=red>100%</font><?php }?></span><span class="count90">[<a href='/product_<?php echo $v['id'];?>.html' target="_blank">查看</a>][<a href='#'>修改</a>]</span><span class="count216"><?php echo $v['ERROR-MSG']; ?></span></li>
+<?php
+    }
+}?>
+
+      </ul>
+      <div class="inentory">
+<?php
+if($count>12) {
+            echo $page->show(4);
+}
+?>
+      </div>
+      <div class="inentory_a"><a href="quantity?shu=<?php echo $shu; ?>" style="margin-left:170px;">全部发布</a><a>重新上传</a></div>
+    </div>
+  </div>
+

@@ -1,0 +1,55 @@
+<?php
+$count = isset($__p__['count']) ? $__p__['count'] : 0;
+$list  = isset($__p__['list'])  ? $__p__['list']  : 0;
+$page  = isset($__p__['page'])  ? $__p__['page']  : 0;
+$pic_path = $__p__['pic_path'];
+?>
+<div id="publishers">
+<div id="release">
+    <div class="issue"><div id="current_location">我关注的卖家</font></div></div>
+    <div class="material"><p>您关注了<font color=red><?php echo $count;?></font>个卖家</p></div>
+    <div class="option">
+      <div class="global"><span class="wid40">选项</span><span class="wid540">卖家</span><span class="wid120">管理</span></div>
+      <div class="choice">
+  <?php
+if(!empty($list)) {
+    foreach($list as $v) {
+
+        $photo = 'images/tg.gif';
+        if(!empty($v['Photo'])) {
+            $tmp_name  = str_replace('http://image.101xd.com/', $pic_path, $v['Photo']);
+            if(file_exists($tmp_name)) {
+                $photo = $v['Photo'];
+            }
+        }
+
+?>
+        <ul id="<?php echo $v['id'];?>">
+          <li class="checkbox"><input name="id[]"  type="checkbox" value="<?php echo $v['id'];?>" class="id"/></li>
+          <li class="dealers"><img src='<?php echo $photo;?>' width="50" height="50" />
+          <span class="blove"><?php echo $v['Name'];?></span>
+          <span>总共发布商品：<font color=red><?php echo $v['count'];?></font> 件</span><br/>
+          <?php 
+        if(!empty($v['first']['0']['title'])) {
+?>
+          <span class="wid300">
+          最新发布商品：<a target="_blank" href="/product_<?php echo $v['first']['0']['id']?>.html" ><?php echo $v['first']['0']['title']?></a></span>
+          <?php
+        }
+?>
+          </li>
+          <li><a href="javascript:void(0)" ref="<?php echo $v['id'];?>" id="cancel_id" >取消关注</a></li>
+      </ul>
+  <?php
+    }
+}else{
+    echo "<div class='red' style='color:red;line-height:150%;margin:10px 0;'>对不起,您现在还没有关注任何卖家哦。</div>";
+}
+?>
+ <div class="global"><input type="checkbox" value="全选" id="all_select" /><span class="all">全选</span><a  id="all_cancel" href="####" rel="nofollow">取消关注</a>
+
+<?php echo $page->show(4);?>
+
+ </div>
+    </div>
+  </div>

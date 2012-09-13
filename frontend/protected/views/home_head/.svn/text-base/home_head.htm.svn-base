@@ -1,0 +1,88 @@
+<?php
+$recommed = isset($__p__['recommed']) ? $__p__['recommed'] : '';
+$count = count($recommed)>0 ? count($recommed) : 0;
+$pic_path = $__p__['pic_path'];
+$pic_url  = $__p__['pic_url'];
+?>
+<div id="home_head" class="collective">
+    <div class="charge">今日推荐商品<span>（<?php echo $count;?>）</span></div>
+    <div class="franco">
+    <div id="slides">
+        <div class="slides_container">
+        <?php
+if(!empty($recommed)) {
+    foreach($recommed as $v) {
+        if($v['market_price']>0 && is_numeric($v['supply_price'])){
+            $zhe = ($v['supply_price'] / $v['market_price']) * 10 ;
+            $zhe = number_format($zhe, 2);
+        } else {
+            $zhe = '';
+        }
+        
+        $photo = 'images/wares.gif';
+        if(!empty($v['default_image'])) {
+            $photo = $v['default_image'];
+        } elseif(!empty($v['image'])){
+            $images = explode('|',$v['image']);
+            $photo  = current($images);
+
+            $tmp  = pathinfo($photo);
+            $file_name = $tmp['dirname'] . '/' . $tmp['filename'] . '_660X420.' . $tmp['extension'];
+            $file_path = $pic_path;
+            $tmp_name  = str_replace($pic_url, $file_path, $file_name);
+            if(file_exists($tmp_name)) {
+                $photo = $file_name;
+            }
+        }
+
+        //$photo = str_replace('http://image.101xd.com/', $pic_url, $photo);
+
+        $freight = '自行发货';
+        if(1==$v['freight']) {
+            $freight = '可代发货';
+        }elseif(2==$v['freight']) {
+            $freight = '101兄弟代发货';
+        }
+
+        if($v['market_price']>0 && is_numeric($v['supply_price'])) {
+            $num = $v['supply_price'] / $v['market_price'];
+            $num = $num * 10;
+            $zhe = number_format($num, 1, '.', '');
+            $zhe .= '折';
+            $team = '￥' . $v['supply_price'];
+        } else {
+            $zhe = '&nbsp;';
+            $team = $v['supply_price'];
+        }
+
+        $v['att_count'] = empty($v['attentions']) ? 0 : $v['attentions'];
+?>
+            <div class="panel">
+                <div class="panel-wrapper">
+                    <h2><a target="_blank" href="product_<?php echo $v['id'];?>.html"><?php echo $v['title'];?></a></h2>
+                    <div class="franco" style="width:640px;height:250px;_width:640px;_height:200px;">
+                        <div class="vouchers">
+                                <div class="allowance">
+                                <a target="_blank" href="product_<?php echo $v['id'];?>.html" title="<?php echo $v['title'];?>" ><img src="<?php echo $photo;?>" onload='if(this.width > 316) this.width=316;' alt="<?php echo $v['title'];?>"/></a>
+                                </div>                 
+                                <div class="commercial">
+                                    <ul>
+                                        <li><span>市场价</span><strong>￥<?php echo $v['market_price'];?></strong></li>
+                                        <li><span>折扣</span><strong><?php echo $zhe;?></strong></li>
+                                        <li class="regretful"><span>建议团购价</span><strong><?php echo $team;?></strong></li>
+                                    </ul>
+                                    <p>货运方式：<?php echo $freight;?>&nbsp;&nbsp;结算方式：<?php echo $v['name'];?></p>
+                                    <div class="acquiring"><strong>获取联系方式：</strong><button id="attention" type="reset" onclick="location.href='product_<?php echo $v['id'];?>.html';" >关注卖家</button><span>已被<b><?php echo $v['att_count'];?></b>家渠道商关注</span></div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<?php
+    }
+}
+?>
+        </div>
+    </div>
+    </div>
+</div>

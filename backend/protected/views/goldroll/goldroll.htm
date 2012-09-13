@@ -1,0 +1,85 @@
+<?php
+$province = isset($__p__['province']) ? $__p__['province'] : "";
+$type = isset($__p__['type']) ? $__p__['type'] : '';
+$product = isset($__p__['product']) ? $__p__['product'] : '';
+$address = isset($__p__['address']) ? $__p__['address'] : '';
+$contact = isset($__p__['contact']) ? $__p__['contact'] : '';
+?>
+    <form action="<?php if(empty($product)) {?>?action=index<?php } else { echo '?action=update&id='.$product['id']; } ?>" method="post">
+<input type="hidden" name="w_type" value="<?php echo $type;?>">
+<?php
+if(!empty($contact)) {
+?>
+<input type="hidden" name="contact_id" value="<?php echo $contact['id'];?>" />
+<?php
+}
+if(!empty($address)) {
+?>
+<input type="hidden" name="address_id" value="<?php echo $address['id'];?>" />
+<?php
+}
+?>
+<div id="goldroll">
+<h2>代金券的基本信息</h2>
+<div class="sort">
+</div>
+<div class="sort">
+        <div class="sort_left">网站名称：</div>
+        <div class="sort_right"><input type="text" name="w_name" value="<?php echo $product['site_name'];?>" class="text1" /><span style="color:red;">*</span></div>
+</div>
+
+<div class="sort">
+        <div class="sort_left">网&nbsp;&nbsp;址：</div>
+        <div class="sort_right"><input type="text" name="w_url" value="<?php if(!empty($product['site_url'])) { echo $product['site_url']; } else { echo 'http://'; }?>" class="text1" /><span style="color:red;">*</span>
+        <p class="mess_url">网址的格式必须正确</p></div>
+</div>
+<div class="sort">
+
+<div class="sort">
+        <div class="sort_left">代金券金额：</div>
+        <div class="sort_right"><input name="w_amount" type="radio" value="1" <?php if(1==$product['goldroll_type'] || empty($product['goldroll_type'])) {echo 'checked="checked"';}?> class="radio" /><span>满X元抵Y元</span>
+        <input  type="radio"  name="w_amount" value="2" class="radio" <?php if(2==$product['goldroll_type']){ echo 'checked="checked"';}?>/><span>抵扣价&nbsp;&nbsp;&nbsp;</span>
+        <span class="infinite">X元抵扣Y元</span><p>
+        <span>X:</span><input type="text" name="price_x" value="<?php echo $product['market_price'];?>" class="text4" /><span style="color:red;">*</span>
+        <span style="padding-left:10px;">Y:</span><input type="text" name="price_y" value="<?php echo $product['supply_price'];?>" class="text4" /><span style="color:red;">*</span></p><br>
+</div>
+<div class="sort">
+        <div class="sort_left">标题：</div>
+        <div class="sort_right"><input type="text" name="w_title" value="<?php echo $product['title'];?>" class="text1" />
+        <p>最长30字符，建议在标题中包含名称和相应关键词</p></div>
+</div>
+
+<div class="sort">
+        <div class="sort_left">项目内容描述：</div>
+        <div class="sort_right" id="textarea" ><textarea id="content" name="content" style="width:100%;height:300px;"><?php echo $product['description'];?></textarea></div>
+</div>
+<!--<div class="sort">
+        <div class="sort_left">商家地址：</div>
+        <div class="sort_right">
+          <select name="b_province" id="province_id">
+              <option value=0 selected='selected'>--请选择省份--</option>
+        <?php if(!empty($province)){
+             foreach($province as $v){
+                     ?>
+                <option value="<?php echo $v['id'];?>" <?php if($v['id']==$address['id']) {echo "checked='true'";}?>><?php echo $v['name'];?></option>
+<?php
+             }
+        } ?></select>&nbsp;
+        <select name="b_area" id="area_id"><option value=0 selected='selected'>--请选择地区--</option>
+        </select>&nbsp;
+        <?php
+if(!empty($address)) {
+?> 
+    <input type="text" name="b_address" value="<?php echo $address['desc'];?>" />
+        <?php
+} else {
+?>
+        <input type="text" name="b_address" value="请填写详细地址" onclick="this.value=''";/>
+    <?php
+}
+?>
+
+        <div id="map_canvas"></div></div><br/>
+        <input type="hidden" name="lat" id="lat" value="<?php echo $address['lat'];?>"/><input type="hidden" name="lng" id="lng" value="<?php echo $address['lng'];?>" />
+</div>-->
+</div>

@@ -1,0 +1,124 @@
+<?php
+$data  = isset($__p__['data']) ? $__p__['data'] : '';
+$style  = isset($__p__['style']) ? $__p__['style'] : '';
+$product  = isset($__p__['product']) ? $__p__['product'] : '';
+$type  = isset($__p__['type']) ? $__p__['type'] : $product['category'];
+$id = isset($__p__['id']) ? $__p__['id'] : $product['category_id'];
+?>
+<div id="move"><a href="/agent"><img src="images/agent.jpg" width="70" height="130" /></a></div>
+<div id="home_daohang">
+  <div class="shipments"><span>您好，欢迎来到团购供货平台，企业营销新选择！</span>
+  <div class="shipments_a">
+<?php
+if($_SESSION['login_user_name'] != ''){
+?>
+<a><?php echo $_SESSION['login_user_name'];?></a><span>|</span><a href="/user/index">管理中心</a><span>|</span><a href='index?action=logout'>退出</a>
+<?php }else{ ?>
+<a href="login">登陆</a><span>|</span><a href="register">立即注册</a><span>|</span><a href="forget">忘记密码</a>
+<?php } ?>
+  <a href="#" onclick="javascript:AddFavorite('http://www.101xd.com', '101兄弟-团购网站等渠道商供货、可代发货平台'); return false;" class="enshrine">收藏本站</a></div></div>
+  <div class="top_c">
+    <div class="logo"><a href="/index"><img src="images/logo.gif" /></a></div>
+    <div class="banner">
+        <a  href="daohang"><img src="images/banner_2.jpg" alt="团购网站找资源首选101兄弟" width="740" height="100"/></a>
+        <a href="index"><img src="images/banner.jpg" alt="团购网站找资源首选101兄弟" width="740" height="100"/></a>
+    </div>
+  </div>
+  <div id='daohang'>
+  <div class="daohang_bup">
+  <div class="hot" <?php if(in_array(PAGE, array('daohang', 'childpages'))){echo 'style="left:478px;"';}?>><img src="images/hot.gif" /></div>
+  <a href="http://www.101xd.com/" id="index"><img src="images/<?php if('index'==$product['category'] || empty($type)) { echo 'shouye_link.gif';} else {echo 'shouye.gif';}?>" /></a>
+  <a href="local" id="local" type_id="2"><img src="images/<?php if('local'==$type) { echo 'bendi_link.gif';} else {echo 'bendi.gif';}?>" /></a>
+  <a href="net" id="net" type_id="3"><img src="images/<?php if('net'==$type) { echo 'jingpin_link.gif';} else {echo 'jingpin.gif';}?>" /></a>
+  <!--<a href="#" id="goldroll" type_id="4" <?php if('goldroll'==$type) {?> class="local" <?php } ?>>代金卷</a><span>|</span>-->
+  <a href="daohang" <?php if('daohang'==PAGE) {?> class="local" <?php } ?>><img src="images/<?php if(PAGE=='daohang') { echo 'paiming_link.gif';} else {echo 'paiming.gif';}?>" /></a>  
+  <a href="ranking" <?php if('ranking'==PAGE) {?> class="local" <?php } ?>><img src="images/<?php if(PAGE=='ranking') { echo 'hotsale_link.gif';} else {echo 'hotsale.gif';}?>" /></a>
+  <!--<a href="/community/" id='bbs' target="_blank"><img src="images/shangren.gif" /></a>-->
+  </div>
+<div class="daohang_type">
+<?php
+    if(!empty($style)){
+     $count = count($style);
+        $i = 1;
+        foreach ($style as $k=>$v){
+            $css = '';
+            if($k==$id) {
+                $css = 'class="font_size"';
+            }
+            if($i == $count){
+                 echo  "<a href='childpages?id={$k}' {$css} value='{$k}'>{$v}</a>"; 
+            } else {
+                 echo "<a href='childpages?id={$k}'  {$css} value='{$k}'>{$v}</a><span>|</span>";
+            }
+            $i++;
+        }
+     }
+?>
+</div>
+</div>
+</div>
+<input type="hidden" name="type" value="<?php echo $id; ?>">
+<input type="hidden" name="cpage" value="1">
+<input type="hidden" name="sort" value="price">
+<script language="javascript">
+var s=100;
+var ii=-122;
+function ff(){
+a=document.documentElement.clientHeight;
+b=document.getElementById("move").offsetHeight;
+d=document.documentElement.scrollTop;
+if(ii<=100){
+ii++;
+}
+p=0.1*(d-s)
+s=s+p;
+document.getElementById("move").style.top=s+ii+"px";
+document.getElementById("move").style.top=s+ii+"px";
+}
+setInterval("ff()",1)
+function setHomepage()
+
+{
+ if (document.all)
+  {
+  document.body.style.behavior='url(#default#homepage)';
+  document.body.setHomePage('http://www.101xd.com');
+ 
+  }
+  else if (window.sidebar)
+  {
+  if(window.netscape)
+  {
+  try
+  { 
+  netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect"); 
+  } 
+  catch (e) 
+  { 
+  alert( "该操作被浏览器拒绝，如果想启用该功能，请在地址栏内输入 about:config,然后将项 signed.applets.codebase_principal_support 值改为true" ); 
+  }
+  }
+  var prefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components. interfaces.nsIPrefBranch);
+  prefs.setCharPref('browser.startup.homepage','http://www.101xd.com');
+ }
+}
+
+function AddFavorite(sURL, sTitle)
+{
+     try
+     {
+         window.external.addFavorite(sURL, sTitle);
+     }
+     catch (e)
+     {
+         try
+         {
+             window.sidebar.addPanel(sTitle, sURL, "");
+         }
+         catch (e)
+         {
+             alert("请在关闭本对话框后，按 Ctrl+D 将本站加入收藏");
+         }
+     }
+}
+</script>

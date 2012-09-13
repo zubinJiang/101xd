@@ -1,0 +1,125 @@
+<?php
+$user_data = isset($__p__['user_data']) ? $__p__['user_data'] : '';
+$webdata   = isset($__p__['webdata']) ? $__p__['webdata'] : "";
+$publish       = isset($__p__['publish']) ? $__p__['publish'] : '';
+$log_data      = isset($__p__['log_data']) ? $__p__['log_data'] : '';
+$suppliers    = isset($__p__['suppliers']) ? $__p__['suppliers'] : array();
+$time = date('H',time());
+if($time>6 && $time<12){
+    $day = "上午好";
+} elseif($time<14){
+    $day = "中午好";
+} elseif($time<18){
+    $day = "下午好";
+} else {
+    $day = "晚上好";
+}
+
+
+function getTime($time) {
+    $cur = time() - strtotime($time);
+
+    if($cur>86400) {
+        return ceil($cur/86400) . '天前';
+    } else {
+        if($cur>3600) {
+            $left = ceil($cur/3600) . '小时';
+            $hour = $cur % 3600;
+            $left .= ceil($hour/60) . '分前';
+        }
+
+        if($cur>60 && $cur <3600) {
+            $left = ceil($cur/60) . '分前';
+        }
+    
+        if($cur>0 && $cur<60) {
+            $left = $cur . '秒前'; 
+        }
+    }
+
+    return $left;
+}
+?>
+<div id="specify">
+    <div class="elaborate">
+      <div class="length">
+        <p><?php echo $day;?>！<?php echo $user_data['Name'];?>,您上次访问的时间是<?php echo $user_data['DateLastActive'];?></p>
+        <ul>
+          <li class="complete" style="display:none;">您的账户资料只完成了&nbsp;<a href="#"><strong>45%</strong></a>&nbsp;，为了被更多的渠道商关注，请您<a href="#">完善资料！</a></li>
+          <li>您有新消息提醒&nbsp;<a href="message"><strong><?php echo $user_data['CountMessages']; ?></strong></a>&nbsp;条</li>
+          <li>共发布供应商品(<a href="#" style="color:#333;"><?php echo $user_data['CountProducts']; ?></a>)条 <a href="manageGood?type=all">管理商品</a></li>
+        </ul>
+      </div>
+      <div class="system">
+        <h1>您的<span>历史</span>操作</h1>
+        <ul>
+        <?php
+if(!empty($log_data)) {
+    $i=0;
+    foreach($log_data as $v) {
+    $i++;
+    if($i>4) {
+        continue;
+    }
+?>
+    <li><a href="####">执行：<?php echo $v['record'];?></a><?php echo date('m-d H:s',strtotime($v['createdate']));?></li>
+          <?php
+    }
+}
+?>
+        </ul>
+      </div>
+    </div>
+    <div class="charts">
+      <div class="particular">
+        <h1>动态信息</h1>
+        <div class="abandon">
+            <?php
+if(!empty($publish)) {
+    foreach($publish as $v) {
+?>
+    <p><a href="####"><?php echo $v['name'];?></a><span>关注了您</span><span><?php echo getTime($v['createdate']);?></span></p>
+<?php
+    }
+} else {
+    echo "<p>暂无动态信息！</p>";
+}
+?>
+        </div>
+        <h1 class="faith">诚信团购网站推荐</h1>
+        <div class="past"><a href="#" id="scale" ref="1">按流量</a><a href="#" id="flow" ref="2">按规模</a></div>
+        <div class="israel">
+<?php
+if(!empty($webdata)){
+    foreach($webdata as $v){
+      echo "<a href='{$v['url']}' target='_blank'>{$v['name']}</a>";
+    } 
+}
+?>
+</div>
+      </div>
+      <div class="board">
+        <h1>排行榜</h1>
+        <h2>供应商品关注排行榜</h2>
+        <ol>
+ <?php 
+    if(!empty($suppliers)){
+        $i = 1;
+        foreach($suppliers as $v){
+                if(!empty($v['title'])){
+                    $len_title = strlen($v['title']);
+                    if($len_title>18){
+                        $sub_title = mb_substr($v['title'],0,18,'UTF-8');
+                    } else {
+                        $sub_title = $v['title'];
+                    }
+
+                }
+                echo "<li><a href='/product_{$v['id']}.html'>{$sub_title}</a></li>";
+    }
+}?>
+        </ol>
+      </div>
+    </div>
+  </div>
+

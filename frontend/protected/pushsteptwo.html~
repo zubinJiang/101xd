@@ -1,0 +1,5 @@
+<? CHtml::insert('pushsteptwo.htm'); ?>
+<? CHtml::insert('home_foot.htm'); ?>
+</div>
+</body>
+</html>

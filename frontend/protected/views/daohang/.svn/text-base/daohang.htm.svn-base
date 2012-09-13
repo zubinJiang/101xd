@@ -1,0 +1,7 @@
+<?php 
+$data  = isset($__p__['data']) ? $__p__['data'] : '';
+$title = isset($__p__['title']) ? $__p__['title'] : '';
+$str   = isset($__p__['str']) ? $__p__['str'] : '';
+$web_id= isset($_GET['web_id']) ? $_GET['web_id'] : '2';
+$city_type = isset($_GET['id']) ? $_GET['id'] : 1;
+?>

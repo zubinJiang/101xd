@@ -1,0 +1,34 @@
+body,div,span,ul,ol,li,dl,dd,dt,h1,h2,h3,h4,h5,h6,p{margin:0;padding:0}
+body{font-size:12px;font-family:"宋体";background:url(../../../images/agent_bg_1.gif) repeat-x;line-height:1.5;text-align:left}
+a{text-decoration:none}a:hover {text-decoration:underline}
+img{border:0}
+ul,li{list-style:none}.clear{clear:both}
+
+#agentbox{margin:0 auto;width:970px;}
+#agenttop{width:970px;height:32px;margin-top:12px;line-height:32px;text-align:right}
+#agenttop a{color:#0088ce}
+#header{width:970px;height:614px;margin-bottom:10px;position:relative}
+#header .step1{color:#00a1e0;width:960px;padding:3px 0 0 10px;width:960px;height:100px;font-size:15px;line-height:28px;position:absolute;left:0;top:290px}
+#header .step1 span.s{font-size:18px;color:#F90;font-weight:bold;line-height:34px}
+#header .step1 span.xiao{font-size:12px}
+#header .step1 span.line{line-height:26px;font-weight:bold}
+#header .add{width:100%;position:absolute;left:0;top:390px}
+#header .add .step2{width:970px;height:40px;background:url(../../../images/agent_bg_3.gif) no-repeat left top;position:relative}
+#header .add .step2 .step3{width:232px;height:56px;position:absolute;left:720px;top:-8px}
+#header .add .bd{width:968px;height:179px;border:1px solid #c5c5c5;border-top:none;}
+#header .add .bd .wt{width:711px;height:167px;float:left;padding:10px 0 0 8px}
+#header .add .bd .et{width:233px;height:177px;float:left;padding-left:15px}
+#header .add .bd .et ul{float:left;width:192px;height:146px;background:#e1e1e1;border:1px solid #d0d0d0;padding:20px 0 0 6px;font-size:12px;font-weight:bold}
+#header .add .bd .et ul li{width:181px;height:26px;background:#fff;margin-bottom:10px;line-height:26px;padding-left:5px;color:#0093de}
+#header .add .bd .et ul li.lv{color:#389d00;font-size:14px;}
+#header .add .bd .et ul li.lv a{color:#F90}
+.step4{width:968px;height:250px;margin-bottom:10px;border:1px solid #c5c5c5;position:relative;padding-top:40px;}
+.step4 .hd{width:968px;height:40px;position:absolute;left:-1px;top:-1px;float:left}
+.step4 .bd{width:932px;height:200px;padding:10px 0 0 36px;overflow:hidden;float:left}
+.step4 .bd p{width:152px;height:91px;float:left;padding:0;margin:0px 33px 10px 0}
+.step4 .fd{width:560px;height:35px;float:left;padding-left:408px;}
+.step4 .fd input{width:171px;height:35px;float:left;background:url(../../../images/agent_jr.gif) no-repeat;font-family:"黑体";font-size:24px;color:#fff;border:none;cursor:pointer}
+#bottom{width:780px;padding-left:190px;background:#e5e5e5;border-top:1px solid #ccc;overflow:hidden;margin:0 auto;clear:both;}
+#bottom p{clear:both;width:590px;background:#f1f1f1;line-height:150%;text-align:center;color:#b7b7b7;padding:10px 0 10px 0;}
+#bottom p a{color:#b7b7b7;}
+

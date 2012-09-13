@@ -1,0 +1,3 @@
+<?php //include('beforebody.htm'); ?>
+    <? CHtml::insert('vipsupply.htm'); ?>
+<?php include('afterbody.htm'); ?>

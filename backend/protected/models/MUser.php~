@@ -1,0 +1,363 @@
+<?php
+
+class MUser extends CModel
+{  
+
+    // 根据id 和用户名名验证 用户
+    public function checkUserByIdAndName($id, $name) {
+
+        $tmp = $this->db->table('`user`')
+            ->where("UserID='{$id}'")
+            ->where("Name = '{$name}'")
+            ->getFirst();
+        if(empty($tmp)) { return false; }
+
+        return $tmp['UserID'];
+    }
+
+    public function CheckUserByName($name){
+        $tmp = $this->db->table('`user`')
+            ->where("Name = '{$name}'")
+            ->getFirst();
+        
+        if(empty($tmp)) { return false; }
+
+        return $tmp['UserID'];
+    
+    }
+    public function CheckiQuDaoUserByName($name){
+        $tmp = $this->db->table('`user`')
+            ->where("Name = '{$name}'")
+            ->where("UserType=1")
+            ->getFirst();
+        
+        if(empty($tmp)) { return false; }
+
+        return $tmp['UserID'];
+    }    
+
+    // 根据id 获取用户资料
+    public function getUserData($user_id) {
+        $data = $this->db->table('`user`')
+            ->select('*')
+            ->where("UserID={$user_id}")
+            ->getFirst();
+        return $data;
+    }
+    //保存修改会员用户的信息/user/editmember
+    public function SaveEditUserInfo($data) {
+
+        if ($data['user_id']){
+        $user = $this->getUserRelateData($data['user_id']);
+        //检查关联的company表是否存在
+        if ($user['CompanyID']){
+            $this->db->exec("UPDATE company SET `category_id`='{$data['category_id']}', `ip`='{$data['ip']}', `contact_name`='{$data['company_contact_name']}', `postcode`='{$data['company_postcode']}', `contact_tel`={$data['company_contact_tel']}, `url`='{$data['company_url']}',  `key`='{$data['company_key']}', `desc`='{$data['company_desc']}', `position`='{$data['company_position']}'  WHERE id={$user['CompanyID']}");
+            //company村在的话却存在address关联
+            if ($user['company']['address_id'])
+            {
+                $this->db->exec("UPDATE address SET `desc`='{$data['address_desc']}'  WHERE id={$user['company']['address_id']}");
+            };
+        };
+        $this->db->exec("UPDATE user SET UserTel='{$data['usertel']}', UserType='{$data['usertype']}', Note='{$data['note']}', Cooperation='{$data['cooperation']}', ContactName='{$data['contactname']}',`QQ`='{$data['qq']}',`Email`='{$data['email']}'  WHERE UserID={$data['user_id']}");}
+        else{
+        }
+    }
+
+    // 根据id 获取用户资料并获取关联的ip值
+    public function getUserRelateData($user_id) {
+        $data = $this->db->table('`user`')
+            ->select('*')
+            ->where("UserID={$user_id}")
+            ->getFirst();
+        //检查关联的company表是否存在
+        if($data['CompanyID']) {
+            $company = $this->db->table('`company`')->select('*')->where("id={$data['CompanyID']}")->getFirst();
+            $data['company'] = $company;
+            $data['ip']=$company['ip'];
+            //检查类别category关联表是否存在
+            if($company['category_id']) {
+                $category = $this->db->table('`category`')->select('*')->where("id={$company['category_id']}")->getFirst();
+                $data['category'] = $category;
+            }
+            if ($company['address_id']) {
+                $address = $this->db->table('`address`')->select('*')->where("id={$company['address_id']}")->getFirst();
+                $province = $this->db->table('`province`')->select('*')->where("id={$address['province_id']}")->getFirst();
+                $province = $province['name'];
+                $city = $this->db->table('`city`')->select('*')->where("id={$address['area_id']}")->getFirst();
+                $city = $city['name'];
+                $address['province'] = $province;
+                $address['city'] = $city;
+                $data['address'] = $address;
+            }
+        }
+        return $data;
+    }
+    
+
+
+    //获取建议用户名
+    public function GetSuggestUsername($q){
+        $data = $this->db->table('`user`')
+            ->select('Name')
+            ->where("Name like '%{$q}%'")
+            ->getNum(10);
+        $res = array();
+        foreach($data as $key=>$value){
+            array_push($res,$value['Name']);
+            }
+        return $res;
+    }
+
+    public function getUserDataList($page=1,$num=10, $user_type=null) {
+
+        $type_cond = FALSE;
+        if(!is_null($user_type)) {
+            $type_cond = "gu.UserType={$user_type}";
+        }
+
+        $data = $this->db->table('`user` gu')
+            ->select('*')
+            ->where("Deleted!=1")
+            ->where($type_cond)
+            ->order('UserID','desc')
+            ->getNum($num, ($page-1)*$num);
+        
+        $relate_data = array();
+        foreach($data as $item){
+            if($item['CompanyID']) {
+                $ip= $this->db ->table('`company`')
+                    ->select('ip,url')
+                    ->where("id={$item['CompanyID']}")
+                    ->getFirst();
+                $item['url'] = $ip['url'];
+                $item['IP'] = $ip['ip'];
+            }
+                $relate_data[]=$item;
+        }
+
+        $count = $this->getUserCount($user_type);
+        return array('list'=>$relate_data, 'count'=>$count);
+    }
+
+    public function getUserCount($user_type=null) {
+    
+        $type_cond = FALSE;
+        if(!is_null($user_type)) {
+            $type_cond = "UserType={$user_type}";
+        }
+        
+        return $this->db->table('`user`')
+                    ->where("Deleted!=1")
+                    ->where($type_cond)
+                    ->getCount();
+    }
+
+    public function getGroupByUserId($user_id) {
+        $data = $this->db->table('`company` c,`user` u')
+                    ->select('c.id,c.name,c.url')
+                    ->where('c.id=u.CompanyID')
+                    ->where("u.UserID={$user_id}")
+                    ->getFirst();
+
+        return $data;
+    }
+
+    // 删除用户 会员管理
+    public function delUser($user_id) {
+        $result = $this->db->exec("update `user` set Deleted=1 where UserID in ({$user_id})");
+    
+        return $result;
+    }
+
+    // 更新用户信息  查看资料
+    public function updateUserInfo($user, $id) {
+        $result = $this->db->exec("update `user` set ContactName='{$user['ContactName']}', UserTel='{$user['UserTel']}', QQ='{$user['QQ']}', Email='{$user['Email']}', CompanyID='{$user['CompanyID']}' where UserID='{$id}'");
+
+        return $result;
+    }
+
+    // 修改个人头像 修改头像
+    public function updatePhoto($image, $user_id) {
+        $data = $this->db->exec("update user set Photo='{$image}' where UserID='{$user_id}'");
+        return $data;
+    }
+
+    // 修改个人密码 查看资料 修改密码
+    public function updateUserPass($pass, $id){
+        $data = $this->db->exec("update user set Password='{$pass}' where UserID='{$id}'");
+        return $data;
+    }
+
+     public function getUserList($page=1, $num=15) {
+        $data = $this->db->table('`user`')
+            ->select('UserID,Name')
+            ->where('Deleted!=1')
+            ->where('Admin!=1')
+            ->getNum($num,($page-1)*$num);
+
+        $count = $this->db->table('`user`')
+            ->select('UserID,Name')
+            ->where('Deleted!=1')
+            ->where('Admin!=1')
+            ->getCount();
+
+        $arr = array('data'=>$data, 'count'=>$count);
+
+        return $arr;
+    }
+
+
+    // 根据用户ID 和模块ID获取权限
+    public function userRolePermssion($user_id, $module_id) {
+    
+        $tmp = $this->db->table('`user` u, `admin_user_role` ur, `admin_module_role` mr')
+            ->select('u.UserID, mr.permission')
+            ->where('u.UserID = ur.user_id')
+            ->where('ur.role_id = mr.role_id')
+            ->where("mr.module_id = '{$module_id}'")
+            ->where("u.UserID = '{$user_id}'")
+            ->getFirst();
+
+        return $tmp;
+    }
+
+    /**
+     * news
+     * 修改user资料
+     */
+    function updateUserData($user){
+
+        if($user['set_cod']=='1'){
+            $data = $this->db->exec("update `user` set  CompanyName='{$user['CompanyName']}', UserTel='{$user['UserTel']}', Email='{$user['Email']}', CompanyID='{$user['CompanyID']}' where UserID='{$user['UserID']}'");
+        } else {
+            $data = $this->db->exec("update `user` set  CompanyName='{$user['CompanyName']}', Email='{$user['Email']}', CompanyID='{$user['CompanyID']}' where UserID='{$user['UserID']}'");
+        }
+        return $data;
+    
+    }
+
+    /**
+     * news
+     * 查找vip user list
+     */
+    function vipUserList(){
+        $data = $this->db->table('`user`')
+            ->select('UserID, Name')
+            ->where("UserType='0'")
+            ->getList();
+        return $data;
+    }
+
+    /**
+     * news
+     * 查找渠道商列表
+     */
+    function getChanneUserlDataList($page, $num){
+
+        $data = $this->db->table('`user` u , `company` com')
+            ->select('distinct u.UserID, u.Name, u.UserTel, u.CompanyName, com.user_id, com.contact_name, com.key ,com.category_id, com.address_id')
+            ->where('u.CompanyID=com.id')
+            ->where("u.vip!='0'")
+            ->where("u.UserType='1'")
+            ->getNum($num,($page-1)*$num);
+
+        if(!empty($data)){
+
+            foreach($data as $k=>$v){
+
+                $category = $this->db->table('`vipcategory`')
+                    ->select('name')
+                    ->where("id='{$v['category_id']}'")
+                    ->getFirst();
+                $data["{$k}"]['cname'] = $category['name'];
+            }
+        }
+
+        
+        $count = $this->db->table('`user`')
+            ->where("vip!='0'")
+            ->where("UserType='1'")
+            ->getCount();
+
+        $arr = array('list'=>$data, 'count'=>$count);
+
+        return $arr;
+    }
+
+    //验证手机发送短信是否超过配额
+    public function  VerifyMobile($mobile){
+        $code = $this->db->table('`auth_code`')
+            ->select('*')
+            ->where("tel_ip = {$mobile}")
+            ->order('insert_date', 'desc')
+            ->getFirst();
+        $codes = $this->db->table('`auth_code`')
+            ->select('*')
+            ->where("tel_ip = {$mobile}")
+            ->order('insert_date', 'desc')
+            ->getList();
+        
+        $last = intval($code['insert_date']);
+        //echo '最后一条的时间';
+        //echo $last;
+        $now = time();
+        //echo '当前时间';
+        //echo $now;
+
+        $interval = intval((intval($now)-$last));
+        //echo $interval;
+        //$res = new array();
+        //验证是否在发送时间是否超过一分钟
+        if ($interval>60){
+            $res['result_minute'] = 1;
+            $res['msg_minute'] = '离上一条短息发送时间超过60秒';
+        }
+        else{
+            $res['result_minute'] = 0;
+            $res['msg_minute'] = '离上次发送时间不超过一分钟';
+        };
+        //验证是否在小时内超过发送的配额
+        $item = $codes[5];
+        if (intval(intval($now)-3600) > intval($item['insert_date'])){
+            $res['result_hour'] = 1;
+            $res['msg_hour'] = '上一个小时内的发送数量小于限制数量';
+        }
+        else{
+
+            $res['result_hour'] = 0;
+            $res['msg_hour'] = '上一个小时的发送数量超过限制数量';
+            }
+
+        return $res;
+    }
+
+    //存储验证码
+    public function SaveCode($mobile, $code){
+        $now = time();
+        $now = intval($now);
+        $this->db->exec("INSERT INTO `auth_code` (ctype, tel_ip, code, insert_date) VALUES ('3', '{$mobile}', '{$code}', '{$now}')");
+    }
+
+    /*为该用户添加专页
+     *0为普通用户1为vip用户
+     */
+    public function AddVipPage($user){
+        $res=$this->db->exec("UPDATE `user` set vip='2' where Name='{$user}'");
+        return $res;
+    }
+    
+    //验证验证码是否正确
+    public function VerifyCode($mobile,$code){
+        $r_ = $this->db->table('`auth_code`')
+            ->select('*')
+            ->where("code = '{$code}'")
+            ->where("tel_ip = '{$mobile}'")
+            ->order('insert_date','desc')
+            ->getFirst();
+        if (!empty($r_['code'])){return true;}
+            return false;
+    
+    }
+
+}
+?>

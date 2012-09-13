@@ -1,0 +1,130 @@
+<?php
+
+class MUser extends CModel
+{  
+
+    // 根据id 和用户名名验证 用户
+    public function checkUserByIdAndName($id, $name) {
+
+        $tmp = $this->db->table('`user`')
+            ->where("UserID='{$id}'")
+            ->where("Name = '{$name}'")
+            ->getFirst();
+
+        if(empty($tmp)) { return false; }
+
+        return $tmp['UserID'];
+    }
+
+    // 根据id 获取用户资料
+    public function getUserData($user_id) {
+        $data = $this->db->table('`user`')
+            ->select('UserID, UserType, Password,CountMessages, CountProducts, UserTel, Name, Photo, DateLastActive')
+            ->where("UserID={$user_id}")
+            ->getFirst();
+    
+        return $data;
+    }
+    //保存修改会员用户的信息/user/editmember
+    public function SaveEditUserInfo($data) {
+        $this->db-table('`user`')->update($data,"id={$data['user_id']}");
+        $this->db-table('`user`')->update($data,"id={$data['user_id']}");
+        $this->
+    }
+
+    // 根据id 获取用户资料并获取关联的ip值
+    public function getUserRelateData($user_id) {
+        $data = $this->db->table('`user`')
+            ->select('*')
+            ->where("UserID={$user_id}")
+            ->getFirst();
+        $company = $this->db->table('`company`')->select('*')->where("id={$data['CompanyID']}")->getFirst();
+        $data['company'] = $company;
+        $category = $this->db->table('`category`')->select('*')->where("id={$company['category_id']}")->getFirst();
+        $data['ip']=$company['ip'];
+        $date['category'] = $category;
+        return $data;
+    }
+
+    public function getUserDataList($page=1,$num=10, $user_type=null) {
+
+        $type_cond = FALSE;
+        if(!is_null($user_type)) {
+            $type_cond = "gu.UserType={$user_type}";
+        }
+
+        $data = $this->db->table('`user` gu')
+            ->select('*')
+            ->where("Deleted!=1")
+            ->where($type_cond)
+            ->order('UserID','desc')
+            ->getNum($num, ($page-1)*$num);
+        
+        $relate_data = array();
+        foreach($data as $item){
+            if($item['CompanyID']) {
+                $ip= $this->db ->table('`company`')
+                    ->select('ip')
+                    ->where("id={$item['CompanyID']}")
+                    ->getFirst();
+                $item['IP'] = $ip['ip'];
+            }
+            $relate_data[]=$item;
+            }
+
+
+        $count = $this->getUserCount($user_type);
+        return array('list'=>$relate_data, 'count'=>$count);
+    }
+
+    public function getUserCount($user_type=null) {
+    
+        $type_cond = FALSE;
+        if(!is_null($user_type)) {
+            $type_cond = "UserType={$user_type}";
+        }
+        
+        return $this->db->table('`user`')
+                    ->where("Deleted!=1")
+                    ->where($type_cond)
+                    ->getCount();
+    }
+
+    public function getGroupByUserId($user_id) {
+        $data = $this->db->table('`company` c,`user` u')
+                    ->select('c.id,c.name,c.url')
+                    ->where('c.id=u.CompanyID')
+                    ->where("u.UserID={$user_id}")
+                    ->getFirst();
+
+        return $data;
+    }
+
+    // 删除用户 会员管理
+    public function delUser($user_id) {
+        $result = $this->db->exec("update `user` set Deleted=1 where UserID in ({$user_id})");
+    
+        return $result;
+    }
+
+    // 更新用户信息  查看资料
+    public function updateUserInfo($user, $id) {
+        $result = $this->db->exec("update `user` set ContactName='{$user['ContactName']}', UserTel='{$user['UserTel']}', QQ='{$user['QQ']}', Email='{$user['Email']}', CompanyID='{$user['CompanyID']}' where UserID='{$id}'");
+
+        return $result;
+    }
+
+    // 修改个人头像 修改头像
+    public function updatePhoto($image, $user_id) {
+        $data = $this->db->exec("update user set Photo='{$image}' where UserID='{$user_id}'");
+        return $data;
+    }
+
+    // 修改个人密码 查看资料 修改密码
+    public function updateUserPass($pass, $id){
+        $data = $this->db->exec("update user set Password='{$pass}' where UserID='{$id}'");
+        return $data;
+    }
+
+}
+?>

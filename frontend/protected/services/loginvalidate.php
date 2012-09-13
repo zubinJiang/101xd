@@ -1,0 +1,63 @@
+<?php
+session_start();
+if ( isset($_GET['action']) && !empty($_GET['action'])) {
+    if ('validate' != $_GET['action']) exit;
+
+    $publish_id = $_GET['publish'];
+    $product_id = $_GET['product'];
+
+    if(!is_numeric($publish_id)) {
+        echo json_encode(array('id'=> 2, 'result'=>'关注卖家失败！', 'put'=> 'put'));
+        exit;
+    }
+
+    NBee::import('app/models/MUser');
+    NBee::import('app/models/MProduct');
+    NBee::import('app/models/MAttention');
+
+    $this->attention = new MAttention();
+    $this->user   = new MUser();
+    $this->product= new MProduct();
+
+    if(!isset($_COOKIE['_userv_'])) { 
+        echo json_encode(array('id'=> 2, 'result'=>'关注卖家失败！', 'put'=>'put2'));
+        exit;
+    }
+
+    $sys_cookie = $_COOKIE['_userv_'];
+    $sys_cookie = base64_decode($sys_cookie);
+    $array_cookie = explode("|", $sys_cookie);
+    if(count($array_cookie)<3) { 
+        echo json_encode(array('id'=> 2, 'result'=>'关注卖家失败！','put'=>'put3'));
+        exit;
+    }
+
+    $flag = FALSE;
+    if(!empty($array_cookie['0'])) {
+        $flag = $this->user->checkUserByIdAndName($array_cookie[0], $array_cookie[2]);
+    }
+
+    if(!$flag) {
+        echo json_encode(array('id'=> 2, 'result'=>'关注卖家失败！','put'=>'put4'));
+        exit;
+    }
+
+    $user_id = intval($array_cookie['0']);
+    $result = $this->attention->doAttention($user_id, $publish_id);
+    if($result) {
+        $renqi  = $this->attention->getAttentionedCount($publish_id);
+
+        $product= $this->product->getItemOneData($product_id);
+        $contact= $this->product->getItemContact($product['contact_id']);
+        $address= $this->product->getItemAddress($product['address_id']);
+        $html = <<<EOF
+        联系人：{$contact['name']}<br />联系电话：{$contact['tel']}<br />QQ：{$contact['qq']}<br />其他联系电话：{$contact['other_tel']}<br />详细地址：{$address['pname']}{$address['cname']}{$address['desc']}|{$renqi}
+EOF;
+        echo json_encode(array('id'=>3, 'result'=>$html));
+    } else {
+        echo json_encode(array('id'=>4, 'result'=>'关注卖家失败！'));
+    }
+    exit;
+
+}
+?>

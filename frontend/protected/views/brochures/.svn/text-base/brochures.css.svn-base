@@ -1,0 +1,5 @@
+#brochures{float:left;width:203px;line-height:25px;background:url(../../../images/brochures.gif) no-repeat top;padding-top:23px;}
+#brochures ul{float:left;width:203px;background:url(../../../images/brochures_ul.gif) no-repeat bottom;padding-bottom:10px;line-height:25px;margin:0;}
+#brochures ul li{float:left;width:197px;border-right:3px solid #fcbdd0;border-left:3px solid #fcbdd0;line-height:25px;background:url(../../../images/brochures_li.gif) no-repeat top left;text-indent:57px;font-size:13px;font-weight:bold;list-style:none;}
+#brochures ul li a{color:#8c8c8c;}
+

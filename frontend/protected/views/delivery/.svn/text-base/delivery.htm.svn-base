@@ -1,0 +1,22 @@
+<?php 
+$data = isset($__p__['site_data']) ? $__p__['site_data'] : '';
+$photo = '';
+//$photo = $data['logo_url'];
+if(empty($photo)) {
+    $photo = 'http://image.101xd.com/logofile/' . $data['id'] . '.jpg';
+}
+?>
+<div id="delivery">
+    <div class="delivery_img"><a href="<?php echo $data['url']?>" target="_blank"><img src="<?php echo $photo; ?>" /></a></div>
+    <div class="wordage">
+    <div class="letter"><span><?php echo $data['name']; ?></span>
+    <a href="<?php echo $data['url']; ?>" target="_blank" class="awesome"><?php echo $data['url']; ?></a>
+    <a href="####" onclick="javascript:AddFavorite('<?php echo $data['url'];?>', '<?php echo $data['name']; ?>'); return false;" >添加收藏</a></div>
+      <p><strong>简要介绍</strong></p>
+      <p style="border-bottom:1px dashed #cdcdcd;margin-bottom:5px;padding-bottom:4px;">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $data['introduction']; ?></p>
+      <!--<p><strong>流量排名</strong></p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;规模：已开通<span class="p_red"><?php echo $data['scale']; ?></span>个城市&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      流量排名：<span class="p_red"><?php echo $data['tuangou_rank'];?></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->上月流量PV：<span class="p_red"><?php echo $data['realpv'];?></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!--历史最高月PV：<span class="p_red">8008479</span>--></p>
+    </div>
+  </div>
+

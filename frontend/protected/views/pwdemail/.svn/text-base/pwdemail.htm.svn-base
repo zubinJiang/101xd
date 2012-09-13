@@ -1,0 +1,63 @@
+<?php
+if (!in_array($_GET['action'], array('edite','editpass'))) {
+?>
+<div id="pwdemail" class="pwdemail">
+  <div class="footer_t">
+  <span>找回101密码：</span>
+  <div class="yibu_2">1.输入101帐号</div>
+  <div class="erbu_2">2.选择找回密码方式</div>
+  <div class="sanbu_2">3.找回密码</div>
+  </div>
+  <div class="kuang6">
+    <h2>邮箱找回密码</h2>
+    <ul>
+      <li class="zhuc"><span>您注册的邮箱：</span><input type="text" name="email" value="" />
+      <input type="botton" name="" value="下一步" class="next"/>
+      <span style="color:red;padding:0" class="afresh_non" id="<?php echo $_GET['id'];?>"></span></li>
+      <li>若您忘记了注册时的邮箱，可以选择<a href="/register">重新注册</a>。</li>
+    </ul>
+  </div>
+<?php
+} else {
+?> 
+<div id="editpass" class="pwdemail">
+    <?php
+    if(!empty($__p__['error'])) {
+?>
+    <div class="kuang6">
+    <h2 style="color:red;"><?php echo $__p__['error']?></h2>
+    </div>
+  </div>
+    <?php
+    } else {
+        $user = $__p__['user'];
+        if(!empty($__p__['msg'])) {
+?>
+    <h2><?php echo $__p__['msg'];?></h2>
+      <ul>
+        <li>亲爱的<?php echo $__p__['user_name'];?>：</li>
+        <li>恭喜您！您的新密码已设置完成，请您牢记密码！</li>
+        <li>如有问题，请联系网站客服人员。</li>
+        <li class="li"><input class="button" type="button" onclick="location.href='login';" value="点此登录" /></li>
+      </ul>
+    </div>
+  </div>
+    <?php
+        } else {
+?>
+        <h2 >重新设置新密码</h2>
+        <form action="?action=edite" method="post">
+        <ul>
+        <li>亲爱的<?php echo $user['Name'];?>，您好！<input type="hidden" name="id" value="<?php echo $user['UserID'];?>" /><input type="hidden" name="username" value="<?php echo $user['Name'];?>" /></li>
+        <li><span class="ss">您的邮箱：<?php echo $user['Email'];?></span><span class="sp">您丢失密码的用户名</span></li>
+        <li class="ll"><span>请重新设置您的密码：</span><input type="password" name="pass" value="" style="margin-right:20px"/><span class="spa">密码必须是6-30个字符，建议使用英文字母、符号及数字的组合</span></li>
+        <li class="ll"><span class="span">请确认您的新密码：</span><input type="password" name="conpass" value="" style="margin-right:20px"/><span></span></li>
+        <li class="li"><input type="submit" name="" value="确 定" class="button"/></li>
+        </ul>
+        </form>
+    </div>
+    <?php
+        }
+    }
+}
+?>

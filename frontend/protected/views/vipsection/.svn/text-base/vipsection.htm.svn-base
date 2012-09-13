@@ -1,0 +1,170 @@
+<?php
+$company = isset($__p__['company']) ? $__p__['company'] : array();
+$website   = isset($__p__['website']) ? $__p__['website'] : array();
+$company_vip = isset($__p__['company_vip']) ? $__p__['company_vip'] : array();
+$address = isset($__p__['address']) ? $__p__['address'] : array();
+$user_id = isset($__p__['user_id']) ? $__p__['user_id'] : '';
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>团购网站快速供货服务</title>
+<link href="css/vipsection_yellow.css?c=<?php echo date('YmdHis');?>" rel="stylesheet" type="text/css" />
+<script type='text/javascript' src='assets/jquery.min.js'></script>
+<script type='text/javascript' src='assets/vipsection.js'></script>
+</head>
+<body>
+<input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
+<div id="box">
+    <div id="top">
+      <div class="hd">
+            <span>您好，欢迎来到团购供货平台，企业营销新选择！</span>
+            <span class="et"><a href="vipsection?id=<?php echo $_GET['id'];?>"><?php echo $company['site_name']; ?></a> | <a href="/">101网站首页</a>
+            <?php if(isset($_COOKIE['_userv_'])) {?>| <a href="index?action=logout">退出</a><?php }?></span></div>
+        <div class="bd">
+            <span class="biao"></span>
+            <span style='display:none;'>
+                <span class="style">页面风格：</span>
+                <a href="#"><img src="images/showicon_5.gif" width="12" height="12" /></a>
+                <a href="#"><img src="images/showicon_3.gif" width="12" height="12" /></a>
+                <a href="#"><img src="images/showicon_4.gif" width="12" height="12" /></a>
+            </span>
+        </div>
+    </div>
+    <div id="banner">
+        <div class="tuan"><span><?php echo $company['site_name']; ?></span><br /><span class="wang"><?php echo $company['url']; ?></span></div>
+        <div class="tell">商家供货电话：13521936489<br />QQ:2547875407</div>
+    </div>
+    <div id="introduce">
+        <div class="hdd"><?php echo $company['site_name']; ?></div>
+        <div class="fdd"><?php echo  $company['desc']; ?></div>
+    </div>
+    <div id="content">
+        <div class="wt">
+            <div class="archives">
+                <div class="ac_h"><?php echo $company['site_name']; ?>档案</div>
+                <div class="ac_f">
+                    <ul>
+                        <li><span>网站名称：</span><?php echo $company['site_name']; ?></li>
+                        <li><span>网　　址：</span><?php echo $company['url']; ?></li>
+                        <li><span>公司地址：</span><?php echo $address['p_name'].$address['c_name'].$address['desc']; ?></li>
+                        <li><span>企业资质：</span><?php if($company_vip['intelligence']==0){echo "否";}else{ echo "齐全<span style='color:#f00;font-weight:bold'><img src='images/yhs.gif' width='58' height='16' /></span>";}?></li>
+                        <li><span>是否可发货：</span><?php if($company_vip['delivery']==0){echo "否";}else{ echo "是";} ?></li>
+                        <li class="an"><p><span>101团购网站排名：</span><span style="color:#f00;font-weight:bold">
+                            前
+                            <?php $website_rank =  $website['tuangou_rank'];
+                                $rank = (intval($website_rank/100)+1)*100;
+                                echo $rank;
+                            ?>
+                            名</span><br />（2011年8月25日更新）</p>
+                        <input type="submit" onclick="location.href='detail?id=<?php echo $website['id']; ?>';" name="" value="点击了解" /></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="collaborate">
+                <div class="ca_h"><span class="cc">与<?php echo $company['site_name']; ?>广告合作</span><!--<span>预合作请联系本页的联系方式</span>--></div>
+                <div class="ca_f"><?php echo $company_vip['ad'];?></div>
+            </div>
+        </div>
+        <div class="et">
+            <div class="hddd">说明事项</div>
+            <div class="fddd">
+                <dl class="dk1">
+                    <dd>打款规则：</dd>
+                    <dt><span>本地商户：</span><?php echo $company_vip['money_local'];?></dt>
+                    <dt><span>精品商户：</span><?php echo $company_vip['money_net'];?></dt>
+                    <dt><span>最长打款时间：</span><?php echo $company_vip['money_time'];?></dt>
+                </dl>
+                <dl>
+                    <dd>审批时间：</dd>
+                    <dt><span>本地商户：</span><?php if(!empty($company_vip['examine_local'])){echo $company_vip['examine_local']; } else { echo '暂无';}?></dt>
+                    <dt><span>精品商户：</span><?php if(!empty($company_vip['examine_net'])){ echo $company_vip['examine_net'];} else { echo '暂无';}?></dt>
+                </dl>
+                <dl>
+                    <dd>可提供附加值：</dd>
+                    <dt><?php if(!empty($company_vip['additional'])) {echo $company_vip['additional']; } else { echo '暂无';}?></dt>
+                </dl>
+                <dl>
+                    <dd>备注：</dd>
+                    <dt><?php if(!empty($company_vip['remark'])){echo $company_vip['remark'];} else { echo '暂无';}?></dt>
+                </dl>
+            </div>
+        </div>
+    </div>
+    
+    <div id="offer">
+        <div class="or_h">为<?php echo $company['site_name']; ?>供货</div>
+        <div class="or_f">
+            <div class="or_ft">想把您的商品推送给优秀渠道商吗？想让您的商品在众多商品中脱颖而出吗？请仔细阅读以下说明：</div>
+            <div class="or_ff">
+                <div class="wt">
+                    <div class="b_require">
+                        <ul>
+                            <li class="bt">本地产品认证要求：</li>
+<?php if(!empty($company_vip['auth_local'])){
+
+    $str_auth_local = explode('|',$company_vip['auth_local']);
+    foreach($str_auth_local as $k=>$v) {
+        if($k%2==0){
+            echo "<li><span>{$v}</span>";
+        } else {
+            echo "<span>{$v}</span></li>";
+        }
+    }
+}?>
+                            
+                        </ul>
+                    </div>
+                    <div class="j_require">
+                        <ul>
+                            <li class="bt">网货精品要求：</li>
+<?php if(!empty($company_vip['auth_net'])){
+
+    $str_auth_net = explode('|',$company_vip['auth_net']);
+    foreach($str_auth_net as $k=>$v) {
+        if($k%2==0){
+            echo "<li><span>{$v}</span>";
+        } else {
+            echo "<span>{$v}</span></li>";
+        }
+    }
+}?>
+                        </ul>
+                    </div>
+                </div>
+                <div class="et">
+                    <div class="lct">商品审核流程：（商品审核时间，提前14天申报）</div>
+                   <div class="lcc">
+                    <div class="lccl" style="height:61px;padding-top:20px">提交产品信息和相关资质到101兄弟！</div>
+                        <div class="lccr"></div>
+                        <div class="lccl2" style="height:61px;padding-top:20px">工作人员对您提交的信息进行审核!</div>
+                    <div class="lccr"></div>
+                    <div class="lccl3">审核通过后,101兄弟帮您把产品推送至优质渠道商!</div> 
+                    </div>
+                    <div class="lcf"><input type="submit"  name="<?php echo $company['user_id']; ?>"  id="submit"  value="点击我，提交您的商品"/></div>
+                </div>
+            </div>
+        </div>
+    </div>
+ <div id="footer">
+    <div class="left"></div>
+        <div class="center">
+            <a target="_blank" href="/contact">联系我们</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a target="_blank" href="/profile">公司简介</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a target="_blank" href="/">团购供货找101兄弟</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a target="_blank" href="http://www.cnzz.com/stat/website.php?web_id=3240185">站长统计</a><br />ICP备案：鄂ICP备10207590号</div>
+        <div class="right">
+            <div class="hd">
+                <span style="font-size:14px;font-weight:bold;float:none;width:">服务热线：13521936489</span><br /><span>客服在您身边！（法定节假日除外）</span></div>
+            <div class="fd">
+               客服QQ：<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2534395200&site=qq&menu=yes"><img src="images/qq.gif" width="69" height="29" /></a><br />
+               客服在线时间: 每天09:00-18:00<br />
+               商务合作QQ：67315353<br />
+               在线时间: 每天10:00-22:00
+            </div>        
+        </div>
+    </div>
+</div>
+</body>
+</html>

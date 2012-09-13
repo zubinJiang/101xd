@@ -1,0 +1,212 @@
+<<<<<<< .mine
+<?php
+$messages = isset($__p__['messages']) ? $__p__['messages'] : '';
+$unread = isset($__p__['unread']) ? $__p__['unread'] : '';
+$all = isset($__p__['all']) ? $__p__['all'] : '';
+$Page = isset($__p__['page']) ? $__p__['page'] : '';
+?>
+
+<!--
+/**
+<div id="message">
+    <?php
+        echo '<p all="'.$all_message.'" unread="'.$unread_message.'" >æ‚¨å…±æ”¶åˆ°'.$all_message.'æ¡æ¶ˆæ¯ï¼Œå…¶ä¸­æœ‰<strong>'.$unread_message.'</strong>æ¡æ–°æ¶ˆæ¯</p>';
+    ?>
+    <div class="learned">
+        <div class="ahead"><span class="ahead_55">é€‰é¡¹</span><span class="ahead_55">çŠ¶æ€</span><span class="ahead_536">å†…å®¹</span><span class="ahead_55">ç®¡ç†</span></div>
+      <div class="atic">
+    <?php   foreach ($messages as $value)
+       {    
+            if ($value['readstatus']=='å·²è¯»'){$read_style='   style="color: #778877"   ';}
+            else {$read_style='';}
+            echo    '<div class="atic_all">';
+            echo    '<div class="atic_l"><input name="message_'.$value['id'].'" type="checkbox" value="'.$value['id'].'" /></div>';
+            echo    '<div class="atic_l" info="status"><span style="padding-left:2px" value="'.$value['status'].'" id=status_info_'.$value['id'].'>';
+            if($value['status']==0) {
+                echo 'æœªè¯»';
+            } elseif($value['status']==1) {
+                echo 'å·²è¯»';
+            }
+            echo    '</span></div>';
+            echo    '<div class="atic_c">';
+            echo    '<a href="'.$value[sender_id].'">'.$value[sender_name].'</a><span>'.$value[timestamp].'</span><br /><span class="trou" '.'status='.$value[status].'    '.$read_style.'content="'.$value[maintext].'">'.$value[maintext].'</span><a href="javascript:void(0)" class="level" style="color:blue;text-decoration: none;"><span style="color:blue">å±•å¼€é˜…è¯»</span></a>';
+            echo    '</div>';
+            echo    '<div class="atic_r"><a href="#" value='.$value[id].'><img src="images/xx.gif" /></a></div>';
+            echo    '</div>';
+        }
+        ?>
+      </div>
+      <div class="inhaltslos" style="display:none;"><img src="images/inhaltslos.gif" /></div>
+      <div class="ahead"><input name="selectall" type="checkbox"  id="selectall"  /><a href="javascript:SelectAllinput();void(0)" checked=false style="float:left;padding-right:10px;">å…¨é€‰</a><a href="javascript:DelAllSelected();void(0)" style="float:left;padding-right:10px;" value='del'>åˆ é™¤</a>
+              <div style="float:left;_padding-top:3px;"><?php
+              echo $Page->show();
+              echo '</span>';
+              ?>
+              </div>
+              </div>
+    </div>
+  </div>
+**/
+-->
+
+ <div class="et">
+            <div class="hd">æ”¶ä»¶ç®±</div>
+            <?php
+            echo "<div class='bd'>å°Šæ•¬çš„<span>{$message[0]['receiver']['Name']}</span>æ‚¨å…±æ”¶åˆ°<span id='msg_notice_all'>[{$all}]</span>æ¡æ¶ˆæ¯ï¼Œå…¶ä¸­æœ‰<span style='color:#f00' id='msg_notice_unread'>[{$unread}]</span>æ¡æ–°æ¶ˆæ¯</div>";
+            ?>
+            <div class="fd">
+                <div class="bt">
+                    <span>é€‰é¡¹</span>
+                    <span>çŠ¶æ€</span>
+                    <span style="width:450px;margin-right:15px">å†…å®¹</span>
+                    <span style="width:150px;text-align:center">æ¥è‡ª</span>
+                    <span style="text-align:center">ç®¡ç†</span>
+              </div>
+            <?php
+            foreach ($messages as $message){
+            echo <<<EOF
+              <div class="explain" msgid={$message['id']}>
+                  <span>
+                    <input name="msg" type="checkbox" value="{$message['id']}" />
+                  </span>
+                  <span><a href="#" class="wd" style="color:{$message['color']}">{$message['readstatus']}</a></span>
+                  <span class="cg">
+                      <p class="msgtext"><a href="#" style="color:#000" class="msg" content="{$message['maintext']}" status="{$message['status']}">{$message['maintext']}</a><a class="read" href="#" style="color:#03C" msgid="{$message['id']}">[å±•å¼€é˜…è¯»]</a></p>
+                      <p class="hs">2011-9-15 15:45:50</p>
+                  </span>
+                  <span style="width:150px;text-align:center"><a href="#" style="color:#000">{$message['sender']['Name']}</a></span>
+                  <span style="text-align:center"><a href="#" class="msgdel" style="color:#777;" msgid="{$message['id']}">åˆ é™¤</a></span>
+              </div>
+EOF;
+    }
+            ?>
+              <div class="fy">
+                  <div class="wtt">
+                      <input id="selectall" type="submit" name="" value="å…¨ é€‰" />
+                      <input id="delall" type="submit" name="" value="åˆ  é™¤" onclick="DelAllSelected()" class="h"/>
+                  </div>
+                  <div class="ett">
+                      <a href="#">ä¸Šä¸€é¡µ</a>
+                      <a href="#">1</a>
+                      <a href="#">2</a>
+                      <a href="#">3</a>
+                      <a href="#">4</a>
+                      <a href="#">5</a>
+                      <a href="#">â€¦â€¦</a>
+                      <a href="#">100</a>
+                      <a href="#">ä¸‹ä¸€é¡µ</a>
+                      <select name="">
+                          <option value="ç¬¬1é¡µ">ç¬¬1é¡µ</option>
+                      </select>
+                  </div>
+              </div>
+          </div>
+        </div>
+    </div> 
+=======
+<?php
+$messages = isset($__p__['messages']) ? $__p__['messages'] : '';
+$unread = isset($__p__['unread']) ? $__p__['unread'] : '';
+$all = isset($__p__['all']) ? $__p__['all'] : '';
+$Page = isset($__p__['page']) ? $__p__['page'] : '';
+?>
+
+<!--
+/**
+<div id="message">
+    <?php
+        echo '<p all="'.$all_message.'" unread="'.$unread_message.'" >Äú¹²ÊÕµ½'.$all_message.'ÌõÏûÏ¢£¬ÆäÖĞÓĞ<strong>'.$unread_message.'</strong>ÌõĞÂÏûÏ¢</p>';
+    ?>
+    <div class="learned">
+        <div class="ahead"><span class="ahead_55">Ñ¡Ïî</span><span class="ahead_55">×´Ì¬</span><span class="ahead_536">ÄÚÈİ</span><span class="ahead_55">¹ÜÀí</span></div>
+      <div class="atic">
+    <?php   foreach ($messages as $value)
+       {    
+            if ($value['readstatus']=='ÒÑ¶Á'){$read_style='   style="color: #778877"   ';}
+            else {$read_style='';}
+            echo    '<div class="atic_all">';
+            echo    '<div class="atic_l"><input name="message_'.$value['id'].'" type="checkbox" value="'.$value['id'].'" /></div>';
+            echo    '<div class="atic_l" info="status"><span style="padding-left:2px" value="'.$value['status'].'" id=status_info_'.$value['id'].'>';
+            if($value['status']==0) {
+                echo 'Î´¶Á';
+            } elseif($value['status']==1) {
+                echo 'ÒÑ¶Á';
+            }
+            echo    '</span></div>';
+            echo    '<div class="atic_c">';
+            echo    '<a href="'.$value[sender_id].'">'.$value[sender_name].'</a><span>'.$value[timestamp].'</span><br /><span class="trou" '.'status='.$value[status].'    '.$read_style.'content="'.$value[maintext].'">'.$value[maintext].'</span><a href="javascript:void(0)" class="level" style="color:blue;text-decoration: none;"><span style="color:blue">Õ¹¿ªÔÄ¶Á</span></a>';
+            echo    '</div>';
+            echo    '<div class="atic_r"><a href="#" value='.$value[id].'><img src="images/xx.gif" /></a></div>';
+            echo    '</div>';
+        }
+        ?>
+      </div>
+      <div class="inhaltslos" style="display:none;"><img src="images/inhaltslos.gif" /></div>
+      <div class="ahead"><input name="selectall" type="checkbox"  id="selectall"  /><a href="javascript:SelectAllinput();void(0)" checked=false style="float:left;padding-right:10px;">È«Ñ¡</a><a href="javascript:DelAllSelected();void(0)" style="float:left;padding-right:10px;" value='del'>É¾³ı</a>
+              <div style="float:left;_padding-top:3px;"><?php
+              echo $Page->show();
+              echo '</span>';
+              ?>
+              </div>
+              </div>
+    </div>
+  </div>
+**/
+-->
+
+ <div class="et">
+            <div class="hd">ÊÕ¼şÏä</div>
+            <?php
+            echo "<div class='bd'>×ğ¾´µÄ<span>{$message[0]['receiver']['Name']}</span>Äú¹²ÊÕµ½<span id='msg_notice_all'>[{$all}]</span>ÌõÏûÏ¢£¬ÆäÖĞÓĞ<span style='color:#f00' id='msg_notice_unread'>[{$unread}]</span>ÌõĞÂÏûÏ¢</div>";
+            ?>
+            <div class="fd">
+                <div class="bt">
+                    <span>Ñ¡Ïî</span>
+                    <span>×´Ì¬</span>
+                    <span style="width:450px;margin-right:15px">ÄÚÈİ</span>
+                    <span style="width:150px;text-align:center">À´×Ô</span>
+                    <span style="text-align:center">¹ÜÀí</span>
+              </div>
+            <?php
+            foreach ($messages as $message){
+            echo <<<EOF
+              <div class="explain" msgid={$message['id']}>
+                  <span>
+                    <input name="msg" type="checkbox" value="{$message['id']}" />
+                  </span>
+                  <span><a href="#" class="wd" style="color:{$message['color']}">{$message['readstatus']}</a></span>
+                  <span class="cg">
+                      <p class="msgtext"><a href="#" style="color:#000" class="msg" content="{$message['maintext']}" status="{$message['status']}">{$message['maintext']}</a><a class="read" href="#" style="color:#03C" msgid="{$message['id']}">[Õ¹¿ªÔÄ¶Á]</a></p>
+                      <p class="hs">2011-9-15 15:45:50</p>
+                  </span>
+                  <span style="width:150px;text-align:center"><a href="#" style="color:#000">{$message['sender']['Name']}</a></span>
+                  <span style="text-align:center"><a href="#" class="msgdel" style="color:#777;" msgid="{$message['id']}">É¾³ı</a></span>
+              </div>
+EOF;
+    }
+            ?>
+              <div class="fy">
+                  <div class="wtt">
+                      <input id="selectall" type="submit" name="" value="È« Ñ¡" />
+                      <input id="delall" type="submit" name="" value="É¾ ³ı" onclick="DelAllSelected()" class="h"/>
+                  </div>
+                  <div class="ett">
+                      <a href="#">ÉÏÒ»Ò³</a>
+                      <a href="#">1</a>
+                      <a href="#">2</a>
+                      <a href="#">3</a>
+                      <a href="#">4</a>
+                      <a href="#">5</a>
+                      <a href="#">¡­¡­</a>
+                      <a href="#">100</a>
+                      <a href="#">ÏÂÒ»Ò³</a>
+                      <select name="">
+                          <option value="µÚ1Ò³">µÚ1Ò³</option>
+                      </select>
+                  </div>
+              </div>
+          </div>
+        </div>
+    </div> 
+
+>>>>>>> .r4326

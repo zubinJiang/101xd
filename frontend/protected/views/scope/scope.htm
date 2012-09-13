@@ -1,0 +1,51 @@
+<?php 
+$data  = isset($__p__['data']) ? $__p__['data'] : '';
+$title = isset($__p__['title']) ? $__p__['title'] : '';
+$web_id= isset($_GET['web_id']) ? $_GET['web_id'] : '2';
+$city_type = isset($_GET['id']) ? $_GET['id'] : 1;
+$page = isset($__p__['page']) ? $__p__['page'] : '';
+$count= isset($__p__['count'])? $__p__['count']: 0 ;
+$str = $str = range('A','Z');
+?>
+<div id="city">
+    <div class="tical">
+      <strong>城市检索</strong><span>按拼音</span><div calss="zifu">
+<?php 
+if (!empty($str)) {
+    foreach($str as $v) {
+        echo <<<EOF
+        <a ref="{$v}" web_id="{$web_id}" href="">{$v}</a> 
+EOF;
+    }
+}
+?>
+<a class='hide' class="covert" style="float:right;padding-right:10px;">隐藏</a></div>
+
+    </div>
+    <div class="city_name">
+<?php
+$count = 0;
+if(!empty($data)) {
+    $count = count($data);
+    foreach($data as $k=>$v) {
+   
+        $hot_css = '';
+        if($v['hot'] == 1){      
+            $hot_css = "style=color:#FF7E00;";
+        }
+        echo <<<EOF
+    <a {$hot_css} ref="{$v['id']}" web_id="{$web_id}">{$v['area']}</a>
+EOF;
+    }
+}
+?>
+    </div>
+    <div style="float:right;padding:0 30px 10px 0;" class="p_contect">
+<?php
+
+if($count>24) {
+    echo $page->show(4);
+}
+?>
+</div>
+</div>

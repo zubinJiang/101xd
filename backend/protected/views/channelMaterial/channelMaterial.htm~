@@ -1,0 +1,166 @@
+<?php 
+$user = isset($__p__['user_data']) ? $__p__['user_data'] : "";
+$company = isset($__p__['company_data']) ? $__p__['company_data'] : "";
+$address = isset($__p__['address_data']) ? $__p__['address_data'] : "";
+$provinces = isset($__p__['province']) ? $__p__['province'] : "";
+?>
+<div id="channelMaterial">
+    <h3><?php echo $user['Name'] ?>的资料<h3>
+    <div class="top">
+        <span><a href="#">账户资料</a></span>
+        <span><a href="#">专页信息</a></span>
+        <span><a href="#">推送过的商品</a></span>
+    </div>
+    <div class="head">
+    <form action="channelMaterial?action=update" method="post">
+        <input type="hidden" name="address_id" value="<?php echo $address['id'];?>">
+        <input type="hidden" name="company_id" value="<?php echo $company['id'];?>">
+        <div class="head_data">
+            <span class="left">用户名：</span>
+            <span class="right"><input type="text" name="user_name" value="<?php echo $user['Name']; ?>"></span>
+        </div>
+
+        <div class="head_data">
+            <span class="left">企业名称：</span>
+            <span class="right"><input type="text" name="comapny_name" value="<?php echo $user['ContactName']; ?>"></span>
+        </div>
+
+        <div class="head_data">
+            <span class="left">电子邮箱：</span>
+            <span class="right"><input type="text" name="email" value="<?php echo $user['Email']; ?>"></span>
+        </div>
+
+        <div class="head_data">
+            <span class="left">手机号：</span>
+            <span class="right"><input type="text" name="tel" value="<?php echo $user['UserTel']; ?>"></span>
+        </div>
+
+        <div class="head_data">
+            <span class="left">企业联系人：</span>
+            <span class="right"><input type="text" name="contact_name" value="<?php echo $company['contact_name']; ?>"></span>
+        </div>
+
+        <div class="head_data">
+            <span class="left">职务：</span>
+            <span class="right"><input type="text" name="position" value="<?php echo $company['position'];; ?>"></span>
+        </div>
+
+        <div class="head_data">
+            <span class="left">其他联系电话：</span>
+            <span class="right"><input type="text" name="contact_tel" value="<?php echo $company['contact_tel'];; ?>"></span>
+        </div>
+
+        <div class="head_data">
+            <span class="left">Q  Q：</span>
+            <span class="right"><input type="text" name="QQ" value="<?php echo $company['QQ'];; ?>"></span>
+        </div>
+
+        <div class="head_data">
+            <span class="left">公司地区：</span>
+            <span class="right">
+                <select name="add_province" class="province_id">
+                       <option value="">--请选择省份--</option>
+      <?php
+if(!empty($provinces)) {
+    foreach($provinces as $v) {
+?>
+    <option value="<?php echo $v['id'];?>" <?php if($address['province_id']==$v['id']){ echo "selected";}?>><?php echo $v['name'];?></option>
+<?php
+    }
+}
+?>
+      </select>
+        </span>
+        <span class="right">
+                       <select name="add_city" class="area_id">
+                       <option value="">--请选择市区--</option>
+<?php
+   if(!empty($citys)) {
+            foreach($citys as $v) {
+    ?>
+        <option value="<?php echo $v['id'];?>" <?php if($address['area_id']==$v['id']){ echo "selected";}?> ><?php echo $v['name'];?></option>
+    <?php
+            }
+        }
+?>
+</select></span>
+        </div>
+
+        <div class="head_data">
+            <span class="left">公司地址：</span>
+            <span class="right"><input type="text" name="address_desc" value="<?php echo $address['desc'];; ?>"></span>
+        </div>
+
+        <div class="head_data">
+            <span class="left">邮编：</span>
+            <span class="right"><input type="text" name="postcode" value="<?php echo $company['postcode'];; ?>"></span>
+        </div>
+
+        <div class="head_data">
+            <span class="left">公司网址：</span>
+            <span class="right"><input type="text" name="url" value="<?php echo $company['url'];; ?>"></span>
+        </div>
+
+        <div class="head_data">
+            <span class="left">主营行业：</span>
+            <span class="right"><select name="category" id="category"><option value="">--请选择经营行业--</option>
+                    <optgroup label="本地商品">
+                       <option value="5" <?php if($company['category_id']=='5'){ echo "selected";}?>>美食餐饮</option>
+                       <option value="15" <?php if($company['category_id']=='15'){ echo "selected";}?>>化妆品</option>
+                       <option value="17" <?php if($company['category_id']=='17'){ echo "selected";}?>>服装箱包</option>
+                       <option value="9" <?php if($company['category_id']=='9'){ echo "selected";}?>>酒店旅游</option>
+                       <option value="6" <?php if($company['category_id']=='6'){ echo "selected";}?>>休闲娱乐</option>
+                       <option value="7" <?php if($company['category_id']=='7'){ echo "selected";}?>>美容护发</option>
+                    </optgroup>
+                    <optgroup label="网络精品">
+                       <option value="8" <?php if($company['category_id']=='8'){ echo "selected";}?>>摄影</option>
+                       <option value="18" <?php if($company['category_id']=='18'){ echo "selected";}?>>家居建材</option>
+                       <option value="19" <?php if($company['category_id']=='19'){ echo "selected";}?>>数码家电</option>
+                       <option value="26" <?php if($company['category_id']=='26'){ echo "selected";}?>>配件饰品</option>
+                       <option value="29" <?php if($company['category_id']=='29'){ echo "selected";}?>>图书音乐</option>
+                       <option value="30" <?php if($company['category_id']=='30'){ echo "selected";}?>>食品饮料</option>
+                       <option value="27" <?php if($company['category_id']=='27'){ echo "selected";}?>>文体户外</option>
+                       <option value="16" <?php if($company['category_id']=='16'){ echo "selected";}?>>母婴用品</option>
+                    </optgroup>
+                       <option value="28" <?php if($company['category_id']=='28'){ echo "selected";}?>>其它</option>
+                       </select></span>
+        </div>
+
+        <div class="head_data">
+            <span class="left" style="font-size:12px;">主营产品关键字：</span>
+<?php  if(!empty($company['key'])){
+
+    $key_str = explode("|",$company['key']);
+
+} ?>
+            <span class="right" style="width:100px">
+                <input type="text" value="<?php echo $key_str['0']; ?>" name="key[]" class="gj"/>
+            </span>
+            <span class="right" style="width:100px">
+			<input type="text" value="<?php echo $key_str['1']; ?>" name="key[]" class="gj"/>
+            </span>
+            <span class="right" style="width:100px">
+			<input type="text" value="<?php echo $key_str['2']; ?>" name="key[]" class="gj"/>
+            </span>
+            <span class="right" style="width:100px">
+            <input type="text" value="<?php echo $key_str['3']; ?>" name="key[]" class="gj"/>
+            </span>
+        </div>
+
+        <div class="head_data" style="height:80px;magrin:4px 0px 2px 0px">
+            <span class="left">企业介绍：</span>
+            <span class="right"><textarea id="com_desc" rows="5" cols="50" name="com_desc"><?php echo $company['desc']; ?></textarea></span>
+        </div>
+
+        <div class="head_data" style="height:80px;magrin:4px 0px 2px 0px">
+            <span class="left">账户备份：</span>
+            <span class="right"><textarea id="com_desc" rows="5" cols="50" name="bak"></textarea></span>
+        </div>
+        
+        <div class="head_data" style="height:25px;margin:5px;">
+            <span class="left"></span>
+            <span class="right"><input type="submit" value="保 存"/></span>
+        </div>
+    </form>
+    </div>
+</div>

@@ -1,0 +1,402 @@
+<?php
+class MProduct extends CModel{
+    //取得前台页面加载显示的商品数据(local,net)
+    public function getProductNewList($type=null){
+        $cond = FALSE;
+        if(!is_null($type)) {
+            $cond = "category='{$type}'";
+        }
+        $list = $this->db->table('`product`')
+            ->select('id,user_id,category,title,market_price,supply_price,visits,default_image,image,attentions')
+            ->where($cond)
+            ->where("auth='1'")
+            ->where("status='1'")
+            ->where("vip='0'")
+            ->order('insertdate','desc')
+            ->getNum(9);
+        $count = $this->db->table('`product`')
+            ->where($cond)
+            ->where("auth='1'")
+            ->where("status='1'")
+            ->where("vip='0'")
+            ->getCount();
+        $id = 2;
+        if('net'==$type) {
+            $id = 3;
+        } elseif('goldroll'==$type) {
+            $id = 4;
+        }
+        $type = $this->getNextType($id);
+        $data = array('list'=>$list, 'count'=>$count,'type'=>$type);
+        return $data;
+    }
+
+    //取得前台页面加载显示的商品数据(index)
+
+    public function getIdexProductList($time=0){
+        if($time>0) {
+            $list = $this->db->table('`product`')
+                ->select('id,user_id,category,title,market_price,supply_price,visits,default_image,image,attentions')
+                ->where("auth='1'")
+                ->where("status='1'")
+                ->where("vip='0'")
+                ->order('attentions','desc')
+                ->getNum(4,0);
+        } else {
+            $list = $this->db->table('`product`')
+                ->select('id,user_id,category,title,market_price,supply_price,visits,default_image,image,attentions')
+                ->where("auth='1'")
+                ->where("status<>'4'")
+                ->where("category='local'")
+                ->where("vip='0'")
+                ->order('recommend','desc')
+                ->getNum(4,0);
+        }
+        return $list;
+    }
+    
+
+    //获取二级分类的数据
+    public function getNextType($id){
+         $data = $this->db->table('`category`')
+            ->select('id,name,count')
+            ->where("level='{$id}'")
+            ->getList();
+         return $data;
+    }
+    
+    //js获得product数据
+    public function getProductTypeList($category_id='', $sort, $way='desc', $num=9, $page=1, $type=null){
+        $sort_cmd = 'insertdate';  //时间排序
+        if('price' == $sort) {
+            $sort_cmd = 'market_price';
+        } elseif('attentions' == $sort){
+            $sort_cmd = 'attentions';
+        }
+        $category_array  = array();
+        if(!empty($category_id)){
+            $category_id_cmd = "category_id='{$category_id}'";
+        } 
+        $type_cmd = false;
+        if(in_array($type, array('local','net','goldroll'))) {
+            $type_cmd = "category='{$type}'";
+            $category_id_cmd = false;
+            $category_array = $this->getNextType($category_id);
+        }
+        $list = $this->db->table('`product`')
+            ->select('id,user_id,category,title,market_price,supply_price,visits,default_image,image,attentions')
+            ->where($type_cmd)
+            ->where($category_id_cmd)
+            ->where("auth='1'")
+            ->where("status='1'")
+            ->where("vip='0'")
+            ->order($sort_cmd, $way)
+            ->getNum($num,($page-1)*$num);
+        $count = $this->db->table('`product`')
+            ->where($type_cmd)
+            ->where($category_id_cmd)
+            ->where("auth='1'")
+            ->where("status='1'")
+            ->where("vip='0'")
+            ->getCount();
+        $data = array('list'=>$list,'count'=>$count,'type'=>$category_array);
+        return $data;
+
+    }
+
+    //2条 最新推荐商品数据 
+    public function getRecommend($num=2){
+        
+        $data = $this->db->table('`product` p, payment as pm')
+            ->select("p.id,p.title,p.market_price,p.supply_price,p.default_image,p.image,p.freight,p.payment_id,p.freight,p.user_id,p.createdate,p.insertdate,pm.name,p.attentions")
+            ->where("p.payment_id=pm.id")
+            ->where("p.recommend='1'")
+            ->where("p.auth='1'")
+            ->where("p.status<>4")
+            ->where("p.default_image != ''")
+            ->where("vip='0'")
+            ->order("'p.insertdate','desc'")
+            ->getNum($num);
+        return $data;
+    }
+
+    //最新推荐商品数据
+    public function getRecommendList($type=null){
+        $comd = FALSE;
+        if (!empty($type)) {
+            $comd = "category='{$type}'";
+        }
+        $data = $this->db->table('`product` p, payment as pm')
+            ->select("p.id,p.title,p.market_price,p.supply_price,p.default_image,p.image,p.freight,p.payment_id,p.freight,p.user_id,p.createdate,p.insertdate,pm.name,p.attentions")
+            ->where("p.payment_id=pm.id")
+            ->where("p.recommend='1'")
+            ->where("p.auth='1'")
+            ->where("p.status<>4")
+            ->where("p.default_image != ''")
+            ->where("vip='0'")
+            ->where($comd)
+            ->order("'p.insertdate','desc'")
+            ->getList();
+        return $data;
+    }
+    //最热门的product,根据product中的visits字段值来获得
+    public function GetHotProduct($id){
+        $HotProduct=$this->db ->table('`product`')
+            ->select('id,title,image,market_price,supply_price,default_image')
+            ->where("id!='{$id}'")
+            ->where("auth='1'")
+            ->where("status='1'")
+            ->where("vip='0'")
+            ->order('visits', 'DESC')
+            ->getNum(3,0);
+        return $HotProduct;
+    }
+
+    //根据ID查询产品的详细数据
+    public function getItemOneData($id){
+        $data = $this->db->table('`product`')
+            ->select('*')
+            ->where("id='{$id}'")
+            ->getFirst();
+        $this->updateVisits($id);
+        return $data;
+    }
+
+    //更新商品的访问次数
+    public function updateVisits($product_id) {
+        $this->db->exec("update `product` set visits=visits+1 where id='{$product_id}'");
+    }
+    //获得父类的ID
+    public function higherLevelData($style){
+        $type = $this->db->table('`category`')
+            ->select('level')
+            ->where("id='{$style}'")
+            ->getFirst();
+        return $type;
+    }
+
+    //获得二级查询的产品数据
+    public function getNextTypeProduct($type,$style,$level){    
+        $list = $this->db->table('`product`')
+            ->select('id,user_id,category,default_image,title,market_price,supply_price,visits,image,attentions')
+            ->where("category='{$type}'")
+            ->where("category_id='{$style}'")
+            ->where("auth='1'")
+            ->where("status='1'")
+            ->where("vip='0'")
+            ->order("insertdate",'desc')
+            ->getNum(9,0);
+        $count = $this->db->table('`product`')
+            ->where("category='{$type}'")
+            ->where("category_id='{$style}'")
+            ->where("auth='1'")
+            ->where("status='1'")
+            ->where("vip='0'")
+            ->getCount();
+        $type = $this->getNextType($level);
+        $data = array('list'=>$list, 'count'=>$count,'type'=>$type);
+        return $data;
+    }
+
+    //获取产品对应的联系人数据
+    public function getItemContact($id) {
+        $tmp = $this->db->table('`contact`')
+            ->select('name, tel, email, qq, other_tel')
+            ->where("id='{$id}'")
+            ->getFirst();
+    
+        return $tmp;
+     }
+
+    //获取产品对应的地址数据
+    public function getItemAddress($address_id) {
+        $address = $this->db->table('`address` addr, city c,province p')
+            ->select('addr.id, addr.desc,c.name as cname,p.name as pname')
+            ->where('addr.area_id = c.id')
+            ->where('addr.province_id = p.id')
+            ->where("addr.id='{$address_id}'")
+            ->getFirst();
+        return $address;
+    }
+
+    //获取产品对应的商家数据
+    public function getItemBusiness($id,$address_id){
+        if(!empty($id)){
+            $data = $this->db->table('`business`')
+                ->select('name, number_years, seats, funds, business_area')
+                ->where("id='{$id}'")
+                ->getFirst(); 
+        }
+        if(!empty($address_id)){
+            $area = $this->getItemAddress($address_id);
+        }
+        $business = array('business'=>$data,'address'=>$area);
+        return $business;
+    }
+
+    //查询那些渠道商关注此商家
+    public function getAttentionBusiness($id){
+        $data = $this->db->table('`product`')
+            ->select('user_id')
+            ->where("id='{$id}'")
+            ->getFirst();
+        if(!empty($data)){
+            $publisher = $this->db->table('`attention_publishers` ap, `user` gu')
+                ->select('ap.id,ap.user_id,ap.publisher_id,gu.Name')
+                ->where("ap.publisher_id='{$data['user_id']}'")
+                ->where("ap.user_id= gu.UserID")
+                ->where("gu.UserType= 1")
+                ->where('ap.status=1')
+                ->order('ap.id','desc')
+                ->getList();
+            return $publisher;
+        }
+    }
+    
+    //查询包邮的城市
+    public function getFreeCityData($id){
+        $data_id = $this->db->table('`free_city`')
+            ->select('city_id')
+            ->where("product_id='{$id}'")
+            ->getFirst();
+        if(!empty($data_id)){
+            $str = implode(',',$data_id);
+            $data = $this->db->table('`city`')
+                ->select('id,name')
+                ->where("id in($str)")
+                ->getList();
+            return $data; 
+        }
+
+        return null; 
+    }
+
+    //查询收藏人气
+    public function getFavoriteCount($product_id) {
+
+        return $this->db->table('`favorite`')
+            ->where("product_id={$product_id}")
+            ->getCount();
+    }
+
+    //添加收藏数据
+    public function addFavoriteData($data) {
+        if(empty($data['product_title'])) {
+            $tmp = $this->getProductTitle($data['product_id']);
+            $data['product_title'] = $tmp['title'];
+            unset($tmp);
+        }
+        $this->db->table('`favorite`')->insert($data);
+        return $this->getFavoriteCountUserId($data['user_id']);
+    }
+
+    //根据用户id获得收藏次数
+    public function getFavoriteCountUserId($user_id) {
+
+        return $this->db->table('`favorite`')
+            ->where("user_id='{$user_id}'")
+            ->getCount();
+    }
+
+    //获得商品标题
+    public function getProductTitle($product_id) {
+        return $this->db->table('`product`')
+            ->select('id,title')
+            ->where("id='{$product_id}'")
+            ->getFirst();
+    }
+
+    //判断商品是否被该用户收藏
+    public function validateFavorite($user_id, $product_id) {
+        $tmp = $this->db->table('`favorite`')
+            ->where("user_id='{$user_id}' and product_id='{$product_id}'")
+            ->getFirst();
+        if(empty($tmp)) {
+            return TRUE; 
+        } 
+        unset($tmp);
+        return FALSE;
+    }
+
+    //sitemap 调用的产品列表
+    public function getProductidList(){
+
+        $data = $this->db->table('`product`')
+            ->select('id,insertdate')
+            ->getList();
+        return  $data;
+
+    }
+    //获取产品的分类存档视图，用于seo优化
+    public function getArchiveList($category_id,$page,$page_num){
+        $start = ($page-1)*$page_num;
+        if ($start>=0){}
+        else{$start=0;};
+        $data = $this->db->query("select * from product p where p.category_id={$category_id} and p.status=1 order by p.id desc limit {$start}, {$page_num}");
+        $count = $this->db->table('`product`')
+            ->where("category_id={$category_id}")
+            ->where('status=1')
+            ->getCount();
+        if ($count%$page_num>=0){
+            $count_p = intval($count/$page_num)+1;
+        }
+        else{
+            $count_p = intval($count/$page_num)+0;
+        }
+        $res['count'] = $count_p;
+        $res['data'] = $data;
+        return $res;
+    }
+    //根据category_id获取所属于的目录
+    public function getCategory($category_id){
+        $data = $this->db->table('`category`')
+            ->select('*')
+            ->where("id={$category_id}")
+            ->getFirst();
+        $type = $this->db->table('`category`')
+            ->select('*')
+            ->where("id={$data['level']}")
+            ->getFirst();
+        $res['parent'] = $type['name'];
+        $res['self'] = $data['name'];
+        return $res;
+    }
+    //根据商品id获取联系人信息
+    public function getContactInfoByProductId($product_id) {
+
+        $data = $this->db->table('`product`')
+            ->select('id,contact_id,address_id')
+            ->where("id={$product_id}")
+            ->getFirst();
+        return $data;
+    }
+
+    public function getAddressByProductId($address_id) {
+
+        $address = $this->db->table('`address` addr, city c,province p')
+            ->select('addr.id, addr.desc,c.name as cname,p.name as pname')
+            ->where('addr.area_id = c.id')
+            ->where('addr.province_id = p.id')
+            ->where("addr.id='{$address_id}'")
+            ->getFirst();
+
+        return $address;
+    }
+
+    //vip
+    function vipAddProduct($product){
+        $data = $this->db->table('`product`')
+            ->insert($product);
+
+        return $this->db->last_insert_id();
+    }
+
+    function vipAddQualification($data){
+        $data = $this->db->table('`qualification`')
+            ->insert($data);
+
+        return $this->db->last_insert_id();
+    }
+
+    
+}

@@ -1,0 +1,34 @@
+<?php
+$list = isset($__p__['data']) ? $__p__['data'] : '';
+$count= isset($__p__['data']) ? $__p__['count'] : 0;
+?>
+<div class="govern" id="role">
+    <div class="issue"><div id="current_location">角色授权管理</font></div></div>
+    <div class="material"><p>一共有<font color=red><?php echo $count;?></font>个会员</p></div>
+    <div class="option">
+        <div class="global">
+            <span class="wid40">选项</span>
+            <span class="wid120">角色名</span>
+            <span class="wid90">操作</span>
+        
+        </div>
+          <div class="choice">
+    <?php
+if(!empty($list)) {
+    foreach($list as $v) {
+echo <<<EOF
+        <ul id="{$v['id']}">
+            <li class="checkbox"><input type="checkbox" class="checkbox"  value="{$v['id']}" name="id" /></li>
+            <li class="above">{$v['id']}</li>
+            <li class="wid90">{$v['role_name']}</li>
+            <li style="width:180px;">
+                <a style="width:60px;" rel="{$v['id']}" href="authorized?id={$v['id']}" title="给该角色授权" >授权</a>
+                <a style="width:60px;" rel="{$v['id']}" href="javascript:void(0);" title="删除此角色" class="delete_id">删除</a>
+            </li>
+
+    </ul>
+EOF;
+}}
+?>
+        </div>
+</div>

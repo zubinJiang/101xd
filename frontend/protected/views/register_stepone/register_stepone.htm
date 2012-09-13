@@ -1,0 +1,57 @@
+<?php
+$user_type = isset($_POST['type']) ? intval($_POST['type']) : 0;
+$error_msg = isset($__p__['error_msg']) ? $__p__['error_msg'] : '';
+
+?>
+<div id="registerstep">
+    <div class="basic">
+      <div class="hd">会员基本信息：
+        <div class="jiao"><img src="images/rsicon_1.gif" width="8" height="5" /></div>
+      </div>
+      <div class="fd">
+        <form action="?step=2&act=reg" method="post">
+          <ul>
+          <?php
+if(!empty($error_msg)) {
+    echo <<<EOF
+        <li style='padding:0 0 10px 0;'><span></span><font color=red>错误：{$error_msg}</font></li>
+EOF;
+}
+?>
+          <li><span>用户名：</span><input type="text" value="<?php echo (isset($_POST['username']) ? $_POST['username'] : '');?>" name="username" /><input type='hidden' id='usertype' name='usertype' value='<?php echo $user_type;?>' />
+                  <span class="bt">必填</span>
+                  <span style="display:none"></span>
+               </li>
+               <li><span>企业名称：</span><input type="text" value="<?php echo (isset($_POST['usercom']) ? $_POST['usercom'] : '');?>" name="usercom" class="ch"/>
+                   <span class="bt">必填</span>
+                   <span style="display:none"></span>
+               </li>
+               <li><span>登录密码：</span><input type="password" value="" name="userpass" />
+                   <span class="bt">必填</span>
+                   <span style="display:none"></span>
+               </li>
+               <li><span>请再次输入密码：</span><input type="password" value="" name="userpassconf" />
+                   <span class="bt">必填</span>
+                   <span style="display:none"></span>
+               </li>
+               <li><span>电子邮箱：</span><input type="text" value="<?php echo (isset($_POST['useremail']) ? $_POST['useremail'] : '');?>" name="useremail" />
+                   <span class="bt">必填</span>
+                   <span style="display:none"></span>
+               </li>
+               <li><span>手机号：</span>
+                   <input type="text" value="<?php echo (isset($_POST['usertel']) ? $_POST['usertel'] : '');?>" name="usertel" /><span class="bt">必填</span>
+                   <input type="button" value="免费获取验证码" name="59" class="yz" id='getcode'/>
+                   <span style="display:none"></span>
+               </li>
+               <li><span>验证码：</span><input type="text" value="" name="usercode" />
+                   <span class="bt">必填</span>
+                   <span style="display:none"></span>
+               </li>
+               <li class="treaty">会员资料一经提交，即表示您已同意我们的<a href="terms" target='_blank'>用户协议</a></li>
+               <li class="regist"><input type="submit" value="免费注册 " name="" class="zc"/></li>
+            </ul>
+            </form>
+            <div style="clear:both;height:10px;width:100%;"></div>
+        </div>
+  </div>
+</div>

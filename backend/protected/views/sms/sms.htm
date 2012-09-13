@@ -1,0 +1,55 @@
+<?php
+$error_msg = isset($__p__['error_msg']) ? $__p__['error_msg'] : '';
+$data_list = isset($__p__['data_list']) ? $__p__['data_list'] : '';
+$page = isset($__p__['page']) ? $__p__['page'] : '';
+?>
+<div class="concerned" id="sms">
+    <div id="release">
+    <div class="issue"><div id="current_location">短信发送</div></div>
+    <?php
+if(empty($_GET['action']) || 'post'!=$_GET['action']) { 
+?>
+    <div style="width:100%;color:red;">禁止相同的内容多个手机号连续一条一条提交，否则引起的短信帐号被禁用由你负责。(罚款1000RMB)</div>
+    <div class="material"><span style="float:right;padding-right:5px;"><a href="?action=post" id="quan">查看已发送短信</a></span></div>
+    <?php
+if(!empty($error_msg)) {
+?>
+    <div style="<?php if('发送成功！'==$error_msg){ echo 'color:green;';} else { echo 'color:red;';}?>font-size:14px;font-weight:bolder;text-align:center;width:100%;"><?php echo $error_msg;?></div>
+<?php
+}
+?>
+    <div class="option">
+        <form action="?action=send" method="post">
+            <div style="clear:both;width:100%;line-height:24px;">手机号码：<textarea name="mobile" id="mobile" rows="4" cols="90"></textarea><p style="width:500px;clear:both;font-size:12px;color:#999;text-align:left;float:left;margin:0 0 0 60px;">多个手机号之间请用空格隔开</p></div>
+            <div style="width:100%;clear:both;height:160px;margin:30px 0 0 0;">短信内容：<textarea rows="8" id="content" cols="90" name="content"></textarea><p style="width:500px;clear:both;font-size:12px;color:#999;text-align:left;float:left;margin:0 0 0 60px;">短信内容控制在70个字以内。</p></div>
+            <div style="width:100%;clear:both;margin:10px 0 0 0;"><input type="submit" value="发送短信" style="width:120px;height:30px;float:left;margin:0 0 0 60px;"/> </div>
+        </form>
+    </div>
+<?php
+} else {
+?>
+    <div class="option">
+      <div class="global"><span class="wid40">ID</span><span class="wid540" style="width:200px;">手机号</span><span class="wid120">内容</span><span class="wid120">发送时间</span></div>
+      <div class="choice" rel="<?php echo $_GET['action'];?>">
+  <?php
+if(!empty($data_list)) {
+    foreach($data_list as $v) {
+?>
+        <ul id="<?php echo $v['id'];?>">
+        <li style="width:40px;"><?php echo $v['id'];?></li>
+        <li style="width:200px;"><?php echo $v['mobile'];?></li>
+        <li style="width:300px;float:left;"><?php echo $v['content'];?></li>
+        <li><?php echo $v['insert_date'];?></li>
+        </ul>
+  <?php
+    }
+}
+?>
+</div>
+
+<div class="global"> <?php echo $page->show(4);?> </div>
+    <?php
+}
+?>
+    </div>
+</div>

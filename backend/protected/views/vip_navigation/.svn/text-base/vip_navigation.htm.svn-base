@@ -1,0 +1,38 @@
+<div id="content">
+        <div class="wt">
+            <div class="account">
+                <div class="hd">账户管理</div>
+                <div class="fd">
+                    <ul>
+                        <li><a href="vipchannelMaterial">修改账户信息</a></li>
+                        <li><a href="vippassword">修改密码</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="commodity">
+                <div class="hd">商品推送</div>
+                <div class="fd">
+                    <ul>
+                        <li><a href="vipviewpush">最新商品推送</a></li>
+                        <li><a href="vipfavorites">推送商品收藏夹</a></li>
+                        <li><a href="vipmanagement">推送商品管理</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sms" style="margin-bottom:10px">
+                <div class="hd">专页维护</div>
+                <div class="fd">
+                    <ul>
+                        <li><a href="vipprofessional">专页信息维护</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sms">
+                <div class="hd">短消息</div>
+                <div class="fd">
+                    <ul>
+                        <li><a href="vipinbox">收件箱</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>

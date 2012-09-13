@@ -1,0 +1,229 @@
+<?php 
+$data = isset($__p__['data']) ? $__p__['data'] : "";
+$company = isset($__p__['company_data']) ? $__p__['company_data'] : "";
+$address = isset($__p__['address']) ? $__p__['address'] : "";
+$company_vip = isset($__p__['company_vip']) ? $__p__['company_vip'] : "";
+$category = isset($__p__['category']) ? $__p__['category'] : "";
+$citys = isset($__p__['city_list']) ? $__p__['city_list'] : "";
+?>
+<div class="et">
+            <div class="hd">专页信息维护</div>
+            <form method="post" action="vipprofessional?action=update" name="form">
+            <div class="fd">
+                <div class="title">基本信息</div>
+                <div class="nr">
+                    <label>网站名称：</label>
+                    <input type="text" name="" value="<?php echo $data['site_name']; ?>" disabled=""/>
+                    <p><span style="color:#f00">(提示)</span>网站名称是不可修改的，如若必要修改，请联系网站客服。</p>
+                </div>
+                <div class="nr">
+                    <div class="fw">网站主营范围：<span style="color:#f00">(提示)</span>多选，最多可选5项；</div>
+                    <div class="fw1">
+                        <ul><?php if(!empty($category)){
+
+    foreach($category as $v){
+?>
+                        
+                            <li>
+                              <input name="input" class="cateinput" type="checkbox" value="<?php echo $v['id']; ?>" checked="" />
+                              <span style="color:#555"><?php echo $v['name']; ?></span>
+                            </li>
+                       
+<?php   
+    }
+                         }?> </ul>
+
+                        
+                    </div>
+                </div>
+                <div class="nr">
+                    <label>网站地址：</label>
+                    <input type="text" name="" value="<?php echo $data['url']; ?>"  disabled=""/>
+                    <p><span style="color:#f00">(提示)</span>网站地址是不可修改的，如若必要修改，请联系网站客服。</p>
+                </div>
+              <div class="nr">
+                <label>公司地址：</label>
+                <input type="text" name="input2" value="<?php echo $address['pname'].$address['cname'].$address['desc']; ?>" />
+                </div>
+                <div class="nr">
+                    <label>是否可代发货：</label>
+                    <span class="df">
+                    <input name="" type="radio" value="" <?php if($company_vip['delivery']=='0' || !$company_vip['delivery']){ echo "checked"; } ?>/>
+                        <font>可代发</font>
+                    </span>
+                    <span class="df">
+                        <input name="" type="radio" value="" <?php if($company_vip['delivery']=='1'){ echo "checked"; } ?>/>
+                        <font>不可代发</font>
+                    </span>
+                    <span class="df" style="width:70px">
+                        <input name="" type="radio" value="" <?php if($company_vip['delivery']=='2'){ echo "checked"; } ?>/>
+                        <font>皆可</font>
+                    </span>
+                    <p><span style="color:#f00">(提示)</span>默认为可代发。</p>
+                </div>
+                <div class="nr">
+                    <label>网站介绍：</label>
+                    <textarea name="" cols="" rows=""><?php echo $data['desc']; ?></textarea>
+                </div>
+                <div class="title">相关事项</div>
+              <div class="bt">结款规则：</div>
+  <div class="nr" style="border:none;padding-bottom:0">
+                    <label>本地商户：</label>
+                    <textarea name="" cols="" rows=""><?php echo $company_vip['money_local']; ?></textarea>
+                    <p class="ts"><span style="color:#f00">(例如)</span>产品下线后,先预付给商家××%；客户消费过半后,再支付给 商家百分之××%；团购周期结束后，支付给商家所有余款。</p>
+                </div>
+                <div class="nr">
+                    <label>精品商户：</label>
+                    <textarea name="textarea2" cols="" rows=""><?php echo $company_vip['money_net']; ?></textarea>
+                    <p class="ts"><span style="color:#f00">(例如)</span>快递发出3个工作日打款××%，一个月后付尾款××%。</p>
+                </div>
+                <div class="nr" style="border:none;">
+                    <label style="font-weight:bold">最长打款时间：</label>
+                    <input type="text" name="" value="<?php echo $company_vip['money_time']; ?>" />
+                    <p><span style="color:#f00">(提示)</span>单位为天，例如：7天，默认为7天。</p>
+                </div>
+                <div class="bt2"><label>商品审批时间：</label></div>
+                <div class="nr" style="border:none;padding-bottom:0">
+                    <label>本地商户：</label>
+                    <input type="text" name="" value="<?php echo $company['examine_local']; ?>" />
+                  <p><span style="color:#f00">(提示)</span>单位为天，例如：7天，默认为7天。</p>
+                </div>
+                <div class="nr">
+                    <label>精品商户：</label>
+                    <input type="text" name="" value="<?php echo $company_vip['examine_net']; ?>" />
+                    <p><span style="color:#f00">(提示)</span>单位为天，例如：7天，默认为7天。</p>
+                </div>
+                <div class="nr">
+                    <label>可提供附加值：</label>
+                    <textarea name="textarea" cols="" rows=""><?php echo $company_vip['additional']; ?></textarea>
+                </div>
+                <div class="nr">
+                    <label>备注：</label>
+                    <textarea name="textarea" cols="" rows=""><?php echo $company_vip['remark']; ?></textarea>
+                </div>
+                <div class="title">推送商品资质要求</div>
+                <div class="yq">
+                  <span style="font-weight:bold;color:#000">本地产品认证要求：</span><span style="color:#f00">(提示)</span>供货商推送本地商品需具备哪些资质，默认为全选。
+                </div>
+<?php  if($company_vip['auth_local']){
+
+    $auth_local_str = explode("|", $company_vip['auth_local']);
+
+    $auth_local_count = count($auth_local_str);
+
+}?>
+                <div class="yq2" id="zizhi_local">
+                    <ul>
+                        <li>
+                        <input name="input" type="checkbox" value="" class="local_quan" <?php if($auth_local_count=='7'){ echo "checked"; } ?>/>
+                          <span>全选</span>
+                        </li>
+                        <li>
+                            <input name="input" type="checkbox" value="" <?php if($auth_local_count=='7'){ echo "checked"; } ?>/>
+                            <span>税务登记证</span>
+                        </li>
+                        <li>
+                            <input name="input" type="checkbox" value="" <?php if($auth_local_count=='7'){ echo "checked"; } ?>/>
+                            <span>组织机构代码证</span>
+                        </li>
+                        <li>
+                            <input name="input" type="checkbox" value="" <?php if($auth_local_count=='7'){ echo "checked"; } ?>/>
+                            <span>银行开户许可证</span>
+                        </li>
+                        <li>
+                            <input name="input" type="checkbox" value="" <?php if($auth_local_count=='7'){ echo "checked"; } ?>/>
+                            <span>商家授权书</span>
+                        </li>
+                        <li>
+                            <input name="input" type="checkbox" value="" <?php if($auth_local_count=='7'){ echo "checked"; } ?>/>
+                            <span>银行开户许可证</span>
+                        </li>
+                        <li>
+                            <input name="input" type="checkbox" value="" <?php if($auth_local_count=='7'){ echo "checked"; } ?>/>
+                            <span>商标证复印件</span>
+                        </li>
+                        <li>
+                            <input name="input" type="checkbox" value="" <?php if($auth_local_count=='7'){ echo "checked"; } ?>/>
+                            <span>质量检测合格证 </span>
+                        </li>
+                    </ul>
+                </div>
+          <div class="yq">
+                    <span style="font-weight:bold;color:#000">精品网货认证要求：</span><span style="color:#f00">(提示)</span>供货商推送精品网货需具备哪些资质，默认为全选。
+              </div>
+<?php  if($company_vip['auth_net']){
+
+    $auth_net_str = explode("|", $company_vip['auth_net']);
+
+    $auth_net_count = count($auth_net_str);
+
+}?>
+
+                <div class="yq2" id="zizhi_net">
+                    <ul>
+                        <li>
+
+                            <input name="input" type="checkbox" value="" class="net_quan" <?php if($auth_net_count=='7'){ echo "checked"; } ?>/>
+                            <span>全选</span>
+                        </li>
+                        <li>
+                            <input name="input" type="checkbox" value="" <?php if($auth_net_count=='7'){ echo "checked"; } ?>/>
+                            <span>税务登记证</span>
+                        </li>
+                        <li>
+                            <input name="input" type="checkbox" value="" <?php if($auth_net_count=='7'){ echo "checked"; } ?>/>
+                            <span>组织机构代码证</span>
+                        </li>
+                        <li>
+                            <input name="input" type="checkbox" value="" <?php if($auth_net_count=='7'){ echo "checked"; } ?>/>
+                            <span>银行开户许可证</span>
+                        </li>
+                        <li>
+                            <input name="input" type="checkbox" value="" <?php if($auth_net_count=='7'){ echo "checked"; } ?>/>
+                            <span>商家授权书</span>
+                        </li>
+                        <li>
+                            <input name="input" type="checkbox" value="" <?php if($auth_net_count=='7'){ echo "checked"; } ?>/>
+                            <span>银行开户许可证</span>
+                        </li>
+                        <li>
+                            <input name="input" type="checkbox" value="" <?php if($auth_net_count=='7'){ echo "checked"; } ?>/>
+                            <span>商标证复印件</span>
+                        </li>
+                        <li>
+                            <input name="input" type="checkbox" value="" <?php if($auth_net_count='7'){ echo "checked"; } ?>/>
+                            <span>质量检测合格证 </span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="title">广告要求</div>
+          <div class="yq3">
+                    <p><input name="" type="radio" value="" <?php if($company_vip['ad']=='有'){ echo "checked"; } ?>/><span>是，可以做广告推广</span></p>
+                    <p><input name="" type="radio" value="" <?php if($company_vip['ad']!='有'){ echo "checked"; } ?>/><span>否，暂时没有该推广业务</span></p>
+              </div>
+              <div class="yq3">
+              <textarea name="" cols="" rows=""><?php echo $company_vip['contact_position']; ?></textarea>
+                <p class="ts">
+                        <span style="color:#f00">(提示)</span>请输入广告位位置（首页推荐、首页连接、右侧推荐、专题等等） 、时间（一天、一周、一个月等等）、以及相对应的价格范围等相关说明。
+                </p>
+              </div>
+          <div class="nr" style="border:none">
+                    <label style="width:120px">请填写广告联系人：</label>
+                    <input type="text" name="" value="<?php echo $company_vip['contact_name']; ?>" style="width:150px"/>
+                    <p><span style="color:#f00">(提示)</span>非公开信息，只有101兄弟高级管理员才可见；请放心填写。</p>
+                </div>
+                <div class="nr">
+                  <label style="width:120px">联系方式：</label>
+                    <input type="text" name="input3" value="<?php echo $company_vip['contact_mobile']; ?>" style="width:150px"/>
+                    <p><span style="color:#f00">(提示)</span>非公开信息，只有101兄弟高级管理员才可见；请放心填写。</p>
+                </div>
+            <div class="an">
+                    <input type="button" name="" value="保存信息" />
+                <input type="button" name="input4" value="放弃修改" class="fq"/>
+            </div>
+            </div>
+        </div>
+    </div>
+    </form>
+
+</div>

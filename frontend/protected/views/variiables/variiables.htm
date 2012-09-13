@@ -1,0 +1,125 @@
+<?php
+$HotProducts = isset($__p__['HotProducts']) ? $__p__['HotProducts'] : array();
+$attention   = isset($__p__['attention']) ? $__p__['attention'] : array();
+
+$one = $__p__['one_discussion'];
+$two = $__p__['two_discussion'];
+$one_disdata    = $__p__['one_disdata'];
+$two_disdata    = $__p__['two_disdata'];
+
+$business_data = isset($__p__['business']) ? $__p__['business'] : '';
+$product  = isset($__p__['product']) ? $__p__['product'] : '';
+global $pic_path;
+$pic_path = $__p__['pic_path'];
+$pic_url  = $__p__['pic_url'];
+
+$photo = 'images/wares.gif';
+
+?>
+<!-- left start-->
+<div id="cover">
+    <div class="depict"><span class="indigen">商品图片</span></div>
+    <div class="represent">
+<?php 
+if(!empty($product['image'])) {
+$images = explode('|',$product['image']);
+foreach($images as $v) {
+    $v = getImage($v, $pic_path);
+    if($product['batch']==1) {
+        $v = $pic_url . $v;
+    }
+    echo '<img src="'. $v .'" onload="if(this.width > 440) this.width = 440;" alt="' . $__p__['title'] .'" />';
+}
+}
+
+?>
+    </div>
+    <div class="depict"><span class="indigen">商品内容描述</span></div>
+    <div class="describe">
+<?php 
+$html = $product['description'];
+$html = str_replace('\r\n', '%%%', $html);
+$html = preg_replace('/(<img[^>]+src\s*=\s*"?([^>"\s]+)\.(jpg|gif|bmp|bnp|png)\"?[^>]*>)/im', '<img src="$2_660X420.$3" onload=\'if(this.width>440){this.width = 440;}\' border="0" />', $html); 
+$html = strip_tags($html, '<p><a><b><span><img><table><tr><td><br/>');
+$html = str_replace('%%%', '\r\n', $html);
+ echo  "{$html}"; 
+?>
+</div>
+</div>
+<!-- left end -->
+<div id="variiables">
+    <div class="irreversible">
+      <div class="inject"><span>有哪些渠道商关注该商家</span></div>
+<?php  if(!empty($attention)){ 
+?>
+    <div <?php if(count($attention)>5) {?>class="marquee" <?php } ?> >
+      <ul>
+<?php
+    foreach($attention as $v){ 
+        echo "<li>{$v['Name']}关注了该商家</li>";
+    }
+?>
+        </ul>
+        </div>
+<?php
+}
+?>
+    </div>
+    <div class="irreversible">
+      <div class="inject"><span>渠道商最关注商品</span></div>
+      <div class="state">
+<?php  if(!empty($HotProducts)){
+
+    foreach($HotProducts as $v){
+        $photo = 'images/zanwu.gif';
+        if(!empty($v['default_image'])) {
+            $photo = $v['default_image'];
+        } elseif(!empty($v['image'])){
+            $images = explode('|',$v['image']);
+            $photo  = current($images);
+
+            $tmp  = pathinfo($photo);
+            $file_name = $tmp['dirname'] . '/' . $tmp['filename'] . '_660X420.' . $tmp['extension'];
+            $file_path = $pic_path;
+            $tmp_name  = str_replace($pic_url, $file_path, $file_name);
+            if(file_exists($tmp_name)) {
+                $photo = $file_name;
+            }
+        }
+
+        $photo = str_replace('http://image1.101xd.com/', $pic_url, $photo);
+        $photo = str_replace('http://image2.101xd.com/', $pic_url, $photo);
+
+        $num = $v['supply_price'] / $v['market_price'];
+        $num = $num * 10;
+        $zhe = number_format($num, 2, '.', ' ');
+        if(!empty($v['title'])){
+
+            $len = strlen($v['title']);
+
+            if($len>16){
+                $str = mb_substr($v['title'],0,16,'utf-8');
+            } else {
+                $str = $v['title'];
+            }
+        }
+        echo "<dl>";
+        echo "<dt><a href='product_{$v['id']}.html'><img src='{$photo}' onload='if(this.width>230) this.width=230;' /></a></dt>";
+        echo "<dd><span><a href='product_{$v['id']}.html'>{$str}</a><br />市场价：<strong>{$v['market_price']}</strong>元&nbsp;&nbsp;供货折扣价：<strong>{$zhe}</strong>折</span></dd>";
+        echo "</dl>";
+    }
+}?>
+      </div>
+    </div>
+   <!-- 客服 -->
+   <div class="irreversible" style="margin:10px 0 0 0;">
+      <div class="inject"><span>客服在您身边</span></div>
+      <div class="state">
+        <div class="contact">客服QQ：<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2534395200&site=qq&menu=yes"><img border="0" src="images/qq.gif" alt="点击这里给我发消息" title="点击这里给我发消息"></a><br/><font color='#444'>客服在线时间: 每天09:00-18:00</font><br/>商务合作QQ：67315353<br/><font color='#444'>在线时间: 每天10:00-22:00</font>
+            </div>
+        </div>
+    </div>
+   <!-- 客服 -->
+  </div>
+
+

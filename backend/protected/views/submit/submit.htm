@@ -1,0 +1,57 @@
+<?php
+$product = isset($__p__['product']) ? $__p__['product'] : '';
+$day = '';
+if($product['expire_date']==0){
+    $day = 0;
+
+} elseif(!empty($product['expire_date']) && !empty($product['insertdate'])){
+    $day = ($product['expire_date']-strtotime($product['insertdate']))/86400;
+    $day = ceil($day);
+}
+?>
+<div id="submit">
+      <div class="sort">
+        <div class="sort_left indate">商品信息有效期：</div>
+        <div class="sort_right">
+        <input name="expired" type="radio" value="0"   class="radio" <?php if(empty($product) || $day==0) { echo 'checked'; }?>/><span>无</span>
+        <input name="expired" type="radio" value="10"   class="radio" <?php if(10==$day) { echo 'checked'; }?>/><span>10天</span>
+        <input name="expired" type="radio" value="20" class="radio" <?php if(20==$day) { echo 'checked'; }?> /><span>20天</span>
+        <input name="expired" type="radio" value="30" class="radio" <?php if(30==$day) { echo 'checked'; }?> /><span>1个月</span>
+        <input name="expired" type="radio" value="90" class="radio" <?php if(90==$day) { echo 'checked'; }?> /><span>3个月</span>
+        <input name="expired" type="radio" value="180" class="radio" <?php if(180==$day) { echo 'checked'; }?> /><span>6个月</span></div>
+      </div>
+      <div class="sort">
+        <div class="sort_left indate">&nbsp;</div>
+        <div class="sort_right">
+
+        <span style="margin-right:3px;"><input type="radio" name="expired" id="qita" value='qita'>其它</span>
+        <span><input name="expire_data" type="text"  style="width:100px;" id="inputdate" value='<?php echo $day; ?>' />&nbsp;天</span>
+        <p>如果选择项中没有数据，可以自己填写有效天数</p></div>
+      </div>
+      <div class="approve"><input type="submit" class="submit" value="同意协议条款，我要发布"></div>
+      <div class="sort">
+        <div class="sort_right">
+            <textarea rows="4" cols="80" style="margin-left:140px;">
+欢迎使用101兄弟的服务。以下所述条款和条件即构成您与101兄弟就使用服务所达成的协议。一旦您使用了该服务，即表示您已接受了以下所述的条款和条件。
+如果您不同意接受全部的条款和条件，那么您将无权使用该服务。当您完成注册并点击本协议下方“同意协议条款”键时，即表示您已同意接受101兄弟服务协议。
+一、服务前提：
+1、加入本网站首先必须注册成为本网站的合法会员，注册资料必须全面、真实、准确、合法，不得发布不真实的、有歧义的信息，绝对禁止发布误导性的、恶意的消息。
+2、会员资料保持实时更新。
+3、注册用户享有对应的帐户和密码，每个会员都要对其帐号中的所有活动和事件负全部责任，本网站提供密码丢失找回及密码修改功能，其它因帐号产生的损失本网站不承担相应责任。
+4、本网站可对会员发布的错误信息进行修改、删除，并可停止或取消相应会员资格。
+    二、关于用户资料
+   “用户资料”包括您在注册、交易或列举物品过程中、在任何公开信息场合或通过任何电子邮件形式，向本公司或其他用户提供的任何资料，包括数据、文本、软件、音乐、声响、照片、图画、影像、词句或其他材料。您应对“用户资料”负全部责任，而本公司仅作为您在网上发布和刊登“用户资料”的被动渠道。但是，倘若本公司认为“用户资料”可能使本公司承担任何法律或道义上的责任，或可能使本公司 (全部或部分地)蒙受损失，则本公司可自行全权决定对“用户资料”采取本公司认为必要或适当的任何行动，包括但不限于删除该类资料。您特此保证，您对提交给101兄弟的“用户资料”拥有全部权利，包括全部版权。您确认，101兄弟没有责任去认定或决定您提交给本公司的资料哪些是应当受到保护的，对享有“服务”的其他用户使用“用户资料”，本公司也不必负责。
+    三、101兄弟向会员提供的商品信息之编辑、编制、传播的版权和知识产权，全部由101兄弟拥有；未经101兄弟事先以书面表示同意，任何人不得以各种形式复制、散布、出售、出版、广播、转播该商品信息。
+四、被禁止商品
+您不得在本公司网站公布或通过本公司网站买卖：
+(a) 可能使本公司违反任何相关法律、法规、条例或规章的任何物品；或 
+(b) 101兄弟认为应禁止或不适合通过本网站买卖的任何物品。
+五、由于服务器或技术故障等方面的原因，造成101兄弟无法正常使用或显示，我们会及时通知，并及时处理和修复，因此造成的损失，101兄弟不承担责任。
+会员可随时对101兄弟的服务提出批评、建议。
+</textarea>
+        </div>
+      </div>
+</div>
+</form>
+    </div>
+</div>

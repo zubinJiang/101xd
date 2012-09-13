@@ -1,0 +1,167 @@
+<?php 
+$data      = isset($__p__['web_data']) ? $__p__['web_data'] : '';
+$web_title = isset($__p__['web_title']) ? $__p__['web_title'] : '';
+$id        = isset($_GET['id']) ? $_GET['id'] : '1';
+$action    = isset($_GET['action']) ? $_GET['action'] : 'web_getdata';
+$search_data = isset($__p__['web_seach_data']) ? $__p__['web_seach_data'] : '';
+$updatedate = isset($__p__['updatedate']) ? $__p__['updatedate'] : '';
+if(!empty($updatedate)){
+
+    $datetime = strtotime($updatedate['insert_date']);
+
+    $insert_date = date("Y-m-d",$datetime);
+} else {
+
+    $insert_date = date("Y-m-d",time()-7*24*3600);
+}
+?>
+<div id="group">
+<input type="hidden" name="update_data" value="<?php echo $insert_date; ?>">
+<?php
+if(!empty($_GET['key'])) {
+    echo '<div class="group_title">';
+    echo "<font color='red'>{$_GET['key']}</font>";
+    echo '</div>';
+    echo '<div class="bup">';
+    echo "关键字{$_GET['key']}搜索的结果为";
+    echo '</div>';
+
+} else {
+?>
+<div class="group_title">
+<a web_id="2" class="now">流量排名</a><!--<a web_id="1">规模排名</a>-->
+<span><?php echo $insert_date; ?>更新（更新周期：每周排名变化为近1周变化）</span>
+</div>
+<div class="bup">
+      <div class="tradi" style='display:none;'>
+      <a href="#" class="yi now">开通城市在100以上的</a>
+      <a href="#" class="er">开通城市在50以上的</a>
+      <a href="#" class="san">开通城市在10以上的</a>
+      <a href="#" class="si">开通城市在1以上的</a></div>
+
+      <div class="flow">
+      <a href="#" class="yi now">流量排名1-100</a>
+      <a href="#" class="er">流量排名100-300</a>
+      <a href="#" class="san">流量排名300-1000的</a>
+      <!--<a href="#" class="si">流量排名1000之外</a>--></div>
+</div>
+<?php
+}
+if(!empty($_GET['key'])) {
+?>
+<div class="data">
+<?php
+if(!empty($search_data)){
+            $rzt .= "<ul>";
+            foreach($search_data as $v){
+                $rzt .= "<li><a  ref='{$v['id']}' id='{$v['id']}' href='detail?id={$v['id']}'>{$v['name']}</a></li>";
+            }
+            $rzt .= "</ul>";
+        
+        } else {
+            $rzt .= "对不起，当前没有你要搜索的网站";
+        }
+echo $rzt;
+?>
+</div>
+<?php
+} else {
+?>
+<div class="data">       
+<?php
+if(!empty($data)) {
+
+    foreach($data as $k=>$v) {
+        if($k>=0 && $k<100) {
+            $arr1["{$v['id']}"] = $v['name'];
+        } elseif($k>=100 && $k<300) {
+            $arr2["{$v['id']}"] = $v['name'];
+        } elseif($k>=300 && $k<1000) {
+            $arr3["{$v['id']}"] = $v['name'];
+        } elseif($k>=1000) {
+            $arr4["{$v['id']}"] = $v['name'];
+        }
+    }
+}
+?>
+<div class="first" style="height:506px;">
+<ul>
+<?php
+if(!empty($arr1)){
+    $count1 = count($arr1);
+    foreach($arr1 as $k=>$v){
+        echo "<li><a  ref='{$k}' id='{$k}' href='detail?id={$k}'>{$v}</a></li>";
+    }    
+} else {
+    echo "对不起，暂时没数据";
+}
+?>
+</ul>
+</div>
+<?php if($count1>68){ ?>
+<p><a href="#" value="1" id="first_footer" count1="<?php echo $count1; ?>">还有<?php echo ($count1-68); ?>个团购网站流量排名在前100名，点击展开</a></p>
+<?php } ?>
+
+
+<div class="two" style="height:506px;display:none;">
+<ul>
+<?php
+if(!empty($arr2)){
+    $count2 = count($arr2);
+    foreach($arr2 as $k=>$v){
+        echo "<li><a  ref='{$k}' id='{$k}' href='detail?id={$k}'>{$v}</a></li>";
+    }    
+} else {
+    echo "对不起，暂时没数据";
+}
+?>
+</ul>
+</div>
+<?php if($count2>68){ ?>
+<p><a href="#" style="display:none;" value="1" id="two_footer" count2="<?php echo $count2; ?>">还有<?php echo ($count2-68); ?>个团购网站流量排名在100到300名，点击展开</a></p>
+<?php } ?>
+
+<div class="three" style="height:506px;display:none;width:100%;">
+<ul>
+<?php
+if(!empty($arr3)){
+    $count3 = count($arr3);
+    foreach($arr3 as $k=>$v){
+        echo "<li><a  ref='{$k}' id='{$k}' href='detail?id={$k}'>{$v}</a></li>";
+    }    
+} else {
+    echo "对不起，暂时没数据";
+}
+?>
+</ul>
+</div>
+<?php if($count3>32){ ?>
+<p><a href="#" style="display:none;" value="1" id="three_footer" count3="<?php echo $count3; ?>">还有<?php echo ($count3-32); ?>个团购网站流量排名在300到1000名，点击展开</a></p>
+<?php } ?>
+<div class="four" style="height:506px;display:none;">
+<ul>
+<?php
+if(!empty($arr4)){
+    $count4 = count($arr4);
+    foreach($arr4 as $k=>$v){
+        echo "<li><a  ref='{$k}' id='{$k}' href='detail?id={$k}'>{$v}</a></li>";
+    }    
+} else {
+    echo "对不起，暂时数据";
+}
+?>
+</ul>
+</div>
+<?php if($count>32){ ?>
+<p><a href="#" style="display:none;" value="1" id="three_footer" count4="<?php echo $count4; ?>">还有<?php echo ($count3-32); ?>个团购网站流量排名在1000名之外，点击展开</a></p>
+<?php } ?>
+</div>
+<p>数据依据来源alexa，如需引用请标注来源alexa；</p>
+<?php
+}   // seach key end
+?>
+</div>
+<input type='hidden' name="web_str_id" value="">
+<input type='hidden' name="str_id" value="<?php echo $id;?>">
+<input type="hidden" name="str_action" value="<?php echo $action;?>">
+<input type="hidden" name="str_page" value="1">

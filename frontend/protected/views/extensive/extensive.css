@@ -1,0 +1,10 @@
+#extensive{float:right;width:209px;background:url(../../../images/extensive.gif) no-repeat;}
+#extensive h2{float:left;width:208px;line-height:29px;text-align:center;margin:1px 0 0 1px;font-size:14px;color:#fff;background:url(../../../images/extensive_h.gif) no-repeat;}
+.netizens{float:left;width:208px;padding-bottom:20px;background:url(../../../images/netizens.gif) no-repeat bottom;line-height:24px;}
+.netizens ul{float:left;width:208px;line-height:24px;background:url(../../../images/netizens_l.gif) repeat-y;padding-top:8px;list-style:none;}
+.netizens ul li{width:100%;text-align:center;margin:0;padding:0;margin:0;padding:0;}
+.netizens ul li .title{text-align:center;width:96%;clear:both;margin:0 auto;}
+.netizens ul li .image{text-align:center;width:100%;clear:both;}
+.netizens p{float:left;width:138px;padding-left:70px;line-height:24px;background:url(../../../images/netizens_l.gif) repeat-y;}
+.netizens p a{float:left;width:77px;line-height:24px;background:url(../../../images/integrity_a.gif) no-repeat;text-align:center;font-size:14px;font-weight:bold;color:#fff;margin:8px 0 30px 0;}
+

@@ -1,0 +1,161 @@
+<?php
+$product = isset($__p__['product']) ? $__p__['product'] : array();
+$user_id = isset($__p__['user_id']) ? $__p__['user_id'] : '';
+?>
+<div class="et">
+            <div class="ts1">商品信息推送</div>
+            <!--<div class="ts2">推送时间：<?php echo $$vipproduct['insertdate']; ?></div>-->
+            <div class="pd">
+              <div class="hd">商品推送收藏夹</div>
+          </div>
+            <div class="main">
+              <div class="xianshi"><a href="vipfavorites">回到列表>></a></div>
+              <div class="fd">
+                
+                <div class="tuis">
+                  <div class="tuis1"><?php echo $product['title']; ?></div>
+                  <div class="tuis2">
+                    <div class="sp">
+                      <div class="sp1">商品信息</div>
+                      <div class="sp2">
+                        <ul>
+                          <li>
+                            <p><span>商品类型：</span><?php echo $product['category']['name']; ?></p>
+                            <p><span>类别：</span><?php echo $product['category']['name']; ?></p>
+                          </li>
+                          <li><span>最多团购人数：</span><?php echo $product['max_buy']; ?></li>
+                          <li><span>每个用户可购买数量：</span>50</li>
+                          <li><p><span>市场价：</span>￥<?php echo $product['market_price']; ?></p><p><span> 供货价：</span>￥<?php echo $product['supply_price']; ?></p></li>
+                          <li style="line-height:24px;padding:5px 0"><span>商品摘要：</span><?php echo $product['desc']; ?></li>
+                          <li style="line-height:24px;padding:5px 0"><span>商品说明：</span><?php echo $product['explain']; ?></li>
+                          <li class="br"><span>商品图片：</span></li>
+                          <?php
+            $p = explode('|',$product['images']);
+            foreach($p as $uri){
+            
+                $images["{$k}"] =  str_replace("http://image2.101xd.com/", "http://image.101xd.com/", $v);
+                echo "<li class='ig'><img src='{$uri}' width='259' height='113' /></li>";
+            }
+            ?>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="sw">
+                      <div class="sw1">商务信息</div>
+                      <div class="sw2">
+                        <ul>
+                          <li><span>是否需要渠道商代发货？</span><br />
+                            <?php 
+        if ($product['delivery'] ==0){
+        echo '不需要';
+        }
+        else if ($product['delivery'] ==1){
+        echo '可自发货';
+        }
+        else if ($product['delivery'] ==2){
+        echo '需要渠道商代发货';
+        }
+        else if ($product['delivery'] ==2){
+        echo '自动发货或者需要渠道商代发货';
+        }
+        
+        ?></li>
+                          <li id="qualification"><span>商品资质：</span><br />
+                           <?php 
+        if ($product['qualification']['image_certificate']){
+        echo "<p imgsrc='{$product['qualification']['image_certificate']}'>身份证</p>";
+        }
+        if ($product['qualification']['image_license']){
+        echo "<p imgsrc='{$product['qualification']['image_license']}'>营业执照</p>";
+        }
+        if ($product['qualification']['image_tax']){
+        echo "<p imgsrc='{$product['qualification']['image_tax']}'>税务登记证<br/></p>";
+        }
+        if ($product['qualification']['image_account']){
+        echo "<p imgsrc='{$product['qualification']['image_account']}'>开户许可证</p>";
+        }
+        if ($product['qualification']['image_org']){
+        echo "<p imgsrc='{$product['qualification']['image_org']}'>组织机构代码证</p>";
+        }
+        if ($product['qualification']['image_bui']){
+        echo "<p imgsrc='{$product['qualification']['image_bui']}'>商家授权书</p>";
+        }
+        if ($product['qualification']['image_qc']){
+        echo "<p imgsrc='{$product['qualification']['image_certificate']}'>商家质检书</p>";
+        }
+        if ($product['qualification']['image_logo']){
+        echo "<p imgsrc='{$product['qualification']['image_certificate']}'>标商</p>";
+        }
+        ?>
+                          </li>
+                          <li><span>是否有广告推广需求？</span><br />
+                            <?php
+        if ($product['ad']==0){
+        echo '无';
+        }
+        else if ($product['ad']==1){
+            echo '有<br/>';
+            $ad_p = explode('|',$product['ad_position']);
+            foreach($ad_p as $p){
+           // 0:网站首页链接广告;1:网站首页商品推荐;2:右侧推荐位专题推广;3:其它，用“|”分开
+                if ($p=='0'){
+                    echo '网站首页广告';
+                }
+                if ($p=='1'){
+                    echo '网站首页商品推荐';
+                }
+                if ($p=='2'){
+                    echo '右侧推荐位专题推广';
+                }
+                if ($p=='3'){
+                    echo '其他';
+                }
+            }
+        }
+        ?>
+                            一个月</li>
+                           <li style="border:none"><span>商家信息：</span><br />
+                                商家名称：<?php echo $product['user']['Name']; ?><br />
+                                地    区： <?php  echo $product['province']['name']; ?><br />
+                                联 系 人：<?php  echo $product['user']['ContactName']; ?><br />
+                                联系电话：<?php  echo $product['user']['UserTel']; ?><br />
+                                其他联系方式：<?php echo $product['company']['contact_tel']; ?><br />
+                                QQ： <?php echo $product['user']['QQ']; ?></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="fy" >
+                <input type="submit" 
+                style="<?php
+                if ($product['trac']['collect'] == 1 )
+                echo "display:none";
+                ?>"
+                name="collect" vid='1' pid="<?php echo $product['id']; ?>" uid="<?php echo $user_id; ?>" ct="cl" value="感兴趣加入收藏" />
+                <input type="submit" 
+                style="<?php
+                if ($product['trac']['collect'] == 2 )
+                echo "display:none";
+                ?>"
+                name="ingore" vid='2'  pid="<?php echo $product['id']; ?>" uid="<?php echo $user_id; ?>" ct="cl" value="忽 略" class="hl"/>
+                <input type="submit" 
+                style="<?php
+                if ($product['trac']['collect'] == 3 )
+                echo "display:none";
+                ?>"
+                name="recommend" vid='3' pid="<?php echo $product['id']; ?>" uid="<?php echo $user_id;?>" ct="cl" value="推 送 区" class="hl"/>
+            </div>
+            <!--
+              <div class="fy" style="display:none">
+                  <input type="submit" name="" value="感兴趣加入收藏" />
+              </div>
+              <div class="fy" style="display:none">
+                  <input type="submit" name="" value="忽略" class="hl"/>
+              </div>
+            -->
+          </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,147 @@
+<?php
+$citys     = $__p__['citys'];
+$provinces = $__p__['provinces'];
+$error     = $__p__['error'];
+$load      = isset($_GET['load']) ? $_GET['load'] : '';
+?>
+<div id="register">
+    <div class="vendor"><strong>欢迎来到，101兄弟，渠道商供货平台，请免费注册，</strong>您已经是会员，请<a href="/login">登录</a></div>
+    <div class="process">
+      <div class="process_left">&nbsp;</div>
+      <div class="process_right">
+        <p>真实、完整的账户资料，有助于您获得他人的信任，结交更多潜在的商业伙伴，获取商机！</p>
+      </div>
+    </div>
+    <form action="register?action=reg" method="post" >
+    <div class="sheet">账户信息：<p>请选择会员类型&nbsp;&nbsp;<input name="user_type" type="radio" value="0" <?php if(empty($load)) {echo 'checked ';}?> style="margin-bottom:4px;" />我是供应商&nbsp;&nbsp;<input name="user_type" type="radio" <?php if('news'==$load) {echo 'checked ';}?> value="1" style="margin-bottom:4px;" />我是渠道商</p><input type="hidden" name="user_type_hidden" value="<?php if('news'==$load) {echo '1';} else {echo '0';}?>"></div>
+    <div class="procedure">
+      <div class="procedure_left">用户名：<a name="pro_name" id="pro_name" ></a></div>
+      <div class="procedure_right">
+      <div><input type="text" name="user_name" <?php if(!empty($error['user_name'])) { echo "class='error'"; }?> value="<?php if(isset($_POST['user_name'])){ echo $_POSt['user_name']; }?>" /><span><font color="#FF0000">必填 </font>建议使用您的主营产品，公司名称或跟您业务相关的词语作为登录名。</span></div>
+        <?php if(!empty($error['user_name'])) {  
+        echo "<div class='error170'>{$error['user_name']}</div>"; 
+        }?>
+        </div>
+    </div>
+    <div class="procedure">
+      <div class="procedure_left">密&nbsp;&nbsp;码：<a name="pro_pass" id="pro_pass"></a></div>
+      <div class="procedure_right">
+      <div><input type="password" name="user_pass" value=""  <?php if(!empty($error['user_pass'])) { echo "class='error'"; }?>/><span><font color="#FF0000">必填 </font>为了安全起见，请使用字母和数字或其他字符的混合密码,密码必须为6-30个字符。</span></div>
+       <?php if(!empty($error['user_pass'])) {  
+       echo "<div class='error170'>{$error['user_pass']}</div>"; 
+       }?>
+       </div>
+    </div>
+    <div class="procedure">
+      <div class="procedure_left">确认密码：<a name="pro_confirm_pass" id="pro_confirm_pass"></a></div>
+      <div class="procedure_right"><input type="password" name="user_confirm_pass" value="" /><span><font color="#FF0000">必填 </font></span></div>
+    </div>
+    <div class="procedure">
+      <div class="procedure_left">email：<a name="pro_email" id="pro_email"></a></div>
+      <div class="procedure_right"><div><input type="text" name="user_email" value="<?php if(isset($_POST['user_email'])){ echo $_POST['user_email']; }?>" <?php if(!empty($error['user_email'])) { echo "class='error'"; }?> /><span><font color="#FF0000">必填 </font>找回密码的方式之一，请您正确填写；</span></div>
+      <?php if(!empty($error['user_email'])) {  
+      echo "<div class='error170'>{$error['user_email']}</div>"; 
+      }?>
+      </div>
+    </div>
+    <div class="procedure">
+      <div class="procedure_left">手机号：<a name="pro_cell" id="pro_cell"></a></div>
+      <div class="procedure_right"><div><input type="text" name="user_cell" value="<?php if(isset($_POST['user_cell'])){ echo $_POST['user_cell']; }?>"  <?php if(!empty($error['user_cell'])) { echo "class='error'"; }?>/><span><font color="#FF0000">必填 </font><a href="####" class="GetCode" >免费获取验证码</a></span></div>
+      <?php if(!empty($error['user_cell'])) {  
+      echo "<div class='error170'>{$error['user_cell']}</div>"; 
+      }?>
+      </div>
+    </div>
+    <div class="procedure" style="padding-bottom:13px;display:none;" id="mess_code">
+    <p>验证码已发送到您填写的手机，请您注意查收，如未收到，请点击<a href="####" class="GetCode">重新获取验证码</a></p></div>
+    <div class="procedure">
+      <div class="procedure_left">输入验证码：<a name="pro_code" id="pro_code"></a></div>
+      <div class="procedure_right"><div><input type="text" name="auth_code" value="<?php if(isset($_POST['auth_code'])){ echo $_POST['auth_code']; }?>" <?php if(!empty($error['auth'])) { echo "class='error'"; }?>/><span><font color="#FF0000">必填 </font>请输入手机收到的验证码；</span></div>
+      <?php if(!empty($error['auth'])) {  
+      echo "<div class='error170'>{$error['auth']}</div>"; 
+      }?>
+      </div>
+    </div>
+    <div class="sheet">企业信息：</div>
+    <div class="procedure">
+      <div class="procedure_left">联系人：</div>
+      <div class="procedure_right"><input type="text" name="contact_name" value="" /><span>请填写联系人姓名；</span></div>
+    </div>
+    <div class="procedure">
+      <div class="procedure_left">企业名称：<a name="pro_com_name" id="pro_com_name"></a></div>
+      <div class="procedure_right"><div><input type="text" name="com_name" value="<?php if(isset($_POST['com_name'])){ echo $_POST['com_code']; }?>" <?php if(!empty($error['com_name'])) { echo "class='error'"; }?>/><span><font color="#FF0000">必填 </font></span></div>
+      <?php if(!empty($error['com_name'])) {  
+      echo "<div class='error170'>{$error['com_name']}</div>"; 
+      }?>
+      </div>
+    </div>
+    <div class="procedure sitename" <?php if('news'==$load){ echo 'style="display:block;"'; }else{ echo 'style="display:none;"';} ?>>
+      <div class="procedure_left">网站名称：</div>
+      <div class="procedure_right"><input type="text" name="gro_name" value="" /></div>
+    </div>
+    <div class="procedure siteurl" <?php if('news'==$load){ echo 'style="display:block;"'; }else{ echo 'style="display:none;"';} ?>>
+      <div class="procedure_left">企业网址：</div>
+      <div class="procedure_right"><input type="text" name="gro_url" value="http://" class="procedure_text" /></div>
+    </div>
+    <div class="procedure">
+      <div class="procedure_left">经营范围：<a name="pro_cag" id="pro_cag"></a></div>
+      <div class="procedure_right"><select name="category"><option value="2">本地商品</option><option value="3">精品网货</option></select>
+      <div><input type="text" name="cag_text" value="<?php if(isset($_POST['cag_text'])){ echo $_POST['cag_text']; }?>" <?php if(!empty($error['category'])) { echo "class='error'"; }?>/><span><font color="#FF0000">必填 </font>至少3个汉字</span></div>
+      <?php if(!empty($error['category'])) {  
+      echo "<div class='error170'>{$error['category']}</div>"; 
+      }?>
+      </div>
+    </div>
+    <div class="procedure">
+      <div class="procedure_left">主营产品：</div>
+      <div class="procedure_right"><div class="diagram"><span><strong>销售：</strong></span><input type="text" name="sale" value="" /><span>至少3个汉字，多个产品之间用空格隔开；</span></div><div class="diagram"><span><strong>求购：</strong></span><input type="text" name="buy" value="" /><span>至少3个汉字，多个产品之间用空格隔开；</span></div></div>
+    </div>
+    <div class="procedure">
+      <div class="procedure_left">所在地区：</div>
+      <div class="procedure_right">
+      <select name="add_province" class="province_id">
+      <?php
+if(!empty($provinces)) {
+    foreach($provinces as $v) {
+?>
+    <option value="<?php echo $v['id'];?>"><?php echo $v['name'];?></option>
+<?php
+    }
+}
+?>
+      </select>
+      <select name="add_city" class="area_id">
+<?php
+if(!empty($citys)) {
+            foreach($citys as $v) {
+    ?>
+        <option value="<?php echo $v['id'];?>"><?php echo $v['name'];?></option>
+    <?php
+            }
+        }
+    ?>
+        </select><span><font color="#FF0000">必填 </font></span></div>
+    </div>
+    <div class="procedure">
+      <div class="procedure_left">企业地址：<a name="pro_add" id="pro_add"></a></div>
+      <div class="procedure_right"><div><input type="text" name="add_text" value="<?php if(isset($_POST['add_text'])){ echo $_POST['add_text']; }?>" class="procedure_text"  <?php if(!empty($error['add_text'])) { echo "class='error'"; }?>/><span><font color="#FF0000">必填 </font></span></div>
+      <?php if(!empty($error['add_text'])) {  
+      echo "<div class='error170'>{$error['add_text']}</div>"; 
+      }?>
+      </div>
+    </div>
+    <div class="procedure">
+      <div class="procedure_left">企业固话：</div>
+      <div class="procedure_right"><input type="text" name="com_tel" value="" /></div>
+    </div>
+    <div class="procedure comurl" <?php if('news'==$load){ echo 'style="display:none;"'; }else{ echo 'style="display:block;"';} ?>>
+      <div class="procedure_left">企业网址：</div>
+      <div class="procedure_right"><input type="text" name="com_url" value="http://" class="procedure_text" /></div>
+    </div>
+    <div class="procedure">
+      <div class="procedure_left">企业介绍：</div>
+      <div class="procedure_right"><textarea class="text_duc" name="com_desc">&nbsp;</textarea><p>会员资料一经提交，即表示您同意我们的<a href="/terms" target="_blank">用户协议</a></div>
+    </div>
+    <div class="signup"><input  type="submit" class="register" value="免费注册"></div>
+    </form>
+</div>

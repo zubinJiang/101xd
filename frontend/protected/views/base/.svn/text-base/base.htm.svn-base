@@ -1,0 +1,33 @@
+<div id="base" style="text-align:center;margin:150px 0 150px 0;font-size:14px;">
+注册成功，欢迎您加入101兄弟，页面加载中<img src="images/loading.gif"/>&nbsp;<span id="totalSecond" style="color:red;">5</span>&nbsp;秒后自动跳转，或<a href="/index">点击这里进入首页</a>
+</div>
+<script language="javascript" type="text/javascript">
+    var second = document.getElementById('totalSecond').textContent;
+
+    if (navigator.appName.indexOf("Explorer") > -1)
+    {
+        second = document.getElementById('totalSecond').innerText;
+    } else
+    {
+        second = document.getElementById('totalSecond').textContent;
+    }
+
+
+    setInterval("redirect()", 1000);
+    function redirect()
+    {
+        if (second < 0)
+        {
+            location.href = '/index';
+        } else
+        {
+            if (navigator.appName.indexOf("Explorer") > -1)
+            {
+                document.getElementById('totalSecond').innerText = second--;
+            } else
+            {
+                document.getElementById('totalSecond').textContent = second--;
+            }
+        }
+    }
+</script>

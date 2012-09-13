@@ -1,0 +1,53 @@
+<?php
+$error = isset($__p__['error_msg']) ? $__p__['error_msg'] : '';
+?>
+<div id="forget">
+<?php
+if(empty($error) && !empty($_GET['name']) && !empty($_GET['step']) && '2'==$_GET['step']) {
+?>
+  <div class="footer_t">
+  <span>找回101密码：</span>
+  <div class="yibu_1">1.输入101帐号</div>
+  <div class="erbu_1">2.选择找回密码方式</div>
+  <div class="sanbu_1">3.找回密码</div>
+  </div>
+  <div class="kuang2">
+    <ul>
+    <li>您正在找回101帐号 <span><?php echo $_GET['name'];?></span> 的密码 <a href="/forget">[换一个账号]</a></li>
+      <li class="l">请选择密码的找回方式：建议您使用邮箱找回</a></li>
+      <li>
+      <a href="/retrieveuser?name=<?php echo $_GET['name']; ?>"><img src="images/cell.gif" width="176" height="127" /></a>
+      <a href="/forgetpwd?action=<?php echo $_GET['name']; ?>&id=<?php echo $__p__['user_id'];?>"><img src="images/mail.gif" width="176" height="127" /></a></li>
+    </ul>
+  </div>
+    <?php
+} else {
+?>
+<div class="footer_t">
+  <span>找回101密码：</span>
+  <div class="yibu">1.输入101帐号</div>
+  <div class="erbu">2.选择找回密码方式</div>
+  <div class="sanbu">3.找回密码</div>
+  </div>
+  <div class="kuang">
+    <form action="" method="get">
+    <ul>
+    <?php
+if(!empty($error)) {
+?>
+    <li class="li" style="color:red;"><?php echo $error;?></li>
+    <?php
+}
+?>
+    <li class="li"><span class="sp">101帐号：</span><input type="text" value="<?php echo $_GET['name'];?>" name="name" class="in" style="width:206px;height:20px;float:left;"/><span class="error"></span><input type="hidden" value="2" name="step" /></li>
+      <li><span class="sp">验证码：</span><input type="text" value="" name="code" class="in" style="width:105px;height:20px;float:left;"><span class="error"></span></li>
+      <li style="font-size:12px"><span class="spn" style="font-size:12px">不区分大小写，<a href="####" id="reget" style="color:#039;float:none;">看不清？</a></span></li>
+      <li class="lii"><span class="spn"><img src="forget?action=gecode&c=<?php echo date('YmhHis');?>" width="120" height="30" /></span></li>
+      <span class="spn"><input type="submit" name="" value="下一步" /></span>
+    </ul>
+    </form>
+  </div>
+    <?php
+}
+?>
+</div>

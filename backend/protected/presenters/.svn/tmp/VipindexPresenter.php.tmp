@@ -1,0 +1,107 @@
+<?php
+class VipindexPresenter extends InitPresenter
+{
+    public function __init__() {
+        parent::__init__();
+    }
+
+    private function getUserData($user_id) {
+
+        $this->__p__['user_data'] = $this->user->getUserData($user_id);
+
+        $this->__p__['message_count'] = $this->message->getNewsMessageCount($user_id);
+
+    }
+    
+    public function FetchSuggestProduct($cursor,$type,$user_id){
+        
+        //根据游标获取应该加载的id
+        //cursor为当前的游标，type传入1为next -1 为prev,返回vipproduct的关联数据,puller为渠道商id
+        $id_ = $this->vipproduct->getIDByCursor($cursor,$type,$user_id); 
+        $product = $this->vipproduct->getRelateVipproductData($id_); 
+        $product['cursor']=$id_;
+        $images = explode("|", $product['images']);
+        $quals = new array();
+        if ($product['qualification']['image_certificate']){
+         array_push($quals,'身份证');
+        }
+        if ($product['qualification']['image_license']){
+         array_push($quals,'营业执照');
+        }
+        if ($product['qualification']['image_tax']){
+         array_push($quals,'税务登记证');
+        }
+        if ($product['qualification']['ipmage_account']){
+         array_push($quals,'开户许可证');
+        }
+        if ($product['qualification']['image_org']){
+         array_push($quals,'组织机构代码证');
+        }
+        if ($product['qualification']['image_bui']){
+         array_push($quals,'商家授权书');
+        }
+        if ($product['qualification']['image_qc']){
+         array_push($quals,'商家质检书');
+        }
+        if ($product['qualification']['image_logo']){
+         array_push($quals,'标商');
+        };
+        $product['qualification']=$quals;
+        //将ad的存储数据转为输出文字
+        if ($product['ad']==1){
+            $product['ad']='是';
+            $ad_position = explode('|',$product['ad_position']);
+            foreach($ad_position as $ad_p){
+                $ad_position = '';
+                if ($ad_p == '0'){
+                    $ad_positioni.='网站首页链接广告 ';
+                    }
+                if ($ad_p == '1'){
+                    $ad_position.='网站首页商品推荐 ';
+                    }
+                if ($ad_p == '2'){
+                    $ad_position.='右侧推荐位专题推广';
+                    }
+                if ($ad_p == '3'){
+                    $ad_position.='其他';
+                    }
+                };
+            $ad_period = "{$product['ad_period']}天";
+            $product['ad_period'] = $ad_period;
+            $product['ad_position'] = $ad_position;
+            $
+            }
+        if ($product['ad']==0){
+            $product['ad']='否';
+            $product['ad_period'] = '';
+            $product['ad_position'] = '';
+            }
+
+        echo json_encode($product);
+        exit; 
+    }
+
+
+    public function __main__() {
+
+        $user_id = $this->checkLoginStatus();
+
+        $this->getUserData($user_id);
+<<<<<<< .mine
+        //根据游标位置获取推荐商品相关数据
+        if ($_GET['action']=='fetchsuggestproduct' && isset($_GET['cursor']) && isset($_GET['type'])){
+            $this->FatchSuggestProduct($_GET['cursor',$_GET['type']])
+=======
+        //获取推荐商品相关数据
+        if ($_GET['action']=='fetchsuggestproduct'){
+            //$this->
+>>>>>>> .r4390
+        
+        }
+
+    }
+
+}
+
+?>
+

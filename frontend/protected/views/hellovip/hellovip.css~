@@ -1,0 +1,77 @@
+#top{width:100%;height:30px;line-height:30px;background:url(../../../images/vip/bg_1.gif) repeat-x left;color:#666;overflow:hidden}
+#top .topc{margin:0 auto;width:970px;height:30px}
+#top span.welcome{width:400px;float:left;}
+#top span.login{float:right;padding-top:5px;height:25px}
+#top span.login a{color:#666}
+#top span.login label{float:left;line-height:25px;width:40px;line-height:23px}
+#top span.login label.la{float:left;line-height:25px;width:60px;line-height:23px;margin-right:5px}
+#top span.login input{width:120px;height:14px;margin-right:10px;float:left}
+#top span.login input.lg{background:none;width:40px;height:22px;border:none;cursor:pointer;float:left}
+
+
+
+#main{width:970px;margin:0 auto}
+#header{width:970px;height:85px;margin-top:9px}
+#header .logo{width:170px;height:32px;float:left;background:url(../../../images/vip/logo.gif) no-repeat;padding:53px 0 0 180px;font-family:"黑体";font-size:18px;}
+#header .wt{float:left;width:365px;height:74px;padding-top:10px;}
+#header .et{float:right;font-size:14px;font-weight:bold;height:57px;overflow:hidden;padding-top:28px;width:245px;}
+#header .et img{float:left;margin-right:5px}
+#header .et span {float:left;height:23px;line-height:23px;}
+
+#header .et .fabu a{border:medium none;color:#FFFFFF;display:block;font-size:14px;background:url(../../../images/vip/button_1.gif) no-repeat left;font-weight:bolder;height:32px;line-height:28px;width:100%;float:left;padding-left:20px;}
+#header .et input{width:414px;height:27px;font-size:12px;font-weight:bold;color:#fff;line-height:27px;border:1px solid #cecece;float:left}
+#header .et input.sh{width:80px;height:31px;float:left;background:url(../../../images/vip/indexbg_16.gif) no-repeat;border:none;line-height:31px;font-size:16px;cursor:pointer}
+#nav{width:970px;height:71px;margin:10px 0 0;background:url(../../../images/vip/nav.gif) no-repeat;}
+#nav .hd{width:970px;height:35px;line-height:36px;text-align:center;position:relative}
+#nav .hd .hot {
+    height: 16px;
+    left: 450px;
+    position: absolute;
+    top: -8px;
+    width: 22px;
+}
+
+#nav .hd ul{float:left;width:638px}
+#nav .hd ul li{float:left;width:638px}
+#nav .hd a{color:#fff;font-size:14px;font-weight:bold;display:block;float:left;width:95px;height:34px;font-size:14px;color:#fff;font-weight:bold}
+#nav .hd a.a{color:#56a92b;background:url(../../../images/vip/icon_2.gif) no-repeat 10px 5px;}
+#nav .hd a:hover{color:#56a92b;background:url(../../../images/vip/icon_2.gif) no-repeat 10px 5px;}
+#nav .hd a.aa:hover{color:#56a92b;background:url(../../../images/vip/hovericon_1.gif) no-repeat 6px 5px;}
+#nav .fd{width:970px;height:35px;line-height:35px}
+#location{width:970px;height:33px;line-height:33px}
+#location a{color:#03C}
+#qd{width:968px;height:76px;border:1px solid #cfcfcf;}
+#qd .qd1{width:968px;height:44px;border-bottom:#cfcfcf solid 1px;background:#f2f2f2}
+#qd .qd1 .search{width:490px;float:left;height:36px;padding:8px 0 0 10px}
+#qd .qd1 .search label{float:Left;line-height:28px;font-size:13px}
+#qd .qd1 .search input{margin-right:5px;float:Left;margin-top:3px;line-height:17px}
+#qd .qd1 .search select{margin-right:5px;float:Left;margin-top:3px}
+#qd .qd1 .search .an{width:85px;height:29px;background:url(../../../images/vip/tsmgbg_2.gif) no-repeat left -265px;border:none;font-size:14px;font-weight:bold;color:#fff;cursor:pointer;float:Left;margin:0}
+#qd .qd1 .new{width:422px;float:left;height:36px;padding:8px 0 0 43px;background:url(../../../images/vip/tsmgbg_2.gif) no-repeat left -415px;line-height:28px;font-size:13px}
+#qd .qd1 .new span{font-weight:bold}
+#qd .qd2{width:968px;height:32px;text-align:center;line-height:32px}
+#qd .qd2 span{color:#f00}
+#tips{width:962px;height:26px;background:#efefef;padding:4px 4px;line-height:24px;font-size:14px;font-weight:bold;clear:both;margin-top:5px}
+#tips .subtips{width:960px;height:24px;background:#fff;border:1px solid #dfdfdf;}
+#tips .subtips span{padding:0 5px;height:24px;float:left}
+#tips .subtips span.bt{padding:0 5px;background:#ffe5e5;text-align:center}
+#gold{width:968px;border:1px solid #cfcfcf;margin:5px 0}
+#gold .hd{width:968px;height:33px;background:url(../../../images/vip/tsmgbg_2.gif) repeat-x left bottom;font-size:14px;font-weight:bold;color:#fff}
+#gold .hd .hd_l{width:142px;height:33px;line-height:33px;background:url(../../../images/vip/tsmgbg_2.gif) no-repeat left -228px;padding-left:20px;float:left}
+#gold .hd .hd_r{width:700px;height:33px;line-height:33px;color:#e13c00;float:left}
+#gold .fd{width:968px;padding-top:12px}
+#gold .fd .lg{width:953px;height:62px;padding:0 0 10px 15px;}
+#gold .fd .lg img{float:left;margin-right:8px}
+#memberlist{width:968px;border:1px solid #cfcfcf;border-top:none}
+#memberlist .hd{width:948px;height:32px;border-bottom:#cfcfcf solid 1px;background:url(../../../images/vip/tsmgbg_2.gif) repeat-x left -190px;line-height:33px;padding-left:20px;font-size:14px;font-weight:bold}
+#memberlist .hd span{font-size:12px;font-weight:normal;color:#e13c00}
+#memberlist .fd{width:948px;padding:0 0 0 20px}
+#memberlist .fd .list{width:948px;height:30px;line-height:30px}
+#memberlist .fd .list ul{width:948px}
+#memberlist .fd .list ul li{width:86px;height:30px;float:left}
+#advert{width:970px;height:80px;margin:5px 0;both}
+#bottom{width:780px;padding-left:190px;background:#e5e5e5;border-top:1px solid #ccc;overflow:hidden;clear:both;}
+#bottom p{clear:both;width:590px;background:#f1f1f1;line-height:150%;text-align:center;color:#b7b7b7;padding:10px 0 10px 0;}
+#bottom p a{color:#b7b7b7;}
+
+

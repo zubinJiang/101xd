@@ -1,0 +1,202 @@
+
+
+<?php
+$address = isset($__p__['address']) ? $__p__['address'] : '';
+if($_SERVER['HTTP_HOST']=='dev.101xd.com') {
+?>
+<script src="assets/jquery/jquery.min.js"></script>
+<?php
+} else {
+?>
+<script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.4.min.js"></script>
+<?php
+}
+
+if(in_array(PAGE, array('local','releasenets','goldroll','message','concerned','publishers','manageGood','inputchannels','reviewe','favorite','member','administrate','adminfastsupply','pushManagement', 'channelManagement','vipindex','vipviewpush','viewpullproduct','vipdetail','buyPushManagement'))) {
+?>
+<script src="assets/jquery/jquery.ui.core.js" type="text/javascript" charset="utf-8"></script>
+<script src="assets/jquery/jquery.ui.widget.js" type="text/javascript" charset="utf-8"></script>
+<script src="assets/jquery/jquery.ui.datepicker.js" type="text/javascript" charset="utf-8"></script>
+<script src="assets/jquery/jquery.ui.mouse.js"></script>
+<script src="assets/jquery/jquery.ui.button.js"></script>
+<script src="assets/jquery/jquery.ui.draggable.js"></script>
+<script src="assets/jquery/jquery.ui.position.js"></script>
+<script src="assets/jquery/jquery.ui.resizable.js"></script>
+<script src="assets/jquery/jquery.ui.dialog.js"></script>
+<script src="assets/jquery/jquery.effects.core.js"></script>
+<script src="assets/jquery.tmpl.min.js"></script>
+<script type="text/javascript" src="assets/jquery.autocomplete-1.4.2.js"></script>
+<script type="text/javascript" src="assets/jquery.bgiframe.min.js"></script>
+<?php if(PAGE!='reviewe'){?>
+<script src="assets/jcrop/jquery.Jcrop.js" type="text/javascript"></script>
+<?php } ?>
+
+<script src="assets/jquery.alerts.js" type="text/javascript"></script>    
+<?php
+}
+if(PAGE=='account') {
+?>
+<script type="text/javascript" src="<?php echo $server; ?>assets/wp/swfupload.js"></script>
+<script src="assets/jcrop/jquery.Jcrop.js" type="text/javascript"></script>
+<script type="text/javascript" src="<?php echo $server; ?>assets/uploader_profile.js?c=<?php echo date('YmdHis')?>"></script>
+<?php
+}
+
+if(PAGE=='procedure') {
+?>
+<script type="text/javascript" src="<?php echo $server; ?>assets/wp/swfupload.js"></script>
+<script type="text/javascript" src="<?php echo $server; ?>assets/batch_upload_product.js?c=<?php echo date('YmdHis')?>"></script>
+<?php
+}
+
+if(PAGE=='viewpullproduct') {
+?>
+<script src="assets/jquery.tmpl.min.js"></script>
+<?php
+}
+
+
+if(in_array(PAGE, array('local','releasenets','goldroll'))) {
+?>
+<script charset="utf-8" src="assets/kindeditor/kindeditor.js"></script>
+<script src="assets/base.js" type="text/javascript" charset="utf-8"></script>
+<script charset="utf-8" src="assets/editor.js"></script>
+<?php 
+}
+
+if (in_array(PAGE, array('member', 'administrate','adminfastsupply'))) {
+?>
+<script type="text/javascript" src="assets/jquery.simplemodal.js"></script>
+<?php  
+}
+if(PAGE!='reviewe') {
+?>
+<script type="text/javascript" src="assets/jquery/validform.js"></script>
+<?php 
+}
+if(in_array(PAGE, array('local','releasenets'))) {
+?>
+<script type="text/javascript" src="assets/uploader.js?c=<?php echo date('YmdHis')?>"></script>
+<?php
+}
+
+if(false) {
+?>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.2&services=false"></script>
+<script>
+    $(document).ready(function(){
+
+        var map = new BMap.Map("map_canvas");
+        var marker;
+<?php
+    if('toupdate'==$_GET['action']) {
+    $address  = isset($__p__['address']) ? $__p__['address'] : '';
+        if(!empty($address['lng']) && !empty($address['lat'])) {
+?>
+    var point = new BMap.Point(<?php echo substr($address['lng'],0,7);?>, <?php echo substr($address['lat'],0,7);?>); 
+    map.setCurrentCity("<?php echo $address['name'];?>");
+    map.centerAndZoom(point,12);
+    marker = new BMap.Marker(point);
+    map.addOverlay(marker);   
+    marker.enableDragging();
+    marker.addEventListener("dragend", function(e){
+        document.getElementById("lng").value = e.point.lng ;
+        document.getElementById("lat").value = e.point.lat ;
+    });
+<?php
+        } else {
+?>
+        map.centerAndZoom('<?php echo $address['name'];?>',11); 
+<?php
+        }
+?>
+
+<?php
+    } else {
+?>
+        map.centerAndZoom("北京",11); 
+<?php
+    }
+?>
+        map.addControl(new BMap.NavigationControl());
+
+        $('#province_id').change(function(){
+            var province = $(this).find("option:selected").text();
+            if('请选择省份'==province) {
+                alert('请选择省份');
+                return false;
+            }
+            map.centerAndZoom(province,8);  
+            
+        });
+
+        $('#area_id').change(function(){
+            var city = $(this).find("option:selected").text();
+            if('请选择城市'==city) {
+                alert('请选择城市');
+                return false;
+            }
+
+            map.centerAndZoom(city,11);  
+        });
+
+        $('#b_address').focusout(function(){
+            var value = $(this).val();
+            var province = $('#province_id').find("option:selected").text();
+            if('请选择省份'==province){
+                alert('请选择省份');
+                return false;
+            }
+
+            var city = $('#area_id').find("option:selected").text();
+            if('请选择城市'==city) {
+                alert('请选择城市');
+                return false;
+            }
+
+            var address = province + city + value;
+
+            showAddress(address, city);
+        });
+
+    function centerCity(city) {
+        map.centerAndZoom(city,11);  
+    }
+
+    function showAddress(address,city) {
+        map.removeOverlay(marker);
+        var myGeo = new BMap.Geocoder();
+        myGeo.getPoint(address, function(point){
+            if (point) {
+                document.getElementById("lng").value = point.lng ;
+                document.getElementById("lat").value = point.lat ;
+
+                map.centerAndZoom(point, 16);
+                marker = new BMap.Marker(point);
+                map.addOverlay(marker);   
+                marker.enableDragging();
+                marker.addEventListener("dragend", function(e){
+                    document.getElementById("lng").value = e.point.lng ;
+                    document.getElementById("lat").value = e.point.lat ;
+                })
+            }
+        }, city);
+    }
+    });
+    </script>
+<?php
+}
+?>
+
+
+<?php if(PAGE=='vipinbox'){?>
+<script src="assets/jquery.alerts.js" type="text/javascript"></script>
+
+<?php } ?>
+<?php if(PAGE=='inputchannels'){?>
+<script type="text/javascript" src="assets/jquery.json-2.3.min.js"></script>
+<?php } ?>
+
+<? CHtml::javascript(); ?>
+</body>
+</html>
